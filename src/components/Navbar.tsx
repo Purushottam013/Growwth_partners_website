@@ -84,8 +84,8 @@ export const Navbar = () => {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to={getCountryUrl("")} className="flex items-center">
+          {/* Logo - moved 15px right */}
+          <Link to={getCountryUrl("")} className="flex items-center pl-[15px]">
             <img src={companyLogo} alt="Growwth Partners" className="h-12" />
           </Link>
 
@@ -128,10 +128,10 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* Contact Button */}
+          {/* Contact Button - moved 15px left */}
           <Button 
             onClick={() => setContactModalOpen(true)} 
-            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90"
+            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-[15px]"
           >
             Speak To An Expert
           </Button>

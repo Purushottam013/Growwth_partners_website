@@ -30,6 +30,25 @@ const countryCodes = [
   { code: "+1", country: "USA", flag: "🇺🇸" },
   { code: "+44", country: "UK", flag: "🇬🇧" },
   { code: "+91", country: "India", flag: "🇮🇳" },
+  { code: "+49", country: "Germany", flag: "🇩🇪" },
+  { code: "+33", country: "France", flag: "🇫🇷" },
+  { code: "+81", country: "Japan", flag: "🇯🇵" },
+  { code: "+86", country: "China", flag: "🇨🇳" },
+  { code: "+82", country: "South Korea", flag: "🇰🇷" },
+  { code: "+7", country: "Russia", flag: "🇷🇺" },
+  { code: "+39", country: "Italy", flag: "🇮🇹" },
+  { code: "+34", country: "Spain", flag: "🇪🇸" },
+  { code: "+55", country: "Brazil", flag: "🇧🇷" },
+  { code: "+52", country: "Mexico", flag: "🇲🇽" },
+  { code: "+31", country: "Netherlands", flag: "🇳🇱" },
+  { code: "+41", country: "Switzerland", flag: "🇨🇭" },
+  { code: "+46", country: "Sweden", flag: "🇸🇪" },
+  { code: "+47", country: "Norway", flag: "🇳🇴" },
+  { code: "+45", country: "Denmark", flag: "🇩🇰" },
+  { code: "+358", country: "Finland", flag: "🇫🇮" },
+  { code: "+64", country: "New Zealand", flag: "🇳🇿" },
+  { code: "+27", country: "South Africa", flag: "🇿🇦" },
+  { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
 ];
 
 export function ContactForm({ onSuccess }: ContactFormProps) {
@@ -137,7 +156,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
             <SelectTrigger className="w-[120px]">
               <SelectValue placeholder="Country" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="max-h-[300px] overflow-y-auto">
               {countryCodes.map((country) => (
                 <SelectItem key={country.code} value={country.code}>
                   <span className="flex items-center">

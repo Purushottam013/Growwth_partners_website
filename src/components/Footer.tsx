@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
   ChevronDown, 
+  ChevronUp,
   Globe, 
   Phone,
+  Mail,
+  MapPin,
   Linkedin,
   Youtube
 } from "lucide-react";
@@ -27,17 +30,34 @@ export const Footer = () => {
     return countryCode.charAt(0).toUpperCase() + countryCode.slice(1);
   };
 
+  // Get icon color based on country
+  const getIconColor = () => {
+    switch(country) {
+      case 'australia':
+        return '#06C0A9';
+      case 'uae':
+        return '#FFBE00';
+      default:
+        return '#F97316'; // brand-orange for Singapore
+    }
+  };
+
+  const iconColor = getIconColor();
+
   return (
     <footer className="bg-brand-dark text-white">
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: Company Info */}
           <div className="space-y-6">
-            <img src={companyLogo} alt="Growwth Partners" className="h-12 bg-white p-1 rounded" />
+            <div className="flex items-center">
+              <img src={companyLogo} alt="Growwth Partners" className="h-12 bg-white p-1 rounded" />
+              <span className="ml-3 text-xl font-semibold">Growwth Partners</span>
+            </div>
             <p className="text-gray-300">
               Get started swiftly & easily with us to manage and grow your business efficiently through our CFO, Finance & Accounting and Growth Solutions.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-6">
               <a 
                 href="https://www.youtube.com/" 
                 target="_blank" 
@@ -68,41 +88,47 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Contact</h3>
             <ul className="space-y-3 text-gray-300">
               <li className="flex items-center">
-                <Phone className="h-4 w-4 mr-2" />
+                <Phone className="h-4 w-4 mr-2" style={{color: iconColor}} />
                 <a href="tel:+6588930720" className="hover:text-brand-orange transition-colors">+65 8893 0720</a>
               </li>
               <li className="flex items-start">
-                <span className="mr-2">📧</span>
+                <Mail className="h-4 w-4 mr-2 mt-1" style={{color: iconColor}} />
                 <a href="mailto:jatin@growwthpartners.com" className="hover:text-brand-orange transition-colors">jatin@growwthpartners.com</a>
               </li>
             </ul>
             
-            <h3 className="text-xl font-bold mt-8 mb-4 pb-2 border-b border-gray-700">Our Locations</h3>
+            <h3 className="text-xl font-bold mt-8 mb-4 pb-2 border-b border-gray-700 flex items-center">
+              <MapPin className="h-4 w-4 mr-2" style={{color: iconColor}} />
+              Our Locations
+            </h3>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full justify-between border-gray-700 hover:bg-gray-800">
+                <Button variant="outline" className="w-full justify-between border-gray-700 hover:bg-gray-800 text-white">
                   <div className="flex items-center">
                     <Globe className="mr-2 h-4 w-4" />
                     <span>{formatCountryName(country)}</span>
                   </div>
-                  <ChevronDown className="ml-2 h-4 w-4" />
+                  <div className="flex">
+                    <ChevronUp className="h-4 w-4" />
+                    <ChevronDown className="h-4 w-4" />
+                  </div>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700">
                 <DropdownMenuItem 
-                  className={country === 'singapore' ? 'bg-gray-700' : ''}
+                  className={country === 'singapore' ? 'bg-gray-700 text-white' : 'text-white'}
                   onClick={() => setCountry('singapore')}
                 >
                   Singapore
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  className={country === 'uae' ? 'bg-gray-700' : ''}
+                  className={country === 'uae' ? 'bg-gray-700 text-white' : 'text-white'}
                   onClick={() => setCountry('uae')}
                 >
                   UAE
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  className={country === 'australia' ? 'bg-gray-700' : ''}
+                  className={country === 'australia' ? 'bg-gray-700 text-white' : 'text-white'}
                   onClick={() => setCountry('australia')}
                 >
                   Australia

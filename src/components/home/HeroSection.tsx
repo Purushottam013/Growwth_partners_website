@@ -7,7 +7,7 @@ export const HeroSection = () => {
   const { getCountryUrl } = useCountry();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 py-20 md:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F8FC] via-[#E8F0FC] to-[#FEFEFE] py-20 md:py-32">
       {/* Animated Shapes */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-brand-yellow/10 rounded-full filter blur-3xl animate-float-slow"></div>
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/10 rounded-full filter blur-3xl animate-float"></div>

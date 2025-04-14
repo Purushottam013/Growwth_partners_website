@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Poppins', 'sans-serif'],
+				body: ['Montserrat', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -68,7 +72,9 @@ export default {
                     green: "#65B741",
                     yellow: "#FFD700",
                     blue: "#1EAEDB",
-                    dark: "#121212"
+                    dark: "#121212",
+                    australia: "#06C0A9",
+                    uae: "#FFBE00",
                 }
 			},
 			borderRadius: {
