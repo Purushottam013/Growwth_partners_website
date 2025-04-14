@@ -82,9 +82,7 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
       }
       
       // Add new country prefix
-      newPath = newCountry === 'singapore' 
-        ? currentPath 
-        : `/${newCountry}${currentPath || ''}`;
+      newPath = `/${newCountry}${currentPath || ''}`;
     }
     
     // Navigate to new path

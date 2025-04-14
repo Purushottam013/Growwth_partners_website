@@ -44,10 +44,10 @@ const SingaporeRedirect = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <CountryProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+      <BrowserRouter>
+        <CountryProvider>
+          <Toaster />
+          <Sonner />
           <Routes>
             {/* Singapore routes - redirect to external site */}
             <Route path="/" element={<SingaporeRedirect />} />
@@ -112,8 +112,8 @@ const App = () => (
             {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </CountryProvider>
+        </CountryProvider>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
