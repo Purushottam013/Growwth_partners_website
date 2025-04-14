@@ -3,8 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import HomePage from "./pages/Home";
@@ -32,15 +31,6 @@ import { CountryProvider } from "./contexts/CountryContext";
 
 const queryClient = new QueryClient();
 
-// External redirect component
-const SingaporeRedirect = () => {
-  useEffect(() => {
-    window.location.href = "https://growwthpartners.com/";
-  }, []);
-  
-  return <div className="min-h-screen flex items-center justify-center">Redirecting to Growwth Partners Singapore...</div>;
-};
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -49,25 +39,25 @@ const App = () => (
           <Toaster />
           <Sonner />
           <Routes>
-            {/* Singapore routes - redirect to external site */}
-            <Route path="/" element={<SingaporeRedirect />} />
-            <Route path="/about" element={<SingaporeRedirect />} />
-            <Route path="/accounting" element={<SingaporeRedirect />} />
-            <Route path="/bookkeeping" element={<SingaporeRedirect />} />
-            <Route path="/payroll" element={<SingaporeRedirect />} />
-            <Route path="/taxation" element={<SingaporeRedirect />} />
-            <Route path="/fractional-cfo" element={<SingaporeRedirect />} />
-            <Route path="/cash-flow" element={<SingaporeRedirect />} />
-            <Route path="/contact" element={<SingaporeRedirect />} />
-            <Route path="/blog" element={<SingaporeRedirect />} />
-            <Route path="/success-stories" element={<SingaporeRedirect />} />
-            <Route path="/guide" element={<SingaporeRedirect />} />
-            <Route path="/achievements" element={<SingaporeRedirect />} />
-            <Route path="/news" element={<SingaporeRedirect />} />
-            <Route path="/privacy-policy" element={<SingaporeRedirect />} />
-            <Route path="/terms" element={<SingaporeRedirect />} />
-            <Route path="/corporate-secretary" element={<SingaporeRedirect />} />
-            <Route path="/company-incorporation" element={<SingaporeRedirect />} />
+            {/* Singapore routes */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/accounting" element={<AccountingPage />} />
+            <Route path="/bookkeeping" element={<BookkeepingPage />} />
+            <Route path="/payroll" element={<PayrollPage />} />
+            <Route path="/taxation" element={<TaxationPage />} />
+            <Route path="/fractional-cfo" element={<FractionalCFOPage />} />
+            <Route path="/cash-flow" element={<CashFlowPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/success-stories" element={<SuccessStoriesPage />} />
+            <Route path="/guide" element={<GuidePage />} />
+            <Route path="/achievements" element={<AchievementsPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/corporate-secretary" element={<CorporateSecretaryPage />} />
+            <Route path="/company-incorporation" element={<CompanyIncorporationPage />} />
             
             {/* UAE routes */}
             <Route path="/uae" element={<HomePage />} />
