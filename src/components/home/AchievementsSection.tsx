@@ -8,7 +8,7 @@ export const AchievementsSection = () => {
     {
       icon: <Award className="h-16 w-16 text-brand-orange" />,
       title: "Best Fractional CFO Services Award",
-      description: "The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services " provider in the APAC region."
+      description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
     },
     {
       icon: <CheckCircle className="h-16 w-16 text-brand-blue" />,
