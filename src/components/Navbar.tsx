@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
@@ -88,9 +89,12 @@ export const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo - with navigation */}
           <div className="flex items-center">
-            <Link to={getCountryUrl("")} className="flex items-center ml-4">
+            <div 
+              onClick={() => handleNavigation("")} 
+              className="flex items-center ml-4 cursor-pointer"
+            >
               <img src={companyLogo} alt="Growwth Partners" className="h-9" />
-            </Link>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -99,34 +103,34 @@ export const Navbar = () => {
               <div key={item.title} className="relative group">
                 {item.dropdown ? (
                   <div className="flex flex-col">
-                    <Link
-                      to={getCountryUrl(item.path)}
-                      className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium flex items-center"
+                    <div
+                      onClick={() => handleNavigation(item.path)}
+                      className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium flex items-center cursor-pointer"
                     >
                       {item.title}
                       <ChevronDown className="ml-1 w-4 h-4" />
-                    </Link>
+                    </div>
                     <div className="absolute left-0 mt-10 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="bg-white rounded-md shadow-lg py-2">
                         {item.items?.map((subItem) => (
-                          <Link
+                          <div
                             key={subItem.title}
-                            to={getCountryUrl(subItem.path)}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-brand-orange"
+                            onClick={() => handleNavigation(subItem.path)}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-brand-orange cursor-pointer"
                           >
                             {subItem.title}
-                          </Link>
+                          </div>
                         ))}
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <Link
-                    to={getCountryUrl(item.path)}
-                    className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium"
+                  <div
+                    onClick={() => handleNavigation(item.path)}
+                    className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium cursor-pointer"
                   >
                     {item.title}
-                  </Link>
+                  </div>
                 )}
               </div>
             ))}
@@ -170,26 +174,24 @@ export const Navbar = () => {
                     {openDropdown === item.title && (
                       <div className="pl-4 mt-1 border-l-2 border-gray-200">
                         {item.items?.map((subItem) => (
-                          <Link
+                          <div
                             key={subItem.title}
-                            to={getCountryUrl(subItem.path)}
-                            className="block py-2 text-gray-600 hover:text-brand-orange"
-                            onClick={() => setMobileMenuOpen(false)}
+                            onClick={() => handleNavigation(subItem.path)}
+                            className="block py-2 text-gray-600 hover:text-brand-orange cursor-pointer"
                           >
                             {subItem.title}
-                          </Link>
+                          </div>
                         ))}
                       </div>
                     )}
                   </div>
                 ) : (
-                  <Link
-                    to={getCountryUrl(item.path)}
-                    className="block py-2 text-gray-700 hover:text-brand-orange"
-                    onClick={() => setMobileMenuOpen(false)}
+                  <div
+                    onClick={() => handleNavigation(item.path)}
+                    className="block py-2 text-gray-700 hover:text-brand-orange cursor-pointer"
                   >
                     {item.title}
-                  </Link>
+                  </div>
                 )}
               </div>
             ))}
