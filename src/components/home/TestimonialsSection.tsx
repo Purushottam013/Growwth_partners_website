@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
@@ -127,7 +127,7 @@ export const TestimonialsSection = () => {
 
       <div className="py-20 bg-gray-50">
         <div className="container-custom">
-          <h2 className="heading-lg text-center mb-12">Our Happy Customers</h2>
+          <h2 className="heading-lg text-center mb-6">Our Happy Customers</h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto font-semibold">
             Finance made simple with our services. Not trusting our words? Hear what our clients are saying about us and our services.
           </p>
