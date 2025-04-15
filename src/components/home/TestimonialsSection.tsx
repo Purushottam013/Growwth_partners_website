@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -143,7 +142,7 @@ export const TestimonialsSection = () => {
                     <div className="bg-white rounded-lg p-8 shadow-lg">
                       <div className="aspect-video w-full overflow-hidden rounded-lg">
                         <iframe 
-                          allowtransparency="true" 
+                          allowTransparency={true} 
                           title={video.title}
                           allowFullScreen 
                           frameBorder="0" 
