@@ -1,13 +1,15 @@
+
 import { motion } from "framer-motion";
-import { Award, Rocket } from "lucide-react";
+import { Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import xeroPartnerLogo from "/lovable-uploads/3bf79a75-14fd-4e61-beb3-e2350895f138.png";
 import ryzupLogo from "/lovable-uploads/61d38fe8-d265-4d62-b0ab-1a5905dec2e9.png";
+import fractionalCFOAwardLogo from "/lovable-uploads/44b1e9d6-83f7-4167-b88a-7d470a5990e3.png";
 
 export const AchievementsSection = () => {
   const achievements = [
     {
-      icon: <Award className="h-16 w-16 text-brand-orange" />,
+      icon: <img src={fractionalCFOAwardLogo} alt="Best Fractional CFO Award" className="h-16 w-16 object-contain" />,
       title: "Best Fractional CFO Award",
       description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
     },
