@@ -49,7 +49,7 @@ export const TestimonialsSection = () => {
         </div>
       </div>
 
-      <div className="bg-gray-50 py-20">
+      <div className="bg-gray-50 py-[40px]">
         <div className="container-custom">
           <h1 className="heading-lg text-center mb-16">Our Clients Love Us Because..</h1>
           
