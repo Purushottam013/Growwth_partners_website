@@ -1,11 +1,17 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 
 export const CtaSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleJoinUs = () => {
+    navigate('/contact');
+  };
 
   return (
     <section className="py-20 bg-gradient-to-r from-brand-dark to-gray-900 text-white">
@@ -17,7 +23,7 @@ export const CtaSection = () => {
             tailored to your business needs. Let's grow together!
           </p>
           <Button 
-            onClick={() => setContactModalOpen(true)} 
+            onClick={handleJoinUs} 
             className="bg-brand-orange hover:bg-brand-orange/90 text-white px-8 py-6 text-lg font-bold rounded-full"
           >
             Join Us
