@@ -1,14 +1,14 @@
-
 import { motion } from "framer-motion";
 import { Award, Rocket } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import xeroPartnerLogo from "/lovable-uploads/3bf79a75-14fd-4e61-beb3-e2350895f138.png";
+import ryzupLogo from "/lovable-uploads/61d38fe8-d265-4d62-b0ab-1a5905dec2e9.png";
 
 export const AchievementsSection = () => {
   const achievements = [
     {
       icon: <Award className="h-16 w-16 text-brand-orange" />,
-      title: "Best Fractional CFO Services Award",
+      title: "Best Fractional CFO Award",
       description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
     },
     {
@@ -17,7 +17,7 @@ export const AchievementsSection = () => {
       description: "Growwth Partners is a Xero Silver champion partner after working on 500+ Xero accounts of clients and helping them streamline their books on the software and helping them scale financially."
     },
     {
-      icon: <Rocket className="h-16 w-16 text-brand-green" />,
+      icon: <img src={ryzupLogo} alt="Ryzup.ai Launch" className="h-16 object-contain" />,
       title: "Launch of Ryzup.ai",
       description: "We launched our cutting-edge AI powered strategic finance and growth tool for start-ups, SMEs, growing companies by providing 24/7 access to an experienced AI CFO and growth catalyst at a fraction of cost."
     }
