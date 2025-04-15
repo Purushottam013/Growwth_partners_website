@@ -2,14 +2,14 @@
 import { Link } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
-  ChevronDown, 
-  ChevronUp,
   Globe, 
   Phone,
   Mail,
   MapPin,
   Linkedin,
-  Youtube
+  Youtube,
+  ChevronUp,
+  ChevronDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -21,6 +21,8 @@ import {
 
 // Import the company logo 
 import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
+// Import country dropdown image
+import countryDropdownImage from "/lovable-uploads/7cf2ab2c-86de-4623-9488-a190961c93cd.png";
 
 export const Footer = () => {
   const { country, setCountry, getCountryUrl } = useCountry();
@@ -57,7 +59,7 @@ export const Footer = () => {
             <p className="text-gray-300">
               Get started swiftly & easily with us to manage and grow your business efficiently through our CFO, Finance & Accounting and Growth Solutions.
             </p>
-            <div className="flex space-x-8">
+            <div className="flex space-x-12">
               <a 
                 href="https://www.youtube.com/" 
                 target="_blank" 
@@ -86,7 +88,7 @@ export const Footer = () => {
           {/* Column 2: Contact */}
           <div>
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Contact</h3>
-            <ul className="space-y-3 text-gray-300">
+            <ul className="space-y-3 text-gray-300 mt-5">
               <li className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" style={{color: iconColor}} />
                 <a href="tel:+6588930720" className="hover:text-brand-orange transition-colors">+65 8893 0720</a>
@@ -101,20 +103,27 @@ export const Footer = () => {
               <MapPin className="h-4 w-4 mr-2" style={{color: iconColor}} />
               Our Locations
             </h3>
+            
+            {/* Custom dropdown styled according to the provided image */}
+            <button
+              onClick={() => {}}
+              className="w-full mt-5 flex items-center justify-between bg-gray-800 text-white p-3 rounded-full border border-gray-700 focus:outline-none hover:bg-gray-700"
+            >
+              <div className="flex items-center">
+                <Globe className="mr-3 h-5 w-5 text-white" />
+                <span className="text-white text-base">{formatCountryName(country)}</span>
+              </div>
+              <div className="flex flex-col">
+                <ChevronUp className="h-4 w-4 text-white" />
+                <ChevronDown className="h-4 w-4 text-white mt-[-4px]" />
+              </div>
+            </button>
+            
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full justify-between border-gray-700 bg-gray-800 hover:bg-gray-700 text-white">
-                  <div className="flex items-center">
-                    <Globe className="mr-2 h-4 w-4 text-white" />
-                    <span className="text-white">{formatCountryName(country)}</span>
-                  </div>
-                  <div className="flex">
-                    <ChevronUp className="h-4 w-4 text-white" />
-                    <ChevronDown className="h-4 w-4 text-white ml-[-4px]" />
-                  </div>
-                </Button>
+                <button className="hidden">Open</button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700">
+              <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700 w-full">
                 <DropdownMenuItem 
                   className={country === 'singapore' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
                   onClick={() => setCountry('singapore')}
@@ -140,7 +149,7 @@ export const Footer = () => {
           {/* Column 3: Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Quick Links</h3>
-            <ul className="space-y-2 text-gray-300">
+            <ul className="space-y-2 text-gray-300 mt-5">
               <li>
                 <Link to={getCountryUrl("")} className="hover:text-brand-orange transition-colors">
                   Home
@@ -177,7 +186,7 @@ export const Footer = () => {
           {/* Column 4: Services */}
           <div>
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Services</h3>
-            <ul className="space-y-2 text-gray-300">
+            <ul className="space-y-2 text-gray-300 mt-5">
               <li>
                 <Link to={getCountryUrl("fractional-cfo")} className="hover:text-brand-orange transition-colors">
                   Part Time CFO

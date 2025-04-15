@@ -7,12 +7,13 @@ export const HeroSection = () => {
   const { getCountryUrl } = useCountry();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F8FC] via-[#E8F0FC] to-[#FEFEFE] py-20 md:py-32">
-      {/* Animated Shapes with improved colors */}
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F8FC] via-[#E8F0FC] to-[#FEFEFE] py-16 md:py-28">
+      {/* Enhanced Animated Shapes with improved colors and animations */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-brand-yellow/15 rounded-full filter blur-3xl animate-float-slow"></div>
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/15 rounded-full filter blur-3xl animate-float"></div>
       <div className="absolute top-40 right-20 w-60 h-60 bg-[#E7EBFF]/30 rounded-full filter blur-3xl animate-float-slow"></div>
       <div className="absolute bottom-40 left-40 w-40 h-40 bg-[#F7ECE7]/20 rounded-full filter blur-3xl animate-float"></div>
+      <div className="absolute top-60 left-60 w-48 h-48 bg-[#E8F0FC]/25 rounded-full filter blur-3xl animate-float-slow"></div>
       
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -74,6 +75,9 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Gradient fade-out at the bottom for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FEFEFE] to-transparent"></div>
     </section>
   );
 };

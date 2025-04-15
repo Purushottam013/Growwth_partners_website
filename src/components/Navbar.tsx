@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
   ChevronDown,
@@ -67,6 +67,7 @@ const navItems = [
 
 export const Navbar = () => {
   const { getCountryUrl } = useCountry();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -80,13 +81,19 @@ export const Navbar = () => {
     }
   };
 
+  // Handle navigation
+  const handleNavigation = (path: string) => {
+    navigate(getCountryUrl(path));
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container-custom py-4">
+      <div className="container-custom py-3">
         <div className="flex items-center justify-between">
           {/* Logo - adjusted position */}
-          <Link to={getCountryUrl("")} className="flex items-center pl-6">
-            <img src={companyLogo} alt="Growwth Partners" className="h-12" />
+          <Link to={getCountryUrl("")} className="flex items-center pr-4">
+            <img src={companyLogo} alt="Growwth Partners" className="h-10" />
           </Link>
 
           {/* Desktop Navigation - adjusted spacing */}
@@ -131,7 +138,7 @@ export const Navbar = () => {
           {/* Contact Button - adjusted position */}
           <Button 
             onClick={() => setContactModalOpen(true)} 
-            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-6"
+            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 ml-4"
           >
             Speak To An Expert
           </Button>

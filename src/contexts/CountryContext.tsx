@@ -58,35 +58,35 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     return countryPrefix ? `${countryPrefix}/${cleanPath}` : `/${cleanPath}`;
   };
 
-  // Change country and navigate to equivalent page in new country
+  // Change country and navigate to equivalent page in new country without scrolling
   const handleSetCountry = (newCountry: Country) => {
     if (newCountry === country) return;
-    
-    setCountry(newCountry);
     
     // Construct new URL
     let currentPath = location.pathname;
     let newPath = '';
     
-    if (newCountry === 'singapore') {
-      // For Singapore, we'll redirect to the root
-      newPath = '/';
-    } else {
-      // For other countries, we need to adjust the path
-      // Remove current country prefix if any
-      if (country !== 'singapore') {
-        const currentPrefix = getCountryPrefix();
-        if (currentPath.startsWith(currentPrefix)) {
-          currentPath = currentPath.replace(currentPrefix, '');
-        }
+    // Remove current country prefix if any
+    if (country !== 'singapore') {
+      const currentPrefix = getCountryPrefix();
+      if (currentPath.startsWith(currentPrefix)) {
+        currentPath = currentPath.replace(currentPrefix, '');
       }
-      
-      // Add new country prefix
+    }
+    
+    // For Singapore, we need to handle the root path differently
+    if (newCountry === 'singapore') {
+      newPath = currentPath || '/';
+    } else {
+      // For other countries, add the country prefix
       newPath = `/${newCountry}${currentPath || ''}`;
     }
     
-    // Navigate to new path
-    navigate(newPath);
+    // Set the country first
+    setCountry(newCountry);
+    
+    // Navigate to new path without scrolling to top
+    navigate(newPath, { replace: true });
   };
 
   return (
