@@ -57,7 +57,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.5 }}
             >
               Fueling Business Growth With 
-              <span className="text-brand-orange"> Expert Accounting & Financial Services!</span>
+              <span className="text-brand-orange"> Expert Accounting</span> & Financial Services!
             </motion.h1>
             <motion.p 
               className="text-lg text-gray-700 mb-8"
@@ -100,7 +100,7 @@ export const HeroSection = () => {
           </div>
           
           <div className="order-1 lg:order-2 relative">
-            {/* Static image - removed the animate-float-slow class */}
+            {/* Static image */}
             <div className="relative z-10">
               <img
                 src={financeImage}
@@ -112,7 +112,7 @@ export const HeroSection = () => {
               {factBadges.map((badge, index) => (
                 <motion.div
                   key={index}
-                  className={`absolute ${badge.position} hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-orange to-brand-orange/90 px-4 py-3 rounded-xl shadow-lg`}
+                  className={`absolute ${badge.position} hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-blue to-brand-blue/90 px-4 py-3 rounded-xl shadow-lg`}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ 
@@ -131,7 +131,7 @@ export const HeroSection = () => {
                 </motion.div>
               ))}
             </div>
-            <div className="absolute inset-0 bg-brand-orange/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
+            <div className="absolute inset-0 bg-brand-blue/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
           </div>
         </div>
       </div>
