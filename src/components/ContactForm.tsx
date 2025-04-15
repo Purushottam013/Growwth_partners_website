@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { PhoneIcon, User, Building, Mail } from "lucide-react";
+import { PhoneIcon, User, Building, Mail, ChevronUp, ChevronDown } from "lucide-react";
 
 interface ContactFormProps {
   onSuccess?: () => void;
