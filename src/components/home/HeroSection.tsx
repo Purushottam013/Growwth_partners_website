@@ -65,11 +65,15 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Badge variant="hero" className="py-2 px-4 text-base flex items-center gap-2 mb-3 w-fit">
+              <Badge 
+                variant="soft" 
+                className="py-2 px-4 text-base flex items-center gap-2 mb-3 w-fit"
+                style={{ backgroundColor: '#ECE7EA', color: '#333' }}
+              >
                 <span className="bg-gradient-to-r from-brand-orange to-yellow-500 p-1.5 rounded-full flex items-center justify-center">
                   <Award className="h-5 w-5 text-white" />
                 </span>
-                <span className="font-medium">Growth Partners Consulting</span>
+                <span className="font-medium">Singapore's Leading Financial Services</span>
               </Badge>
             </motion.div>
 
