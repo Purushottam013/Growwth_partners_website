@@ -102,7 +102,7 @@ export const TestimonialsSection = () => {
         </div>
       </div>
 
-      <div className="py-20 bg-gray-50">
+      <div className="bg-gray-50 py-[60px]">
         <div className="container-custom">
           <h2 className="heading-lg text-center mb-6">Our Happy Customers</h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto font-semibold">
