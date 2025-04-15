@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, ArrowDown, DollarSign, Trophy, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -42,12 +41,17 @@ export const HeroSection = () => {
     },
   ];
 
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden py-12 lg:py-24">
-      {/* Enhanced background gradient with multiple colors */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-green-50 to-blue-50 -z-10"></div>
       
-      {/* Improved animated background elements with requested colors */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#21C55D]/10 rounded-full filter blur-3xl"></div>
@@ -58,7 +62,6 @@ export const HeroSection = () => {
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="order-2 lg:order-1 pt-8 lg:pt-0">
-            {/* Hero badge above heading */}
             <motion.div 
               className="mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -68,7 +71,7 @@ export const HeroSection = () => {
               <Badge 
                 variant="soft" 
                 className="py-2 px-4 text-base flex items-center gap-2 mb-3 w-fit"
-                style={{ backgroundColor: '#ECE7EA', color: '#333' }}
+                style={{ backgroundColor: '#F6E8E2', color: '#333' }}
               >
                 <span className="bg-gradient-to-r from-brand-orange to-yellow-500 p-1.5 rounded-full flex items-center justify-center">
                   <Award className="h-5 w-5 text-white" />
@@ -112,6 +115,7 @@ export const HeroSection = () => {
               
               <Button 
                 variant="outline"
+                onClick={scrollToServices}
                 className="border-brand-orange text-brand-orange hover:bg-brand-orange/10 rounded-full px-8 py-6 text-lg font-medium"
               >
                 Our Services
@@ -135,7 +139,6 @@ export const HeroSection = () => {
           </div>
           
           <div className="order-1 lg:order-2 relative">
-            {/* Static image with improved styling */}
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -149,7 +152,6 @@ export const HeroSection = () => {
                   className="rounded-lg object-cover mx-auto w-full"
                 />
                 
-                {/* Improved badge styling with green icons as requested */}
                 {factBadges.map((badge, index) => (
                   <motion.div
                     key={index}
@@ -173,13 +175,11 @@ export const HeroSection = () => {
                 ))}
               </motion.div>
             </div>
-            {/* Decorative element for the image */}
             <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
           </div>
         </div>
       </div>
 
-      {/* Contact Dialog */}
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>

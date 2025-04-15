@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { BookOpen, Building, TrendingUp, FileCheck, BriefcaseBusiness, DollarSign, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
 export const ServicesSection = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const services = [{
@@ -36,6 +37,7 @@ export const ServicesSection = () => {
     description: "Reliable payroll management services to ensure timely and accurate payment of your employees.",
     link: "/payroll"
   }];
+
   const containerVariants = {
     hidden: {
       opacity: 0
@@ -47,6 +49,7 @@ export const ServicesSection = () => {
       }
     }
   };
+
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -57,7 +60,12 @@ export const ServicesSection = () => {
       y: 0
     }
   };
-  return <section className="bg-white relative overflow-hidden py-[40px]">
+
+  return (
+    <section 
+      id="services-section" 
+      className="bg-white relative overflow-hidden py-[40px]"
+    >
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue/5 rounded-full -z-10 transform -translate-x-1/2 translate-y-1/2"></div>
@@ -109,5 +117,6 @@ export const ServicesSection = () => {
             </motion.div>)}
         </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };
