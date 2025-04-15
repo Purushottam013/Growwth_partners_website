@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
+import { CountrySwitcher } from "@/components/CountrySwitcher";
 import { 
-  ChevronDown,
   Menu,
   X
 } from "lucide-react";
@@ -89,15 +89,17 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container-custom py-3">
+      <div className="container-custom py-2">
         <div className="flex items-center justify-between">
-          {/* Logo - adjusted position */}
-          <Link to={getCountryUrl("")} className="flex items-center pr-4">
-            <img src={companyLogo} alt="Growwth Partners" className="h-10" />
-          </Link>
+          {/* Logo - with navigation */}
+          <div className="flex items-center">
+            <Link to={getCountryUrl("")} className="flex items-center ml-4">
+              <img src={companyLogo} alt="Growwth Partners" className="h-9" />
+            </Link>
+          </div>
 
-          {/* Desktop Navigation - adjusted spacing */}
-          <nav className="hidden lg:flex items-center space-x-0">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-2">
             {navItems.map((item) => (
               <div key={item.title} className="relative group">
                 {item.dropdown ? (
@@ -135,13 +137,16 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* Contact Button - adjusted position */}
-          <Button 
-            onClick={() => setContactModalOpen(true)} 
-            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 ml-4"
-          >
-            Speak To An Expert
-          </Button>
+          {/* Country Switcher and Contact Button */}
+          <div className="flex items-center">
+            <CountrySwitcher variant="dark" className="mr-4" />
+            <Button 
+              onClick={() => setContactModalOpen(true)} 
+              className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-4"
+            >
+              Speak To An Expert
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button

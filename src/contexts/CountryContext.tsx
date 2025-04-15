@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -58,7 +57,7 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     return countryPrefix ? `${countryPrefix}/${cleanPath}` : `/${cleanPath}`;
   };
 
-  // Change country and navigate to equivalent page in new country without scrolling
+  // Change country and navigate to equivalent page in new country
   const handleSetCountry = (newCountry: Country) => {
     if (newCountry === country) return;
     
@@ -74,6 +73,11 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
       }
     }
     
+    // Keep the path after the country prefix
+    if (currentPath === '/') {
+      currentPath = '';
+    }
+    
     // For Singapore, we need to handle the root path differently
     if (newCountry === 'singapore') {
       newPath = currentPath || '/';
@@ -86,7 +90,7 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     setCountry(newCountry);
     
     // Navigate to new path without scrolling to top
-    navigate(newPath, { replace: true });
+    navigate(newPath, { replace: true, state: { preventScroll: true } });
   };
 
   return (
