@@ -84,20 +84,20 @@ export const Navbar = () => {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container-custom py-4">
         <div className="flex items-center justify-between">
-          {/* Logo - moved 15px right */}
-          <Link to={getCountryUrl("")} className="flex items-center pl-[15px]">
+          {/* Logo - adjusted position */}
+          <Link to={getCountryUrl("")} className="flex items-center pl-6">
             <img src={companyLogo} alt="Growwth Partners" className="h-12" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation - adjusted spacing */}
+          <nav className="hidden lg:flex items-center space-x-0">
             {navItems.map((item) => (
               <div key={item.title} className="relative group">
                 {item.dropdown ? (
                   <div className="flex flex-col">
                     <Link
                       to={getCountryUrl(item.path)}
-                      className="px-4 py-2 text-gray-700 hover:text-brand-orange font-medium flex items-center"
+                      className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium flex items-center"
                     >
                       {item.title}
                       <ChevronDown className="ml-1 w-4 h-4" />
@@ -119,7 +119,7 @@ export const Navbar = () => {
                 ) : (
                   <Link
                     to={getCountryUrl(item.path)}
-                    className="px-4 py-2 text-gray-700 hover:text-brand-orange font-medium"
+                    className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium"
                   >
                     {item.title}
                   </Link>
@@ -128,10 +128,10 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* Contact Button - moved 15px left */}
+          {/* Contact Button - adjusted position */}
           <Button 
             onClick={() => setContactModalOpen(true)} 
-            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-[15px]"
+            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-6"
           >
             Speak To An Expert
           </Button>

@@ -156,7 +156,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
             <SelectTrigger className="w-[120px]">
               <SelectValue placeholder="Country" />
             </SelectTrigger>
-            <SelectContent className="max-h-[300px] overflow-y-auto">
+            <SelectContent className="max-h-[200px] overflow-y-auto">
               {countryCodes.map((country) => (
                 <SelectItem key={country.code} value={country.code}>
                   <span className="flex items-center">

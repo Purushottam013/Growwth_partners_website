@@ -8,10 +8,11 @@ export const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F8FC] via-[#E8F0FC] to-[#FEFEFE] py-20 md:py-32">
-      {/* Animated Shapes */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-yellow/10 rounded-full filter blur-3xl animate-float-slow"></div>
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/10 rounded-full filter blur-3xl animate-float"></div>
-      <div className="absolute top-40 right-20 w-60 h-60 bg-brand-green/10 rounded-full filter blur-3xl animate-float-slow"></div>
+      {/* Animated Shapes with improved colors */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-yellow/15 rounded-full filter blur-3xl animate-float-slow"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/15 rounded-full filter blur-3xl animate-float"></div>
+      <div className="absolute top-40 right-20 w-60 h-60 bg-[#E7EBFF]/30 rounded-full filter blur-3xl animate-float-slow"></div>
+      <div className="absolute bottom-40 left-40 w-40 h-40 bg-[#F7ECE7]/20 rounded-full filter blur-3xl animate-float"></div>
       
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">

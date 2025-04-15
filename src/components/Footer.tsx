@@ -57,7 +57,7 @@ export const Footer = () => {
             <p className="text-gray-300">
               Get started swiftly & easily with us to manage and grow your business efficiently through our CFO, Finance & Accounting and Growth Solutions.
             </p>
-            <div className="flex space-x-6">
+            <div className="flex space-x-8">
               <a 
                 href="https://www.youtube.com/" 
                 target="_blank" 
@@ -103,32 +103,32 @@ export const Footer = () => {
             </h3>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full justify-between border-gray-700 hover:bg-gray-800 text-white">
+                <Button variant="outline" className="w-full justify-between border-gray-700 bg-gray-800 hover:bg-gray-700 text-white">
                   <div className="flex items-center">
-                    <Globe className="mr-2 h-4 w-4" />
-                    <span>{formatCountryName(country)}</span>
+                    <Globe className="mr-2 h-4 w-4 text-white" />
+                    <span className="text-white">{formatCountryName(country)}</span>
                   </div>
                   <div className="flex">
-                    <ChevronUp className="h-4 w-4" />
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronUp className="h-4 w-4 text-white" />
+                    <ChevronDown className="h-4 w-4 text-white ml-[-4px]" />
                   </div>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700">
                 <DropdownMenuItem 
-                  className={country === 'singapore' ? 'bg-gray-700 text-white' : 'text-white'}
+                  className={country === 'singapore' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
                   onClick={() => setCountry('singapore')}
                 >
                   Singapore
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  className={country === 'uae' ? 'bg-gray-700 text-white' : 'text-white'}
+                  className={country === 'uae' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
                   onClick={() => setCountry('uae')}
                 >
                   UAE
                 </DropdownMenuItem>
                 <DropdownMenuItem 
-                  className={country === 'australia' ? 'bg-gray-700 text-white' : 'text-white'}
+                  className={country === 'australia' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
                   onClick={() => setCountry('australia')}
                 >
                   Australia
