@@ -59,7 +59,7 @@ export const Footer = () => {
             </p>
             <div className="flex space-x-12">
               <a 
-                href="https://www.youtube.com/" 
+                href="https://www.youtube.com/@GrowwthPartners" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-red-500 hover:text-red-400 transition-colors"
@@ -67,7 +67,7 @@ export const Footer = () => {
                 <Youtube size={24} />
               </a>
               <a 
-                href="https://www.linkedin.com/" 
+                href="https://www.linkedin.com/company/growwth-partners/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-400 transition-colors"

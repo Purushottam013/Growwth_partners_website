@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
@@ -116,13 +115,13 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container-custom py-2">
+      <div className="container-custom py-3">
         <div className="flex items-center justify-between">
           {/* Logo - with navigation */}
           <div className="flex items-center">
             <div 
               onClick={handleLogoClick} 
-              className="flex items-center ml-4 cursor-pointer"
+              className="flex items-center ml-8 cursor-pointer"
             >
               <img src={companyLogo} alt="Growwth Partners" className="h-9" />
             </div>
@@ -170,7 +169,7 @@ export const Navbar = () => {
           {/* Contact Button */}
           <Button 
             onClick={() => setContactModalOpen(true)} 
-            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90"
+            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-8"
           >
             Speak To An Expert
           </Button>
@@ -254,4 +253,3 @@ export const Navbar = () => {
     </header>
   );
 };
-
