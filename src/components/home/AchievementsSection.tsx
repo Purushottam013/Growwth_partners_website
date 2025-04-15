@@ -1,32 +1,24 @@
-
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import xeroPartnerLogo from "/lovable-uploads/3bf79a75-14fd-4e61-beb3-e2350895f138.png";
 import ryzupLogo from "/lovable-uploads/61d38fe8-d265-4d62-b0ab-1a5905dec2e9.png";
 import fractionalCFOAwardLogo from "/lovable-uploads/44b1e9d6-83f7-4167-b88a-7d470a5990e3.png";
-
 export const AchievementsSection = () => {
-  const achievements = [
-    {
-      icon: <img src={fractionalCFOAwardLogo} alt="Best Fractional CFO Award" className="h-16 w-16 object-contain" />,
-      title: "Best Fractional CFO Award",
-      description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
-    },
-    {
-      icon: <img src={xeroPartnerLogo} alt="Xero Silver Champion Partner" className="h-16" />,
-      title: "Xero Certified Partner",
-      description: "Growwth Partners is a Xero Silver champion partner after working on 500+ Xero accounts of clients and helping them streamline their books on the software and helping them scale financially."
-    },
-    {
-      icon: <img src={ryzupLogo} alt="Ryzup.ai Launch" className="h-16 object-contain" />,
-      title: "Launch of Ryzup.ai",
-      description: "We launched our cutting-edge AI powered strategic finance and growth tool for start-ups, SMEs, growing companies by providing 24/7 access to an experienced AI CFO and growth catalyst at a fraction of cost."
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+  const achievements = [{
+    icon: <img src={fractionalCFOAwardLogo} alt="Best Fractional CFO Award" className="h-16 w-16 object-contain" />,
+    title: "Best Fractional CFO Award",
+    description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
+  }, {
+    icon: <img src={xeroPartnerLogo} alt="Xero Silver Champion Partner" className="h-16" />,
+    title: "Xero Certified Partner",
+    description: "Growwth Partners is a Xero Silver champion partner after working on 500+ Xero accounts of clients and helping them streamline their books on the software and helping them scale financially."
+  }, {
+    icon: <img src={ryzupLogo} alt="Ryzup.ai Launch" className="h-16 object-contain" />,
+    title: "Launch of Ryzup.ai",
+    description: "We launched our cutting-edge AI powered strategic finance and growth tool for start-ups, SMEs, growing companies by providing 24/7 access to an experienced AI CFO and growth catalyst at a fraction of cost."
+  }];
+  return <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h3 className="heading-md mb-4">Our Achievements</h3>
@@ -37,14 +29,18 @@ export const AchievementsSection = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {achievements.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
+          {achievements.map((item, index) => <motion.div key={index} initial={{
+          opacity: 0,
+          scale: 0.9
+        }} whileInView={{
+          opacity: 1,
+          scale: 1
+        }} transition={{
+          duration: 0.5,
+          delay: index * 0.2
+        }} viewport={{
+          once: true
+        }}>
               <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
                 <div className="h-2 bg-gradient-to-r from-brand-orange via-brand-blue to-brand-green"></div>
                 <CardContent className="p-6 flex flex-col items-center text-center">
@@ -52,13 +48,11 @@ export const AchievementsSection = () => {
                     {item.icon}
                   </div>
                   <h4 className="text-xl font-bold mb-3">{item.title}</h4>
-                  <p className="text-gray-600">{item.description}</p>
+                  <p className="text-left text-gray-700">{item.description}</p>
                 </CardContent>
               </Card>
-            </motion.div>
-          ))}
+            </motion.div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
