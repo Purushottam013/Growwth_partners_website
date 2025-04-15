@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -64,6 +64,7 @@ const navItems = [
 export const Navbar = () => {
   const { getCountryUrl } = useCountry();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -79,16 +80,37 @@ export const Navbar = () => {
 
   // Handle navigation with consistent approach
   const handleNavigation = (path: string) => {
+    // For home navigation, use direct navigation to root
+    if (path === "/") {
+      console.log("Navigating to home page");
+      // Get the current country prefix if any
+      const currentPath = location.pathname;
+      const countryPrefix = currentPath.startsWith("/uae") ? "/uae" : 
+                           currentPath.startsWith("/australia") ? "/australia" : "";
+      
+      // Navigate to country-specific home or root home
+      navigate(countryPrefix || "/");
+      setMobileMenuOpen(false);
+      return;
+    }
+    
+    // For other paths, use the country URL helper
     const url = getCountryUrl(path);
     console.log("Navigating to:", url);
-    // Force home path to be just the base country URL when "/" is passed
-    if (path === "/") {
-      const baseUrl = getCountryUrl("");
-      console.log("Home navigation to:", baseUrl);
-      navigate(baseUrl);
-    } else {
-      navigate(url);
-    }
+    navigate(url);
+    setMobileMenuOpen(false);
+  };
+
+  // Handle logo click to go home
+  const handleLogoClick = () => {
+    console.log("Logo clicked, navigating to home");
+    // Get the current country prefix if any
+    const currentPath = location.pathname;
+    const countryPrefix = currentPath.startsWith("/uae") ? "/uae" : 
+                         currentPath.startsWith("/australia") ? "/australia" : "";
+    
+    // Navigate to country-specific home or root home
+    navigate(countryPrefix || "/");
     setMobileMenuOpen(false);
   };
 
@@ -99,7 +121,7 @@ export const Navbar = () => {
           {/* Logo - with navigation */}
           <div className="flex items-center">
             <div 
-              onClick={() => handleNavigation("/")} 
+              onClick={handleLogoClick} 
               className="flex items-center ml-4 cursor-pointer"
             >
               <img src={companyLogo} alt="Growwth Partners" className="h-9" />
@@ -232,3 +254,4 @@ export const Navbar = () => {
     </header>
   );
 };
+
