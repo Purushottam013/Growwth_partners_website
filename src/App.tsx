@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 // Pages
 import HomePage from "./pages/Home";
@@ -29,83 +30,86 @@ import NotFound from "./pages/NotFound";
 // Context provider for country selection
 import { CountryProvider } from "./contexts/CountryContext";
 
-const queryClient = new QueryClient();
+const App = () => {
+  // Create a new QueryClient instance inside the component
+  const [queryClient] = useState(() => new QueryClient());
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
-        <CountryProvider>
-          <Toaster />
-          <Sonner />
-          <Routes>
-            {/* Singapore routes */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/accounting" element={<AccountingPage />} />
-            <Route path="/bookkeeping" element={<BookkeepingPage />} />
-            <Route path="/payroll" element={<PayrollPage />} />
-            <Route path="/taxation" element={<TaxationPage />} />
-            <Route path="/fractional-cfo" element={<FractionalCFOPage />} />
-            <Route path="/cash-flow" element={<CashFlowPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/success-stories" element={<SuccessStoriesPage />} />
-            <Route path="/guide" element={<GuidePage />} />
-            <Route path="/achievements" element={<AchievementsPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/corporate-secretary" element={<CorporateSecretaryPage />} />
-            <Route path="/company-incorporation" element={<CompanyIncorporationPage />} />
-            
-            {/* UAE routes */}
-            <Route path="/uae" element={<HomePage />} />
-            <Route path="/uae/about" element={<AboutPage />} />
-            <Route path="/uae/accounting" element={<AccountingPage />} />
-            <Route path="/uae/bookkeeping" element={<BookkeepingPage />} />
-            <Route path="/uae/payroll" element={<PayrollPage />} />
-            <Route path="/uae/taxation" element={<TaxationPage />} />
-            <Route path="/uae/fractional-cfo" element={<FractionalCFOPage />} />
-            <Route path="/uae/cash-flow" element={<CashFlowPage />} />
-            <Route path="/uae/contact" element={<ContactPage />} />
-            <Route path="/uae/blog" element={<BlogPage />} />
-            <Route path="/uae/success-stories" element={<SuccessStoriesPage />} />
-            <Route path="/uae/guide" element={<GuidePage />} />
-            <Route path="/uae/achievements" element={<AchievementsPage />} />
-            <Route path="/uae/news" element={<NewsPage />} />
-            <Route path="/uae/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/uae/terms" element={<TermsPage />} />
-            <Route path="/uae/corporate-secretary" element={<CorporateSecretaryPage />} />
-            <Route path="/uae/company-incorporation" element={<CompanyIncorporationPage />} />
-            
-            {/* Australia routes */}
-            <Route path="/australia" element={<HomePage />} />
-            <Route path="/australia/about" element={<AboutPage />} />
-            <Route path="/australia/accounting" element={<AccountingPage />} />
-            <Route path="/australia/bookkeeping" element={<BookkeepingPage />} />
-            <Route path="/australia/payroll" element={<PayrollPage />} />
-            <Route path="/australia/taxation" element={<TaxationPage />} />
-            <Route path="/australia/fractional-cfo" element={<FractionalCFOPage />} />
-            <Route path="/australia/cash-flow" element={<CashFlowPage />} />
-            <Route path="/australia/contact" element={<ContactPage />} />
-            <Route path="/australia/blog" element={<BlogPage />} />
-            <Route path="/australia/success-stories" element={<SuccessStoriesPage />} />
-            <Route path="/australia/guide" element={<GuidePage />} />
-            <Route path="/australia/achievements" element={<AchievementsPage />} />
-            <Route path="/australia/news" element={<NewsPage />} />
-            <Route path="/australia/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/australia/terms" element={<TermsPage />} />
-            <Route path="/australia/corporate-secretary" element={<CorporateSecretaryPage />} />
-            <Route path="/australia/company-incorporation" element={<CompanyIncorporationPage />} />
-            
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </CountryProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <CountryProvider>
+            <Toaster />
+            <Sonner />
+            <Routes>
+              {/* Singapore routes */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/accounting" element={<AccountingPage />} />
+              <Route path="/bookkeeping" element={<BookkeepingPage />} />
+              <Route path="/payroll" element={<PayrollPage />} />
+              <Route path="/taxation" element={<TaxationPage />} />
+              <Route path="/fractional-cfo" element={<FractionalCFOPage />} />
+              <Route path="/cash-flow" element={<CashFlowPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/success-stories" element={<SuccessStoriesPage />} />
+              <Route path="/guide" element={<GuidePage />} />
+              <Route path="/achievements" element={<AchievementsPage />} />
+              <Route path="/news" element={<NewsPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/corporate-secretary" element={<CorporateSecretaryPage />} />
+              <Route path="/company-incorporation" element={<CompanyIncorporationPage />} />
+              
+              {/* UAE routes */}
+              <Route path="/uae" element={<HomePage />} />
+              <Route path="/uae/about" element={<AboutPage />} />
+              <Route path="/uae/accounting" element={<AccountingPage />} />
+              <Route path="/uae/bookkeeping" element={<BookkeepingPage />} />
+              <Route path="/uae/payroll" element={<PayrollPage />} />
+              <Route path="/uae/taxation" element={<TaxationPage />} />
+              <Route path="/uae/fractional-cfo" element={<FractionalCFOPage />} />
+              <Route path="/uae/cash-flow" element={<CashFlowPage />} />
+              <Route path="/uae/contact" element={<ContactPage />} />
+              <Route path="/uae/blog" element={<BlogPage />} />
+              <Route path="/uae/success-stories" element={<SuccessStoriesPage />} />
+              <Route path="/uae/guide" element={<GuidePage />} />
+              <Route path="/uae/achievements" element={<AchievementsPage />} />
+              <Route path="/uae/news" element={<NewsPage />} />
+              <Route path="/uae/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/uae/terms" element={<TermsPage />} />
+              <Route path="/uae/corporate-secretary" element={<CorporateSecretaryPage />} />
+              <Route path="/uae/company-incorporation" element={<CompanyIncorporationPage />} />
+              
+              {/* Australia routes */}
+              <Route path="/australia" element={<HomePage />} />
+              <Route path="/australia/about" element={<AboutPage />} />
+              <Route path="/australia/accounting" element={<AccountingPage />} />
+              <Route path="/australia/bookkeeping" element={<BookkeepingPage />} />
+              <Route path="/australia/payroll" element={<PayrollPage />} />
+              <Route path="/australia/taxation" element={<TaxationPage />} />
+              <Route path="/australia/fractional-cfo" element={<FractionalCFOPage />} />
+              <Route path="/australia/cash-flow" element={<CashFlowPage />} />
+              <Route path="/australia/contact" element={<ContactPage />} />
+              <Route path="/australia/blog" element={<BlogPage />} />
+              <Route path="/australia/success-stories" element={<SuccessStoriesPage />} />
+              <Route path="/australia/guide" element={<GuidePage />} />
+              <Route path="/australia/achievements" element={<AchievementsPage />} />
+              <Route path="/australia/news" element={<NewsPage />} />
+              <Route path="/australia/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/australia/terms" element={<TermsPage />} />
+              <Route path="/australia/corporate-secretary" element={<CorporateSecretaryPage />} />
+              <Route path="/australia/company-incorporation" element={<CompanyIncorporationPage />} />
+              
+              {/* Catch-all route */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </CountryProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
