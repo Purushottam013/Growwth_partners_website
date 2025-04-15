@@ -1,16 +1,13 @@
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 
 export const CtaSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
-  const navigate = useNavigate();
 
   const handleJoinUs = () => {
-    navigate('/contact');
+    setContactModalOpen(true);
   };
 
   return (
@@ -31,7 +28,6 @@ export const CtaSection = () => {
         </div>
       </div>
 
-      {/* Contact Dialog */}
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
