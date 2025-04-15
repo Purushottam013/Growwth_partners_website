@@ -121,7 +121,7 @@ export const Navbar = () => {
           <div className="flex items-center">
             <div 
               onClick={handleLogoClick} 
-              className="flex items-center ml-8 cursor-pointer"
+              className="flex items-center ml-4 cursor-pointer"
             >
               <img src={companyLogo} alt="Growwth Partners" className="h-9" />
             </div>
@@ -169,7 +169,7 @@ export const Navbar = () => {
           {/* Contact Button */}
           <Button 
             onClick={() => setContactModalOpen(true)} 
-            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-8"
+            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-4"
           >
             Speak To An Expert
           </Button>
