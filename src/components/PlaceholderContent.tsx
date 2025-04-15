@@ -1,6 +1,8 @@
 
 import { useCountry } from "@/contexts/CountryContext";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ArrowUp } from "lucide-react";
 
 interface PlaceholderContentProps {
   title: string;
@@ -20,6 +22,12 @@ export const PlaceholderContent = ({
       <div className="container-custom">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
+            <div className="mb-4">
+              <Badge variant="gradient" size="lg" className="mb-4">
+                <ArrowUp className="h-4 w-4 mr-1" />
+                New Feature
+              </Badge>
+            </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{title}</h1>
             <p className="text-lg text-gray-600 mb-8">{description}</p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -38,7 +46,17 @@ export const PlaceholderContent = ({
             </div>
           </div>
           <div className={`${imageBg} h-64 md:h-80 rounded-lg flex items-center justify-center text-white font-bold text-xl p-8 text-center shadow-lg`}>
-            {title} Content Coming Soon
+            <div className="w-full max-w-md">
+              <div className="bg-white rounded-2xl shadow-lg p-1 mb-6 mx-auto w-fit">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-xl">
+                  <div className="bg-gradient-to-r from-blue-500 to-cyan-400 p-1.5 rounded-full flex items-center justify-center">
+                    <ArrowUp className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="font-medium text-gray-800">50-70% Cost Savings vs Full-Time CFO</span>
+                </div>
+              </div>
+              {title} Content Coming Soon
+            </div>
           </div>
         </div>
         

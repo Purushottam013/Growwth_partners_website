@@ -17,24 +17,28 @@ export const HeroSection = () => {
       text: "$50M+ managed annually",
       position: "bottom-10 left-10",
       delay: 0.5,
+      variant: "gradient"
     },
     {
       icon: <Trophy className="h-5 w-5 text-white" />,
       text: "95% client retention",
       position: "top-10 right-10",
       delay: 0.8,
+      variant: "success"
     },
     {
       icon: <Users className="h-5 w-5 text-white" />,
       text: "500+ clients served",
       position: "bottom-20 right-5 lg:bottom-0 lg:right-20",
       delay: 1.1,
+      variant: "info"
     },
     {
       icon: <Clock className="h-5 w-5 text-white" />,
       text: "15+ years experience",
       position: "top-10 left-5 lg:top-20 lg:left-10",
       delay: 1.4,
+      variant: "gradient"
     },
   ];
 
@@ -108,26 +112,26 @@ export const HeroSection = () => {
                 className="rounded-lg shadow-2xl object-cover mx-auto"
               />
               
-              {/* Improved fact badges */}
+              {/* Improved fact badges with new styling */}
               {factBadges.map((badge, index) => (
                 <motion.div
                   key={index}
-                  className={`absolute ${badge.position} hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-blue to-brand-blue/90 px-4 py-3 rounded-xl shadow-lg`}
+                  className={`absolute ${badge.position} hidden sm:flex shadow-lg`}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ 
                     duration: 0.5, 
                     delay: badge.delay 
                   }}
-                  style={{
-                    backdropFilter: "blur(4px)",
-                    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
-                  }}
                 >
-                  <div className="bg-white/20 p-1.5 rounded-full">
-                    {badge.icon}
+                  <div className="rounded-2xl overflow-hidden p-0.5 bg-white shadow-lg">
+                    <div className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-white`}>
+                      <div className={`bg-gradient-to-r from-blue-500 to-cyan-400 p-1.5 rounded-full flex items-center justify-center`}>
+                        {badge.icon}
+                      </div>
+                      <span className="font-medium text-gray-800 whitespace-nowrap">{badge.text}</span>
+                    </div>
                   </div>
-                  <span className="font-semibold whitespace-nowrap text-white">{badge.text}</span>
                 </motion.div>
               ))}
             </div>
