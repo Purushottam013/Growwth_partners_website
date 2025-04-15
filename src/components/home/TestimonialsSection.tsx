@@ -128,6 +128,9 @@ export const TestimonialsSection = () => {
       <div className="py-20 bg-gray-50">
         <div className="container-custom">
           <h2 className="heading-lg text-center mb-12">Our Happy Customers</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Hear firsthand experiences from our satisfied clients who have transformed their financial strategies with Growth Partners.
+          </p>
           <div className="max-w-4xl mx-auto">
             <Carousel
               opts={{
