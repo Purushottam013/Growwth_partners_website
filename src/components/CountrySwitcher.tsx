@@ -8,7 +8,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectScrollUpButton,
+  SelectScrollDownButton
 } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const CountrySwitcher = ({ 
   variant = "dark",
@@ -54,22 +57,24 @@ export const CountrySwitcher = ({
           <ChevronDown className={`h-4 w-4 ${iconColor}`} />
         )}
       </SelectTrigger>
-      <SelectContent className="bg-white text-gray-800">
-        {countries.map((option) => (
-          <SelectItem 
-            key={option.value} 
-            value={option.value}
-            className="cursor-pointer"
-          >
-            <div className="flex items-center">
-              <span className="mr-2">{option.flag}</span>
-              <span>{option.label}</span>
-              {country === option.value && (
-                <Check className="ml-auto h-4 w-4" />
-              )}
-            </div>
-          </SelectItem>
-        ))}
+      <SelectContent className="bg-white text-gray-800 max-h-[200px]">
+        <ScrollArea className="h-[150px]">
+          {countries.map((option) => (
+            <SelectItem 
+              key={option.value} 
+              value={option.value}
+              className="cursor-pointer py-2"
+            >
+              <div className="flex items-center">
+                <span className="mr-2 text-lg">{option.flag}</span>
+                <span>{option.label}</span>
+                {country === option.value && (
+                  <Check className="ml-auto h-4 w-4" />
+                )}
+              </div>
+            </SelectItem>
+          ))}
+        </ScrollArea>
       </SelectContent>
     </Select>
   );

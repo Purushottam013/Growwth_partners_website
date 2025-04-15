@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
@@ -19,20 +18,16 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
-// Import the company logo 
 import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
-// Import country dropdown image
 import countryDropdownImage from "/lovable-uploads/7cf2ab2c-86de-4623-9488-a190961c93cd.png";
 
 export const Footer = () => {
   const { country, setCountry, getCountryUrl } = useCountry();
 
-  // Format country name for display
   const formatCountryName = (countryCode: string) => {
     return countryCode.charAt(0).toUpperCase() + countryCode.slice(1);
   };
 
-  // Get icon color based on country
   const getIconColor = () => {
     switch(country) {
       case 'australia':
@@ -46,11 +41,14 @@ export const Footer = () => {
 
   const iconColor = getIconColor();
 
+  const handleCountryChange = (newCountry: 'singapore' | 'uae' | 'australia') => {
+    setCountry(newCountry);
+  };
+
   return (
     <footer className="bg-brand-dark text-white">
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Column 1: Company Info */}
           <div className="space-y-6">
             <div className="flex items-center">
               <img src={companyLogo} alt="Growwth Partners" className="h-12 bg-white p-1 rounded" />
@@ -85,7 +83,6 @@ export const Footer = () => {
             </Button>
           </div>
 
-          {/* Column 2: Contact */}
           <div>
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Contact</h3>
             <ul className="space-y-3 text-gray-300 mt-5">
@@ -104,49 +101,44 @@ export const Footer = () => {
               Our Locations
             </h3>
             
-            {/* Custom dropdown styled according to the provided image */}
-            <button
-              onClick={() => {}}
-              className="w-full mt-5 flex items-center justify-between bg-gray-800 text-white p-3 rounded-full border border-gray-700 focus:outline-none hover:bg-gray-700"
-            >
-              <div className="flex items-center">
-                <Globe className="mr-3 h-5 w-5 text-white" />
-                <span className="text-white text-base">{formatCountryName(country)}</span>
-              </div>
-              <div className="flex flex-col">
-                <ChevronUp className="h-4 w-4 text-white" />
-                <ChevronDown className="h-4 w-4 text-white mt-[-4px]" />
-              </div>
-            </button>
-            
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="hidden">Open</button>
+                <button
+                  className="w-full mt-5 flex items-center justify-between bg-gray-800 text-white p-3 rounded-full border border-gray-700 focus:outline-none hover:bg-gray-700"
+                >
+                  <div className="flex items-center">
+                    <Globe className="mr-3 h-5 w-5 text-white" />
+                    <span className="text-white text-base">{formatCountryName(country)}</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <ChevronUp className="h-4 w-4 text-white" />
+                    <ChevronDown className="h-4 w-4 text-white mt-[-4px]" />
+                  </div>
+                </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700 w-full">
+              <DropdownMenuContent align="start" className="bg-gray-800 border-gray-700 w-[200px]">
                 <DropdownMenuItem 
                   className={country === 'singapore' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
-                  onClick={() => setCountry('singapore')}
+                  onClick={() => handleCountryChange('singapore')}
                 >
-                  Singapore
+                  <span className="mr-2">🇸🇬</span> Singapore
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   className={country === 'uae' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
-                  onClick={() => setCountry('uae')}
+                  onClick={() => handleCountryChange('uae')}
                 >
-                  UAE
+                  <span className="mr-2">🇦🇪</span> UAE
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                   className={country === 'australia' ? 'bg-gray-700 text-white hover:bg-gray-600' : 'text-white hover:bg-gray-700'}
-                  onClick={() => setCountry('australia')}
+                  onClick={() => handleCountryChange('australia')}
                 >
-                  Australia
+                  <span className="mr-2">🇦🇺</span> Australia
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
 
-          {/* Column 3: Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Quick Links</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
@@ -183,7 +175,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4: Services */}
           <div>
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Services</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
@@ -227,7 +218,6 @@ export const Footer = () => {
         </div>
       </div>
       
-      {/* Footer Bottom */}
       <div className="bg-black bg-opacity-30 py-4">
         <div className="container-custom text-center text-gray-400">
           <p>Copyright © {new Date().getFullYear()} Growwth Partners. All Rights Reserved.</p>
