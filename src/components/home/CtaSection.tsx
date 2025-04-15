@@ -11,6 +11,7 @@ export const CtaSection = () => {
 
   const handleJoinUs = () => {
     navigate('/contact');
+    window.scrollTo(0, 0);
   };
 
   return (
