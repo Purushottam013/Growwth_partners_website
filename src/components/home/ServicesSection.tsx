@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Building, TrendingUp, FileCheck, BriefcaseBusiness, DollarSign, ArrowRight } from "lucide-react";
@@ -11,37 +12,37 @@ export const ServicesSection = () => {
     title: "Accounting & Bookkeeping",
     description: "Comprehensive bookkeeping and accounting services to keep your financial records accurate and up-to-date.",
     link: "/accounting",
-    image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+    image: "/lovable-uploads/ea43d5c9-d122-4ead-b816-df9b6bfae0e3.png"
   }, {
     icon: <Building className="h-12 w-12 text-brand-orange" />,
     title: "Company Incorporation",
     description: "Efficient company formation services to help you start your business smoothly and legally.",
     link: "/company-incorporation",
-    image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+    image: "/lovable-uploads/ef68f631-a956-4ecf-97fb-9ada6c055e8c.png"
   }, {
     icon: <TrendingUp className="h-12 w-12 text-brand-orange" />,
     title: "Startup Growth Service",
     description: "Tailored support and strategies to accelerate the growth and success of your startup.",
     link: "/fractional-cfo",
-    image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+    image: "/lovable-uploads/e93430c0-5d22-449f-8ce5-a47ba9cd3cfa.png"
   }, {
     icon: <FileCheck className="h-12 w-12 text-brand-orange" />,
     title: "Company Secretary",
     description: "Professional company secretarial services to ensure compliance with statutory requirements.",
     link: "/corporate-secretary",
-    image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+    image: "/lovable-uploads/ee6e6742-615b-4ace-b909-1927ece7fa0e.png"
   }, {
     icon: <BriefcaseBusiness className="h-12 w-12 text-brand-orange" />,
     title: "Fund Raising",
     description: "Expert assistance in securing funding and investment for your business ventures.",
     link: "/contact",
-    image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+    image: "/lovable-uploads/356a1435-7b73-427a-8ce1-bac610f31caf.png"
   }, {
     icon: <DollarSign className="h-12 w-12 text-brand-orange" />,
     title: "Payroll Services",
     description: "Reliable payroll management services to ensure timely and accurate payment of your employees.",
     link: "/payroll",
-    image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+    image: "/lovable-uploads/c7239ec6-a71a-438a-9739-33d28fa85a23.png"
   }];
 
   const containerVariants = {
@@ -149,3 +150,4 @@ export const ServicesSection = () => {
     </section>
   );
 };
+
