@@ -1,6 +1,19 @@
 
 import { useEffect, useRef } from "react";
-import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
+import appboxoLogo from "/lovable-uploads/eacfd0b4-a51e-48ed-8dee-273d0e3cb95e.png";
+import cenoaLogo from "/lovable-uploads/17aac22b-d2eb-4833-9e10-64fc56be4ace.png";
+import channelFactoryLogo from "/lovable-uploads/c1b780f8-d39e-41c9-ae1f-7a21887507d1.png";
+import dataleapLogo from "/lovable-uploads/59b87ecc-31d9-4461-8797-0c7ea4767efa.png";
+import eblityLogo from "/lovable-uploads/7418733e-89fd-4714-88ce-a25077015abb.png";
+import gnowbeLogo from "/lovable-uploads/88257c1a-be18-4216-a182-5c9094b565b9.png";
+import greenALogo from "/lovable-uploads/0b77977a-7c18-484d-91db-d36ecc85d914.png";
+import hdiLogo from "/lovable-uploads/99dda4f2-b7f4-46c0-8ee6-1c166ae0e0a3.png";
+import heiHomesLogo from "/lovable-uploads/acdabfd4-01fd-4e23-8b11-ea624f680da4.png";
+import peaceLilyLogo from "/lovable-uploads/675e92d1-f78a-4d54-a3d2-7b1ecb87e81d.png";
+import mayaConsultingLogo from "/lovable-uploads/9f095a7e-c6a7-42c7-91f7-1392ee523a5e.png";
+import navsarLogo from "/lovable-uploads/01d4597b-3f9e-4d9e-95e2-ae2406f63c3b.png";
+import tmsLogo from "/lovable-uploads/228a715e-ab46-4e42-98be-1cd1f64064c3.png";
+import treeDotsLogo from "/lovable-uploads/433c066a-08d9-4303-85e7-650c373ede0a.png";
 
 export const PartnersSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -31,8 +44,26 @@ export const PartnersSection = () => {
     return () => clearTimeout(timeoutId);
   }, []);
   
-  // Create 12 logos for the infinite scroll effect
-  const logos = Array(12).fill(companyLogo);
+  // Array of company logos with their names
+  const logos = [
+    { src: appboxoLogo, name: 'Appboxo' },
+    { src: cenoaLogo, name: 'Cenoa' },
+    { src: channelFactoryLogo, name: 'Channel Factory' },
+    { src: dataleapLogo, name: 'Dataleap' },
+    { src: eblityLogo, name: 'Eblity' },
+    { src: gnowbeLogo, name: 'Gnowbe' },
+    { src: greenALogo, name: 'GreenA' },
+    { src: hdiLogo, name: 'HDI' },
+    { src: heiHomesLogo, name: 'Hei Homes' },
+    { src: peaceLilyLogo, name: 'Peace Lily' },
+    { src: mayaConsultingLogo, name: 'Maya Consulting' },
+    { src: navsarLogo, name: 'Navsar' },
+    { src: tmsLogo, name: 'TMS Motor Group' },
+    { src: treeDotsLogo, name: 'TreeDots' },
+  ];
+  
+  // Duplicate the logos array to create a seamless infinite scroll effect
+  const duplicatedLogos = [...logos, ...logos];
   
   return (
     <section id="industry-experience" className="py-16 bg-gray-50">
@@ -51,14 +82,14 @@ export const PartnersSection = () => {
             className="flex overflow-x-scroll scrollbar-none py-4"
           >
             <div className="flex space-x-16 min-w-max px-12">
-              {logos.map((logo, index) => (
+              {duplicatedLogos.map((logo, index) => (
                 <div 
-                  key={index} 
+                  key={`${logo.name}-${index}`} 
                   className="flex items-center justify-center bg-white p-6 rounded-lg shadow-md w-32 h-32"
                 >
                   <img 
-                    src={logo} 
-                    alt={`Partner ${index + 1}`} 
+                    src={logo.src} 
+                    alt={`${logo.name} logo`}
                     className="w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
                   />
                 </div>
@@ -70,3 +101,4 @@ export const PartnersSection = () => {
     </section>
   );
 };
+
