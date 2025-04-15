@@ -1,83 +1,81 @@
 
+import { useState } from "react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCountry } from "@/contexts/CountryContext";
-import { ArrowRight } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { ContactForm } from "@/components/ContactForm";
+import heroImage from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
 
 export const HeroSection = () => {
-  const { getCountryUrl } = useCountry();
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#F4F8FC] via-[#E8F0FC] to-[#FEFEFE] py-16 md:py-28">
-      {/* Enhanced Animated Shapes with improved colors and animations */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-yellow/15 rounded-full filter blur-3xl animate-float-slow"></div>
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/15 rounded-full filter blur-3xl animate-float"></div>
-      <div className="absolute top-40 right-20 w-60 h-60 bg-[#E7EBFF]/30 rounded-full filter blur-3xl animate-float-slow"></div>
-      <div className="absolute bottom-40 left-40 w-40 h-40 bg-[#F7ECE7]/20 rounded-full filter blur-3xl animate-float"></div>
-      <div className="absolute top-60 left-60 w-48 h-48 bg-[#E8F0FC]/25 rounded-full filter blur-3xl animate-float-slow"></div>
+    <section className="relative overflow-hidden py-20 lg:py-32">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-50 to-gray-100 -z-10"></div>
+      
+      {/* Animated background elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-orange/5 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/5 rounded-full filter blur-3xl"></div>
       
       <div className="container-custom relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold !leading-tight animate-fade-in">
-              Your Partner for Business <span className="text-brand-orange">Growth</span> & <span className="text-brand-blue">Financial Success</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="order-2 lg:order-1">
+            <h1 className="heading-xl text-brand-dark mb-6 animate-slide-up">
+              Fueling Business Growth With 
+              <span className="text-brand-orange"> Expert Accounting & Financial Services!</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-600 md:text-xl animate-slide-up animation-delay-200">
-              We provide expert financial solutions tailored to your business needs, helping you grow efficiently while staying financially sound.
+            <p className="text-lg text-gray-700 mb-8 animation-delay-200 animate-slide-up">
+              At Growth Partners, we provide more than just accounting and bookkeeping services. 
+              Our customized financial solutions ensure that each client receives personalized 
+              attention and expert advice tailored to their unique business needs.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-slide-up animation-delay-300">
-              <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90">
-                <a href={getCountryUrl("contact")}>
-                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+            <div className="animation-delay-300 animate-slide-up">
+              <Button 
+                onClick={() => setContactModalOpen(true)} 
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full px-8 py-6 text-lg font-medium group"
+              >
+                Speak To An Expert
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <a href={getCountryUrl("about")}>
-                  Learn More
-                </a>
-              </Button>
+            </div>
+            
+            <div className="mt-12 hidden md:block">
+              <a
+                href="#industry-experience"
+                className="inline-flex items-center text-brand-orange hover:text-brand-orange/80 transition-colors"
+              >
+                <span className="mr-2">Scroll to discover more</span>
+                <ArrowDown className="h-4 w-4 animate-bounce" />
+              </a>
             </div>
           </div>
           
-          <div className="lg:w-1/2 relative">
-            <div className="relative overflow-hidden rounded-lg shadow-2xl animate-float">
-              <div className="aspect-[4/3] bg-gradient-to-tr from-brand-blue to-brand-green/70 rounded-lg flex items-center justify-center p-8">
-                <div className="text-white text-center">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Financial Success Awaits</h3>
-                  <div className="grid grid-cols-2 gap-6 mt-8">
-                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-lg">
-                      <div className="text-4xl font-bold">95%</div>
-                      <div className="text-sm mt-2">Client Satisfaction</div>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-lg">
-                      <div className="text-4xl font-bold">25+</div>
-                      <div className="text-sm mt-2">Years Experience</div>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-lg">
-                      <div className="text-4xl font-bold">500+</div>
-                      <div className="text-sm mt-2">Businesses Helped</div>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-sm p-4 rounded-lg">
-                      <div className="text-4xl font-bold">3</div>
-                      <div className="text-sm mt-2">Global Locations</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="order-1 lg:order-2 relative">
+            <div className="relative z-10 animate-float-slow">
+              <img
+                src={heroImage}
+                alt="Growth Partners"
+                className="rounded-lg shadow-2xl object-cover mx-auto"
+              />
             </div>
-            
-            {/* Floating elements */}
-            <div className="absolute -top-6 -left-6 bg-brand-yellow p-4 rounded-lg shadow-lg animate-float">
-              <div className="text-sm font-bold">Cash Flow Optimization</div>
-            </div>
-            <div className="absolute -bottom-6 -right-6 bg-brand-orange p-4 rounded-lg shadow-lg animate-float-slow">
-              <div className="text-sm font-bold text-white">Expert CFO Services</div>
-            </div>
+            <div className="absolute inset-0 bg-brand-orange/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
           </div>
         </div>
       </div>
-      
-      {/* Gradient fade-out at the bottom for smooth transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FEFEFE] to-transparent"></div>
+
+      {/* Contact Dialog */}
+      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
+            <DialogDescription className="text-center">
+              Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
+            </DialogDescription>
+          </DialogHeader>
+          <ContactForm onSuccess={() => setContactModalOpen(false)} />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

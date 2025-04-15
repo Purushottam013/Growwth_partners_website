@@ -1,72 +1,70 @@
 
 import { useEffect, useRef } from "react";
-
-// Partner logos would typically be imported from assets
-const partnerLogos = [
-  "Amazon",
-  "Microsoft",
-  "Google",
-  "Adobe",
-  "Salesforce",
-  "Oracle",
-  "IBM",
-  "SAP",
-  "Deloitte",
-  "KPMG"
-];
+import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
 
 export const PartnersSection = () => {
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-    
-    const scroll = () => {
-      if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft = 0;
-      } else {
-        slider.scrollLeft += 1;
+    const startScroll = () => {
+      if (scrollRef.current) {
+        const scrollWidth = scrollRef.current.scrollWidth;
+        const clientWidth = scrollRef.current.clientWidth;
+        
+        let scrollPosition = 0;
+        const scroll = () => {
+          if (scrollRef.current) {
+            scrollPosition++;
+            if (scrollPosition >= scrollWidth / 2) {
+              scrollPosition = 0;
+            }
+            scrollRef.current.scrollLeft = scrollPosition;
+          }
+        };
+        
+        const intervalId = setInterval(scroll, 20);
+        return () => clearInterval(intervalId);
       }
     };
     
-    const interval = setInterval(scroll, 30);
-    return () => clearInterval(interval);
+    const timeoutId = setTimeout(startScroll, 1000);
+    return () => clearTimeout(timeoutId);
   }, []);
   
+  // Create 12 logos for the infinite scroll effect
+  const logos = Array(12).fill(companyLogo);
+  
   return (
-    <section className="py-12 bg-gray-50">
+    <section id="industry-experience" className="py-16 bg-gray-50">
       <div className="container-custom">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">Trusted by Leading Companies</h2>
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
+          Diverse experience of working with various industries
+        </h3>
         
         <div className="relative overflow-hidden">
-          <div
-            ref={sliderRef}
-            className="flex items-center justify-start gap-12 overflow-x-scroll scrollbar-none scroll-smooth"
-            style={{ scrollBehavior: 'smooth' }}
-          >
-            {/* First set of logos */}
-            {partnerLogos.map((logo, index) => (
-              <div key={`logo-1-${index}`} className="flex-shrink-0 py-2">
-                <div className="bg-white h-16 min-w-[180px] rounded-md shadow-sm flex items-center justify-center font-bold text-xl text-gray-600">
-                  {logo}
-                </div>
-              </div>
-            ))}
-            
-            {/* Duplicate logos for infinite scroll effect */}
-            {partnerLogos.map((logo, index) => (
-              <div key={`logo-2-${index}`} className="flex-shrink-0 py-2">
-                <div className="bg-white h-16 min-w-[180px] rounded-md shadow-sm flex items-center justify-center font-bold text-xl text-gray-600">
-                  {logo}
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Gradient masks for seamless scrolling effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
           
-          {/* Shadow overlay for fade effect */}
-          <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
-          <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
+          <div 
+            ref={scrollRef}
+            className="flex overflow-x-scroll scrollbar-none py-4"
+          >
+            <div className="flex space-x-16 min-w-max px-12">
+              {logos.map((logo, index) => (
+                <div 
+                  key={index} 
+                  className="flex items-center justify-center bg-white p-6 rounded-lg shadow-md w-32 h-32"
+                >
+                  <img 
+                    src={logo} 
+                    alt={`Partner ${index + 1}`} 
+                    className="w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,98 +1,86 @@
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useCountry } from "@/contexts/CountryContext";
-import { ArrowRight, BarChart3, Book, Calculator, CreditCard, FileSpreadsheet, Users } from "lucide-react";
-
-const services = [
-  {
-    title: "Fractional CFO",
-    description: "Get strategic financial guidance from experienced CFOs without the full-time cost.",
-    icon: BarChart3,
-    color: "bg-brand-orange text-white",
-    link: "fractional-cfo"
-  },
-  {
-    title: "Accounting Services",
-    description: "Keep your financial records accurate and compliant with our expert accounting services.",
-    icon: Book,
-    color: "bg-brand-green text-white",
-    link: "accounting"
-  },
-  {
-    title: "Bookkeeping",
-    description: "Maintain organized financial records with our thorough bookkeeping services.",
-    icon: FileSpreadsheet,
-    color: "bg-brand-blue text-white",
-    link: "bookkeeping"
-  },
-  {
-    title: "Payroll Management",
-    description: "Ensure your employees get paid accurately and on time, while staying compliant with regulations.",
-    icon: CreditCard,
-    color: "bg-brand-yellow text-gray-800",
-    link: "payroll"
-  },
-  {
-    title: "Cash Flow Modelling",
-    description: "Predict and optimize your business cash flow with our advanced modeling services.",
-    icon: Calculator,
-    color: "bg-purple-600 text-white",
-    link: "cash-flow"
-  },
-  {
-    title: "Tax & Compliance",
-    description: "Stay compliant with all tax regulations and optimize your tax position.",
-    icon: Users,
-    color: "bg-red-600 text-white",
-    link: "taxation"
-  }
-];
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { 
+  BookOpen, 
+  Building, 
+  TrendingUp, 
+  FileCheck, 
+  BriefcaseBusiness, 
+  DollarSign 
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const ServicesSection = () => {
-  const { getCountryUrl } = useCountry();
-  
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const services = [
+    {
+      icon: <BookOpen className="h-12 w-12 text-brand-orange" />,
+      title: "Accounting & Bookkeeping",
+      description: "Comprehensive bookkeeping and accounting services to keep your financial records accurate and up-to-date."
+    },
+    {
+      icon: <Building className="h-12 w-12 text-brand-orange" />,
+      title: "Company Incorporation",
+      description: "Efficient company formation services to help you start your business smoothly and legally."
+    },
+    {
+      icon: <TrendingUp className="h-12 w-12 text-brand-orange" />,
+      title: "Startup Growth Service",
+      description: "Tailored support and strategies to accelerate the growth and success of your startup."
+    },
+    {
+      icon: <FileCheck className="h-12 w-12 text-brand-orange" />,
+      title: "Company Secretary",
+      description: "Professional company secretarial services to ensure compliance with statutory requirements."
+    },
+    {
+      icon: <BriefcaseBusiness className="h-12 w-12 text-brand-orange" />,
+      title: "Fund Raising",
+      description: "Expert assistance in securing funding and investment for your business ventures."
+    },
+    {
+      icon: <DollarSign className="h-12 w-12 text-brand-orange" />,
+      title: "Payroll Services",
+      description: "Reliable payroll management services to ensure timely and accurate payment of your employees."
+    }
+  ];
+
   return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Background shapes */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-orange/5 rounded-full"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-blue/5 rounded-full"></div>
-      
-      <div className="container-custom relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Financial Services</h2>
-          <p className="text-lg text-gray-600">
-            Comprehensive financial solutions designed to help your business thrive in today's competitive market.
-          </p>
-        </div>
+    <section className="py-20 bg-white">
+      <div className="container-custom">
+        <h2 className="heading-lg text-center mb-16">
+          <span className="text-brand-orange">Services</span>
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="border border-gray-200 overflow-hidden group hover:shadow-lg transition-all duration-300 card-hover">
-              <CardHeader className={`${service.color} transition-all duration-300`}>
-                <div className="flex justify-between items-center">
-                  <service.icon className="h-8 w-8" />
-                  <span className="text-xs font-medium uppercase tracking-wider opacity-70">Finance</span>
-                </div>
-                <CardTitle className="mt-4">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <CardDescription className="text-gray-600 text-base">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-              <CardFooter>
-                <Button 
-                  asChild
-                  variant="ghost" 
-                  className="p-0 hover:bg-transparent hover:text-brand-orange transition-colors"
-                >
-                  <a href={getCountryUrl(service.link)}>
-                    Learn more <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </CardFooter>
-            </Card>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <Card 
+                className={`h-full transition-all duration-300 ${
+                  hoveredCard === index 
+                    ? "shadow-xl transform -translate-y-2 border-brand-orange" 
+                    : "shadow-md"
+                }`}
+              >
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <div className="mb-5 p-4 rounded-full bg-brand-orange/10">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                  <p className="text-gray-600">{service.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
