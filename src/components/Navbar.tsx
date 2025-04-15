@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -77,9 +77,11 @@ export const Navbar = () => {
     }
   };
 
-  // Handle navigation
+  // Handle navigation with consistent approach
   const handleNavigation = (path: string) => {
-    navigate(getCountryUrl(path));
+    const url = getCountryUrl(path);
+    console.log("Navigating to:", url);
+    navigate(url);
     setMobileMenuOpen(false);
   };
 
