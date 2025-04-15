@@ -14,7 +14,7 @@ import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.p
 const navItems = [
   {
     title: "Home",
-    path: "",
+    path: "/",
     dropdown: false
   },
   {
@@ -81,7 +81,14 @@ export const Navbar = () => {
   const handleNavigation = (path: string) => {
     const url = getCountryUrl(path);
     console.log("Navigating to:", url);
-    navigate(url);
+    // Force home path to be just the base country URL when "/" is passed
+    if (path === "/") {
+      const baseUrl = getCountryUrl("");
+      console.log("Home navigation to:", baseUrl);
+      navigate(baseUrl);
+    } else {
+      navigate(url);
+    }
     setMobileMenuOpen(false);
   };
 
@@ -92,7 +99,7 @@ export const Navbar = () => {
           {/* Logo - with navigation */}
           <div className="flex items-center">
             <div 
-              onClick={() => handleNavigation("")} 
+              onClick={() => handleNavigation("/")} 
               className="flex items-center ml-4 cursor-pointer"
             >
               <img src={companyLogo} alt="Growwth Partners" className="h-9" />
