@@ -21,6 +21,7 @@ const badgeVariants = cva(
         info: "border-transparent bg-gradient-to-r from-blue-400 to-indigo-500 text-white",
         warning: "border-transparent bg-gradient-to-r from-yellow-400 to-orange-500 text-white",
         soft: "border-transparent bg-slate-100 text-slate-800",
+        hero: "border-transparent bg-white/90 backdrop-blur-sm text-gray-800 shadow-sm",
       },
       size: {
         default: "px-2.5 py-0.5 text-xs",

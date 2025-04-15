@@ -69,7 +69,7 @@ export default {
 				},
                 brand: {
                     orange: "#F97316",
-                    green: "#65B741",
+                    green: "#21C55D",  // Updated to requested green color
                     yellow: "#FFD700",
                     blue: "#1EAEDB",
                     dark: "#121212",

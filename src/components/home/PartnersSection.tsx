@@ -1,3 +1,4 @@
+
 import { useRef } from "react";
 import appboxoLogo from "/lovable-uploads/eacfd0b4-a51e-48ed-8dee-273d0e3cb95e.png";
 import cenoaLogo from "/lovable-uploads/17aac22b-d2eb-4833-9e10-64fc56be4ace.png";
@@ -14,6 +15,7 @@ import navsarLogo from "/lovable-uploads/01d4597b-3f9e-4d9e-95e2-ae2406f63c3b.pn
 import tmsLogo from "/lovable-uploads/228a715e-ab46-4e42-98be-1cd1f64064c3.png";
 import treeDotsLogo from "/lovable-uploads/433c066a-08d9-4303-85e7-650c373ede0a.png";
 import { motion } from "framer-motion";
+
 export const PartnersSection = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -79,7 +81,9 @@ export const PartnersSection = () => {
 
   // Duplicate logos for seamless loop
   const duplicatedLogos = [...logos, ...logos];
-  return <section id="industry-experience" className="bg-gray-50 py-[34px]">
+  
+  return (
+    <section id="industry-experience" className="bg-gray-50 py-[34px]">
       <div className="container-custom">
         <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Diverse experience of working with various industries
@@ -93,14 +97,21 @@ export const PartnersSection = () => {
           {/* Slider container with no scrollbar */}
           <div className="overflow-hidden py-6">
             <motion.div ref={sliderRef} className="flex" variants={sliderVariants} animate="animate">
-              {duplicatedLogos.map((logo, index) => <div key={`${logo.name}-${index}`} className="flex-shrink-0 mx-3">
-                  <div className="bg-white p-2 rounded-lg shadow-md w-32 h-28 flex items-center justify-center">
-                    <img src={logo.src} alt={`${logo.name} logo`} className="w-full h-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
+              {duplicatedLogos.map((logo, index) => (
+                <div key={`${logo.name}-${index}`} className="flex-shrink-0 mx-3">
+                  <div className="bg-white p-2 rounded-lg shadow-md w-28 h-20 flex items-center justify-center">
+                    <img 
+                      src={logo.src} 
+                      alt={`${logo.name} logo`} 
+                      className="w-full h-auto object-contain opacity-80 hover:opacity-100 transition-opacity" 
+                    />
                   </div>
-                </div>)}
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ArrowRight, ArrowDown, DollarSign, Trophy, Users, Clock } from "lucide-react";
+import { ArrowRight, ArrowDown, DollarSign, Trophy, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
@@ -44,16 +44,35 @@ export const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden py-12 lg:py-24">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-50 to-gray-100 -z-10"></div>
+      {/* Enhanced background gradient with multiple colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-green-50 to-blue-50 -z-10"></div>
       
-      {/* Animated background elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-orange/5 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-brand-blue/5 rounded-full filter blur-3xl"></div>
+      {/* Improved animated background elements with requested colors */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-5">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#21C55D]/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-60 h-60 bg-brand-yellow/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-40 left-20 w-64 h-64 bg-brand-blue/10 rounded-full filter blur-3xl"></div>
+      </div>
       
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="order-2 lg:order-1 pt-8 lg:pt-0">
+            {/* Hero badge above heading */}
+            <motion.div 
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Badge variant="hero" className="py-2 px-4 text-base flex items-center gap-2 mb-3 w-fit">
+                <span className="bg-gradient-to-r from-brand-orange to-yellow-500 p-1.5 rounded-full flex items-center justify-center">
+                  <Award className="h-5 w-5 text-white" />
+                </span>
+                <span className="font-medium">Growth Partners Consulting</span>
+              </Badge>
+            </motion.div>
+
             <motion.h1 
               className="heading-xl text-brand-dark mb-5 animate-slide-up"
               initial={{ opacity: 0, y: 20 }}
@@ -77,6 +96,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4"
             >
               <Button 
                 onClick={() => setContactModalOpen(true)} 
@@ -84,6 +104,13 @@ export const HeroSection = () => {
               >
                 Speak To An Expert
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              
+              <Button 
+                variant="outline"
+                className="border-brand-orange text-brand-orange hover:bg-brand-orange/10 rounded-full px-8 py-6 text-lg font-medium"
+              >
+                Our Services
               </Button>
             </motion.div>
             
@@ -104,38 +131,46 @@ export const HeroSection = () => {
           </div>
           
           <div className="order-1 lg:order-2 relative">
-            {/* Static image */}
+            {/* Static image with improved styling */}
             <div className="relative z-10">
-              <img
-                src={financeImage}
-                alt="Financial Growth"
-                className="rounded-lg shadow-2xl object-cover mx-auto"
-              />
-              
-              {/* Improved fact badges with new styling */}
-              {factBadges.map((badge, index) => (
-                <motion.div
-                  key={index}
-                  className={`absolute ${badge.position} hidden sm:flex shadow-lg`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: badge.delay 
-                  }}
-                >
-                  <div className="rounded-2xl overflow-hidden p-0.5 bg-white shadow-lg">
-                    <div className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-white`}>
-                      <div className={`bg-gradient-to-r from-blue-500 to-cyan-400 p-1.5 rounded-full flex items-center justify-center`}>
-                        {badge.icon}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="relative rounded-lg overflow-hidden shadow-2xl"
+              >
+                <img
+                  src={financeImage}
+                  alt="Financial Growth"
+                  className="rounded-lg object-cover mx-auto w-full"
+                />
+                
+                {/* Improved badge styling with green icons as requested */}
+                {factBadges.map((badge, index) => (
+                  <motion.div
+                    key={index}
+                    className={`absolute ${badge.position} hidden sm:block`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: badge.delay 
+                    }}
+                  >
+                    <div className="rounded-2xl overflow-hidden p-0.5 bg-white shadow-lg">
+                      <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white">
+                        <div className="bg-[#21C55D] p-1.5 rounded-full flex items-center justify-center">
+                          {badge.icon}
+                        </div>
+                        <span className="font-medium text-gray-800 whitespace-nowrap">{badge.text}</span>
                       </div>
-                      <span className="font-medium text-gray-800 whitespace-nowrap">{badge.text}</span>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-            <div className="absolute inset-0 bg-brand-blue/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
+            {/* Decorative element for the image */}
+            <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
           </div>
         </div>
       </div>
