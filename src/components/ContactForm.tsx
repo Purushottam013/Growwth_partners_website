@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -168,7 +169,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
               <SelectScrollUpButton className="flex items-center justify-center h-7">
                 <ChevronUp className="h-4 w-4" />
               </SelectScrollUpButton>
-              <ScrollArea className="h-[200px] py-1">
+              <div className="max-h-[200px] overflow-y-auto">
                 {countryCodes.map((country) => (
                   <SelectItem key={country.code} value={country.code} className="text-base py-2">
                     <span className="flex items-center">
@@ -177,7 +178,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
                     </span>
                   </SelectItem>
                 ))}
-              </ScrollArea>
+              </div>
               <SelectScrollDownButton className="flex items-center justify-center h-7">
                 <ChevronDown className="h-4 w-4" />
               </SelectScrollDownButton>
