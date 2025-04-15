@@ -15,10 +15,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const CountrySwitcher = ({ 
   variant = "dark",
-  className = ""
+  className = "",
+  showLabel = false
 }: { 
   variant?: "light" | "dark" 
   className?: string
+  showLabel?: boolean
 }) => {
   const { country, setCountry } = useCountry();
   const [open, setOpen] = useState(false);
@@ -43,12 +45,12 @@ export const CountrySwitcher = ({
       onOpenChange={setOpen}
     >
       <SelectTrigger 
-        className={`w-[140px] border-none bg-transparent focus:ring-0 ${textColor} ${className}`}
+        className={`w-[70px] border-none bg-transparent focus:ring-0 ${textColor} ${className}`}
       >
         <SelectValue>
           <div className="flex items-center">
-            <span className="mr-2">{selectedCountry.flag}</span>
-            <span>{selectedCountry.label}</span>
+            <span className="text-lg">{selectedCountry.flag}</span>
+            {showLabel && <span className="ml-2">{selectedCountry.label}</span>}
           </div>
         </SelectValue>
         {open ? (
@@ -57,7 +59,7 @@ export const CountrySwitcher = ({
           <ChevronDown className={`h-4 w-4 ${iconColor}`} />
         )}
       </SelectTrigger>
-      <SelectContent className="bg-white text-gray-800 max-h-[200px]">
+      <SelectContent className="bg-white text-gray-800 max-h-[200px] w-[200px]">
         <ScrollArea className="h-[150px]">
           {countries.map((option) => (
             <SelectItem 
@@ -67,7 +69,7 @@ export const CountrySwitcher = ({
             >
               <div className="flex items-center">
                 <span className="mr-2 text-lg">{option.flag}</span>
-                <span>{option.label}</span>
+                <span>{option.value === "uae" ? "UAE" : option.label}</span>
                 {country === option.value && (
                   <Check className="ml-auto h-4 w-4" />
                 )}

@@ -5,7 +5,8 @@ import { CountrySwitcher } from "@/components/CountrySwitcher";
 import { 
   Menu,
   X,
-  ChevronDown
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
