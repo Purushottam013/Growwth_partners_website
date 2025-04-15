@@ -24,7 +24,7 @@ export const ServicesSection = () => {
     title: "Startup Growth Service",
     description: "Tailored support and strategies to accelerate the growth and success of your startup.",
     link: "/fractional-cfo",
-    image: "/lovable-uploads/e93430c0-5d22-449f-8ce5-a47ba9cd3cfa.png"
+    image: "/lovable-uploads/febac4ca-b732-41a5-a979-e95223a26a56.png"
   }, {
     icon: <FileCheck className="h-12 w-12 text-brand-orange" />,
     title: "Company Secretary",
