@@ -1,11 +1,16 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { Shield, Heart, Crown, DollarSign } from "lucide-react";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext 
+} from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import { Shield, Heart, Crown, DollarSign } from "lucide-react";
 
 export const TestimonialsSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -30,6 +35,17 @@ export const TestimonialsSection = () => {
       icon: <DollarSign className="h-12 w-12 text-brand-orange" />,
       title: "Affordability Value",
       description: "Growth Partners offers high-quality financial services at competitive rates. Our customized approach ensures you only pay for the services you need, making our solutions both effective and affordable."
+    }
+  ];
+
+  const testimonialVideos = [
+    {
+      id: "uylxy3pjgl",
+      title: "Customer Testimonial 1"
+    },
+    {
+      id: "7lotud5v4w",
+      title: "Customer Testimonial 2"
     }
   ];
 
@@ -112,18 +128,44 @@ export const TestimonialsSection = () => {
       <div className="py-20 bg-gray-50">
         <div className="container-custom">
           <h2 className="heading-lg text-center mb-12">Our Happy Customers</h2>
-          <div className="bg-white rounded-lg p-8 shadow-lg max-w-4xl mx-auto text-center">
-            <div className="aspect-video max-w-2xl mx-auto bg-gray-200 flex items-center justify-center rounded-lg mb-8">
-              <p className="text-gray-500">Customer Video Testimonials Will Appear Here</p>
-            </div>
-            <p className="text-lg text-gray-600">
+          <div className="max-w-4xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true
+              }}
+              className="relative"
+            >
+              <CarouselContent>
+                {testimonialVideos.map((video) => (
+                  <CarouselItem key={video.id} className="md:basis-full">
+                    <div className="bg-white rounded-lg p-8 shadow-lg">
+                      <div className="aspect-video w-full overflow-hidden rounded-lg">
+                        <iframe 
+                          allowTransparency="true" 
+                          title={video.title}
+                          allowFullScreen 
+                          frameBorder="0" 
+                          scrolling="no" 
+                          className="wistia_embed w-full h-full" 
+                          name="wistia_embed" 
+                          src={`https://fast.wistia.net/embed/iframe/${video.id}`}
+                        />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
+              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
+            </Carousel>
+            <p className="text-lg text-gray-600 text-center mt-8">
               Hear directly from our satisfied customers about their experience working with Growth Partners.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Contact Dialog */}
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
