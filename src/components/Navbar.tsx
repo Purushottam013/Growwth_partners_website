@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
-import { CountrySwitcher } from "@/components/CountrySwitcher";
-import { 
-  Menu,
-  X,
-  ChevronDown,
-  ChevronUp
-} from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
@@ -138,16 +132,13 @@ export const Navbar = () => {
             ))}
           </nav>
 
-          {/* Country Switcher and Contact Button */}
-          <div className="flex items-center">
-            <CountrySwitcher variant="dark" className="mr-4" />
-            <Button 
-              onClick={() => setContactModalOpen(true)} 
-              className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90 mr-4"
-            >
-              Speak To An Expert
-            </Button>
-          </div>
+          {/* Contact Button */}
+          <Button 
+            onClick={() => setContactModalOpen(true)} 
+            className="hidden lg:flex bg-brand-orange hover:bg-brand-orange/90"
+          >
+            Speak To An Expert
+          </Button>
 
           {/* Mobile Menu Button */}
           <button
