@@ -1,13 +1,16 @@
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 
 export const CtaSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleJoinUs = () => {
-    setContactModalOpen(true);
+    navigate('/contact');
   };
 
   return (
@@ -27,18 +30,6 @@ export const CtaSection = () => {
           </Button>
         </div>
       </div>
-
-      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
-            <DialogDescription className="text-center">
-              Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
-            </DialogDescription>
-          </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
-        </DialogContent>
-      </Dialog>
     </section>
   );
 };
