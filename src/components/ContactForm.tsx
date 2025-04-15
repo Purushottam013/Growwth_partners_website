@@ -169,7 +169,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
               <SelectScrollUpButton className="flex items-center justify-center h-7">
                 <ChevronUp className="h-4 w-4" />
               </SelectScrollUpButton>
-              <div className="max-h-[200px] overflow-y-auto">
+              <ScrollArea className="h-[200px]">
                 {countryCodes.map((country) => (
                   <SelectItem key={country.code} value={country.code} className="text-base py-2">
                     <span className="flex items-center">
@@ -178,7 +178,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
                     </span>
                   </SelectItem>
                 ))}
-              </div>
+              </ScrollArea>
               <SelectScrollDownButton className="flex items-center justify-center h-7">
                 <ChevronDown className="h-4 w-4" />
               </SelectScrollDownButton>
