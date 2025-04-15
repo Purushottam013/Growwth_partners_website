@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import appboxoLogo from "/lovable-uploads/eacfd0b4-a51e-48ed-8dee-273d0e3cb95e.png";
 import cenoaLogo from "/lovable-uploads/17aac22b-d2eb-4833-9e10-64fc56be4ace.png";
 import channelFactoryLogo from "/lovable-uploads/c1b780f8-d39e-41c9-ae1f-7a21887507d1.png";
@@ -14,35 +14,10 @@ import mayaConsultingLogo from "/lovable-uploads/9f095a7e-c6a7-42c7-91f7-1392ee5
 import navsarLogo from "/lovable-uploads/01d4597b-3f9e-4d9e-95e2-ae2406f63c3b.png";
 import tmsLogo from "/lovable-uploads/228a715e-ab46-4e42-98be-1cd1f64064c3.png";
 import treeDotsLogo from "/lovable-uploads/433c066a-08d9-4303-85e7-650c373ede0a.png";
+import { motion } from "framer-motion";
 
 export const PartnersSection = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const startScroll = () => {
-      if (scrollRef.current) {
-        const scrollWidth = scrollRef.current.scrollWidth;
-        const clientWidth = scrollRef.current.clientWidth;
-        
-        let scrollPosition = 0;
-        const scroll = () => {
-          if (scrollRef.current) {
-            scrollPosition++;
-            if (scrollPosition >= scrollWidth / 2) {
-              scrollPosition = 0;
-            }
-            scrollRef.current.scrollLeft = scrollPosition;
-          }
-        };
-        
-        const intervalId = setInterval(scroll, 20);
-        return () => clearInterval(intervalId);
-      }
-    };
-    
-    const timeoutId = setTimeout(startScroll, 1000);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   // Array of company logos with their names
   const logos = [
@@ -62,9 +37,6 @@ export const PartnersSection = () => {
     { src: treeDotsLogo, name: 'TreeDots' },
   ];
   
-  // Duplicate the logos array to create a seamless infinite scroll effect
-  const duplicatedLogos = [...logos, ...logos];
-  
   return (
     <section id="industry-experience" className="py-16 bg-gray-50">
       <div className="container-custom">
@@ -72,33 +44,31 @@ export const PartnersSection = () => {
           Diverse experience of working with various industries
         </h3>
         
-        <div className="relative overflow-hidden">
-          {/* Gradient masks for seamless scrolling effect */}
+        <div className="relative">
+          {/* Gradient masks for seamless appearance */}
           <div className="absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
           <div className="absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
           
-          <div 
-            ref={scrollRef}
-            className="flex overflow-x-scroll scrollbar-none py-4"
-          >
-            <div className="flex space-x-16 min-w-max px-12">
-              {duplicatedLogos.map((logo, index) => (
-                <div 
-                  key={`${logo.name}-${index}`} 
-                  className="flex items-center justify-center bg-white p-6 rounded-lg shadow-md w-32 h-32"
-                >
-                  <img 
-                    src={logo.src} 
-                    alt={`${logo.name} logo`}
-                    className="w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-              ))}
-            </div>
+          <div ref={containerRef} className="flex flex-wrap justify-center gap-6 py-4">
+            {logos.map((logo, index) => (
+              <motion.div
+                key={`${logo.name}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="flex items-center justify-center bg-white p-6 rounded-lg shadow-md w-32 h-32"
+              >
+                <img 
+                  src={logo.src} 
+                  alt={`${logo.name} logo`}
+                  className="w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 };
-
