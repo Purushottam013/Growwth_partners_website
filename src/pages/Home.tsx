@@ -18,7 +18,7 @@ const HomePage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="overflow-x-hidden" // Prevent horizontal overflow
+        className="overflow-hidden" // Prevent any horizontal overflow
       >
         <HeroSection />
         <PartnersSection />

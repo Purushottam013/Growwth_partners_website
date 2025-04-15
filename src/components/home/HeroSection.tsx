@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 import financeImage from "/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png";
 
 export const HeroSection = () => {
@@ -99,38 +100,37 @@ export const HeroSection = () => {
           </div>
           
           <div className="order-1 lg:order-2 relative">
-            <motion.div 
-              className="relative z-10 animate-float-slow"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7 }}
-            >
+            {/* Static image - removed the animate-float-slow class */}
+            <div className="relative z-10">
               <img
                 src={financeImage}
                 alt="Financial Growth"
                 className="rounded-lg shadow-2xl object-cover mx-auto"
               />
               
-              {/* Fact badges */}
+              {/* Improved fact badges */}
               {factBadges.map((badge, index) => (
                 <motion.div
                   key={index}
-                  className={`absolute ${badge.position} hidden sm:flex items-center gap-2 bg-brand-orange text-white text-sm md:text-base px-3 py-2 rounded-full shadow-lg`}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className={`absolute ${badge.position} hidden sm:flex items-center gap-2 bg-gradient-to-r from-brand-orange to-brand-orange/90 px-4 py-3 rounded-xl shadow-lg`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ 
                     duration: 0.5, 
-                    delay: badge.delay,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    repeatDelay: 5
+                    delay: badge.delay 
+                  }}
+                  style={{
+                    backdropFilter: "blur(4px)",
+                    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
                   }}
                 >
-                  {badge.icon}
-                  <span className="font-semibold whitespace-nowrap">{badge.text}</span>
+                  <div className="bg-white/20 p-1.5 rounded-full">
+                    {badge.icon}
+                  </div>
+                  <span className="font-semibold whitespace-nowrap text-white">{badge.text}</span>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
             <div className="absolute inset-0 bg-brand-orange/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
           </div>
         </div>

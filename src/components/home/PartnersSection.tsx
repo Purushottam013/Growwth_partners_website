@@ -1,5 +1,5 @@
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import appboxoLogo from "/lovable-uploads/eacfd0b4-a51e-48ed-8dee-273d0e3cb95e.png";
 import cenoaLogo from "/lovable-uploads/17aac22b-d2eb-4833-9e10-64fc56be4ace.png";
 import channelFactoryLogo from "/lovable-uploads/c1b780f8-d39e-41c9-ae1f-7a21887507d1.png";
@@ -17,7 +17,7 @@ import treeDotsLogo from "/lovable-uploads/433c066a-08d9-4303-85e7-650c373ede0a.
 import { motion } from "framer-motion";
 
 export const PartnersSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
   
   // Array of company logos with their names
   const logos = [
@@ -36,9 +36,27 @@ export const PartnersSection = () => {
     { src: tmsLogo, name: 'TMS Motor Group' },
     { src: treeDotsLogo, name: 'TreeDots' },
   ];
+
+  // Animation variants for sliding effect
+  const sliderVariants = {
+    animate: {
+      x: [0, -1000], // Adjust this value based on the total width of logos
+      transition: {
+        x: {
+          repeat: Infinity,
+          repeatType: "loop" as const,
+          duration: 30,
+          ease: "linear",
+        },
+      },
+    },
+  };
+  
+  // Duplicate logos for seamless loop
+  const duplicatedLogos = [...logos, ...logos];
   
   return (
-    <section id="industry-experience" className="py-16 bg-gray-50">
+    <section id="industry-experience" className="py-16 bg-gray-50 overflow-hidden">
       <div className="container-custom">
         <h3 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Diverse experience of working with various industries
@@ -49,23 +67,29 @@ export const PartnersSection = () => {
           <div className="absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
           <div className="absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
           
-          <div ref={containerRef} className="flex flex-wrap justify-center gap-6 py-4">
-            {logos.map((logo, index) => (
-              <motion.div
-                key={`${logo.name}-${index}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="flex items-center justify-center bg-white p-6 rounded-lg shadow-md w-32 h-32"
-              >
-                <img 
-                  src={logo.src} 
-                  alt={`${logo.name} logo`}
-                  className="w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
-              </motion.div>
-            ))}
+          {/* Slider container */}
+          <div className="overflow-hidden py-6">
+            <motion.div
+              ref={sliderRef}
+              className="flex"
+              variants={sliderVariants}
+              animate="animate"
+            >
+              {duplicatedLogos.map((logo, index) => (
+                <div
+                  key={`${logo.name}-${index}`}
+                  className="flex-shrink-0 mx-4"
+                >
+                  <div className="bg-white p-3 rounded-lg shadow-md w-40 h-40 flex items-center justify-center">
+                    <img 
+                      src={logo.src} 
+                      alt={`${logo.name} logo`}
+                      className="w-full h-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>
