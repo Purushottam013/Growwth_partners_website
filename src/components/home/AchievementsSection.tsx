@@ -1,7 +1,8 @@
 
 import { motion } from "framer-motion";
-import { Award, CheckCircle, Rocket } from "lucide-react";
+import { Award, Rocket } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import xeroPartnerLogo from "/lovable-uploads/3bf79a75-14fd-4e61-beb3-e2350895f138.png";
 
 export const AchievementsSection = () => {
   const achievements = [
@@ -11,7 +12,7 @@ export const AchievementsSection = () => {
       description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
     },
     {
-      icon: <CheckCircle className="h-16 w-16 text-brand-blue" />,
+      icon: <img src={xeroPartnerLogo} alt="Xero Silver Champion Partner" className="h-16" />,
       title: "Xero Certified Partner",
       description: "Growwth Partners is a Xero Silver champion partner after working on 500+ Xero accounts of clients and helping them streamline their books on the software and helping them scale financially."
     },
