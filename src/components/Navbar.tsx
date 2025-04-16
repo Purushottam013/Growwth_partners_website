@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
@@ -93,10 +94,12 @@ export const Navbar = () => {
       return;
     }
     
-    // For other paths, use the country URL helper
+    // Fixed: Always navigate to absolute paths based on country
+    // This ensures navigation works from any page, not just from home
     const url = getCountryUrl(path);
     console.log("Navigating to:", url);
-    navigate(url);
+    // Use navigate with replace option to avoid stacking history
+    navigate(url, { replace: false });
     setMobileMenuOpen(false);
   };
 

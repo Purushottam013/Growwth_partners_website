@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
   Globe, 
@@ -23,6 +23,7 @@ import countryDropdownImage from "/lovable-uploads/7cf2ab2c-86de-4623-9488-a1909
 
 export const Footer = () => {
   const { country, setCountry, getCountryUrl } = useCountry();
+  const navigate = useNavigate();
 
   const formatCountryName = (countryCode: string) => {
     return countryCode.charAt(0).toUpperCase() + countryCode.slice(1);
@@ -43,6 +44,12 @@ export const Footer = () => {
 
   const handleCountryChange = (newCountry: 'singapore' | 'uae' | 'australia') => {
     setCountry(newCountry);
+  };
+
+  const handleNavigation = (path: string) => {
+    const url = getCountryUrl(path);
+    console.log("Footer navigating to:", url);
+    navigate(url);
   };
 
   return (
@@ -143,34 +150,52 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Quick Links</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
-                <Link to={getCountryUrl("")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Home
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("about")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("about")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   About Us
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("contact")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("contact")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Contact Us
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("blog")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("blog")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Blog
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("privacy-policy")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("privacy-policy")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Privacy Policy
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("terms")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("terms")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Terms and Conditions
-                </Link>
+                </span>
               </li>
             </ul>
           </div>
@@ -179,39 +204,60 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Services</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
-                <Link to={getCountryUrl("fractional-cfo")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("fractional-cfo")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Part Time CFO
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("accounting")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("accounting")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Accounting
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("bookkeeping")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("bookkeeping")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Bookkeeping
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("payroll")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("payroll")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Payroll
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("corporate-secretary")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("corporate-secretary")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Corporate Secretary
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("company-incorporation")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("company-incorporation")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Company Incorporation
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to={getCountryUrl("cash-flow")} className="hover:text-brand-orange transition-colors">
+                <span 
+                  onClick={() => handleNavigation("cash-flow")} 
+                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                >
                   Cash Flow Modelling
-                </Link>
+                </span>
               </li>
             </ul>
           </div>
