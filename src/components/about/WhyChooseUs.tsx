@@ -42,12 +42,12 @@ export const WhyChooseUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F3F8FE] via-[#F0F6FF] to-[#F9FCFF] p-8 shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-brand-orange/10 to-transparent rounded-bl-full" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-brand-orange/10 to-transparent rounded-bl-full transition-colors duration-300 group-hover:from-brand-orange/20" />
               
               <div className="relative">
-                <div className="mb-6 inline-block rounded-2xl bg-brand-orange/10 p-4">
+                <div className="mb-6 inline-block rounded-2xl bg-brand-orange/10 p-4 transition-colors duration-300 group-hover:bg-brand-orange/15">
                   {feature.icon}
                 </div>
                 
