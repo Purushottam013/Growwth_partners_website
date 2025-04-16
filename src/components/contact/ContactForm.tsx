@@ -140,7 +140,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-br from-[#E5DEFF]/20 via-white to-[#D6BCFA]/20">
       <div className="container-custom">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -154,13 +154,13 @@ export const ContactForm = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 items-start">
+        <div className="grid md:grid-cols-3 gap-12 items-start px-4 lg:px-16">
           {/* Contact Details Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-1 space-y-6"
+            className="md:col-span-1 space-y-6 pl-4"
           >
             {contactDetails.map((item, index) => (
               <motion.div 
@@ -168,10 +168,10 @@ export const ContactForm = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="bg-gray-100 p-3 rounded-lg">
+                  <div className="bg-[#9b87f5]/10 p-3 rounded-lg">
                     {item.icon}
                   </div>
                   <div>
@@ -194,7 +194,7 @@ export const ContactForm = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="md:col-span-2"
           >
-            <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden w-[70%] mx-auto">
+            <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden w-[85%] mx-auto">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#DBE9FE]/30 rounded-full -mr-10 -mt-10 z-0"></div>
               
               <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
