@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Globe, Briefcase, Award, Users, Target, Brain } from "lucide-react";
+import { Globe, Users } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
@@ -124,93 +124,10 @@ export const FounderSection = () => {
                 </HoverCardContent>
               </HoverCard>
             </div>
-
-            <Separator className="my-8" />
-
-            {/* Expertise Areas */}
-            <div className="space-y-6">
-              <h4 className="text-2xl font-bold text-gray-900">Areas of Expertise</h4>
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                >
-                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
-                    <div className="flex items-start gap-4">
-                      <Briefcase className="w-12 h-12 text-brand-orange flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">Strategic Planning</h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          Expert in developing and implementing comprehensive business strategies for sustainable growth.
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
-                    <div className="flex items-start gap-4">
-                      <Target className="w-12 h-12 text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">Business Transformation</h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          Proven track record in leading successful digital and operational transformations.
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                >
-                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
-                    <div className="flex items-start gap-4">
-                      <Award className="w-12 h-12 text-green-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">Innovation Leadership</h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          Driving innovation and technological advancement across organizations.
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                >
-                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
-                    <div className="flex items-start gap-4">
-                      <Brain className="w-12 h-12 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">Advisory Excellence</h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          Trusted advisor to technology firms, multinationals, and startups worldwide.
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
