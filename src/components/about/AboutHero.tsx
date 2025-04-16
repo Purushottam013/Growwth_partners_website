@@ -9,8 +9,19 @@ export const AboutHero = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
-    <section className="bg-gradient-to-r from-brand-dark to-gray-900 text-white py-20">
-      <div className="container-custom">
+    <section className="relative min-h-[80vh] flex items-center bg-gradient-to-r from-brand-dark to-gray-900 text-white py-20">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url("/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: '0.15'
+        }}
+      />
+      
+      <div className="container-custom relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -18,7 +29,7 @@ export const AboutHero = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Run your business smarter with finance services from industry led experts!
+            Run your business smarter with <span className="text-brand-orange">finance services</span> from industry led experts!
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
             Enjoy the freedom to focus solely on your business while we seamlessly take care of the rest. Let Growwth handle the intricacies of finance, compliance, and legality. At every stage – startup, growth, or expansion – consider Growwth your indispensable ally.
