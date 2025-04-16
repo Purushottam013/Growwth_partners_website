@@ -44,8 +44,8 @@ export const WhyChooseUs = () => {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F3F8FE] via-[#F0F6FF] to-[#F9FCFF] p-8 shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="absolute top-0 right-0 w-40 h-40 bg-[#DBE9FE]/10 rounded-bl-full transition-all duration-300 
-                group-hover:bg-[#DBE9FE]/20 group-hover:w-48 group-hover:h-48" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-[#DBE9FE]/20 rounded-bl-full transition-all duration-300 
+                group-hover:bg-[#DBE9FE]/30 group-hover:w-48 group-hover:h-48" />
               
               <div className="relative">
                 <div className="mb-6 inline-block rounded-2xl bg-brand-orange/10 p-4 transition-colors duration-300 group-hover:bg-brand-orange/15">
