@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Globe, Users } from "lucide-react";
+import { Globe, Users, Star } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
@@ -23,45 +23,40 @@ export const FounderSection = () => {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-            Meet Our Founder and CEO:
+            Meet Our Founder and CEO
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             Building innovative solutions with decades of global expertise
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Profile Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-4 space-y-6"
+            className="lg:col-span-5 space-y-8"
           >
             <div className="sticky top-24">
-              <div className="relative w-[280px] h-[280px] mx-auto lg:mx-0 group perspective">
-                <div className="relative transform transition-all duration-500 group-hover:rotate-y-180">
-                  <div className="absolute backface-hidden w-full h-full">
-                    <Avatar className="w-full h-full border-4 border-white shadow-2xl">
-                      <AvatarImage 
-                        src="/lovable-uploads/afe4aff2-e31a-4c3f-a316-5b398191df48.png"
-                        alt="Jatin Detwani"
-                        className="object-cover"
-                      />
-                      <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                  </div>
+              <div className="relative w-[320px] h-[320px] mx-auto lg:mx-0 group">
+                <div className="relative transform transition-all duration-500 rounded-2xl overflow-hidden shadow-2xl">
+                  <Avatar className="w-full h-full">
+                    <AvatarImage 
+                      src="/lovable-uploads/afe4aff2-e31a-4c3f-a316-5b398191df48.png"
+                      alt="Jatin Detwani"
+                      className="object-cover w-full h-full"
+                    />
+                    <AvatarFallback className="text-4xl">JD</AvatarFallback>
+                  </Avatar>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-orange/20 to-transparent backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               <div className="mt-8 text-center lg:text-left space-y-4">
                 <h3 className="text-3xl font-bold text-gray-900">Jatin Detwani</h3>
                 <p className="text-brand-orange font-semibold text-lg">Founder & CEO</p>
-                <p className="text-gray-600">
-                  A visionary leader with over two decades of experience in global business transformation.
-                </p>
               </div>
             </div>
           </motion.div>
@@ -72,8 +67,27 @@ export const FounderSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-8 space-y-8"
+            className="lg:col-span-7 space-y-8"
           >
+            {/* Versatile Skills Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-gray-100"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="rounded-lg bg-orange-100 p-2">
+                  <Star className="w-6 h-6 text-brand-orange" />
+                </div>
+                <h4 className="text-2xl font-semibold text-gray-900">Versatile Skills</h4>
+              </div>
+              <p className="text-gray-600 leading-relaxed text-lg">
+                Strong strategic, operational, financial, and investment-related skills acquired through diverse roles, including consultant, startup investor, operator, board member, and various C-suite positions.
+              </p>
+            </motion.div>
+
             {/* Experience Cards */}
             <div className="grid md:grid-cols-2 gap-6">
               <HoverCard>
@@ -130,4 +144,3 @@ export const FounderSection = () => {
     </section>
   );
 };
-
