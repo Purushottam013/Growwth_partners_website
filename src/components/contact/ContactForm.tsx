@@ -194,7 +194,7 @@ export const ContactForm = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="md:col-span-2"
           >
-            <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden">
+            <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden w-[70%] mx-auto">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#DBE9FE]/30 rounded-full -mr-10 -mt-10 z-0"></div>
               
               <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
