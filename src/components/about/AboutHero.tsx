@@ -26,7 +26,7 @@ export const AboutHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center backdrop-blur-lg bg-black/30 p-8 rounded-2xl border border-white/10"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Run your business smarter with <span className="text-brand-orange">finance services</span> from industry led experts!
