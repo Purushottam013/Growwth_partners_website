@@ -77,7 +77,7 @@ const contactDetails = [
   {
     icon: <MessageCircle className="h-6 w-6 text-brand-orange" />,
     title: "Whatsapp",
-    subheading: "Let Us Assist You",
+    subheading: "Our Friendly team is here to help.",
     details: ["Live Support"]
   },
   {
