@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Globe, Users, Star } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -9,8 +8,8 @@ import { Separator } from "@/components/ui/separator";
 export const FounderSection = () => {
   return (
     <section className="py-20 min-h-screen relative overflow-hidden">
-      {/* Background with gradient and pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 via-white to-gray-100/80" />
+      {/* Background with enhanced gradient and pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#9b87f5]/10 via-white to-[#D946EF]/5" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGM0LjQxOCAwIDgtMy41ODIgOC04cy0zLjU4Mi04LTgtOC04IDMuNTgyLTggOCAzLjU4MiA4IDggOHoiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9nPjwvc3ZnPg==')] opacity-5" />
 
       <div className="container-custom max-w-7xl relative">
