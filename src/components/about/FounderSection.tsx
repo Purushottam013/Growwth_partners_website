@@ -7,6 +7,19 @@ export const FounderSection = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container-custom">
+        {/* Added Heading at the top of the section */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+            Meet Our Founder and CEO:
+          </h2>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Profile Image Section */}
           <motion.div
@@ -105,18 +118,7 @@ export const FounderSection = () => {
           </motion.div>
         </div>
         
-        {/* Added Heading at the end of the section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center mt-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-            Meet Our Founder and CEO:
-          </h2>
-        </motion.div>
+        {/* Removed the duplicate heading at the bottom */}
       </div>
     </section>
   );
