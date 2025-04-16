@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,17 @@ import {
 } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { PhoneIcon, User, Building, Mail, MessageSquare, ChevronUp, ChevronDown } from "lucide-react";
+import { 
+  PhoneIcon, 
+  User, 
+  Building, 
+  Mail, 
+  MessageSquare, 
+  ChevronUp, 
+  ChevronDown,
+  MapPin,
+  MessageCircle
+} from "lucide-react";
 
 const services = [
   "Accounting Services",
@@ -55,6 +66,32 @@ const countryCodes = [
   { code: "+64", country: "New Zealand", flag: "🇳🇿" },
   { code: "+27", country: "South Africa", flag: "🇿🇦" },
   { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
+];
+
+const contactDetails = [
+  {
+    icon: <Mail className="h-6 w-6 text-brand-orange" />,
+    title: "Mail Us",
+    details: ["jatin@growwthpartners.com"]
+  },
+  {
+    icon: <MessageCircle className="h-6 w-6 text-brand-orange" />,
+    title: "Whatsapp",
+    details: ["Live Support"]
+  },
+  {
+    icon: <MapPin className="h-6 w-6 text-brand-orange" />,
+    title: "Visit Us",
+    details: [
+      "Come say hello at our office HQ.",
+      "65 Chulia Street, #46-00 OCBC Centre, Singapore 049513"
+    ]
+  },
+  {
+    icon: <PhoneIcon className="h-6 w-6 text-brand-orange" />,
+    title: "Call Us",
+    details: ["+65 8893 0720"]
+  }
 ];
 
 export const ContactForm = () => {
@@ -117,12 +154,45 @@ export const ContactForm = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center">
+        <div className="grid md:grid-cols-3 gap-8 items-start">
+          {/* Contact Details Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="md:col-span-1 space-y-6"
+          >
+            {contactDetails.map((item, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
+                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="bg-gray-100 p-3 rounded-lg">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
+                    {item.details.map((detail, idx) => (
+                      <p key={idx} className="text-gray-600">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Form Column */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-[85%] max-w-3xl"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="md:col-span-2"
           >
             <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#DBE9FE]/30 rounded-full -mr-10 -mt-10 z-0"></div>
