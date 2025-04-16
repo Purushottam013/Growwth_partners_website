@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,6 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { PhoneIcon, User, Building, Mail, MessageSquare, ChevronUp, ChevronDown } from "lucide-react";
-import consultationImage from "/lovable-uploads/0b867cd2-ea14-47c6-9808-af3e302f9917.png";
 
 const services = [
   "Accounting Services",
@@ -119,31 +117,17 @@ export const ContactForm = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="flex justify-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="w-[85%] max-w-3xl"
           >
-            <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl">
-              <img 
-                src={consultationImage} 
-                alt="Consultation" 
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="absolute -bottom-5 -right-5 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-xl -z-10"></div>
-            <div className="absolute -top-5 -left-5 w-64 h-64 bg-brand-green/10 rounded-full filter blur-xl -z-10"></div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#DBE9FE]/30 rounded-full -mr-10 -mt-10 z-0"></div>
+              
+              <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
                   <div className="relative">
