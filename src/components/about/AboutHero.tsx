@@ -26,17 +26,27 @@ export const AboutHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center backdrop-blur-lg bg-black/30 p-8 rounded-2xl border border-white/10"
+          className="max-w-4xl mx-auto text-center"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Run your business smarter with <span className="text-brand-orange">finance services</span> from industry led experts!
+            <span className="backdrop-blur px-4 py-2 rounded">Run your business smarter with</span> <br />
+            <span className="text-brand-orange backdrop-blur px-4 py-2 rounded">finance services</span> <br />
+            <span className="backdrop-blur px-4 py-2 rounded">from industry led experts!</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-            Enjoy the freedom to focus solely on your business while we seamlessly take care of the rest. Let Growwth handle the intricacies of finance, compliance, and legality. At every stage – startup, growth, or expansion – consider Growwth your indispensable ally.
+            <span className="backdrop-blur px-4 py-2 rounded inline-block mb-2">
+              Enjoy the freedom to focus solely on your business while we seamlessly take care
+            </span> <br />
+            <span className="backdrop-blur px-4 py-2 rounded inline-block mb-2">
+              of the rest. Let Growwth handle the intricacies of finance, compliance,
+            </span> <br />
+            <span className="backdrop-blur px-4 py-2 rounded inline-block">
+              and legality. At every stage – startup, growth, or expansion – consider Growwth your indispensable ally.
+            </span>
           </p>
           <Button 
             onClick={() => setContactModalOpen(true)}
-            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-8 py-6 text-lg rounded-full"
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-8 py-6 text-lg rounded-full backdrop-blur"
           >
             Book Free Call
           </Button>
