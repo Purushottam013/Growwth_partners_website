@@ -26,7 +26,7 @@ export const LocationsSection = () => {
     {
       country: "India",
       address: "BlueOne Square, Udyog Vihar, 246, Phase IV, Udyog Vihar, Gurugram, HR 122016",
-      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+      image: "/lovable-uploads/e06531a8-fd3a-4b27-836c-e3384363a63b.png", // Updated image URL
       color: "from-[#21C55D]/20 to-[#21C55D]/5"
     }
   ];
