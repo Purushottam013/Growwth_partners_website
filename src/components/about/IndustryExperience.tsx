@@ -56,7 +56,7 @@ export const IndustryExperience = () => {
                 <img
                   src={logo}
                   alt={`Industry logo ${index + 1}`}
-                  className="h-20 object-contain"
+                  className="h-24 object-contain"
                 />
               </div>
             ))}
@@ -69,7 +69,7 @@ export const IndustryExperience = () => {
                 <img
                   src={logo}
                   alt={`Industry logo ${index + 1}`}
-                  className="h-20 object-contain"
+                  className="h-24 object-contain"
                 />
               </div>
             ))}
