@@ -78,27 +78,13 @@ export const Navbar = () => {
     }
   };
 
-  // Handle navigation with consistent approach
+  // Handle navigation with consistent absolute paths
   const handleNavigation = (path: string) => {
-    // For home navigation, use direct navigation to root
-    if (path === "/") {
-      console.log("Navigating to home page");
-      // Get the current country prefix if any
-      const currentPath = location.pathname;
-      const countryPrefix = currentPath.startsWith("/uae") ? "/uae" : 
-                           currentPath.startsWith("/australia") ? "/australia" : "";
-      
-      // Navigate to country-specific home or root home
-      navigate(countryPrefix || "/");
-      setMobileMenuOpen(false);
-      return;
-    }
+    console.log("Navigation requested to:", path);
     
-    // Fixed: Always navigate to absolute paths based on country
-    // This ensures navigation works from any page, not just from home
+    // Always navigate using absolute paths with country prefix
     const url = getCountryUrl(path);
-    console.log("Navigating to:", url);
-    // Use navigate with replace option to avoid stacking history
+    console.log("Navigating to absolute URL:", url);
     navigate(url, { replace: false });
     setMobileMenuOpen(false);
   };
@@ -106,13 +92,9 @@ export const Navbar = () => {
   // Handle logo click to go home
   const handleLogoClick = () => {
     console.log("Logo clicked, navigating to home");
-    // Get the current country prefix if any
-    const currentPath = location.pathname;
-    const countryPrefix = currentPath.startsWith("/uae") ? "/uae" : 
-                         currentPath.startsWith("/australia") ? "/australia" : "";
-    
-    // Navigate to country-specific home or root home
-    navigate(countryPrefix || "/");
+    const homeUrl = getCountryUrl("");
+    console.log("Navigating to home URL:", homeUrl);
+    navigate(homeUrl);
     setMobileMenuOpen(false);
   };
 

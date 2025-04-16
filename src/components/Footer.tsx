@@ -1,4 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
   Globe, 
@@ -19,7 +20,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
-import countryDropdownImage from "/lovable-uploads/7cf2ab2c-86de-4623-9488-a190961c93cd.png";
 
 export const Footer = () => {
   const { country, setCountry, getCountryUrl } = useCountry();
@@ -47,8 +47,9 @@ export const Footer = () => {
   };
 
   const handleNavigation = (path: string) => {
+    // Always use absolute paths with country prefix for navigation
     const url = getCountryUrl(path);
-    console.log("Footer navigating to:", url);
+    console.log("Footer navigating to absolute URL:", url);
     navigate(url);
   };
 
@@ -150,52 +151,52 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Quick Links</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Home
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("about")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   About Us
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("contact")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Contact Us
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("blog")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Blog
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("privacy-policy")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("terms")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Terms and Conditions
-                </span>
+                </button>
               </li>
             </ul>
           </div>
@@ -204,60 +205,60 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Services</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("fractional-cfo")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Part Time CFO
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("accounting")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Accounting
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("bookkeeping")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Bookkeeping
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("payroll")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Payroll
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("corporate-secretary")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Corporate Secretary
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("company-incorporation")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Company Incorporation
-                </span>
+                </button>
               </li>
               <li>
-                <span 
+                <button 
                   onClick={() => handleNavigation("cash-flow")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer"
+                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Cash Flow Modelling
-                </span>
+                </button>
               </li>
             </ul>
           </div>

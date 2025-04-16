@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCountry } from "@/contexts/CountryContext";
 import { Layout } from "@/components/Layout";
+import { AlertTriangle } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -25,11 +26,17 @@ const NotFound = () => {
     <Layout>
       <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md mx-auto p-8">
+          <div className="flex justify-center mb-4">
+            <AlertTriangle size={64} className="text-red-500" />
+          </div>
           <h1 className="text-7xl font-bold mb-4 text-brand-orange">404</h1>
           <p className="text-2xl text-gray-700 mb-6">Oops! Page not found</p>
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-600 mb-4">
             The page you are looking for might have been removed, had its name changed,
             or is temporarily unavailable.
+          </p>
+          <p className="text-sm text-gray-500 mb-8 p-3 bg-gray-100 rounded-md">
+            Attempted to access: <span className="font-mono text-red-500">{location.pathname}</span>
           </p>
           <Button 
             onClick={handleGoHome}
