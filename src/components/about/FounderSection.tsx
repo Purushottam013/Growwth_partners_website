@@ -19,7 +19,7 @@ export const FounderSection = () => {
             <div className="relative w-[280px] h-[280px] mx-auto lg:mx-0 lg:ml-auto">
               <Avatar className="w-full h-full border-4 border-white shadow-xl">
                 <AvatarImage 
-                  src="/lovable-uploads/433c066a-08d9-4303-85e7-650c373ede0a.png"
+                  src="/lovable-uploads/afe4aff2-e31a-4c3f-a316-5b398191df48.png"
                   alt="Jatin Detwani"
                   className="object-cover"
                 />
@@ -104,6 +104,19 @@ export const FounderSection = () => {
             </div>
           </motion.div>
         </div>
+        
+        {/* Added Heading at the end of the section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="text-center mt-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+            Meet Our Founder and CEO:
+          </h2>
+        </motion.div>
       </div>
     </section>
   );
