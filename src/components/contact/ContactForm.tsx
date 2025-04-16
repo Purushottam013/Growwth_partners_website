@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -72,24 +71,27 @@ const contactDetails = [
   {
     icon: <Mail className="h-6 w-6 text-brand-orange" />,
     title: "Mail Us",
+    subheading: "Let Us Assist You",
     details: ["jatin@growwthpartners.com"]
   },
   {
     icon: <MessageCircle className="h-6 w-6 text-brand-orange" />,
     title: "Whatsapp",
+    subheading: "Let Us Assist You",
     details: ["Live Support"]
   },
   {
     icon: <MapPin className="h-6 w-6 text-brand-orange" />,
     title: "Visit Us",
+    subheading: "Come say hello at our office HQ.",
     details: [
-      "Come say hello at our office HQ.",
       "65 Chulia Street, #46-00 OCBC Centre, Singapore 049513"
     ]
   },
   {
     icon: <PhoneIcon className="h-6 w-6 text-brand-orange" />,
     title: "Call Us",
+    subheading: "Mon-fri from 8am to 5pm.",
     details: ["+65 8893 0720"]
   }
 ];
@@ -155,7 +157,6 @@ export const ContactForm = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-12 items-start px-4 lg:px-16">
-          {/* Contact Details Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -175,7 +176,8 @@ export const ContactForm = () => {
                     {item.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-800 mb-1">{item.title}</h3>
+                    <p className="text-sm text-gray-600 mb-2">{item.subheading}</p>
                     {item.details.map((detail, idx) => (
                       <p key={idx} className="text-gray-600">
                         {detail}
@@ -187,7 +189,6 @@ export const ContactForm = () => {
             ))}
           </motion.div>
 
-          {/* Form Column */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
