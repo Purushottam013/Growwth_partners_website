@@ -1,129 +1,212 @@
 
 import { motion } from "framer-motion";
-import { Globe, Briefcase, Award } from "lucide-react";
+import { Globe, Briefcase, Award, Users, Target, Brain } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { Separator } from "@/components/ui/separator";
 
 export const FounderSection = () => {
   return (
-    <section className="py-20 min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-      <div className="container-custom max-w-6xl">
+    <section className="py-20 min-h-screen relative overflow-hidden">
+      {/* Background with gradient and pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 via-white to-gray-100/80" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNGM0LjQxOCAwIDgtMy41ODIgOC04cy0zLjU4Mi04LTgtOC04IDMuNTgyLTggOCAzLjU4MiA4IDggOHoiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9nPjwvc3ZnPg==')] opacity-5" />
+
+      <div className="container-custom max-w-7xl relative">
+        {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
             Meet Our Founder and CEO:
           </h2>
+          <p className="text-lg text-gray-600 leading-relaxed">
+            Building innovative solutions with decades of global expertise
+          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Profile Image Section */}
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Profile Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="lg:col-span-4 space-y-6"
           >
-            <div className="relative w-[320px] h-[320px] mx-auto lg:mx-0 lg:ml-auto group">
-              <Avatar className="w-full h-full border-4 border-white shadow-2xl transition-transform duration-300 group-hover:scale-105">
-                <AvatarImage 
-                  src="/lovable-uploads/afe4aff2-e31a-4c3f-a316-5b398191df48.png"
-                  alt="Jatin Detwani"
-                  className="object-cover"
-                />
-                <AvatarFallback>JD</AvatarFallback>
-              </Avatar>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-orange/30 to-transparent backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="sticky top-24">
+              <div className="relative w-[280px] h-[280px] mx-auto lg:mx-0 group perspective">
+                <div className="relative transform transition-all duration-500 group-hover:rotate-y-180">
+                  <div className="absolute backface-hidden w-full h-full">
+                    <Avatar className="w-full h-full border-4 border-white shadow-2xl">
+                      <AvatarImage 
+                        src="/lovable-uploads/afe4aff2-e31a-4c3f-a316-5b398191df48.png"
+                        alt="Jatin Detwani"
+                        className="object-cover"
+                      />
+                      <AvatarFallback>JD</AvatarFallback>
+                    </Avatar>
+                  </div>
+                </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-orange/20 to-transparent backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+
+              <div className="mt-8 text-center lg:text-left space-y-4">
+                <h3 className="text-3xl font-bold text-gray-900">Jatin Detwani</h3>
+                <p className="text-brand-orange font-semibold text-lg">Founder & CEO</p>
+                <p className="text-gray-600">
+                  A visionary leader with over two decades of experience in global business transformation.
+                </p>
+              </div>
             </div>
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="absolute -bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0"
-            >
-              <Card className="px-6 py-3 bg-white/80 backdrop-blur-sm border-0 shadow-xl">
-                <p className="text-brand-orange font-bold text-lg">Founder & CEO</p>
-              </Card>
-            </motion.div>
           </motion.div>
 
-          {/* Content Section */}
+          {/* Content Column */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center lg:text-left space-y-8"
+            className="lg:col-span-8 space-y-8"
           >
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Jatin Detwani
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                A seasoned executive with 20+ years of global experience leading Growwth Partners.
-              </p>
+            {/* Experience Cards */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <HoverCard>
+                <HoverCardTrigger>
+                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group cursor-pointer">
+                    <div className="flex items-start gap-4">
+                      <div className="rounded-lg bg-orange-100 p-3 group-hover:scale-110 transition-transform duration-300">
+                        <Globe className="w-6 h-6 text-brand-orange" />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-2">Global Presence</h4>
+                        <p className="text-gray-600">Led initiatives across multiple continents</p>
+                      </div>
+                    </div>
+                  </Card>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-semibold">International Experience</h4>
+                    <p className="text-sm">
+                      Worked across India, Singapore, France, UK, and Luxembourg, bringing diverse perspectives to business solutions.
+                    </p>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+
+              <HoverCard>
+                <HoverCardTrigger>
+                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group cursor-pointer">
+                    <div className="flex items-start gap-4">
+                      <div className="rounded-lg bg-blue-100 p-3 group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-2">Leadership</h4>
+                        <p className="text-gray-600">Building and mentoring high-performance teams</p>
+                      </div>
+                    </div>
+                  </Card>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-semibold">Team Development</h4>
+                    <p className="text-sm">
+                      Expertise in building and leading cross-functional teams across multiple countries and cultures.
+                    </p>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
             </div>
 
-            <div className="grid gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="group"
-              >
-                <Card className="flex items-start space-x-6 p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl">
-                  <Briefcase className="w-12 h-12 text-brand-orange flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-gray-900">Diverse Background</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Extensive expertise advising technology firms, multinationals, PE/VC investors, family-owned businesses, and startups worldwide.
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
+            <Separator className="my-8" />
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="group"
-              >
-                <Card className="flex items-start space-x-6 p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl">
-                  <Globe className="w-12 h-12 text-brand-orange flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-gray-900">Global Presence</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Worked in India, Singapore, France, the UK, Luxembourg, providing a broad perspective on business landscapes.
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
+            {/* Expertise Areas */}
+            <div className="space-y-6">
+              <h4 className="text-2xl font-bold text-gray-900">Areas of Expertise</h4>
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                >
+                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
+                    <div className="flex items-start gap-4">
+                      <Briefcase className="w-12 h-12 text-brand-orange flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">Strategic Planning</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                          Expert in developing and implementing comprehensive business strategies for sustainable growth.
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="group"
-              >
-                <Card className="flex items-start space-x-6 p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl">
-                  <Award className="w-12 h-12 text-brand-orange flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-gray-900">Versatile Skills</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Strong strategic, operational, financial, and investment-related skills acquired through diverse roles, including consultant, startup investor, operator, board member, and various C-suite positions.
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                >
+                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
+                    <div className="flex items-start gap-4">
+                      <Target className="w-12 h-12 text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">Business Transformation</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                          Proven track record in leading successful digital and operational transformations.
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                >
+                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
+                    <div className="flex items-start gap-4">
+                      <Award className="w-12 h-12 text-green-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">Innovation Leadership</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                          Driving innovation and technological advancement across organizations.
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                >
+                  <Card className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 border-0 shadow-lg hover:shadow-xl group">
+                    <div className="flex items-start gap-4">
+                      <Brain className="w-12 h-12 text-purple-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">Advisory Excellence</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                          Trusted advisor to technology firms, multinationals, and startups worldwide.
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
