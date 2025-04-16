@@ -10,7 +10,7 @@ const logos = [
 
 export const TrustedSection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 overflow-hidden">
       <div className="container-custom">
         <div className="text-center max-w-4xl mx-auto mb-16">
           <motion.h3 
@@ -34,23 +34,41 @@ export const TrustedSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-          {logos.map((logo, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="flex justify-center"
+        <div className="relative">
+          {/* Gradient masks for seamless appearance */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
+          
+          {/* Sliding container */}
+          <div className="overflow-hidden">
+            <motion.div 
+              className="flex"
+              animate={{
+                x: [0, -1000],
+                transition: {
+                  x: {
+                    repeat: Infinity,
+                    duration: 20,
+                    ease: "linear",
+                  },
+                },
+              }}
             >
-              <img 
-                src={logo} 
-                alt="Partner logo" 
-                className="h-16 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-              />
+              {/* Double the logos array for seamless loop */}
+              {[...logos, ...logos].map((logo, index) => (
+                <motion.div
+                  key={index}
+                  className="flex-shrink-0 mx-8"
+                >
+                  <img 
+                    src={logo} 
+                    alt="Partner logo" 
+                    className="h-16 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  />
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
