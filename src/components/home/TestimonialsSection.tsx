@@ -87,9 +87,7 @@ export const TestimonialsSection = () => {
       <div className="bg-brand-orange text-white py-20">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
-              Did You Know Your Business Can Now Afford a CFO?!
-            </h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">Did You Know Your Business Can Now Afford a CFO?</h1>
             <p className="text-xl opacity-90 mb-10">
               Our clients benefit from our CFO advisory services, which include 10-20 hours of dedicated 
               financial support each month. This unique service provides strategic insights and financial 
