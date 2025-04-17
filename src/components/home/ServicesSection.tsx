@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Building, TrendingUp, FileCheck, BriefcaseBusiness, DollarSign, ArrowRight } from "lucide-react";
@@ -33,10 +32,10 @@ export const ServicesSection = () => {
     image: "/lovable-uploads/ee6e6742-615b-4ace-b909-1927ece7fa0e.png"
   }, {
     icon: <BriefcaseBusiness className="h-12 w-12 text-brand-orange" />,
-    title: "Fund Raising",
-    description: "Expert assistance in securing funding and investment for your business ventures.",
+    title: "Fractional CFO",
+    description: "A financial expert providing high-level strategic financial leadership and guidance to businesses, offering cost-effective access to experienced CFO-level expertise.",
     link: "/contact",
-    image: "/lovable-uploads/356a1435-7b73-427a-8ce1-bac610f31caf.png"
+    image: "/lovable-uploads/ed0aceb6-fbf6-4386-96fd-dd7675e87616.png"
   }, {
     icon: <DollarSign className="h-12 w-12 text-brand-orange" />,
     title: "Payroll Services",
@@ -150,4 +149,3 @@ export const ServicesSection = () => {
     </section>
   );
 };
-
