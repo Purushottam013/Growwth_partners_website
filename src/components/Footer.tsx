@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
@@ -160,7 +159,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("about")} 
+                  onClick={() => handleNavigation("/about")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   About Us
@@ -168,7 +167,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("contact")} 
+                  onClick={() => handleNavigation("/contact")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Contact Us
@@ -176,7 +175,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("blog")} 
+                  onClick={() => handleNavigation("/blog")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Blog
@@ -184,7 +183,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("privacy-policy")} 
+                  onClick={() => handleNavigation("/privacy-policy")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
@@ -192,7 +191,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("terms")} 
+                  onClick={() => handleNavigation("/terms")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Terms and Conditions
@@ -206,7 +205,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
                 <button 
-                  onClick={() => handleNavigation("fractional-cfo")} 
+                  onClick={() => handleNavigation("/fractional-cfo")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Part Time CFO
@@ -214,7 +213,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("accounting")} 
+                  onClick={() => handleNavigation("/accounting")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Accounting
@@ -222,7 +221,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("bookkeeping")} 
+                  onClick={() => handleNavigation("/bookkeeping")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Bookkeeping
@@ -230,7 +229,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("payroll")} 
+                  onClick={() => handleNavigation("/payroll")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Payroll
@@ -238,7 +237,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("corporate-secretary")} 
+                  onClick={() => handleNavigation("/corporate-secretary")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Corporate Secretary
@@ -246,7 +245,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("company-incorporation")} 
+                  onClick={() => handleNavigation("/company-incorporation")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Company Incorporation
@@ -254,7 +253,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("cash-flow")} 
+                  onClick={() => handleNavigation("/cash-flow")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Cash Flow Modelling
