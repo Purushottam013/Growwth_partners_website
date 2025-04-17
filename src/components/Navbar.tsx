@@ -19,44 +19,44 @@ const navItems = [
   },
   {
     title: "About Us",
-    path: "about",
+    path: "/about",
     dropdown: false
   },
   {
     title: "Accounting",
-    path: "accounting",
+    path: "/accounting",
     dropdown: true,
     items: [
-      { title: "Accounting Services", path: "accounting" },
-      { title: "Bookkeeping", path: "bookkeeping" },
-      { title: "Payroll", path: "payroll" },
-      { title: "Taxation & Compliance", path: "taxation" }
+      { title: "Accounting Services", path: "/accounting" },
+      { title: "Bookkeeping", path: "/bookkeeping" },
+      { title: "Payroll", path: "/payroll" },
+      { title: "Taxation & Compliance", path: "/taxation" }
     ]
   },
   {
     title: "Fractional CFO",
-    path: "fractional-cfo",
+    path: "/fractional-cfo",
     dropdown: true,
     items: [
-      { title: "Fractional CFO", path: "fractional-cfo" },
-      { title: "Cash Flow Modelling", path: "cash-flow" }
+      { title: "Fractional CFO", path: "/fractional-cfo" },
+      { title: "Cash Flow Modelling", path: "/cash-flow" }
     ]
   },
   {
     title: "Contact Us",
-    path: "contact",
+    path: "/contact",
     dropdown: false
   },
   {
     title: "Resources",
-    path: "resources",
+    path: "/resources",
     dropdown: true,
     items: [
-      { title: "Blog", path: "blog" },
-      { title: "Success Stories", path: "success-stories" },
-      { title: "Guide", path: "guide" },
-      { title: "Achievements & Awards", path: "achievements" },
-      { title: "In The News", path: "news" }
+      { title: "Blog", path: "/blog" },
+      { title: "Success Stories", path: "/success-stories" },
+      { title: "Guide", path: "/guide" },
+      { title: "Achievements & Awards", path: "/achievements" },
+      { title: "In The News", path: "/news" }
     ]
   }
 ];
@@ -83,6 +83,7 @@ export const Navbar = () => {
     console.log("Navigation requested to:", path);
     
     // Always navigate using absolute paths with country prefix
+    // If path already starts with /, use it directly, otherwise prepend /
     const url = getCountryUrl(path);
     console.log("Navigating to absolute URL:", url);
     navigate(url, { replace: false });
