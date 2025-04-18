@@ -8,7 +8,7 @@ export const ExpertBlogSection = () => {
   const blogs = [
     {
       title: "Why Singapore is the ideal location for startups",
-      description: "Singapore has a reputation for ease in starting a business owing to startup grants and efficient tax administration. It is known as the "Silicon Valley of Asia."",
+      description: "Singapore has a reputation for ease in starting a business owing to startup grants and efficient tax administration. It is known as the 'Silicon Valley of Asia'.",
       url: "https://growwthpartners.com/blog/startup/why-singapore-is-the-ideal-location-for-startups/"
     },
     {
@@ -18,7 +18,7 @@ export const ExpertBlogSection = () => {
     },
     {
       title: "Grants for Singapore Startups",
-      description: "Singapore is known as Asia's "Silicon Valley" because it is the most desirable location for business startups. In addition to its low tax rates",
+      description: "Singapore is known as Asia's 'Silicon Valley' because it is the most desirable location for business startups. In addition to its low tax rates",
       url: "https://growwthpartners.com/blog/news/grants-for-singapore-startups/"
     }
   ];
