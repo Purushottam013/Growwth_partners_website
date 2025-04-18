@@ -1,10 +1,8 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
-
 export const ContactTestimonials = () => {
   const testimonialVideos = [{
     id: "uylxy3pjgl",
@@ -17,35 +15,39 @@ export const ContactTestimonials = () => {
     name: "Migara Tennakoon",
     role: "Founder & CEO, Peace Lily"
   }];
-
-  return (
-    <section className="bg-gray-50 py-[60px]">
+  return <section className="bg-gray-50 py-[60px]">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.5
+      }} className="text-center mb-12">
           <h2 className="heading-lg text-center mb-6">Our Happy Customers</h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto font-semibold">
             Finance made simple with our services. Not trusting our words? Hear what our clients are saying about us and our services.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        scale: 0.95
+      }} animate={{
+        opacity: 1,
+        scale: 1
+      }} transition={{
+        duration: 0.6,
+        delay: 0.2
+      }} className="max-w-4xl mx-auto">
           <Carousel opts={{
-            align: "start",
-            loop: true
-          }} className="relative">
+          align: "start",
+          loop: true
+        }} className="relative">
             <CarouselContent>
-              {testimonialVideos.map(video => (
-                <CarouselItem key={video.id} className="md:basis-full">
+              {testimonialVideos.map(video => <CarouselItem key={video.id} className="md:basis-full">
                   <Card className="bg-white rounded-lg p-8 shadow-lg border-0">
                     <CardContent className="p-0 space-y-6">
                       <div className="flex flex-col items-center mb-4">
@@ -60,17 +62,13 @@ export const ContactTestimonials = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </CarouselItem>
-              ))}
+                </CarouselItem>)}
             </CarouselContent>
             <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
             <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
           </Carousel>
-          <p className="text-lg text-gray-600 text-center mt-8">
-            Hear directly from our satisfied customers about their experience working with Growth Partners.
-          </p>
+          <p className="text-lg text-gray-600 text-center mt-8">Hear directly from our satisfied customers about their experience working with Growwth Partners.</p>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 };
