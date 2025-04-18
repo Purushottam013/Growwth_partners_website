@@ -47,11 +47,11 @@ export const CaseStudySection = () => {
                 href={study.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block h-full"
+                className="block h-full group"
               >
                 <Card className="bg-gray-50 hover:shadow-lg transition-all duration-300 h-full hover:-translate-y-1 border-0 shadow-md overflow-hidden">
                   <CardContent className="p-6">
-                    <h4 className="text-xl font-bold mb-3 text-brand-dark">{study.title}</h4>
+                    <h4 className="text-xl font-bold mb-3 text-brand-dark group-hover:text-brand-orange transition-colors">{study.title}</h4>
                     <p className="text-gray-600 mb-4">{study.description}</p>
                     <div className="flex items-center text-brand-orange font-medium">
                       <span>Read case study</span>

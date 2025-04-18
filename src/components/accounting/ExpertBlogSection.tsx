@@ -56,7 +56,7 @@ export const ExpertBlogSection = () => {
               >
                 <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full hover:-translate-y-1 border border-gray-100">
                   <CardContent className="p-6">
-                    <h4 className="text-xl font-bold mb-3 text-brand-dark">{blog.title}</h4>
+                    <h4 className="text-xl font-bold mb-3 text-brand-dark group-hover:text-brand-orange transition-colors">{blog.title}</h4>
                     <p className="text-gray-600 mb-4">{blog.description}</p>
                     <div className="flex items-center text-brand-orange font-medium">
                       <span>Read more</span>
