@@ -6,28 +6,28 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export const FaqSection = () => {
   const faqs = [
     {
-      question: "What accounting services do you offer?",
-      answer: "We offer a comprehensive range of accounting services including bookkeeping, payroll management, tax preparation and filing, financial reporting, management accounting, and strategic financial advisory. Our services are tailored to meet the specific needs of your business."
+      question: "What services do you offer as an accounting firm?",
+      answer: "We offer comprehensive accounting services including bookkeeping, tax planning, financial reporting, payroll management, consulting, and more."
     },
     {
-      question: "How can your accounting services benefit my business?",
-      answer: "Our accounting services provide accurate financial records, ensure tax compliance, improve cash flow management, offer valuable insights for decision-making, and free up your time to focus on core business activities. We help you maintain financial health while identifying opportunities for growth and cost savings."
+      question: "How can outsourcing accounting benefit my business?",
+      answer: "Outsourcing accounting saves you time, ensures accuracy, and provides valuable financial insights to make informed decisions."
     },
     {
-      question: "How much do your accounting services cost?",
-      answer: "Our pricing is customized based on your business size, complexity, and specific service requirements. We offer flexible packages starting from basic bookkeeping to comprehensive financial management solutions. Contact us for a personalized quote tailored to your needs."
+      question: "Do I need bookkeeping software, or can I manage with manual records?",
+      answer: "While manual bookkeeping is possible, it can be time-consuming and prone to errors. Bookkeeping software offers efficiency, accuracy, and reporting capabilities, making it a popular choice."
     },
     {
-      question: "What makes your accounting services different from others?",
-      answer: "Our services stand out due to our personalized approach, experienced team, cutting-edge technology, proactive tax planning, industry-specific expertise, and commitment to building long-term relationships with clients. We focus on being partners in your financial success rather than just service providers."
+      question: "Can you assist with tax preparation and filing?",
+      answer: "Yes, we provide tax services, including preparation, filing, planning, and compliance to navigate complex tax regulations."
     },
     {
-      question: "How often will I receive financial reports?",
-      answer: "We typically provide monthly financial reports, but the frequency can be adjusted according to your business needs. We can deliver weekly, monthly, quarterly, or annual reports depending on your requirements. Our reporting schedule is flexible and designed to give you timely insights when you need them."
+      question: "What is the benefit of having regular financial reports?",
+      answer: "Regular financial reports offer insights into your business's financial health, expenses, trends, and aid in decision-making."
     },
     {
-      question: "Can you help with tax planning and compliance?",
-      answer: "Yes, tax planning and compliance are core parts of our service offering. We provide proactive tax strategies to minimize your tax burden legally, ensure timely filing of all required tax returns, stay updated with changing tax laws, and represent you during tax audits if needed. Our goal is to keep you compliant while optimizing your tax position."
+      question: "How can I get started with your accounting services?",
+      answer: "Reach out to us via our contact page to discuss your business needs and find the right services for you."
     }
   ];
 
