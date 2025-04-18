@@ -1,5 +1,5 @@
+
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,9 +22,7 @@ import {
   Mail, 
   MessageSquare, 
   ChevronUp, 
-  ChevronDown,
-  MapPin,
-  MessageCircle
+  ChevronDown
 } from "lucide-react";
 
 const services = [
@@ -65,35 +63,6 @@ const countryCodes = [
   { code: "+64", country: "New Zealand", flag: "🇳🇿" },
   { code: "+27", country: "South Africa", flag: "🇿🇦" },
   { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
-];
-
-const contactDetails = [
-  {
-    icon: <Mail className="h-6 w-6 text-brand-orange" />,
-    title: "Mail Us",
-    subheading: "Let Us Assist You",
-    details: ["jatin@growwthpartners.com"]
-  },
-  {
-    icon: <MessageCircle className="h-6 w-6 text-brand-orange" />,
-    title: "Whatsapp",
-    subheading: "Our Friendly team is here to help.",
-    details: ["Live Support"]
-  },
-  {
-    icon: <MapPin className="h-6 w-6 text-brand-orange" />,
-    title: "Visit Us",
-    subheading: "Come say hello at our office HQ.",
-    details: [
-      "65 Chulia Street, #46-00 OCBC Centre, Singapore 049513"
-    ]
-  },
-  {
-    icon: <PhoneIcon className="h-6 w-6 text-brand-orange" />,
-    title: "Call Us",
-    subheading: "Mon-fri from 8am to 5pm.",
-    details: ["+65 8893 0720"]
-  }
 ];
 
 export const ContactForm = () => {
@@ -142,207 +111,145 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#E5DEFF]/20 via-white to-[#D6BCFA]/20">
-      <div className="container-custom max-w-5xl">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10"
-        >
-          <h2 className="heading-md mb-3">Schedule a FREE consultation call with an Expert</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We'd be delighted to assist. Please provide your contact information and we will contact you
-          </p>
-        </motion.div>
-
-        <div className="flex flex-col items-center gap-12">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-full max-w-2xl"
-          >
-            <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#9b87f5]/20 to-[#D6BCFA]/30 rounded-full -mr-10 -mt-10 z-0"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-brand-orange/10 to-[#FDE1D3]/30 rounded-full -ml-10 -mb-10 z-0"></div>
-              
-              <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Your Name"
-                      className="pl-11"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="company">Company Name</Label>
-                  <div className="relative">
-                    <Building className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                    <Input
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Your Company"
-                      className="pl-11"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="your.email@company.com"
-                      className="pl-11"
-                      required
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <div className="flex space-x-2">
-                    <Select
-                      value={formData.countryCode}
-                      onValueChange={(value) => handleSelectChange("countryCode", value)}
-                    >
-                      <SelectTrigger className="w-[130px]">
-                        <SelectValue placeholder="Country" className="text-base" />
-                      </SelectTrigger>
-                      <SelectContent className="max-h-[250px]">
-                        <SelectScrollUpButton className="flex items-center justify-center h-7">
-                          <ChevronUp className="h-4 w-4" />
-                        </SelectScrollUpButton>
-                        <ScrollArea className="h-[200px]">
-                          {countryCodes.map((country) => (
-                            <SelectItem key={country.code} value={country.code} className="text-base py-2">
-                              <span className="flex items-center">
-                                <span className="mr-2 text-lg">{country.flag}</span>
-                                <span>{country.code}</span>
-                              </span>
-                            </SelectItem>
-                          ))}
-                        </ScrollArea>
-                        <SelectScrollDownButton className="flex items-center justify-center h-7">
-                          <ChevronDown className="h-4 w-4" />
-                        </SelectScrollDownButton>
-                      </SelectContent>
-                    </Select>
-                    <div className="relative flex-1">
-                      <PhoneIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="Phone Number"
-                        className="pl-11"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="service">Service Looking For</Label>
-                  <Select
-                    value={formData.service}
-                    onValueChange={(value) => handleSelectChange("service", value)}
-                    required
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <ScrollArea className="h-[200px]">
-                        {services.map((service) => (
-                          <SelectItem key={service} value={service}>
-                            {service}
-                          </SelectItem>
-                        ))}
-                      </ScrollArea>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message for us</Label>
-                  <div className="relative">
-                    <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="How can we help you?"
-                      className="min-h-[120px] pl-11 pt-8"
-                    />
-                  </div>
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white py-6 text-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" 
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Request"}
-                </Button>
-              </form>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mx-auto"
-          >
-            {contactDetails.map((item, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.7 + (index * 0.1) }}
-                className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="bg-gradient-to-br from-[#9b87f5]/10 to-[#D6BCFA]/20 p-3 rounded-lg">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{item.subheading}</p>
-                    {item.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-600">
-                        {detail}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+    <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+      <div className="space-y-2">
+        <Label htmlFor="name">Name</Label>
+        <div className="relative">
+          <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <Input
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your Name"
+            className="pl-11"
+            required
+          />
         </div>
       </div>
-    </section>
+      
+      <div className="space-y-2">
+        <Label htmlFor="company">Company Name</Label>
+        <div className="relative">
+          <Building className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <Input
+            id="company"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            placeholder="Your Company"
+            className="pl-11"
+            required
+          />
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="email">Email Address</Label>
+        <div className="relative">
+          <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="your.email@company.com"
+            className="pl-11"
+            required
+          />
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="phone">Phone Number</Label>
+        <div className="flex space-x-2">
+          <Select
+            value={formData.countryCode}
+            onValueChange={(value) => handleSelectChange("countryCode", value)}
+          >
+            <SelectTrigger className="w-[130px]">
+              <SelectValue placeholder="Country" className="text-base" />
+            </SelectTrigger>
+            <SelectContent className="max-h-[250px]">
+              <SelectScrollUpButton className="flex items-center justify-center h-7">
+                <ChevronUp className="h-4 w-4" />
+              </SelectScrollUpButton>
+              <ScrollArea className="h-[200px]">
+                {countryCodes.map((country) => (
+                  <SelectItem key={country.code} value={country.code} className="text-base py-2">
+                    <span className="flex items-center">
+                      <span className="mr-2 text-lg">{country.flag}</span>
+                      <span>{country.code}</span>
+                    </span>
+                  </SelectItem>
+                ))}
+              </ScrollArea>
+              <SelectScrollDownButton className="flex items-center justify-center h-7">
+                <ChevronDown className="h-4 w-4" />
+              </SelectScrollDownButton>
+            </SelectContent>
+          </Select>
+          <div className="relative flex-1">
+            <PhoneIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Phone Number"
+              className="pl-11"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="service">Service Looking For</Label>
+        <Select
+          value={formData.service}
+          onValueChange={(value) => handleSelectChange("service", value)}
+          required
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select a service" />
+          </SelectTrigger>
+          <SelectContent>
+            <ScrollArea className="h-[200px]">
+              {services.map((service) => (
+                <SelectItem key={service} value={service}>
+                  {service}
+                </SelectItem>
+              ))}
+            </ScrollArea>
+          </SelectContent>
+        </Select>
+      </div>
+      
+      <div className="space-y-2">
+        <Label htmlFor="message">Message for us</Label>
+        <div className="relative">
+          <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <Textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="How can we help you?"
+            className="min-h-[120px] pl-11 pt-8"
+          />
+        </div>
+      </div>
+      
+      <Button 
+        type="submit" 
+        className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white py-6 text-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" 
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Submit Request"}
+      </Button>
+    </form>
   );
 };

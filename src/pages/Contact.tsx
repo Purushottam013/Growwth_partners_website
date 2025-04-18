@@ -2,7 +2,7 @@
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { ContactHero } from "@/components/contact/ContactHero";
-import { ContactForm } from "@/components/contact/ContactForm";
+import { ContactFormSection } from "@/components/contact/ContactFormSection";
 import { LocationsSection } from "@/components/contact/LocationsSection";
 import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 
@@ -16,7 +16,7 @@ const ContactPage = () => {
         className="overflow-hidden"
       >
         <ContactHero />
-        <ContactForm />
+        <ContactFormSection />
         <LocationsSection />
         <ContactTestimonials />
       </motion.div>
