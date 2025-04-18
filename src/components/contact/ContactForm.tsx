@@ -143,7 +143,7 @@ export const ContactForm = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-[#E5DEFF]/20 via-white to-[#D6BCFA]/20">
-      <div className="container-custom">
+      <div className="container-custom max-w-5xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -151,52 +151,21 @@ export const ContactForm = () => {
           className="text-center mb-10"
         >
           <h2 className="heading-md mb-3">Schedule a FREE consultation call with an Expert</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             We'd be delighted to assist. Please provide your contact information and we will contact you
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12 items-start px-4 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-1 space-y-6 pl-4"
-          >
-            {contactDetails.map((item, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
-                className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="bg-[#9b87f5]/10 p-3 rounded-lg">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{item.subheading}</p>
-                    {item.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-600">
-                        {detail}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
+        <div className="flex flex-col items-center gap-12">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="md:col-span-2"
+            className="w-full max-w-2xl"
           >
-            <div className="bg-white p-8 rounded-xl shadow-lg relative overflow-hidden w-[85%] mx-auto">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#DBE9FE]/30 rounded-full -mr-10 -mt-10 z-0"></div>
+            <div className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#9b87f5]/20 to-[#D6BCFA]/30 rounded-full -mr-10 -mt-10 z-0"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-brand-orange/10 to-[#FDE1D3]/30 rounded-full -ml-10 -mb-10 z-0"></div>
               
               <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
                 <div className="space-y-2">
@@ -332,13 +301,45 @@ export const ContactForm = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white py-6 text-lg font-medium" 
+                  className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white py-6 text-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" 
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Submit Request"}
                 </Button>
               </form>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mx-auto"
+          >
+            {contactDetails.map((item, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.7 + (index * 0.1) }}
+                className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="bg-gradient-to-br from-[#9b87f5]/10 to-[#D6BCFA]/20 p-3 rounded-lg">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-1">{item.title}</h3>
+                    <p className="text-sm text-gray-600 mb-2">{item.subheading}</p>
+                    {item.details.map((detail, idx) => (
+                      <p key={idx} className="text-gray-600">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>
