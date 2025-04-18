@@ -130,9 +130,7 @@ export const TestimonialsSection = () => {
               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
             </Carousel>
-            <p className="text-lg text-gray-600 text-center mt-8">
-              Hear directly from our satisfied customers about their experience working with Growth Partners.
-            </p>
+            <p className="text-lg text-gray-600 text-center mt-8">Hear directly from our satisfied customers about their experience working with Growwth Partners.</p>
           </div>
         </div>
       </div>
