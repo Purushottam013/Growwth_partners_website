@@ -1,7 +1,8 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Users, BookOpen, FileCheck, Laptop } from "lucide-react";
-import calculationImage from "/lovable-uploads/8f10f66e-a04c-4619-aa09-09d6e3a04972.png";
+import calculationImage from "/lovable-uploads/221e982a-6266-4524-962a-3f5d957224fb.png";
 
 export const HowWeWorkSection = () => {
   const workItems = [
@@ -55,8 +56,8 @@ export const HowWeWorkSection = () => {
             <div className="relative z-10">
               <img 
                 src={calculationImage} 
-                alt="How We Work" 
-                className="w-full h-auto max-w-md mx-auto rounded-2xl shadow-xl"
+                alt="Team Collaboration" 
+                className="w-full h-auto max-w-md mx-auto rounded-2xl shadow-xl object-cover"
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
