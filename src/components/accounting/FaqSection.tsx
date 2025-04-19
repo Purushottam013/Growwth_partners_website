@@ -48,7 +48,7 @@ export const FaqSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <Accordion type="single" collapsible className="bg-white rounded-xl shadow-md px-8 py-4">
             {faqs.map((faq, index) => (
               <motion.div
@@ -61,7 +61,7 @@ export const FaqSection = () => {
                 <AccordionItem value={`item-${index}`} className="border-b border-gray-200 py-3">
                   <AccordionTrigger className="text-left font-semibold text-lg">{faq.question}</AccordionTrigger>
                   <AccordionContent className="text-gray-700 pt-2 pb-4 font-medium text-base leading-relaxed">
-                    {faq.answer}
+                    <p className="font-medium text-base leading-relaxed">{faq.answer}</p>
                   </AccordionContent>
                 </AccordionItem>
               </motion.div>

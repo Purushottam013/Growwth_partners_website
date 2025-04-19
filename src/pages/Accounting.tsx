@@ -9,6 +9,7 @@ import { FaqSection } from "@/components/accounting/FaqSection";
 import { CaseStudySection } from "@/components/accounting/CaseStudySection";
 import { ExpertBlogSection } from "@/components/accounting/ExpertBlogSection";
 import { AboutTestimonials } from "@/components/about/AboutTestimonials";
+import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { motion } from "framer-motion";
 
 const AccountingPage = () => {
@@ -25,6 +26,7 @@ const AccountingPage = () => {
         <HowWeWorkSection />
         <ServicesSection />
         <CtaSection />
+        <TrustedSection />
         <AboutTestimonials />
         <FaqSection />
         <CaseStudySection />

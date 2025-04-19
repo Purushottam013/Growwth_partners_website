@@ -11,7 +11,7 @@ export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
-    <section className="relative py-14 md:py-20 overflow-hidden bg-gradient-to-b from-white to-[#F2FCE2]/30">
+    <section className="relative py-10 md:py-16 overflow-hidden bg-gradient-to-b from-white to-[#F2FCE2]/30">
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
       
       <div className="container-custom relative z-10">
@@ -48,12 +48,13 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 lg:order-2 relative"
           >
-            <div className="relative z-10 rounded-2xl overflow-visible shadow-2xl">
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl" style={{ maxHeight: "400px" }}>
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
               <img 
                 src={accountingHeroImage} 
                 alt="Accounting and Tax Services" 
                 className="w-full h-auto object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
+                style={{ maxHeight: "400px", objectPosition: "center" }}
               />
               
               <motion.div
