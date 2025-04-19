@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import reviewsImage from "/lovable-uploads/dffbab4b-f0da-478a-9c0a-f904cf950811.png";
-import expertIcon from "/lovable-uploads/b3bf8710-2770-44ac-991e-a7484159f0fa.png";
 
 export const CtaSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -38,7 +37,7 @@ export const CtaSection = () => {
             <div className="flex items-start gap-4 mb-6">
               <div className="flex-shrink-0 w-16 h-16 bg-white rounded-full p-2 shadow-lg flex items-center justify-center">
                 <img 
-                  src={expertIcon} 
+                  src="/lovable-uploads/b3bf8710-2770-44ac-991e-a7484159f0fa.png" 
                   alt="Expert Icon" 
                   className="w-12 h-12 object-contain"
                 />
