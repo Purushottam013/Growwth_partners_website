@@ -47,7 +47,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 lg:order-2 relative"
           >
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative z-10 rounded-2xl overflow-visible shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
               <img 
                 src={accountingHeroImage} 
@@ -59,7 +59,7 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute -bottom-6 -left-6 z-20"
+                className="absolute -bottom-8 -left-8 z-20"
               >
                 <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg animate-float-slow backdrop-blur-sm border border-gray-100">
                   <div className="bg-brand-orange/10 p-2 rounded-lg">
@@ -76,7 +76,7 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
-                className="absolute -top-6 -right-6 z-20"
+                className="absolute -top-8 -right-8 z-20"
               >
                 <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg animate-float backdrop-blur-sm border border-gray-100">
                   <div className="bg-brand-blue/10 p-2 rounded-lg">

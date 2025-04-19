@@ -1,8 +1,7 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Users, BookOpen, FileCheck, Laptop } from "lucide-react";
-import calculationImage from "/lovable-uploads/be885a98-96fe-4935-bada-e521a01e98ac.png";
+import calculationImage from "/lovable-uploads/8f10f66e-a04c-4619-aa09-09d6e3a04972.png";
 
 export const HowWeWorkSection = () => {
   const workItems = [

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BookText, UserCheck, Percent, LineChart, BarChart3 } from "lucide-react";
-import accountingServiceImage from "/lovable-uploads/5b30c2c5-c0d7-472c-be41-6fa8b6d91910.png";
+import accountingServiceImage from "/lovable-uploads/15b8b892-3666-4632-833d-5ecceccf580c.png";
 export const ServicesSection = () => {
   const services = [{
     icon: <BookText className="h-8 w-8 text-brand-orange" />,
