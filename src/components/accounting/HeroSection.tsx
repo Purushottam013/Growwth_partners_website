@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
+import { BadgeCheck, BadgePercent } from "lucide-react";
 import accountingHeroImage from "/lovable-uploads/a7cbeedf-132f-41c2-bd4f-159c8e1875dc.png";
 
 export const HeroSection = () => {
@@ -53,6 +54,40 @@ export const HeroSection = () => {
                 alt="Accounting and Tax Services" 
                 className="w-full h-auto object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
               />
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 z-20"
+              >
+                <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg animate-float-slow backdrop-blur-sm border border-gray-100">
+                  <div className="bg-brand-orange/10 p-2 rounded-lg">
+                    <BadgeCheck className="h-5 w-5 text-brand-orange" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">95% Client</p>
+                    <p className="text-xs text-gray-600">Satisfaction Rate</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                className="absolute -top-6 -right-6 z-20"
+              >
+                <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg animate-float backdrop-blur-sm border border-gray-100">
+                  <div className="bg-brand-blue/10 p-2 rounded-lg">
+                    <BadgePercent className="h-5 w-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">50M+</p>
+                    <p className="text-xs text-gray-600">Managed Annually</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#E5DEFF]/50 rounded-full filter blur-3xl"></div>
             <div className="absolute -top-10 -left-10 w-48 h-48 bg-[#FDE1D3]/50 rounded-full filter blur-3xl"></div>
