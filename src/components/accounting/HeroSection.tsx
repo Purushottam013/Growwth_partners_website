@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import accountingHeroImage from "/lovable-uploads/87821186-317a-47c5-b316-0c8527abf319.png";
+import accountingHeroImage from "/lovable-uploads/a7cbeedf-132f-41c2-bd4f-159c8e1875dc.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -51,7 +50,7 @@ export const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
               <img 
                 src={accountingHeroImage} 
-                alt="Accounting Services" 
+                alt="Accounting and Tax Services" 
                 className="w-full h-auto object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
               />
             </div>
