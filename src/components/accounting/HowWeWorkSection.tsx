@@ -29,41 +29,46 @@ export const HowWeWorkSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#F1F0FB] to-white">
+    <section className="py-16 bg-gradient-to-br from-[#F1F0FB] to-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
+          <span className="inline-block px-4 py-1 bg-[#FDE1D3] text-brand-orange rounded-full text-sm font-semibold mb-4">Our Process</span>
           <h3 className="heading-md mb-4">How We Work?</h3>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             We know time is valuable. Here's how we ensure seamless compliance for your business saves time.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative"
+            className="lg:col-span-5 relative"
           >
-            <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
-              <img 
-                src={calculationImage} 
-                alt="Team Collaboration" 
-                className="w-full h-auto max-w-md mx-auto rounded-2xl shadow-xl object-cover"
-              />
+              <div className="bg-white p-2 rounded-2xl shadow-2xl relative">
+                <img 
+                  src={calculationImage} 
+                  alt="Team Collaboration" 
+                  className="w-full h-[400px] rounded-xl object-cover"
+                />
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-orange/10 rounded-full"></div>
+                <div className="absolute -top-4 -left-4 w-16 h-16 bg-brand-blue/10 rounded-full"></div>
+              </div>
             </div>
-            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
+            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="lg:col-span-7 space-y-8">
             {workItems.map((item, index) => (
               <motion.div
                 key={index}
@@ -71,9 +76,9 @@ export const HowWeWorkSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex gap-4 items-start"
+                className="flex gap-5 items-start bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
               >
-                <div className="p-3 bg-white rounded-xl shadow-md flex-shrink-0">
+                <div className="p-3 bg-gray-50 rounded-xl shadow-sm flex-shrink-0">
                   {item.icon}
                 </div>
                 <div>

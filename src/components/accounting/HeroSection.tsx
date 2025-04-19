@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -10,21 +11,21 @@ export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white to-[#F2FCE2]/30">
+    <section className="relative py-14 md:py-20 overflow-hidden bg-gradient-to-b from-white to-[#F2FCE2]/30">
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
       
       <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="order-2 lg:order-1"
           >
-            <h1 className="heading-lg mb-6 text-brand-dark leading-tight">
+            <h1 className="heading-lg mb-5 text-brand-dark leading-tight">
               Most Trusted <span className="text-brand-orange relative">5-Star</span> Accounting Services In Singapore
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-8">
+            <p className="text-lg text-gray-700 mb-6">
               Are you tired of navigating the complexities of accounting and financial management for your business?
             </p>
             <motion.div
@@ -34,7 +35,7 @@ export const HeroSection = () => {
             >
               <Button 
                 onClick={() => setContactModalOpen(true)}
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white px-8 py-6 text-lg font-medium rounded-full"
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-5 text-lg font-medium rounded-full"
               >
                 Book Free Call
               </Button>
