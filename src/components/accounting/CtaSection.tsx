@@ -20,11 +20,13 @@ export const CtaSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <img
-              src={reviewsImage}
-              alt="Customer Reviews"
-              className="w-full h-auto max-w-md mx-auto rounded-2xl"
-            />
+            <div className="flex items-center justify-center">
+              <img
+                src="/lovable-uploads/8c5deb66-c6dc-40de-83ff-2b102c24a2db.png"
+                alt="Expert Icon"
+                className="w-48 h-48 object-contain"
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -34,18 +36,9 @@ export const CtaSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-3 text-white"
           >
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-16 h-16 bg-white rounded-full p-2 shadow-lg flex items-center justify-center">
-                <img 
-                  src="/lovable-uploads/b3bf8710-2770-44ac-991e-a7484159f0fa.png" 
-                  alt="Expert Icon" 
-                  className="w-12 h-12 object-contain"
-                />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-bold">
-                Curious to learn more?
-              </h3>
-            </div>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6">
+              Curious to learn more?
+            </h3>
             <p className="text-xl opacity-90 mb-8">
               Book a free call with our expert to discuss your business needs and save time and effort.
             </p>
