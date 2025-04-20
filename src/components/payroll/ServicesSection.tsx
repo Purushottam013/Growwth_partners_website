@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import Image from "next/image";
 
 export const ServicesSection = () => {
   const services = [
@@ -47,31 +48,51 @@ export const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="bg-brand-orange/10 p-2 rounded-lg mt-1">
+                    <Check className="h-5 w-5 text-brand-orange" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-brand-dark">
+                      {service.title}
+                    </h4>
+                    <p className="text-gray-600">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="w-full h-full flex items-center justify-center">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              className="rounded-xl overflow-hidden shadow-lg"
             >
-              <div className="flex items-start space-x-4">
-                <div className="bg-brand-orange/10 p-2 rounded-lg mt-1">
-                  <Check className="h-5 w-5 text-brand-orange" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3 text-brand-dark">
-                    {service.title}
-                  </h4>
-                  <p className="text-gray-600">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
+              <Image 
+                src="/lovable-uploads/5775afbb-6129-45f8-a8d4-53076a8462dd.png" 
+                alt="Payroll Process Flow" 
+                width={600} 
+                height={400} 
+                className="object-cover w-full h-full"
+              />
             </motion.div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
