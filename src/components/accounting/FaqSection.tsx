@@ -3,8 +3,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-export const FaqSection = () => {
-  const faqs = [
+interface FaqItem {
+  value?: string;
+  question?: string;
+  answer?: string;
+  trigger?: string;
+  content?: string;
+}
+
+interface FaqSectionProps {
+  faqs?: FaqItem[];
+}
+
+export const FaqSection = ({ faqs }: FaqSectionProps) => {
+  const defaultFaqs = [
     {
       question: "What services do you offer as an accounting firm?",
       answer: "We offer comprehensive accounting services including bookkeeping, tax planning, financial reporting, payroll management, consulting, and more."
@@ -31,6 +43,9 @@ export const FaqSection = () => {
     }
   ];
   
+  // Use provided faqs or default to the original ones
+  const faqItems = faqs || defaultFaqs;
+  
   return (
     <section className="bg-gray-50 py-16">
       <div className="container-custom">
@@ -50,7 +65,7 @@ export const FaqSection = () => {
 
         <div className="max-w-5xl mx-auto">
           <Accordion type="single" collapsible className="bg-white rounded-xl shadow-md px-8 py-4">
-            {faqs.map((faq, index) => (
+            {faqItems.map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
@@ -58,10 +73,17 @@ export const FaqSection = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <AccordionItem value={`item-${index}`} className="border-b border-gray-200 py-3">
-                  <AccordionTrigger className="text-left font-semibold text-lg">{faq.question}</AccordionTrigger>
+                <AccordionItem 
+                  value={faq.value || `item-${index}`} 
+                  className="border-b border-gray-200 py-3"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-lg">
+                    {faq.trigger || faq.question}
+                  </AccordionTrigger>
                   <AccordionContent className="text-gray-700 pt-2 pb-4 font-medium text-base leading-relaxed">
-                    <p className="font-medium text-base leading-relaxed">{faq.answer}</p>
+                    <p className="font-medium text-base leading-relaxed">
+                      {faq.content || faq.answer}
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
               </motion.div>
