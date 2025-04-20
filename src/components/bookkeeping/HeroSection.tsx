@@ -1,11 +1,10 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, BadgePercent, PhoneCall } from "lucide-react";
-import bookkeepingHeroImage from "/lovable-uploads/d9db0fce-01b8-4822-b788-5c8ee76211a0.png";
+import bookkeepingHeroImage from "/lovable-uploads/cf4931e3-eac5-452b-9fb1-71a1922b7e30.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -23,7 +22,7 @@ export const HeroSection = () => {
             className="order-2 lg:order-1"
           >
             <h1 className="heading-lg mb-5 text-brand-dark leading-tight">
-              Bookkeeping Services in Singapore – <span className="text-brand-green relative">Simplify</span> Your Business Finances
+              Bookkeeping Services in Singapore – <span className="text-[#FB8136] relative">Simplify</span> Your Business Finances
             </h1>
             <p className="text-lg text-gray-700 mb-6">
               Organize your business transactions, maintain up-to-date accounts, and make informed business decisions with our trusted virtual bookkeeping services for Small businesses, SMEs, and multinational businesses.
@@ -35,7 +34,7 @@ export const HeroSection = () => {
             >
               <Button 
                 onClick={() => setContactModalOpen(true)}
-                className="bg-brand-green hover:bg-brand-green/90 text-white px-7 py-5 text-lg font-medium rounded-full"
+                className="bg-[#FB8136] hover:bg-[#FB8136]/90 text-white px-7 py-5 text-lg font-medium rounded-full"
               >
                 <PhoneCall className="mr-2 h-5 w-5" />
                 Contact Us
@@ -50,7 +49,7 @@ export const HeroSection = () => {
             className="order-1 lg:order-2 relative h-[360px]"
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-green/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#FB8136]/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
               <img 
                 src={bookkeepingHeroImage} 
                 alt="Bookkeeping Services" 

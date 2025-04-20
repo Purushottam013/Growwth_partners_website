@@ -6,17 +6,17 @@ import { HandshakeIcon, Layers, DollarSign, Users } from "lucide-react";
 export const HowWeWorkSection = () => {
   const workItems = [
     {
-      icon: <Users className="h-10 w-10 text-brand-green" />,
+      icon: <Users className="h-10 w-10 text-[#FB8136]" />,
       title: "Personalized Financial Expertise",
       description: "Align directly with a dedicated financial expert, not a machine, ensuring tailored and effective client communication and experience."
     },
     {
-      icon: <Layers className="h-10 w-10 text-brand-blue" />,
+      icon: <Layers className="h-10 w-10 text-[#FB8136]" />,
       title: "Effortless Management",
       description: "Streamlined and hassle-free handling of accounting tasks."
     },
     {
-      icon: <DollarSign className="h-10 w-10 text-brand-orange" />,
+      icon: <DollarSign className="h-10 w-10 text-[#FB8136]" />,
       title: "Cost-Effective Solutions",
       description: "Providing premium value with efficient and affordable services."
     }
@@ -32,7 +32,7 @@ export const HowWeWorkSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1 bg-[#FDE1D3] text-brand-orange rounded-full text-sm font-semibold mb-4">Our Approach</span>
+          <span className="inline-block px-4 py-1 bg-[#FB8136]/10 text-[#FB8136] rounded-full text-sm font-semibold mb-4">Our Approach</span>
           <h3 className="heading-md mb-4">How We Work?</h3>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             We know time is valuable. Our approach ensures your financial management is handled with expertise and efficiency.
