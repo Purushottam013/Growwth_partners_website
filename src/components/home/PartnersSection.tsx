@@ -79,7 +79,7 @@ export const PartnersSection = () => {
 
   // Duplicate logos for seamless loop
   const duplicatedLogos = [...logos, ...logos];
-  return <section id="industry-experience" className="bg-gray-50 py-[34px]">
+  return <section id="industry-experience" className="bg-gray-50 py-[14px]">
       <div className="container-custom">
         
         
