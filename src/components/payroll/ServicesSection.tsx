@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import Image from "next/image";
 
 export const ServicesSection = () => {
   const services = [
@@ -84,12 +83,11 @@ export const ServicesSection = () => {
               viewport={{ once: true }}
               className="rounded-xl overflow-hidden shadow-lg"
             >
-              <Image 
+              <img 
                 src="/lovable-uploads/5775afbb-6129-45f8-a8d4-53076a8462dd.png" 
                 alt="Payroll Process Flow" 
-                width={600} 
-                height={400} 
                 className="object-cover w-full h-full"
+                style={{ maxWidth: "600px", maxHeight: "400px" }}
               />
             </motion.div>
           </div>
