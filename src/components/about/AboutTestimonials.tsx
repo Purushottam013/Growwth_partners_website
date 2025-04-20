@@ -17,7 +17,7 @@ export const AboutTestimonials = () => {
     name: "Migara Tennakoon",
     role: "Founder & CEO, Peace Lily"
   }];
-  return <section className="py-[60px] bg-gray-50">
+  return <section className="bg-gray-50 py-[40px]">
       <div className="container-custom">
         <h2 className="heading-lg text-center mb-6">Our Happy Customers</h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto font-semibold">

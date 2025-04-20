@@ -12,7 +12,7 @@ export const CaseStudySection = () => {
     description: "Discover how Growwth can empower your business to achieve sustainable growth through data-driven financial solutions.",
     url: "https://growwthpartners.com/portfolio/achieving-remarkable-growth-a-data-driven-success-story/"
   }];
-  return <section className="py-20 bg-white">
+  return <section className="bg-white py-[60px]">
       <div className="container-custom">
         <motion.div initial={{
         opacity: 0,
