@@ -1,31 +1,37 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Calculator, FileCheck, Settings } from "lucide-react";
 
 export const ServicesSection = () => {
   const services = [
     {
+      icon: <Calculator className="h-6 w-6 text-brand-orange" />,
       title: "Accurate Salary Calculations",
       description: "Precision in every paycheck, ensuring employees are compensated fairly and promptly."
     },
     {
+      icon: <FileCheck className="h-6 w-6 text-brand-orange" />,
       title: "Compliance Assurance",
       description: "Stay up-to-date with ever-changing regulations; we handle tax deductions and filings with precision."
     },
     {
+      icon: <Settings className="h-6 w-6 text-brand-orange" />,
       title: "Custom Payroll Solutions",
       description: "Tailored services to match your unique business requirements, providing flexibility and efficiency."
     },
     {
+      icon: <FileCheck className="h-6 w-6 text-brand-orange" />,
       title: "Bookkeeping, Tax Preparation, and Compliance",
       description: "Growwth ensures your taxes are prepared accurately and that you're fully compliant with tax regulations."
     },
     {
+      icon: <Calculator className="h-6 w-6 text-brand-orange" />,
       title: "Customised Financial Analysis",
       description: "Gain a competitive edge with our in-depth financial analysis, tailored to your business goals."
     },
     {
+      icon: <Settings className="h-6 w-6 text-brand-orange" />,
       title: "Scalability",
       description: "Whether you're a startup, SME, or multinational corporation, our services adapt to your business's evolving needs."
     }
@@ -47,35 +53,33 @@ export const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="space-y-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                className="flex items-start space-x-4"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="bg-brand-orange/10 p-2 rounded-lg mt-1">
-                    <Check className="h-5 w-5 text-brand-orange" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold mb-3 text-brand-dark">
-                      {service.title}
-                    </h4>
-                    <p className="text-gray-600">
-                      {service.description}
-                    </p>
-                  </div>
+                <div className="bg-brand-orange/10 p-3 rounded-lg shrink-0">
+                  {service.icon}
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold mb-2 text-brand-dark">
+                    {service.title}
+                  </h4>
+                  <p className="text-gray-600 leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
           
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-center lg:sticky lg:top-24">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -86,8 +90,8 @@ export const ServicesSection = () => {
               <img 
                 src="/lovable-uploads/5775afbb-6129-45f8-a8d4-53076a8462dd.png" 
                 alt="Payroll Process Flow" 
-                className="object-cover w-full h-full"
-                style={{ maxWidth: "600px", maxHeight: "400px" }}
+                className="object-cover w-full"
+                style={{ maxWidth: "600px", maxHeight: "700px" }}
               />
             </motion.div>
           </div>
