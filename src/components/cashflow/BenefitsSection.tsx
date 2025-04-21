@@ -1,22 +1,27 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Rocket, Building, Building2 } from "lucide-react";
+
+const icons = [
+  "/lovable-uploads/fd525582-932f-4a45-b8c5-521545b6f2e9.png", // Rocket icon replacement
+  "/lovable-uploads/d942cd39-4dda-43fe-9313-26b982141568.png", // Building icon replacement
+  "/lovable-uploads/6ffd55c9-4273-4af1-b6d8-03768d5ffc79.png", // Building2 icon replacement
+];
 
 export const BenefitsSection = () => {
   const benefits = [
     {
-      icon: <Rocket className="h-12 w-12 text-[#F87315]" />,
+      icon: icons[0],
       title: "Startups",
       description: "Secure funding with compelling financial projections and business plans."
     },
     {
-      icon: <Building className="h-12 w-12 text-brand-blue" />,
+      icon: icons[1],
       title: "Small and Medium Businesses",
       description: "Optimise operations and budgeting with precise financial modeling."
     },
     {
-      icon: <Building2 className="h-12 w-12 text-brand-green" />,
+      icon: icons[2],
       title: "Corporate Entities",
       description: "Navigate mergers, acquisitions, and expansions with confidence through detailed financial analysis."
     }
@@ -48,8 +53,8 @@ export const BenefitsSection = () => {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="mb-6 p-4 rounded-full bg-gray-100 inline-block">
-                {benefit.icon}
+              <div className="mb-6 p-4 rounded-full bg-gray-100 inline-block border border-gray-300">
+                <img src={benefit.icon} alt={`${benefit.title} icon`} className="h-12 w-12 object-contain" />
               </div>
               <h4 className="text-xl font-bold mb-3">{benefit.title}</h4>
               <p className="text-gray-700">{benefit.description}</p>
@@ -60,3 +65,4 @@ export const BenefitsSection = () => {
     </section>
   );
 };
+

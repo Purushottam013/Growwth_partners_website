@@ -48,7 +48,7 @@ export const FaqSection = () => {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-semibold text-[#F87315]">{faq.question}</AccordionTrigger>
+                <AccordionTrigger className="text-left font-semibold text-black">{faq.question}</AccordionTrigger>
                 <AccordionContent className="text-gray-700">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
@@ -58,3 +58,4 @@ export const FaqSection = () => {
     </section>
   );
 };
+
