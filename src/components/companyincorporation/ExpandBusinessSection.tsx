@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import { GlobeAsia, TrendingUp } from "lucide-react";
+import { Globe, TrendingUp } from "lucide-react";
 import businessImage from "/lovable-uploads/ef68f631-a956-4ecf-97fb-9ada6c055e8c.png";
 
 export const ExpandBusinessSection = () => {
@@ -32,7 +32,7 @@ export const ExpandBusinessSection = () => {
               />
               <div className="absolute top-6 left-6 z-20 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
                 <div className="flex items-center gap-2">
-                  <GlobeAsia className="h-5 w-5 text-brand-green" />
+                  <Globe className="h-5 w-5 text-brand-green" />
                   <span className="font-semibold text-gray-800">Singapore</span>
                 </div>
               </div>
