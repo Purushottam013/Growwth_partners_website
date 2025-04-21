@@ -53,8 +53,8 @@ export const BenefitsSection = () => {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="mb-6 p-4 border border-gray-300 inline-block rounded-xl">
-                <img src={benefit.icon} alt={`${benefit.title} icon`} className="h-12 w-12 object-contain" />
+              <div className="mb-6 p-0 inline-block">
+                <img src={benefit.icon} alt={`${benefit.title} icon`} className="h-20 w-20 object-contain mx-auto" />
               </div>
               <h4 className="text-xl font-bold mb-3">{benefit.title}</h4>
               <p className="text-gray-700">{benefit.description}</p>
@@ -65,3 +65,4 @@ export const BenefitsSection = () => {
     </section>
   );
 };
+
