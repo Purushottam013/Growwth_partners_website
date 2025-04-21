@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, TrendingUp, Clock, DollarSign } from "lucide-react";
-import cashFlowHeroImage from "/lovable-uploads/6f0b2616-8f72-4d67-adc3-0f1211cc1015.png";
+// Use the user uploaded image here
+import heroImage from "/lovable-uploads/b51c5473-b592-468a-9952-259fa777df74.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -76,7 +77,7 @@ export const HeroSection = () => {
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[400px] lg:h-[500px]">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/20 to-brand-green/20 mix-blend-overlay rounded-2xl"></div>
               <img 
-                src={cashFlowHeroImage} 
+                src={heroImage} 
                 alt="Cash Flow Modeling Services" 
                 className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
               />
