@@ -23,7 +23,7 @@ export const HowWeWork = () => {
     title: "Financial Strategy",
     description: "Crafted to align with your business goals and objectives."
   }];
-  return <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+  return <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-[40px]">
       <div className="container-custom">
         <motion.div initial={{
         opacity: 0,
