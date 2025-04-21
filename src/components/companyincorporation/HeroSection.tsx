@@ -1,99 +1,81 @@
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import { BadgeCheck, BadgePercent, Award } from "lucide-react";
-import singaporeImage from "/lovable-uploads/611849ac-90f5-4367-a853-5139fd978f70.png";
+import heroImage from "/lovable-uploads/804ce1ba-72ec-4fff-8f63-9af8f33229dd.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
-    <section className="relative py-10 md:py-16 overflow-hidden bg-gradient-to-b from-brand-green/10 to-white">
-      <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
-      
-      <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
+    <section className="relative overflow-hidden bg-[#f4f7fd] py-12 md:py-20">
+      <div className="container-custom relative z-10 flex flex-col md:flex-row items-center md:items-stretch gap-12">
+        {/* Left */}
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="flex items-center gap-2 mb-6 animate-fade-in">
+            <span className="bg-white text-brand-orange px-4 py-2 rounded-full font-semibold shadow-md text-sm flex items-center gap-2 border border-orange-100">
+              <span className="text-lg">⭐</span> Singapore's #1 Incorporation Service
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-brand-dark leading-tight mb-4 animate-fade-in">
+            Company Incorporation <br className="hidden md:inline" />
+            <span className="text-brand-orange">Services in Singapore</span>
+          </h1>
+          <p className="text-lg text-gray-700 mb-8 md:max-w-xl animate-fade-in">
+            Start your business journey with our 100% paperless incorporation services. Grow your business from anywhere in the world.
+          </p>
+          <Button 
+            onClick={() => setContactModalOpen(true)}
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-5 text-lg font-semibold rounded-xl shadow-sm animate-fade-in"
           >
-            <h1 className="heading-lg mb-5 text-brand-dark leading-tight">
-              Company Incorporation Services <span className="text-brand-green relative">in Singapore</span>
-            </h1>
-            <p className="text-lg text-gray-700 mb-6">
-              The Best Service to Help You With It? Growwth Partners
-            </p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <Button 
-                onClick={() => setContactModalOpen(true)}
-                className="bg-brand-green hover:bg-brand-green/90 text-white px-7 py-5 text-lg font-medium rounded-full"
-              >
-                Contact Us
-              </Button>
-            </motion.div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="order-1 lg:order-2 relative h-[360px]"
-          >
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-green/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
-              <img 
-                src={singaporeImage} 
-                alt="Singapore Skyline" 
-                className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
-                style={{ maxHeight: "360px", objectPosition: "center" }}
-              />
+            Get Started Today &rarr;
+          </Button>
+          <div className="flex flex-col sm:flex-row items-stretch mt-12 gap-6 animate-fade-in">
+            <div className="flex-1 text-center md:text-left">
+              <div className="text-2xl font-bold text-brand-dark">200+</div>
+              <div className="text-gray-600 text-sm">Businesses Served</div>
             </div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="absolute -bottom-8 -left-8 z-30 animate-float-slow"
-            >
-              <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
-                <div className="bg-brand-green/10 p-2 rounded-lg">
-                  <BadgeCheck className="h-5 w-5 text-brand-green" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-800">100% Paperless</p>
-                  <p className="text-xs text-gray-600">Incorporation Process</p>
-                </div>
+            <div className="border-l border-gray-300 h-10 self-center hidden sm:block" />
+            <div className="flex-1 text-center md:text-left">
+              <div className="text-2xl font-bold text-brand-dark">100%</div>
+              <div className="text-gray-600 text-sm">Paperless Process</div>
+            </div>
+            <div className="border-l border-gray-300 h-10 self-center hidden sm:block" />
+            <div className="flex-1 text-center md:text-left">
+              <div className="text-2xl font-bold text-brand-dark">24/7</div>
+              <div className="text-gray-600 text-sm">Expert Support</div>
+            </div>
+          </div>
+        </div>
+        {/* Right */}
+        <div className="flex-1 flex justify-center relative w-full h-[340px] md:h-[390px] lg:h-[420px]">
+          <div className="relative w-[340px] md:w-[390px] lg:w-[420px] h-full drop-shadow-xl rounded-3xl bg-white">
+            <img
+              src={heroImage}
+              alt="Singapore Business"
+              className="rounded-3xl object-cover w-full h-full"
+              style={{ objectPosition: "center" }}
+            />
+            {/* Overlays */}
+            <div className="absolute right-4 top-6">
+              <div className="bg-white flex items-center gap-2 px-6 py-2 rounded-full shadow-lg border border-gray-200 animate-fade-in">
+                <span className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mr-2">✔</span>
+                <span className="text-gray-700 font-medium text-sm">Fast Registration</span>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="absolute -top-8 -right-8 z-30 animate-float"
-            >
-              <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
-                <div className="bg-brand-blue/10 p-2 rounded-lg">
-                  <Award className="h-5 w-5 text-brand-blue" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-800">Leading Service</p>
-                  <p className="text-xs text-gray-600">In Singapore</p>
-                </div>
+            </div>
+            <div className="absolute left-[-40px] md:left-[-60px] bottom-10 shadow-lg rounded-full">
+              <div className="bg-white flex items-center gap-2 px-6 py-2 rounded-full border border-gray-200 animate-fade-in">
+                <span className="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-sm font-bold mr-2">✔</span>
+                <span className="text-gray-700 font-medium text-sm">100% Success Rate</span>
               </div>
-            </motion.div>
-            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#E5DEFF]/50 rounded-full filter blur-3xl"></div>
-            <div className="absolute -top-10 -left-10 w-48 h-48 bg-[#F2FCE2]/50 rounded-full filter blur-3xl"></div>
-          </motion.div>
+            </div>
+            {/* Card inside image */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[78%] bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl px-6 py-3 shadow-md">
+              <div className="text-brand-green font-semibold text-md mb-0.5">Ready to Incorporate?</div>
+              <div className="text-gray-800 text-[14px]">3 simple steps to start your business</div>
+            </div>
+          </div>
         </div>
       </div>
 

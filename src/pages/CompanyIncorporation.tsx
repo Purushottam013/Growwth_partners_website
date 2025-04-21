@@ -10,6 +10,7 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { FaqSection } from "@/components/companyincorporation/FaqSection";
 import { CaseStudySection } from "@/components/corporatesecretary/CaseStudySection";
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
+import LaunchJourneySection from "@/components/companyincorporation/LaunchJourneySection";
 
 const CompanyIncorporationPage = () => {
   return (
@@ -25,6 +26,9 @@ const CompanyIncorporationPage = () => {
         <EasyStepsSection />
         <ServicesSection />
         <TrustedSection />
+
+        <LaunchJourneySection />
+
         <AboutTestimonials />
         <FaqSection />
         <CaseStudySection />
