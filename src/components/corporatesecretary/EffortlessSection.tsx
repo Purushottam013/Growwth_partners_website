@@ -16,7 +16,7 @@ export const EffortlessSection = () => {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-[#D3E4FD]/40 to-[#F1F0FB]/40 rounded-2xl blur-lg"></div>
               <img
-                src="/lovable-uploads/61d38fe8-d265-4d62-b0ab-1a5905dec2e9.png"
+                src="/lovable-uploads/70b46f47-e5be-4d91-bdfb-9d06b07fc608.png"
                 alt="Corporate Governance"
                 className="relative rounded-xl shadow-lg w-full"
               />

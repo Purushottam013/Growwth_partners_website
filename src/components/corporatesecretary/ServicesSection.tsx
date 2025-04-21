@@ -71,7 +71,7 @@ export const ServicesSection = () => {
                     <div className="bg-gradient-to-r from-[#F87315] to-[#FF9F50] p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                       {service.icon}
                     </div>
-                    <h4 className="text-xl font-bold mb-4">{service.title}</h4>
+                    <h4 className="text-xl font-bold mb-4 text-white">{service.title}</h4>
                     <p className="text-gray-300 flex-grow">{service.description}</p>
                   </div>
                 </CardContent>
