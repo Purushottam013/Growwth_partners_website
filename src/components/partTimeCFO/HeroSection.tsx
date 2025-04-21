@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -121,32 +122,37 @@ export const HeroSection: React.FC = () => {
                 className="w-full h-auto max-h-[345px] object-cover"
               />
 
+              {/* Floating badges with animation */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:-translate-y-1 transition-transform"
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="absolute -bottom-8 -left-8 z-20 animate-float-slow"
               >
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="h-4 w-4 text-green-600" />
+                <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
+                  <div className="bg-brand-orange/10 p-2 rounded-lg">
+                    <TrendingUp className="h-5 w-5 text-brand-orange" />
+                  </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-900">50-70% Cost Savings</h3>
-                    <p className="text-xs text-gray-700">vs Full-Time CFO</p>
+                    <p className="text-sm font-semibold text-gray-800">50-70% Cost Savings</p>
+                    <p className="text-xs text-gray-600">vs Full-Time CFO</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.6 }}
-                className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:translate-y-1 transition-transform"
+                transition={{ duration: 0.6, delay: 1 }}
+                className="absolute -top-8 -right-8 z-20 animate-float"
               >
-                <div className="flex items-center space-x-2">
-                  <BarChart3 className="h-4 w-4 text-blue-600" />
+                <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
+                  <div className="bg-purple-500/20 p-2 rounded-lg">
+                    <BarChart3 className="h-5 w-5 text-purple-600" />
+                  </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-900">Data-Driven Insights</h3>
-                    <p className="text-xs text-gray-700">Strategic Financial Planning</p>
+                    <p className="text-sm font-semibold text-gray-800">Data-Driven Insights</p>
+                    <p className="text-xs text-gray-600">Strategic Financial Planning</p>
                   </div>
                 </div>
               </motion.div>
