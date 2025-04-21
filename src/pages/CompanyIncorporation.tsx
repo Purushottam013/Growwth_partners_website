@@ -1,15 +1,35 @@
 
 import { Layout } from "@/components/Layout";
-import { PlaceholderContent } from "@/components/PlaceholderContent";
+import { motion } from "framer-motion";
+import { HeroSection } from "@/components/companyincorporation/HeroSection";
+import { ExpandBusinessSection } from "@/components/companyincorporation/ExpandBusinessSection";
+import { EasyStepsSection } from "@/components/companyincorporation/EasyStepsSection";
+import { ServicesSection } from "@/components/companyincorporation/ServicesSection";
+import { TrustedSection } from "@/components/accounting/TrustedSection";
+import { AboutTestimonials } from "@/components/about/AboutTestimonials";
+import { FaqSection } from "@/components/companyincorporation/FaqSection";
+import { CaseStudySection } from "@/components/corporatesecretary/CaseStudySection";
+import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 
 const CompanyIncorporationPage = () => {
   return (
     <Layout>
-      <PlaceholderContent 
-        title="Company Incorporation" 
-        description="Start your business journey with our comprehensive company incorporation services."
-        imageBg="bg-gradient-to-r from-brand-green to-emerald-600"
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="overflow-hidden"
+      >
+        <HeroSection />
+        <ExpandBusinessSection />
+        <EasyStepsSection />
+        <ServicesSection />
+        <TrustedSection />
+        <AboutTestimonials />
+        <FaqSection />
+        <CaseStudySection />
+        <ExpertBlogSection />
+      </motion.div>
     </Layout>
   );
 };
