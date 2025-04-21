@@ -19,7 +19,7 @@ const HeroFloatingBadge = ({
   title: string;
   subtitle: string;
 }) => {
-  // Positioning logic
+  // Positioning logic with animation classes
   const positionClass =
     position === "bottom-left"
       ? "absolute -bottom-8 -left-8 z-20 animate-float-slow"
