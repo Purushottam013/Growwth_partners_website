@@ -70,11 +70,7 @@ export const HeroSection = () => {
                 <span className="text-gray-700 font-medium text-sm">100% Success Rate</span>
               </div>
             </div>
-            {/* Card inside image */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[78%] bg-white/90 backdrop-blur-sm border border-gray-100 rounded-2xl px-6 py-3 shadow-md">
-              <div className="text-brand-green font-semibold text-md mb-0.5">Ready to Incorporate?</div>
-              <div className="text-gray-800 text-[14px]">3 simple steps to start your business</div>
-            </div>
+            {/* Removed: Card inside image */}
           </div>
         </div>
       </div>
