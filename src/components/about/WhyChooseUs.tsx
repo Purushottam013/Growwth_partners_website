@@ -1,21 +1,50 @@
 
 import { motion } from "framer-motion";
-import { Briefcase, Globe, Users, Gem } from "lucide-react";
+
+const imageSrc = "/lovable-uploads/4d222fc3-3b38-473d-8f8b-37d9ce3e9094.png";
 
 const features = [{
-  icon: <Briefcase className="w-8 h-8 text-brand-orange transition-all duration-300 group-hover:rotate-12" />,
+  icon: (
+    <img
+      src={imageSrc}
+      alt="Why Choose Us"
+      className="w-8 h-8 object-contain"
+      loading="lazy"
+    />
+  ),
   title: "Expert Leadership",
   description: "Our team, hailing from Big 4 firms, multinationals, venture capitalists, and startups, brings a wealth of diverse finance and business expertise."
 }, {
-  icon: <Users className="w-8 h-8 text-brand-orange transition-all duration-300 group-hover:rotate-12" />,
+  icon: (
+    <img
+      src={imageSrc}
+      alt="Why Choose Us"
+      className="w-8 h-8 object-contain"
+      loading="lazy"
+    />
+  ),
   title: "Comprehensive Services",
   description: "From business consulting to CFO services and investor support, Growwth Partners is your all-in-one solution for diverse financial needs."
 }, {
-  icon: <Globe className="w-8 h-8 text-brand-orange transition-all duration-300 group-hover:rotate-12" />,
+  icon: (
+    <img
+      src={imageSrc}
+      alt="Why Choose Us"
+      className="w-8 h-8 object-contain"
+      loading="lazy"
+    />
+  ),
   title: "Global Perspective",
   description: "With a worldwide presence, we offer unique insights for strategic financial planning, bringing a global outlook to your business success."
 }, {
-  icon: <Gem className="w-8 h-8 text-brand-orange transition-all duration-300 group-hover:rotate-12" />,
+  icon: (
+    <img
+      src={imageSrc}
+      alt="Why Choose Us"
+      className="w-8 h-8 object-contain"
+      loading="lazy"
+    />
+  ),
   title: "Long-Term Commitment",
   description: "Growwth Partners demonstrates commitment by accepting equity as payment, showcasing our dedication to investing in promising ideas and fostering lasting partnerships."
 }];
@@ -48,11 +77,11 @@ export const WhyChooseUs = () => {
                 group-hover:bg-[#DBE9FE]/30 group-hover:w-48 group-hover:h-48" />
               
               <div className="relative">
-                <div className="mb-6 inline-block rounded-2xl bg-brand-orange/10 p-4 transition-colors duration-300 group-hover:bg-brand-orange/15">
+                <div className="mb-6 inline-block p-4 transition-colors duration-300">
                   {feature.icon}
                 </div>
                 
-                <h4 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-brand-orange transition-colors">
+                <h4 className="text-2xl font-bold mb-4 text-gray-800 transition-colors">
                   {feature.title}
                 </h4>
                 
