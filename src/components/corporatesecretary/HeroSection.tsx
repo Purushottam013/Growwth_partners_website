@@ -7,6 +7,38 @@ import { ContactForm } from "@/components/ContactForm";
 import { Badge } from "@/components/ui/badge";
 import handshakeImage from "/lovable-uploads/658d652b-f5d2-4603-af7b-ad64c5e2d4ec.png";
 
+// Custom floating badge component for hero image
+const HeroFloatingBadge = ({
+  position = "bottom-left",
+  iconSrc,
+  title,
+  subtitle,
+}: {
+  position: "bottom-left" | "top-right";
+  iconSrc: string;
+  title: string;
+  subtitle: string;
+}) => {
+  // Positioning logic
+  const positionClass =
+    position === "bottom-left"
+      ? "absolute -bottom-8 -left-8 z-20 animate-float-slow"
+      : "absolute -top-8 -right-8 z-20 animate-float";
+  return (
+    <div className={positionClass}>
+      <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
+        <div className="bg-brand-orange/10 p-2 rounded-lg flex items-center justify-center">
+          <img src={iconSrc} alt="" className="h-5 w-5" />
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-gray-800">{title}</p>
+          <p className="text-xs text-gray-600">{subtitle}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
@@ -24,7 +56,9 @@ export const HeroSection = () => {
             className="order-2 lg:order-1"
           >
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              Corporate <span className="text-[#f87315]">Secretarial Services</span> In Singapore – Simplify Compliance with Us
+              Corporate{" "}
+              <span className="text-[#f87315]">Secretarial Services</span>{" "}
+              In Singapore – Simplify Compliance with Us
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8">
               Struggling with corporate compliance and governance? Our Corporate Secretarial Services in Singapore streamline every aspect, keeping your business compliant and growth-focused.
@@ -52,29 +86,22 @@ export const HeroSection = () => {
                   className="w-full h-auto rounded-2xl object-cover"
                 />
               </div>
-              {/* Floating Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
-                className="absolute -top-6 -right-6 z-20"
-              >
-                <Badge variant="hero" size="xl" className="flex flex-col gap-1 p-3 shadow-lg">
-                  <span className="text-lg font-bold text-brand-orange">10+ Years</span>
-                  <span className="text-sm font-medium">Experience</span>
-                </Badge>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.6 }}
-                className="absolute -bottom-6 left-6 z-20"
-              >
-                <Badge variant="hero" size="xl" className="flex flex-col gap-1 p-3 shadow-lg">
-                  <span className="text-lg font-bold text-brand-green">200+</span>
-                  <span className="text-sm font-medium">Clients Served</span>
-                </Badge>
-              </motion.div>
+
+              {/* Top-right floating badge */}
+              <HeroFloatingBadge
+                position="top-right"
+                iconSrc="/lovable-uploads/4b32d41d-7a2d-41cb-b574-14dc7da53dd7.png"
+                title="95% Client"
+                subtitle="Satisfaction Rate"
+              />
+
+              {/* Bottom-left floating badge */}
+              <HeroFloatingBadge
+                position="bottom-left"
+                iconSrc="/lovable-uploads/4b32d41d-7a2d-41cb-b574-14dc7da53dd7.png"
+                title="200+ Businesses"
+                subtitle="Served"
+              />
             </div>
           </motion.div>
         </div>
@@ -94,3 +121,4 @@ export const HeroSection = () => {
     </section>
   );
 };
+
