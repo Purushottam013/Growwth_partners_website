@@ -6,12 +6,12 @@ import { Rocket, Building, Building2 } from "lucide-react";
 export const BenefitsSection = () => {
   const benefits = [
     {
-      icon: <Rocket className="h-12 w-12 text-brand-blue" />,
+      icon: <Rocket className="h-12 w-12 text-[#F87315]" />,
       title: "Startups",
       description: "Secure funding with compelling financial projections and business plans."
     },
     {
-      icon: <Building className="h-12 w-12 text-brand-orange" />,
+      icon: <Building className="h-12 w-12 text-brand-blue" />,
       title: "Small and Medium Businesses",
       description: "Optimise operations and budgeting with precise financial modeling."
     },
@@ -23,16 +23,16 @@ export const BenefitsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-14 bg-gray-50">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h3 className="heading-md mb-4">Who Benefits from Our Financial Modeling Services?</h3>
+          <h3 className="heading-md mb-4">Who Benefits from Our <span className="text-[#F87315]">Financial Modeling</span> Services?</h3>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Our tailored financial modeling solutions serve diverse business needs, from startups to corporations.
           </p>

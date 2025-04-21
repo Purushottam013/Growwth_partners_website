@@ -6,72 +6,51 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export const FaqSection = () => {
   const faqs = [
     {
-      question: "What is financial modeling and why is it important for my business?",
-      answer: "Financial modeling involves creating a representation of a company's financial performance. It's crucial for strategic planning, forecasting, and decision-making, helping businesses set realistic goals and achieve optimal results."
+      question: "What exactly is financial modeling?",
+      answer: "Financial modeling is the process of creating a summary of a company's costs and income in the form of a spreadsheet that can be used to calculate the impact of future events or decisions."
     },
     {
-      question: "How can accurate financial modeling benefit my startup in securing funding?",
-      answer: "A comprehensive financial model includes income statements, balance sheets, cash flow statements, and assumptions. It also involves scenario analysis and sensitivity analysis to anticipate various business situations."
+      question: "How much does your financial modeling service cost?",
+      answer: "Our financial modeling services are customized to each client's specific needs and business complexity. We offer tailored pricing based on the scope, depth, and timeframe of your project. Contact us for a personalized quote."
     },
     {
-      question: "Can your financial models help with mergers and acquisitions?",
-      answer: "Yes, our detailed financial analysis and modeling provide crucial insights for navigating mergers and acquisitions, helping you evaluate potential deals and make informed decisions."
+      question: "How long does it take to develop a financial model?",
+      answer: "The timeline varies depending on the complexity and requirements of your business. Simple models may take 1-2 weeks, while more complex models with multiple scenarios and detailed projections can take 3-4 weeks or longer."
     },
     {
-      question: "What tools and technologies do you use for financial modeling?",
-      answer: "We utilize advanced automation tools and software like Excel, Python, and specialized financial modeling platforms to ensure efficient, accurate, and error-free financial management."
+      question: "Do you offer ongoing support after delivering the financial model?",
+      answer: "Yes, we provide ongoing support to ensure you get the most value from your financial model. This includes regular updates, training sessions for your team, and assistance with interpreting results and making data-driven decisions."
     },
     {
-      question: "How do you ensure the accuracy and reliability of your financial models?",
-      answer: "We ensure accuracy through a comprehensive analysis, validation processes, and leveraging over a decade of experience. Our models are regularly reviewed and updated to reflect the latest financial data and trends."
-    },
-    {
-      question: "What types of businesses can benefit from your financial modeling services?",
-      answer: "Our services are beneficial for startups, small and medium businesses, and corporate entities. We tailor our models to meet the specific needs of each business, helping them achieve their financial goals."
+      question: "Can you customize financial models for specific industries?",
+      answer: "Absolutely. We specialize in creating industry-specific financial models that reflect the unique dynamics, metrics, and KPIs relevant to your sector. Our team has experience across multiple industries including tech, healthcare, retail, manufacturing, and more."
     }
   ];
-  
+
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="py-14 bg-white">
       <div className="container-custom">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <span className="inline-block px-4 py-1 bg-[#D3E4FD] text-brand-blue rounded-full text-sm font-semibold mb-4">Common Questions</span>
+          <span className="inline-block px-4 py-1 bg-[#D3E4FD] text-[#F87315] rounded-full text-sm font-semibold mb-4">FAQ</span>
           <h3 className="heading-md mb-4">Frequently Asked Questions</h3>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Find answers to common questions about our financial modeling services
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Find answers to common questions about our financial modeling services.
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <Accordion type="single" collapsible className="bg-white rounded-xl shadow-md px-8 py-4">
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <AccordionItem 
-                  value={`item-${index}`} 
-                  className="border-b border-gray-200 py-3"
-                >
-                  <AccordionTrigger className="text-left font-semibold text-lg">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-700 pt-2 pb-4">
-                    <p className="font-medium text-base leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left font-semibold text-[#F87315]">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-gray-700">{faq.answer}</AccordionContent>
+              </AccordionItem>
             ))}
           </Accordion>
         </div>

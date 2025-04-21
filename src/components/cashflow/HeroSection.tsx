@@ -19,7 +19,7 @@ export const HeroSection = () => {
   ];
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-[#F2FCE2]/30 to-white">
+    <section className="relative py-12 md:py-16 overflow-hidden bg-gradient-to-b from-[#F2FCE2]/30 to-white">
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
       
       <div className="container-custom relative z-10">
@@ -31,7 +31,7 @@ export const HeroSection = () => {
             className="order-2 lg:order-1"
           >
             <h1 className="heading-lg mb-5 text-brand-dark leading-tight">
-              Expert <span className="text-brand-blue relative">Financial Modeling</span> Services
+              Expert <span className="text-[#F87315] relative">Financial Modeling</span> Services
             </h1>
             <p className="text-lg text-gray-700 mb-6">
               Navigating financial intricacies is crucial for strategic decision-making.
@@ -61,7 +61,7 @@ export const HeroSection = () => {
             >
               <Button 
                 onClick={() => setContactModalOpen(true)}
-                className="bg-brand-blue hover:bg-brand-blue/90 text-white px-7 py-6 text-lg font-medium rounded-full"
+                className="bg-[#F87315] hover:bg-[#F87315]/90 text-white px-7 py-6 text-lg font-medium rounded-full"
               >
                 Book Free Call
               </Button>
@@ -74,12 +74,12 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 lg:order-2 relative h-full"
           >
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[400px] lg:h-[500px]">
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/20 to-brand-green/20 mix-blend-overlay rounded-2xl"></div>
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[320px] lg:h-[380px] border-4 border-white p-1">
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/20 to-[#F87315]/20 mix-blend-overlay rounded-2xl"></div>
               <img 
                 src={heroImage} 
                 alt="Cash Flow Modeling Services" 
-                className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover rounded-xl transform hover:scale-105 transition-transform duration-700"
               />
             </div>
             
@@ -90,8 +90,8 @@ export const HeroSection = () => {
               className="absolute -bottom-8 -left-8 z-20"
             >
               <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg animate-float-slow backdrop-blur-sm border border-gray-100">
-                <div className="bg-brand-blue/10 p-2 rounded-lg">
-                  <TrendingUp className="h-5 w-5 text-brand-blue" />
+                <div className="bg-[#F87315]/10 p-2 rounded-lg">
+                  <TrendingUp className="h-5 w-5 text-[#F87315]" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-gray-800">Strategic</p>

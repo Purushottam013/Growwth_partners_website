@@ -19,16 +19,16 @@ export const CaseStudySection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-14 bg-white">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <span className="inline-block px-4 py-1 bg-[#FEF7CD] text-brand-yellow rounded-full text-sm font-semibold mb-4">Success Stories</span>
+          <span className="inline-block px-4 py-1 bg-[#FEF7CD] text-[#F87315] rounded-full text-sm font-semibold mb-4">Success Stories</span>
           <h3 className="heading-md mb-4">Case Study</h3>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Our Success Stories! How Bookkeeping Services Helped Businesses Achieve their Long term Goals.
@@ -53,9 +53,9 @@ export const CaseStudySection = () => {
               >
                 <Card className="bg-gray-50 hover:shadow-xl transition-all duration-300 h-full hover:-translate-y-2 border-0 shadow-md overflow-hidden">
                   <CardContent className="p-8">
-                    <h4 className="text-xl font-bold mb-4 text-brand-dark group-hover:text-brand-blue transition-colors">{study.title}</h4>
+                    <h4 className="text-xl font-bold mb-4 text-brand-dark group-hover:text-[#F87315] transition-colors">{study.title}</h4>
                     <p className="text-gray-600 mb-6">{study.description}</p>
-                    <div className="flex items-center text-brand-blue font-medium">
+                    <div className="flex items-center text-[#F87315] font-medium">
                       <span>Read case study</span>
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>

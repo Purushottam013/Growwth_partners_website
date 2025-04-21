@@ -6,12 +6,12 @@ import { LineChart, PieChart, Landmark, Brain, Cpu } from "lucide-react";
 export const WhyChooseSection = () => {
   const features = [
     {
-      icon: <LineChart className="h-8 w-8 text-brand-blue" />,
+      icon: <LineChart className="h-8 w-8 text-[#F87315]" />,
       title: "Comprehensive Analysis",
       description: "Over a decade of experience developing 1000+ financial models, ensuring depth and accuracy in our insights."
     },
     {
-      icon: <PieChart className="h-8 w-8 text-brand-orange" />,
+      icon: <PieChart className="h-8 w-8 text-brand-blue" />,
       title: "Scenario Planning",
       description: "Proactive approach to anticipate and plan for diverse business scenarios, ensuring resilience and adaptability."
     },
@@ -33,7 +33,7 @@ export const WhyChooseSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-14 bg-white">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -43,7 +43,7 @@ export const WhyChooseSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <h3 className="heading-md mb-6">Why Choose Us?</h3>
+            <h3 className="heading-md mb-6">Why Choose <span className="text-[#F87315]">Us</span>?</h3>
             <div className="space-y-6">
               {features.map((feature, index) => (
                 <motion.div

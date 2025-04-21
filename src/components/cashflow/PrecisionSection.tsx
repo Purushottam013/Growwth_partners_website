@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const PrecisionSection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-14 bg-white">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -15,7 +15,7 @@ export const PrecisionSection = () => {
             className="lg:col-span-2"
           >
             <h3 className="heading-md mb-6">
-              Precision Today, Prosperity Tomorrow: Expert Financial Modeling
+              Precision Today, Prosperity Tomorrow: Expert <span className="text-[#F87315]">Financial Modeling</span>
             </h3>
             <div className="space-y-4 text-lg text-gray-700">
               <p>
