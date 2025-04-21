@@ -114,48 +114,48 @@ export const HeroSection: React.FC = () => {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="relative"
           >
+            {/* Floating badges - positioned outside the image container for proper stacking */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="absolute -bottom-8 -left-8 z-30 animate-float-slow"
+            >
+              <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
+                <div className="bg-brand-orange/10 p-2 rounded-lg">
+                  <TrendingUp className="h-5 w-5 text-brand-orange" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">50-70% Cost Savings</p>
+                  <p className="text-xs text-gray-600">vs Full-Time CFO</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="absolute -top-8 -right-8 z-30 animate-float"
+            >
+              <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
+                <div className="bg-purple-500/20 p-2 rounded-lg">
+                  <BarChart3 className="h-5 w-5 text-purple-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Data-Driven Insights</p>
+                  <p className="text-xs text-gray-600">Strategic Financial Planning</p>
+                </div>
+              </div>
+            </motion.div>
+
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-3xl rotate-3" />
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl z-20">
               <img
                 src={heroImage}
                 alt="Financial analysis with charts"
                 className="w-full h-auto max-h-[345px] object-cover"
               />
-
-              {/* Floating badges with animation */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="absolute -bottom-8 -left-8 z-20 animate-float-slow"
-              >
-                <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
-                  <div className="bg-brand-orange/10 p-2 rounded-lg">
-                    <TrendingUp className="h-5 w-5 text-brand-orange" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800">50-70% Cost Savings</p>
-                    <p className="text-xs text-gray-600">vs Full-Time CFO</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1 }}
-                className="absolute -top-8 -right-8 z-20 animate-float"
-              >
-                <div className="flex items-center gap-2 bg-white rounded-xl p-3 shadow-lg backdrop-blur-sm border border-gray-100">
-                  <div className="bg-purple-500/20 p-2 rounded-lg">
-                    <BarChart3 className="h-5 w-5 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800">Data-Driven Insights</p>
-                    <p className="text-xs text-gray-600">Strategic Financial Planning</p>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>
