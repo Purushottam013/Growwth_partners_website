@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Rocket, Building, Building2 } from "lucide-react";
-import cashFlowImage from "/lovable-uploads/6f0b2616-8f72-4d67-adc3-0f1211cc1015.png";
 
 export const BenefitsSection = () => {
   const benefits = [
@@ -57,23 +56,6 @@ export const BenefitsSection = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-16 relative max-w-4xl mx-auto"
-        >
-          <div className="aspect-video overflow-hidden rounded-xl shadow-2xl">
-            <img
-              src={cashFlowImage}
-              alt="Financial Modeling Services"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/20 to-transparent"></div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

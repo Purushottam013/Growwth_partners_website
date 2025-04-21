@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { LineChart, PieChart, Landmark, Brain, Cpu } from "lucide-react";
-import cashFlowImage from "/lovable-uploads/6f0b2616-8f72-4d67-adc3-0f1211cc1015.png";
 
 export const WhyChooseSection = () => {
   const features = [
@@ -42,7 +41,7 @@ export const WhyChooseSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="order-1"
+            className="lg:col-span-2"
           >
             <h3 className="heading-md mb-6">Why Choose Us?</h3>
             <div className="space-y-6">
@@ -65,24 +64,6 @@ export const WhyChooseSection = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="order-2 relative"
-          >
-            <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
-            <div className="relative z-10">
-              <img 
-                src={cashFlowImage} 
-                alt="Why Choose Our Financial Modeling Services" 
-                className="w-full h-auto rounded-2xl shadow-xl"
-              />
-            </div>
-            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FEF7CD]/30 rounded-full filter blur-3xl"></div>
           </motion.div>
         </div>
       </div>
