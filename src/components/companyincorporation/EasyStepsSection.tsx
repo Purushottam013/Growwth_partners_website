@@ -1,14 +1,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import IconName from "/lovable-uploads/9f592a64-6bfa-4899-85a4-8a6c8990fd6e.png";
-import IconDoc from "/lovable-uploads/b6101aaa-edc6-4881-8874-7bac605e43bf.png";
 import IconFolder from "/lovable-uploads/5d78daa2-0b03-4cba-87d0-4f8acd80c249.png";
+import IconDoc from "/lovable-uploads/b6101aaa-edc6-4881-8874-7bac605e43bf.png";
+import IconName from "/lovable-uploads/9f592a64-6bfa-4899-85a4-8a6c8990fd6e.png";
 
 export const EasyStepsSection = () => {
   const steps = [
     {
-      icon: IconName,
+      icon: IconFolder,
       title: "Choose Your Business Name",
       description: "Let Us Guide You!",
     },
@@ -18,7 +18,7 @@ export const EasyStepsSection = () => {
       description: "We'll Provide a Clear Checklist.",
     },
     {
-      icon: IconFolder,
+      icon: IconName,
       title: "Document Collection and Filing",
       description: "We Handle the Details.",
     },

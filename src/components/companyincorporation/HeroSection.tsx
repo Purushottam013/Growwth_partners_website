@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import heroImage from "/lovable-uploads/804ce1ba-72ec-4fff-8f63-9af8f33229dd.png";
+import heroImage from "/lovable-uploads/d0450744-eb7e-431c-88ea-ad8c68758857.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -14,22 +14,22 @@ export const HeroSection = () => {
         {/* Left */}
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex items-center gap-2 mb-6 animate-fade-in">
-            <span className="bg-white text-brand-orange px-4 py-2 rounded-full font-semibold shadow-md text-sm flex items-center gap-2 border border-orange-100">
+            <span className="bg-white text-[#F87315] px-4 py-2 rounded-full font-semibold shadow-md text-sm flex items-center gap-2 border border-orange-100">
               <span className="text-lg">⭐</span> Singapore's #1 Incorporation Service
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-brand-dark leading-tight mb-4 animate-fade-in">
             Company Incorporation <br className="hidden md:inline" />
-            <span className="text-brand-orange">Services in Singapore</span>
+            <span className="text-[#F87315]">Services in Singapore</span>
           </h1>
           <p className="text-lg text-gray-700 mb-8 md:max-w-xl animate-fade-in">
             Start your business journey with our 100% paperless incorporation services. Grow your business from anywhere in the world.
           </p>
           <Button 
             onClick={() => setContactModalOpen(true)}
-            className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-5 text-lg font-semibold rounded-xl shadow-sm animate-fade-in"
+            className="bg-[#F87315] hover:bg-[#F87315]/90 text-white w-40 h-12 text-base font-semibold rounded-xl shadow-sm animate-fade-in"
           >
-            Get Started Today &rarr;
+            Get Started &rarr;
           </Button>
           <div className="flex flex-col sm:flex-row items-stretch mt-12 gap-6 animate-fade-in">
             <div className="flex-1 text-center md:text-left">
@@ -50,7 +50,7 @@ export const HeroSection = () => {
         </div>
         {/* Right */}
         <div className="flex-1 flex justify-center relative w-full h-[340px] md:h-[390px] lg:h-[420px]">
-          <div className="relative w-[340px] md:w-[390px] lg:w-[420px] h-full drop-shadow-xl rounded-3xl bg-white">
+          <div className="relative w-[340px] md:w-[390px] lg:w-[420px] h-full drop-shadow-xl rounded-3xl">
             <img
               src={heroImage}
               alt="Singapore Business"
