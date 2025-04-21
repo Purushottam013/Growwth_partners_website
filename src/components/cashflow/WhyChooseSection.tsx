@@ -3,6 +3,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LineChart, PieChart, Landmark, Brain, Cpu } from "lucide-react";
 
+const whyImage = "/lovable-uploads/33d6747a-53fc-4629-b07b-b1f3534c1847.png";
+
 export const WhyChooseSection = () => {
   const features = [
     {
@@ -36,12 +38,12 @@ export const WhyChooseSection = () => {
     <section className="py-14 bg-white">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left side features/cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="lg:col-span-2"
           >
             <h3 className="heading-md mb-6">Why Choose <span className="text-[#F87315]">Us</span>?</h3>
             <div className="space-y-6">
@@ -65,8 +67,25 @@ export const WhyChooseSection = () => {
               ))}
             </div>
           </motion.div>
+
+          {/* Right side image */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center"
+          >
+            <img
+              src={whyImage}
+              alt="Why Choose Us Visual"
+              className="rounded-2xl shadow-md w-full max-w-md object-contain"
+              style={{ background: "#fff" }}
+            />
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

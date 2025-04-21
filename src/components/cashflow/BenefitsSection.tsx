@@ -51,10 +51,10 @@ export const BenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center"
             >
               <div className="mb-6 p-0 inline-block">
-                <img src={benefit.icon} alt={`${benefit.title} icon`} className="h-20 w-20 object-contain mx-auto" />
+                <img src={benefit.icon} alt={`${benefit.title} icon`} className="h-24 w-24 object-contain" />
               </div>
               <h4 className="text-xl font-bold mb-3">{benefit.title}</h4>
               <p className="text-gray-700">{benefit.description}</p>
