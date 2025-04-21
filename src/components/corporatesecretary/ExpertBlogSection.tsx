@@ -9,20 +9,17 @@ export const ExpertBlogSection = () => {
     {
       title: "Why Singapore is the ideal location for startups",
       description: "Singapore has a reputation for ease in starting a business owing to startup grants and efficient tax administration. It is known as the \"Silicon Valley of Asia.\"",
-      url: "https://growwthpartners.com/blog/startup/why-singapore-is-the-ideal-location-for-startups/",
-      image: "/lovable-uploads/cf4931e3-eac5-452b-9fb1-71a1922b7e30.png"
+      url: "https://growwthpartners.com/blog/startup/why-singapore-is-the-ideal-location-for-startups/"
     },
     {
       title: "Various funding options available for startups",
       description: "Everything a company requires, including financing programmes, tax breaks, cash grants, everything must be available in the economy.",
-      url: "https://growwthpartners.com/blog/startup/various-funding-options-available-for-startups/",
-      image: "/lovable-uploads/acdabfd4-01fd-4e23-8b11-ea624f680da4.png"
+      url: "https://growwthpartners.com/blog/startup/various-funding-options-available-for-startups/"
     },
     {
       title: "Grants for Singapore Startups",
       description: "Singapore is known as Asia's \"Silicon Valley\" because it is the most desirable location for business startups. In addition to its low tax rates.",
-      url: "https://growwthpartners.com/blog/news/grants-for-singapore-startups/",
-      image: "/lovable-uploads/c2c58460-469d-4342-a492-116431255218.png"
+      url: "https://growwthpartners.com/blog/news/grants-for-singapore-startups/"
     }
   ];
 
@@ -52,13 +49,6 @@ export const ExpertBlogSection = () => {
             >
               <a href={blog.url} target="_blank" rel="noopener noreferrer" className="block h-full group">
                 <Card className="overflow-hidden h-full border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <div className="h-52 overflow-hidden">
-                    <img
-                      src={blog.image}
-                      alt={blog.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-3 group-hover:text-brand-orange transition-colors">
                       {blog.title}

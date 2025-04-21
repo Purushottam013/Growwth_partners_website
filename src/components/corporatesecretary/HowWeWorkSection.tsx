@@ -10,12 +10,12 @@ export const HowWeWorkSection = () => {
       description: "Quick 30 min call to understand your current challenges and how Growwth can help you out."
     },
     {
-      icon: "/lovable-uploads/00ac3120-53ad-43eb-bb50-59aa05d0d0a2.png",
+      icon: "/lovable-uploads/b9027104-9789-4c4e-94c7-d62c90db1c20.png",
       title: "Know Your Customer",
       description: "The team will go through your existing data, structure, and understand your current state of affairs to align better."
     },
     {
-      icon: "/lovable-uploads/b9027104-9789-4c4e-94c7-d62c90db1c20.png",
+      icon: "/lovable-uploads/00ac3120-53ad-43eb-bb50-59aa05d0d0a2.png",
       title: "Kick Off",
       description: "A Expert will be assigned to you and the team will take care of all your compliances."
     }

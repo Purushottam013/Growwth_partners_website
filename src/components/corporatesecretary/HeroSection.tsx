@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
+import { Badge } from "@/components/ui/badge";
 import handshakeImage from "/lovable-uploads/658d652b-f5d2-4603-af7b-ad64c5e2d4ec.png";
 
 export const HeroSection = () => {
@@ -40,7 +41,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="order-1 lg:order-2 flex justify-center"
+            className="order-1 lg:order-2 flex justify-center relative"
           >
             <div className="relative w-full max-w-lg">
               <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-[#F87315] to-purple-600 opacity-75 blur"></div>
@@ -51,6 +52,29 @@ export const HeroSection = () => {
                   className="w-full h-auto rounded-2xl object-cover"
                 />
               </div>
+              {/* Floating Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="absolute -top-6 -right-6 z-20"
+              >
+                <Badge variant="hero" size="xl" className="flex flex-col gap-1 p-3 shadow-lg">
+                  <span className="text-lg font-bold text-brand-orange">10+ Years</span>
+                  <span className="text-sm font-medium">Experience</span>
+                </Badge>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.6 }}
+                className="absolute -bottom-6 left-6 z-20"
+              >
+                <Badge variant="hero" size="xl" className="flex flex-col gap-1 p-3 shadow-lg">
+                  <span className="text-lg font-bold text-brand-green">200+</span>
+                  <span className="text-sm font-medium">Clients Served</span>
+                </Badge>
+              </motion.div>
             </div>
           </motion.div>
         </div>
