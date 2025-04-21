@@ -1,54 +1,26 @@
 
 import { motion } from "framer-motion";
 
-const imageSrc = "/lovable-uploads/4d222fc3-3b38-473d-8f8b-37d9ce3e9094.png";
 const whyImage = "/lovable-uploads/78c4750b-addc-4785-be6f-132043bef618.png";
 
-const features = [{
-  icon: (
-    <img
-      src={imageSrc}
-      alt="Why Choose Us"
-      className="w-8 h-8 object-contain"
-      loading="lazy"
-    />
-  ),
-  title: "Expert Leadership",
-  description: "Our team, hailing from Big 4 firms, multinationals, venture capitalists, and startups, brings a wealth of diverse finance and business expertise."
-}, {
-  icon: (
-    <img
-      src={imageSrc}
-      alt="Why Choose Us"
-      className="w-8 h-8 object-contain"
-      loading="lazy"
-    />
-  ),
-  title: "Comprehensive Services",
-  description: "From business consulting to CFO services and investor support, Growwth Partners is your all-in-one solution for diverse financial needs."
-}, {
-  icon: (
-    <img
-      src={imageSrc}
-      alt="Why Choose Us"
-      className="w-8 h-8 object-contain"
-      loading="lazy"
-    />
-  ),
-  title: "Global Perspective",
-  description: "With a worldwide presence, we offer unique insights for strategic financial planning, bringing a global outlook to your business success."
-}, {
-  icon: (
-    <img
-      src={imageSrc}
-      alt="Why Choose Us"
-      className="w-8 h-8 object-contain"
-      loading="lazy"
-    />
-  ),
-  title: "Long-Term Commitment",
-  description: "Growwth Partners demonstrates commitment by accepting equity as payment, showcasing our dedication to investing in promising ideas and fostering lasting partnerships."
-}];
+const features = [
+  {
+    title: "Expert Leadership",
+    description: "Our team, hailing from Big 4 firms, multinationals, venture capitalists, and startups, brings a wealth of diverse finance and business expertise."
+  },
+  {
+    title: "Comprehensive Services",
+    description: "From business consulting to CFO services and investor support, Growwth Partners is your all-in-one solution for diverse financial needs."
+  },
+  {
+    title: "Global Perspective",
+    description: "With a worldwide presence, we offer unique insights for strategic financial planning, bringing a global outlook to your business success."
+  },
+  {
+    title: "Long-Term Commitment",
+    description: "Growwth Partners demonstrates commitment by accepting equity as payment, showcasing our dedication to investing in promising ideas and fostering lasting partnerships."
+  }
+];
 
 export const WhyChooseUs = () => {
   return (
@@ -98,7 +70,7 @@ export const WhyChooseUs = () => {
 
                   <div className="relative">
                     <div className="mb-6 inline-block p-4 transition-colors duration-300">
-                      {feature.icon}
+                      {/* Removed the icon image */}
                     </div>
                     
                     <h4 className="text-2xl font-bold mb-4 text-gray-800 transition-colors">
@@ -118,4 +90,3 @@ export const WhyChooseUs = () => {
     </section>
   );
 };
-
