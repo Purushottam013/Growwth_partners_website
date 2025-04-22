@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -12,23 +11,26 @@ const BlogPostPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { getCountryUrl } = useCountry();
-  const { getPostBySlug, loading: postsLoading } = useBlogPosts();
+  const { getPostBySlug } = useBlogPosts();
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!postsLoading && slug) {
-      const foundPost = getPostBySlug(slug);
-      setPost(foundPost || null);
-      setLoading(false);
-    }
-  }, [slug, postsLoading, getPostBySlug]);
+    const loadPost = async () => {
+      if (slug) {
+        const postData = await getPostBySlug(slug);
+        setPost(postData);
+        setLoading(false);
+      }
+    };
+    loadPost();
+  }, [slug, getPostBySlug]);
 
   const handleBackToBlog = () => {
     navigate(getCountryUrl("/blog"));
   };
 
-  if (loading || postsLoading) {
+  if (loading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-12 flex justify-center">

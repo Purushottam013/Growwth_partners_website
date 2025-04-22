@@ -1,83 +1,85 @@
 
-import { useState, useEffect } from "react";
-import { blogData } from "@/data/blog";
+import { useEffect, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
-// Define types for blog posts
 export interface BlogPost {
-  id: number;
+  id: string;
   title: string;
   slug: string;
-  heroImage: string;
+  hero_image: string;
   excerpt: string;
   content: string;
   author: string;
   categories: string[];
-  publishDate: string;
+  publish_date: string;
+  status: 'draft' | 'published';
 }
 
-// Mock shared storage - in a real application, this would be replaced with API calls
-// Using sessionStorage instead of localStorage makes it sharable across tabs but still temporary
-const STORAGE_KEY = "shared-blog-posts";
-
 export const useBlogPosts = () => {
-  const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
 
-  // Load posts from storage
-  useEffect(() => {
-    const storedPosts = sessionStorage.getItem(STORAGE_KEY);
-    if (storedPosts) {
-      setDynamicPosts(JSON.parse(storedPosts));
+  const { data: posts = [], isLoading } = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('status', 'published')
+        .order('publish_date', { ascending: false });
+
+      if (error) throw error;
+      return data as BlogPost[];
     }
-    setLoading(false);
-  }, []);
+  });
 
-  // Get all posts (combining static and dynamic)
-  const getAllPosts = () => {
-    return [...blogData.posts, ...dynamicPosts];
+  const getPostBySlug = async (slug: string) => {
+    const { data, error } = await supabase
+      .from('posts')
+      .select('*')
+      .eq('slug', slug)
+      .eq('status', 'published')
+      .single();
+
+    if (error) return null;
+    return data as BlogPost;
   };
 
-  // Get post by slug
-  const getPostBySlug = (slug: string) => {
-    // First check static data
-    const staticPost = blogData.posts.find(p => p.slug === slug);
-    if (staticPost) return staticPost;
+  const addPost = useMutation({
+    mutationFn: async (post: Omit<BlogPost, 'id'>) => {
+      const { data, error } = await supabase
+        .from('posts')
+        .insert([post])
+        .select()
+        .single();
 
-    // Then check dynamic posts
-    return dynamicPosts.find(p => p.slug === slug);
-  };
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+    }
+  });
 
-  // Add new post
-  const addPost = (post: Omit<BlogPost, "id">) => {
-    const newPost = {
-      ...post,
-      id: Date.now(), // Use timestamp as unique ID
-    };
+  const deletePost = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from('posts')
+        .delete()
+        .eq('id', id);
 
-    const updatedPosts = [...dynamicPosts, newPost];
-    setDynamicPosts(updatedPosts);
-    
-    // Update storage
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
-    
-    return newPost;
-  };
-
-  // Delete post
-  const deletePost = (id: number) => {
-    const updatedPosts = dynamicPosts.filter(post => post.id !== id);
-    setDynamicPosts(updatedPosts);
-    
-    // Update storage
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
-  };
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+    }
+  });
 
   return {
-    posts: getAllPosts(),
-    loading,
+    posts,
+    loading: isLoading,
     getPostBySlug,
-    addPost,
-    deletePost,
-    dynamicPosts
+    addPost: addPost.mutate,
+    deletePost: deletePost.mutate,
   };
 };
