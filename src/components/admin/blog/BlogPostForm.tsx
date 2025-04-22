@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { blogData } from "@/data/blog";
-import { useBlogPosts } from "@/hooks/useBlogPosts";
+import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -48,8 +49,15 @@ export const BlogPostForm = () => {
 
   const onSubmit = (data: FormValues) => {
     try {
-      const newPost = {
-        ...data,
+      // Create a new post object with all required fields
+      const newPost: Omit<BlogPost, "id"> = {
+        title: data.title,
+        slug: data.slug,
+        heroImage: data.heroImage,
+        excerpt: data.excerpt,
+        content: data.content,
+        author: data.author,
+        categories: data.categories,
         publishDate: new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
