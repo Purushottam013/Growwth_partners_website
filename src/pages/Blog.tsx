@@ -26,8 +26,8 @@ const BlogPage = () => {
     }
   }, [location.search]);
 
-  // Get all unique categories
-  const allCategories = [...new Set(blogData.posts.flatMap(post => post.categories))];
+  // Use the categories directly from blogData
+  const allCategories = blogData.categories;
 
   // Filter posts by category if one is selected
   const filteredPosts = activeCategory 
