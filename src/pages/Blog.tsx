@@ -8,8 +8,6 @@ import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { ArrowRight } from "lucide-react";
 
-const DESIGN_IMAGE = "/lovable-uploads/8da3cb28-a1e1-47c6-ab1f-54e65b0395db.png";
-
 const BlogPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,6 +48,14 @@ const BlogPage = () => {
     window.open(getCountryUrl(`/blog/${slug}`), "_blank");
   };
 
+  // Category list for filter buttons
+  const allCategories = Array.from(
+    posts.reduce((acc, post) => {
+      post.categories.forEach((cat) => acc.add(cat));
+      return acc;
+    }, new Set<string>())
+  );
+
   if (loading) {
     return (
       <Layout>
@@ -69,13 +75,28 @@ const BlogPage = () => {
 
   return (
     <Layout>
-      <div className="blog-gradient-bg min-h-screen">
+      <div
+        className="min-h-screen w-full"
+        style={{
+          background: "linear-gradient(180deg, #EBF1FE 0%, #ECE9E5 100%)",
+          minHeight: "100vh",
+          width: "100%",
+        }}
+      >
         <div className="container mx-auto px-4 py-12">
           {/* HERO SECTION */}
           <div className="rounded-xl overflow-hidden flex flex-col items-center text-center py-16 px-4 md:px-8 mb-12">
-            <h1 className="custom-hero-title font-bold text-gray-900 leading-[1.1] mb-4">
-              Business insights from<br />
-              <span className="block font-extrabold text-black">
+            <h1 className="font-poppins font-bold leading-[1.08] mb-4" style={{fontSize: "2.2rem"}}>
+              <span className="block font-semibold text-gray-900">
+                Business insights from
+              </span>
+              <span className="block font-extrabold text-black"
+                style={{
+                  fontSize: "2.4rem",
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.01em"
+                }}
+              >
                 Osome Blog
               </span>
             </h1>
@@ -83,7 +104,32 @@ const BlogPage = () => {
               Our article provides comprehensive support for businesses operating in Singapore, offering clear guidance on regulatory processes and a wealth of articles covering financial management, accounting principles, and strategies for business expansion
             </p>
           </div>
-          
+
+          {/* (Optional) Category Filter Buttons */}
+          {allCategories.length > 0 && (
+            <div className="flex flex-wrap gap-3 justify-center mb-10">
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-semibold border transition ${
+                  activeCategory === "" ? "bg-black text-white" : "bg-white text-black hover:bg-gray-200"
+                }`}
+                onClick={() => setActiveCategory("")}
+              >
+                All
+              </button>
+              {allCategories.map((category) => (
+                <button
+                  key={category}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold border transition ${
+                    activeCategory === category ? "bg-black text-white" : "bg-white text-black hover:bg-gray-200"
+                  }`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Post Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {currentPosts.map((post) => (
@@ -92,36 +138,46 @@ const BlogPage = () => {
                 className="relative flex flex-col h-full bg-[#FAF8F4] rounded-[32px] shadow-xl border-0 p-0 transition-transform duration-200"
                 style={{ boxShadow: '0 6px 36px 0 rgba(51, 51, 79, 0.07)' }}
               >
-                {/* DESIGN IMAGE */}
+                {/* Post Image */}
                 <div className="rounded-t-3xl bg-[#f1ede7] flex items-center justify-center h-56 overflow-hidden">
                   <img 
-                    src={DESIGN_IMAGE}
-                    alt=""
-                    className="h-40"
+                    src={post.heroImage}
+                    alt={post.title}
+                    className="h-48 w-full object-cover rounded-t-3xl"
                     draggable={false}
-                    style={{ objectFit: 'contain', margin: '0 auto' }}
                   />
                 </div>
-                {/* Date and Author */}
-                <div className="flex justify-start items-center px-8 py-2 text-[#797480] text-base font-semibold tracking-wide uppercase" style={{letterSpacing: 1}}>
-                  {post.author && (
-                    <span className="mr-2">{post.author}</span>
-                  )}
-                  {post.author && post.publishDate && <span className="mx-2 text-[#C4C4C8]">•</span>}
+                {/* Author and Date */}
+                <div className="flex flex-row gap-3 items-center px-8 py-2 text-[#797480] text-base font-semibold tracking-wide uppercase" style={{letterSpacing: 1}}>
+                  {post.author && <span>{post.author}</span>}
+                  {post.author && post.publishDate && <span className="text-[#C4C4C8]">•</span>}
                   <span>{post.publishDate}</span>
                 </div>
-                {/* Title */}
+                {/* Categories */}
+                <div className="flex flex-wrap gap-2 px-8 pb-2">
+                  {post.categories.map((cat) => (
+                    <span
+                      key={cat}
+                      className="bg-[#EBF1FE] text-[#405094] text-xs font-semibold rounded-full px-3 py-1"
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+                {/* Title and Read More */}
                 <div className="flex-1 px-8 pt-2 pb-8 flex flex-col">
-                  <h2 className="text-[#22223F] font-bold leading-tight mb-8 text-[2rem] md:text-[2.3rem] xl:text-[2.3rem] font-sans" style={{lineHeight: 1.15}}>
+                  <h2 className="text-[#22223F] font-bold leading-tight mb-6 text-[1.43rem] md:text-[1.69rem] xl:text-[1.88rem] font-sans" style={{lineHeight: 1.15}}>
                     {post.title}
                   </h2>
                   <div className="mt-auto">
                     <Button
                       variant="outline"
-                      className="blog-read-btn border-0 bg-[#212134]/[.90] text-white font-semibold text-lg px-7 py-3 rounded-full shadow-md hover:bg-black hover:text-white hover:scale-[1.04] transition-colors duration-150"
+                      className="border-2 border-black bg-white text-black font-semibold text-base px-7 py-3 rounded-full shadow-md
+                        hover:bg-black hover:text-white hover:scale-[1.04] transition-all duration-150 group"
                       onClick={() => handleReadMore(post.slug)}
                     >
-                      Read <ArrowRight className="ml-2" />
+                      Read More
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                     </Button>
                   </div>
                 </div>
