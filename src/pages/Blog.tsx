@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardFooter, CardTitle } from "@/components/ui/card";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -131,9 +131,6 @@ const BlogPage = () => {
             <Card
               key={post.slug}
               className="flex flex-col h-[352px] md:h-[385px] lg:h-[440px] overflow-hidden shadow-lg border border-gray-200 rounded-xl bg-[#EBF1FE]"
-              style={{
-                height: "110%"
-              }}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -155,7 +152,7 @@ const BlogPage = () => {
                   {post.title}
                 </CardTitle>
               </CardHeader>
-              <CardFooter className="pt-0 pb-4">
+              <CardFooter className="mt-auto px-6 pb-6">
                 <Button
                   variant="outline"
                   className="w-fit px-5 flex items-center gap-2 border-black border-2 hover:bg-black hover:text-white hover:border-black transition font-semibold capitalize rounded-2xl"
