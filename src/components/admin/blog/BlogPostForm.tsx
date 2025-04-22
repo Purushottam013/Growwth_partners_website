@@ -130,7 +130,7 @@ export const BlogPostForm = () => {
 
         <FormField
           control={form.control}
-          name="heroImage"
+          name="hero_image"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Hero Image</FormLabel>
