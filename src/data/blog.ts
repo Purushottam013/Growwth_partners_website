@@ -1,5 +1,16 @@
-
 // Mock blog data for frontend-only CMS
+
+import { BlogPost } from "@/hooks/useBlogPosts";
+
+// Helper function to read posts from local storage on init
+const getInitialPosts = (): BlogPost[] => {
+  const storedPosts = localStorage.getItem("blog-posts");
+  if (storedPosts) {
+    return JSON.parse(storedPosts);
+  }
+  return defaultPosts;
+};
+
 export const blogData = {
   categories: [
     "Growth",
@@ -20,7 +31,7 @@ export const blogData = {
     "Tech",
     "Transition"
   ],
-  posts: [
+  defaultPosts: [
     {
       id: 1,
       title: "10 Tax-Saving Strategies for Small Businesses",
@@ -395,5 +406,48 @@ Effective bookkeeping is more than just a tax requirement—it's a powerful tool
 Remember that consistency is key. Even the best accounting system will fail if you don't maintain it regularly. Set aside dedicated time for bookkeeping tasks and treat this aspect of your business with the priority it deserves.
       `
     }
-  ]
+  ],
+  posts: getInitialPosts()
+};
+
+// CRUD operations for blog posts
+export const blogOperations = {
+  // Create new post
+  createPost: (post: Omit<BlogPost, "id">) => {
+    const newPost = {
+      ...post,
+      id: Date.now(), // Use timestamp as unique ID
+    };
+    
+    blogData.posts.push(newPost);
+    localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
+    return newPost;
+  },
+  
+  // Read all posts
+  getPosts: () => {
+    return blogData.posts;
+  },
+  
+  // Update post
+  updatePost: (id: number, updatedPost: Partial<BlogPost>) => {
+    const index = blogData.posts.findIndex(post => post.id === id);
+    if (index !== -1) {
+      blogData.posts[index] = { ...blogData.posts[index], ...updatedPost };
+      localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
+      return blogData.posts[index];
+    }
+    return null;
+  },
+  
+  // Delete post
+  deletePost: (id: number) => {
+    const index = blogData.posts.findIndex(post => post.id === id);
+    if (index !== -1) {
+      blogData.posts.splice(index, 1);
+      localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
+      return true;
+    }
+    return false;
+  }
 };
