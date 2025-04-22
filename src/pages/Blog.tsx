@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
-import { Calendar, Tag } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -93,12 +92,31 @@ const BlogPage = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
-        <div className="relative mb-10 rounded-xl overflow-hidden shadow-lg">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-brand-blue opacity-90"></div>
-          <div className="relative py-16 px-8 text-white text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Blog</h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto">
-              Explore our collection of articles, insights, and updates on financial management, accounting, and business growth.
+        <div
+          className="relative mb-10 rounded-xl overflow-hidden shadow-lg"
+          style={{
+            background: "linear-gradient(100deg,#EBF1FE 0%, #dbeafe 100%)",
+          }}
+        >
+          {/* Overlay for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-brand-blue opacity-80"></div>
+          <div className="relative py-16 px-8 text-gray-900 text-center">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+              <span>
+                Business insights from
+                <br className="block md:hidden" />
+              </span>
+              <div className="inline md:inline-block md:ml-3">
+                <span className="block font-bold md:inline">
+                  <span className="font-medium tracking-tight">Osome</span>&nbsp;
+                  <span className="font-extrabold text-black">
+                    Blog
+                  </span>
+                </span>
+              </div>
+            </h1>
+            <p className="text-base md:text-lg max-w-2xl mx-auto font-normal mt-2 text-gray-800">
+              Our article provides comprehensive support for businesses operating in Singapore, offering clear guidance on regulatory processes and a wealth of articles covering financial management, accounting principles, and strategies for business expansion
             </p>
           </div>
         </div>
@@ -124,53 +142,41 @@ const BlogPage = () => {
           ))}
         </div>
 
-        {/* Post Grid */}
+        {/* Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {currentPosts.map((post) => (
             <Card 
-              key={post.slug} 
-              className="flex flex-col h-full overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200"
+              key={post.slug}
+              className="flex flex-col h-full overflow-hidden shadow-lg border border-gray-200 rounded-xl bg-[#EBF1FE]"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={post.heroImage} 
                   alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[80%]">
-                  {post.categories.slice(0, 2).map((category) => (
-                    <Badge key={category} variant="secondary" className="bg-white text-gray-800 shadow-sm">
-                      {category}
-                    </Badge>
-                  ))}
-                  {post.categories.length > 2 && (
-                    <Badge variant="secondary" className="bg-white text-gray-800 shadow-sm">
-                      +{post.categories.length - 2}
-                    </Badge>
-                  )}
-                </div>
               </div>
-              <CardHeader className="pb-2">
-                <CardTitle className="line-clamp-2 text-xl font-bold hover:text-blue-600 transition-colors">
+              <div className="px-6 pt-4 flex items-center text-sm text-gray-600 gap-1">
+                <Calendar size={16} className="mr-2" />
+                <span>{post.publishDate}</span>
+                <span className="mx-2">|</span>
+                <span className="ml-1">By {post.author}</span>
+              </div>
+              <CardHeader className="pb-1">
+                <CardTitle className="line-clamp-2 text-lg font-bold">
                   {post.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="flex-grow pb-2">
-                <div className="flex items-center text-sm text-muted-foreground mb-3">
-                  <Calendar size={16} className="mr-1" />
-                  <span>{post.publishDate}</span>
-                  <span className="mx-2">•</span>
-                  <span>By {post.author}</span>
-                </div>
-                <p className="line-clamp-3 text-gray-600">{post.excerpt}</p>
-              </CardContent>
               <CardFooter className="pt-0 pb-4">
-                <Button 
-                  variant="outline" 
-                  className="w-full hover:bg-blue-50"
+                <Button
+                  variant="outline"
+                  className="w-fit px-5 left-0 flex items-center gap-2 border-black border-2
+                    hover:bg-black hover:text-white hover:border-black transition
+                    font-semibold capitalize"
                   onClick={() => handleReadMore(post.slug)}
                 >
                   Read More
+                  <ArrowRight size={18} className="ml-1" />
                 </Button>
               </CardFooter>
             </Card>
