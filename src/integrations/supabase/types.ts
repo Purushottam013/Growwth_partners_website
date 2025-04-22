@@ -59,7 +59,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      hello_world: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       post_status: "draft" | "published"
