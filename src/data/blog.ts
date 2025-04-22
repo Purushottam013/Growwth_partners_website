@@ -2,10 +2,23 @@
 // Mock blog data for frontend-only CMS
 export const blogData = {
   categories: [
-    { id: 1, name: "Accounting" },
-    { id: 2, name: "Taxation" },
-    { id: 3, name: "Financial Planning" },
-    { id: 4, name: "Business Growth" }
+    "Growth",
+    "Accounting",
+    "Corporate Secretary",
+    "Expansion",
+    "Fractional CFO",
+    "General",
+    "Guide",
+    "HR & Payroll",
+    "Incorporation",
+    "Mature stage",
+    "News",
+    "Reinvention",
+    "Reviews",
+    "Startup",
+    "Taxation & Compliance",
+    "Tech",
+    "Transition"
   ],
   posts: [
     {
