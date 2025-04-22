@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -75,7 +76,7 @@ const BlogPostPage = () => {
           {/* Hero Image */}
           <div className="rounded-lg overflow-hidden mb-8 h-[400px]">
             <img 
-              src={post.heroImage} 
+              src={post.hero_image} 
               alt={post.title} 
               className="w-full h-full object-cover"
             />
@@ -95,7 +96,7 @@ const BlogPostPage = () => {
           
           {/* Author & Date */}
           <div className="text-muted-foreground mb-8">
-            By {post.author} {post.publishDate && `• ${post.publishDate}`}
+            By {post.author} {post.publish_date && `• ${post.publish_date}`}
           </div>
           
           {/* Content */}

@@ -23,7 +23,7 @@ import { ImageUpload } from "./ImageUpload";
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   slug: z.string().min(1, "Slug is required"),
-  heroImage: z.string().min(1, "Image is required"),
+  hero_image: z.string().min(1, "Image is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
   author: z.string().min(1, "Author is required"),
@@ -41,7 +41,7 @@ export const BlogPostForm = () => {
     defaultValues: {
       title: "",
       slug: "",
-      heroImage: "",
+      hero_image: "",
       excerpt: "",
       content: "",
       author: "",
@@ -55,16 +55,17 @@ export const BlogPostForm = () => {
       const newPost: Omit<BlogPost, "id"> = {
         title: data.title,
         slug: data.slug,
-        heroImage: data.heroImage,
+        hero_image: data.hero_image,
         excerpt: data.excerpt,
         content: data.content,
         author: data.author,
         categories: data.categories,
-        publishDate: new Date().toLocaleDateString("en-US", {
+        publish_date: new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric",
         }),
+        status: 'published'
       };
       
       addPost(newPost);

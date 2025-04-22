@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -120,7 +121,7 @@ const BlogPage = () => {
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={post.heroImage} 
+                  src={post.hero_image} 
                   alt={post.title} 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -145,7 +146,7 @@ const BlogPage = () => {
               <CardContent className="flex-grow pb-2">
                 <div className="flex items-center text-sm text-muted-foreground mb-3">
                   <Calendar size={16} className="mr-1" />
-                  <span>{post.publishDate}</span>
+                  <span>{post.publish_date}</span>
                   <span className="mx-2">•</span>
                   <span>By {post.author}</span>
                 </div>
