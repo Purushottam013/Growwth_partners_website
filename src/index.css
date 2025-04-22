@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -138,59 +139,6 @@
   .card-hover {
     @apply hover:-translate-y-1 transition-transform duration-300;
   }
-}
-
-.blog-gradient-bg {
-  background: linear-gradient(180deg, #FAF8F4 0%, #ECE9E5 100%);
-  min-height: 100vh;
-  width: 100%;
-}
-
-.custom-hero-title {
-  font-size: 2.2rem;
-}
-@media (min-width: 640px) {
-  .custom-hero-title {
-      font-size: 2.6rem;
-  }
-}
-@media (min-width: 768px) {
-  .custom-hero-title {
-      font-size: 3.3rem;
-  }
-}
-@media (min-width: 1024px) {
-  .custom-hero-title {
-      font-size: 3.8rem;
-  }
-}
-@media (min-width: 1280px) {
-  .custom-hero-title {
-    font-size: 4.4rem;
-  }
-}
-
-.blog-read-btn {
-  border: none !important;
-  background: #212134;
-  color: #fff;
-  border-radius: 9999px;
-  font-size: 1.12rem;
-  transition: background 0.16s, color 0.16s;
-}
-.blog-read-btn:hover,
-.blog-read-btn:focus {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-.blog-read-btn svg {
-  margin-left: 0.5em;
-  transition: transform 0.18s;
-}
-
-.blog-read-btn:hover svg {
-  transform: translateX(4px);
 }
 
 /* Custom scrollbar */
