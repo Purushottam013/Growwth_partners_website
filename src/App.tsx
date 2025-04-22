@@ -1,11 +1,12 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import React from 'react';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { CountryProvider } from "./contexts/CountryContext";
 
-// Pages
 import HomePage from "./pages/Home";
 import AboutPage from "./pages/About";
 import AccountingPage from "./pages/Accounting";
@@ -28,11 +29,7 @@ import CompanyIncorporationPage from "./pages/CompanyIncorporation";
 import NotFound from "./pages/NotFound";
 import BlogAdminPage from "./pages/admin/BlogAdmin";
 
-// Context provider for country selection
-import { CountryProvider } from "./contexts/CountryContext";
-
 const App = () => {
-  // Create a new QueryClient instance inside the component
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -43,7 +40,6 @@ const App = () => {
             <Toaster />
             <Sonner />
             <Routes>
-              {/* Singapore routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/accounting" element={<AccountingPage />} />
@@ -64,7 +60,6 @@ const App = () => {
               <Route path="/corporate-secretary" element={<CorporateSecretaryPage />} />
               <Route path="/company-incorporation" element={<CompanyIncorporationPage />} />
               
-              {/* UAE routes */}
               <Route path="/uae" element={<HomePage />} />
               <Route path="/uae/about" element={<AboutPage />} />
               <Route path="/uae/accounting" element={<AccountingPage />} />
@@ -85,7 +80,6 @@ const App = () => {
               <Route path="/uae/corporate-secretary" element={<CorporateSecretaryPage />} />
               <Route path="/uae/company-incorporation" element={<CompanyIncorporationPage />} />
               
-              {/* Australia routes */}
               <Route path="/australia" element={<HomePage />} />
               <Route path="/australia/about" element={<AboutPage />} />
               <Route path="/australia/accounting" element={<AccountingPage />} />
@@ -106,7 +100,8 @@ const App = () => {
               <Route path="/australia/corporate-secretary" element={<CorporateSecretaryPage />} />
               <Route path="/australia/company-incorporation" element={<CompanyIncorporationPage />} />
               
-              {/* Catch-all route */}
+              <Route path="/admin/blog" element={<BlogAdminPage />} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
           </CountryProvider>
