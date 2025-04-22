@@ -16,11 +16,21 @@ const BlogPostPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Find the post with the matching slug
+    // First check in the static data
     const foundPost = blogData.posts.find(p => p.slug === slug);
     
     if (foundPost) {
       setPost(foundPost);
+      setLoading(false);
+      return;
+    }
+    
+    // If not found in static data, check localStorage
+    const localPosts = JSON.parse(localStorage.getItem("blog-posts") || "[]");
+    const localPost = localPosts.find((p: any) => p.slug === slug);
+    
+    if (localPost) {
+      setPost(localPost);
     }
     
     setLoading(false);
