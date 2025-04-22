@@ -17,6 +17,7 @@ import FractionalCFOPage from "./pages/FractionalCFO";
 import CashFlowPage from "./pages/CashFlow";
 import ContactPage from "./pages/Contact";
 import BlogPage from "./pages/Blog";
+import BlogPostPage from "./pages/BlogPost";
 import SuccessStoriesPage from "./pages/SuccessStories";
 import GuidePage from "./pages/Guide";
 import AchievementsPage from "./pages/Achievements";
@@ -53,6 +54,7 @@ const App = () => {
               <Route path="/cash-flow" element={<CashFlowPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/guide" element={<GuidePage />} />
               <Route path="/achievements" element={<AchievementsPage />} />
@@ -73,6 +75,7 @@ const App = () => {
               <Route path="/uae/cash-flow" element={<CashFlowPage />} />
               <Route path="/uae/contact" element={<ContactPage />} />
               <Route path="/uae/blog" element={<BlogPage />} />
+              <Route path="/uae/blog/:slug" element={<BlogPostPage />} />
               <Route path="/uae/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/uae/guide" element={<GuidePage />} />
               <Route path="/uae/achievements" element={<AchievementsPage />} />
@@ -93,6 +96,7 @@ const App = () => {
               <Route path="/australia/cash-flow" element={<CashFlowPage />} />
               <Route path="/australia/contact" element={<ContactPage />} />
               <Route path="/australia/blog" element={<BlogPage />} />
+              <Route path="/australia/blog/:slug" element={<BlogPostPage />} />
               <Route path="/australia/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/australia/guide" element={<GuidePage />} />
               <Route path="/australia/achievements" element={<AchievementsPage />} />
