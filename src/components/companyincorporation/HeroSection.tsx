@@ -10,7 +10,7 @@ export const HeroSection = () => {
 
   return (
     <section className="relative overflow-hidden bg-[#f4f7fd] py-12 md:py-20">
-      <div className="container-custom relative z-10 flex flex-col md:flex-row items-center md:items-stretch gap-12">
+      <div className="container-custom relative z-10 flex flex-col md:flex-row items-center md:items-stretch gap-8 px-6 lg:px-12">
         {/* Left */}
         <div className="flex-1 flex flex-col justify-center">
           <div className="flex items-center gap-2 mb-6 animate-fade-in">
@@ -49,28 +49,29 @@ export const HeroSection = () => {
           </div>
         </div>
         {/* Right */}
-        <div className="flex-1 flex justify-center relative w-full h-[340px] md:h-[390px] lg:h-[420px]">
-          <div className="relative w-[340px] md:w-[390px] lg:w-[420px] h-full drop-shadow-xl rounded-3xl">
-            <img
-              src={heroImage}
-              alt="Singapore Business"
-              className="rounded-3xl object-cover w-full h-full"
-              style={{ objectPosition: "center" }}
-            />
-            {/* Overlays */}
-            <div className="absolute right-4 top-6">
-              <div className="bg-white flex items-center gap-2 px-6 py-2 rounded-full shadow-lg border border-gray-200 animate-fade-in">
+        <div className="flex-1 flex justify-center relative w-full h-[326px] md:h-[374px] lg:h-[403px]">
+          <div className="relative w-[357px] md:w-[410px] lg:w-[441px] h-full">
+            <div className="absolute inset-0 bg-white rounded-3xl p-3">
+              <img
+                src={heroImage}
+                alt="Singapore Business"
+                className="rounded-2xl object-cover w-full h-full"
+                style={{ objectPosition: "center" }}
+              />
+            </div>
+            {/* Overlays - Adjusted for better floating effect */}
+            <div className="absolute right-0 top-6 transform translate-x-4">
+              <div className="bg-white flex items-center gap-2 px-6 py-2 rounded-full shadow-lg border border-gray-200 animate-float">
                 <span className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mr-2">✔</span>
                 <span className="text-gray-700 font-medium text-sm">Fast Registration</span>
               </div>
             </div>
-            <div className="absolute left-[-40px] md:left-[-60px] bottom-10 shadow-lg rounded-full">
-              <div className="bg-white flex items-center gap-2 px-6 py-2 rounded-full border border-gray-200 animate-fade-in">
+            <div className="absolute left-0 bottom-10 transform -translate-x-12">
+              <div className="bg-white flex items-center gap-2 px-6 py-2 rounded-full border border-gray-200 shadow-lg animate-float-slow">
                 <span className="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-sm font-bold mr-2">✔</span>
                 <span className="text-gray-700 font-medium text-sm">100% Success Rate</span>
               </div>
             </div>
-            {/* Removed: Card inside image */}
           </div>
         </div>
       </div>
