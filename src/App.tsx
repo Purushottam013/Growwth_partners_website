@@ -26,7 +26,7 @@ import TermsPage from "./pages/Terms";
 import CorporateSecretaryPage from "./pages/CorporateSecretary";
 import CompanyIncorporationPage from "./pages/CompanyIncorporation";
 import NotFound from "./pages/NotFound";
-import BlogAdminPage from "./pages/BlogAdmin";
+import BlogAdminPage from "./pages/admin/BlogAdmin";
 
 // Context provider for country selection
 import { CountryProvider } from "./contexts/CountryContext";
