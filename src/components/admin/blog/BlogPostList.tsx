@@ -1,22 +1,16 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 export const BlogPostList = () => {
-  const [posts, setPosts] = useState<any[]>([]);
   const { toast } = useToast();
-
-  useEffect(() => {
-    const storedPosts = JSON.parse(localStorage.getItem("blog-posts") || "[]");
-    setPosts(storedPosts);
-  }, []);
+  const { dynamicPosts, deletePost } = useBlogPosts();
 
   const handleDelete = (id: number) => {
     try {
-      const updatedPosts = posts.filter(post => post.id !== id);
-      localStorage.setItem("blog-posts", JSON.stringify(updatedPosts));
-      setPosts(updatedPosts);
+      deletePost(id);
       toast({
         description: "Post deleted successfully",
       });
@@ -28,7 +22,7 @@ export const BlogPostList = () => {
     }
   };
 
-  if (posts.length === 0) {
+  if (dynamicPosts.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-muted-foreground">No blog posts yet.</p>
@@ -38,7 +32,7 @@ export const BlogPostList = () => {
 
   return (
     <div className="space-y-4">
-      {posts.map((post) => (
+      {dynamicPosts.map((post) => (
         <div
           key={post.id}
           className="flex items-center justify-between p-4 border rounded-lg"

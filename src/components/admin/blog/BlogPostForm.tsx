@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,7 +5,6 @@ import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
@@ -17,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { blogData } from "@/data/blog";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -32,6 +31,8 @@ type FormValues = z.infer<typeof formSchema>;
 
 export const BlogPostForm = () => {
   const { toast } = useToast();
+  const { addPost } = useBlogPosts();
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,10 +48,8 @@ export const BlogPostForm = () => {
 
   const onSubmit = (data: FormValues) => {
     try {
-      const posts = JSON.parse(localStorage.getItem("blog-posts") || "[]");
       const newPost = {
         ...data,
-        id: posts.length + 1,
         publishDate: new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
@@ -58,8 +57,7 @@ export const BlogPostForm = () => {
         }),
       };
       
-      posts.push(newPost);
-      localStorage.setItem("blog-posts", JSON.stringify(posts));
+      addPost(newPost);
       
       form.reset();
       toast({

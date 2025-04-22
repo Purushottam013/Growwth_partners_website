@@ -4,43 +4,31 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { blogData } from "@/data/blog";
 import { useCountry } from "@/contexts/CountryContext";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 import ReactMarkdown from "react-markdown";
 
 const BlogPostPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { getCountryUrl } = useCountry();
+  const { getPostBySlug, loading: postsLoading } = useBlogPosts();
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // First check in the static data
-    const foundPost = blogData.posts.find(p => p.slug === slug);
-    
-    if (foundPost) {
-      setPost(foundPost);
+    if (!postsLoading && slug) {
+      const foundPost = getPostBySlug(slug);
+      setPost(foundPost || null);
       setLoading(false);
-      return;
     }
-    
-    // If not found in static data, check localStorage
-    const localPosts = JSON.parse(localStorage.getItem("blog-posts") || "[]");
-    const localPost = localPosts.find((p: any) => p.slug === slug);
-    
-    if (localPost) {
-      setPost(localPost);
-    }
-    
-    setLoading(false);
-  }, [slug]);
+  }, [slug, postsLoading, getPostBySlug]);
 
   const handleBackToBlog = () => {
     navigate(getCountryUrl("/blog"));
   };
 
-  if (loading) {
+  if (loading || postsLoading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-12 flex justify-center">

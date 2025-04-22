@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -7,11 +8,13 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 const BlogPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { getCountryUrl } = useCountry();
+  const { posts, loading } = useBlogPosts();
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("");
   const postsPerPage = 6;
@@ -25,19 +28,13 @@ const BlogPage = () => {
     }
   }, [location.search]);
 
-  // Get all posts combining localStorage and static data
-  const getAllPosts = () => {
-    const localPosts = JSON.parse(localStorage.getItem("blog-posts") || "[]");
-    return [...blogData.posts, ...localPosts];
-  };
-
   // Use the categories directly from blogData
   const allCategories = blogData.categories;
 
   // Filter posts by category if one is selected
   const filteredPosts = activeCategory 
-    ? getAllPosts().filter(post => post.categories.includes(activeCategory))
-    : getAllPosts();
+    ? posts.filter(post => post.categories.includes(activeCategory))
+    : posts;
 
   // Calculate pagination
   const indexOfLastPost = currentPage * postsPerPage;
@@ -68,6 +65,28 @@ const BlogPage = () => {
   const handleReadMore = (slug: string) => {
     window.open(getCountryUrl(`/blog/${slug}`), "_blank");
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="animate-pulse space-y-8">
+            <div className="h-64 bg-gray-200 rounded-xl mb-10"></div>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="h-10 w-24 bg-gray-200 rounded mb-2"></div>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array(6).fill(0).map((_, i) => (
+                <div key={i} className="h-80 bg-gray-200 rounded-lg"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
