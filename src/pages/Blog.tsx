@@ -130,10 +130,7 @@ const BlogPage = () => {
           {currentPosts.map((post) => (
             <Card
               key={post.slug}
-              className="flex flex-col h-[352px] md:h-[385px] lg:h-[440px] overflow-hidden shadow-lg border border-gray-200 rounded-xl bg-[#EBF1FE]"
-              style={{
-                height: "110%"
-              }}
+              className="flex flex-col h-[385px] md:h-[424px] lg:h-[484px] overflow-hidden shadow-lg border border-gray-200 rounded-xl bg-[#EBF1FE]"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -150,15 +147,15 @@ const BlogPage = () => {
                 <span className="mx-2">|</span>
                 <span className="ml-1">By Jatin Detwani</span>
               </div>
-              <CardHeader className="pb-1">
-                <CardTitle className="line-clamp-2 text-lg font-bold">
+              <CardHeader className="pb-1 flex-grow">
+                <CardTitle className="line-clamp-2 text-lg font-bold mt-2">
                   {post.title}
                 </CardTitle>
               </CardHeader>
-              <CardFooter className="pt-0 pb-4">
+              <CardFooter className="mt-auto p-6">
                 <Button
                   variant="outline"
-                  className="w-fit px-5 flex items-center gap-2 border-black border-2 hover:bg-black hover:text-white hover:border-black transition font-semibold capitalize rounded-2xl"
+                  className="w-full px-5 flex items-center gap-2 border-black border-2 hover:bg-black hover:text-white hover:border-black transition font-semibold capitalize rounded-2xl"
                   onClick={() => handleReadMore(post.slug)}
                 >
                   Read More
