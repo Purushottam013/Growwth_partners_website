@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -27,6 +26,7 @@ import TermsPage from "./pages/Terms";
 import CorporateSecretaryPage from "./pages/CorporateSecretary";
 import CompanyIncorporationPage from "./pages/CompanyIncorporation";
 import NotFound from "./pages/NotFound";
+import BlogAdminPage from "./pages/BlogAdmin";
 
 // Context provider for country selection
 import { CountryProvider } from "./contexts/CountryContext";

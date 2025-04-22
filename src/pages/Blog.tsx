@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -26,13 +25,19 @@ const BlogPage = () => {
     }
   }, [location.search]);
 
+  // Get all posts combining localStorage and static data
+  const getAllPosts = () => {
+    const localPosts = JSON.parse(localStorage.getItem("blog-posts") || "[]");
+    return [...blogData.posts, ...localPosts];
+  };
+
   // Use the categories directly from blogData
   const allCategories = blogData.categories;
 
   // Filter posts by category if one is selected
   const filteredPosts = activeCategory 
-    ? blogData.posts.filter(post => post.categories.includes(activeCategory))
-    : blogData.posts;
+    ? getAllPosts().filter(post => post.categories.includes(activeCategory))
+    : getAllPosts();
 
   // Calculate pagination
   const indexOfLastPost = currentPage * postsPerPage;
