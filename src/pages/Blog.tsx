@@ -98,7 +98,7 @@ const BlogPage = () => {
               <span className="block font-semibold">
                 Business insights from
               </span>
-              <span className="block mt-1 font-extrabold text-black text-3xl sm:text-5xl tracking-tight" style={{ fontFamily: `"Suisse Int'l", "Helvetica Neue", Arial, sans-serif` }}>Osome Blog</span>
+              <span className="block mt-1 font-extrabold text-black text-3xl sm:text-5xl tracking-tight" style={{ fontFamily: `"Suisse Int'l", "Helvetica Neue", Arial, sans-serif` }}>Growwth Blog</span>
             </h1>
             <p className="text-base md:text-lg max-w-2xl mx-auto font-normal mt-2 text-gray-800">
               Our article provides comprehensive support for businesses operating in Singapore, offering clear guidance on regulatory processes and a wealth of articles covering financial management, accounting principles, and strategies for business expansion
@@ -148,7 +148,7 @@ const BlogPage = () => {
                 <span className="ml-1">By Jatin Detwani</span>
               </div>
               <CardHeader className="pb-1">
-                <CardTitle className="line-clamp-2 text-lg font-bold">
+                <CardTitle className="line-clamp-2 text-xl font-bold">
                   {post.title}
                 </CardTitle>
               </CardHeader>
