@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
-import { Calendar } from "lucide-react";
+import { Calendar, Tag } from "lucide-react";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const BlogPage = () => {
   const [activeCategory, setActiveCategory] = useState("");
   const postsPerPage = 6;
 
+  // Extract the category from URL if present
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const category = params.get("category");
@@ -27,33 +29,40 @@ const BlogPage = () => {
     }
   }, [location.search]);
 
-  const allCategories = Array.from(new Set(posts.flatMap(post => post.categories)));
+  // Use the categories directly from blogData
+  const allCategories = blogData.categories;
 
+  // Filter posts by category if one is selected
   const filteredPosts = activeCategory 
     ? posts.filter(post => post.categories.includes(activeCategory))
     : posts;
 
+  // Calculate pagination
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
+  // Handle category filter
   const handleCategoryClick = (category: string) => {
     if (activeCategory === category) {
+      // If clicking the active category, clear the filter
       setActiveCategory("");
       navigate(getCountryUrl("/blog"));
     } else {
       setActiveCategory(category);
       navigate(getCountryUrl(`/blog?category=${category}`));
     }
-    setCurrentPage(1);
+    setCurrentPage(1); // Reset to first page on filter change
   };
 
+  // Handle page change
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Open post in new tab
   const handleReadMore = (slug: string) => {
     window.open(getCountryUrl(`/blog/${slug}`), "_blank");
   };
@@ -83,6 +92,7 @@ const BlogPage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
+        {/* Hero Section */}
         <div className="relative mb-10 rounded-xl overflow-hidden shadow-lg">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-brand-blue opacity-90"></div>
           <div className="relative py-16 px-8 text-white text-center">
@@ -93,6 +103,7 @@ const BlogPage = () => {
           </div>
         </div>
 
+        {/* Categories Bar */}
         <div className="mb-8 flex flex-wrap gap-2 justify-center">
           <Button 
             variant={!activeCategory ? "default" : "outline"}
@@ -113,6 +124,7 @@ const BlogPage = () => {
           ))}
         </div>
 
+        {/* Post Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {currentPosts.map((post) => (
             <Card 
@@ -121,7 +133,7 @@ const BlogPage = () => {
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
-                  src={post.hero_image} 
+                  src={post.heroImage} 
                   alt={post.title} 
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
@@ -146,7 +158,7 @@ const BlogPage = () => {
               <CardContent className="flex-grow pb-2">
                 <div className="flex items-center text-sm text-muted-foreground mb-3">
                   <Calendar size={16} className="mr-1" />
-                  <span>{post.publish_date}</span>
+                  <span>{post.publishDate}</span>
                   <span className="mx-2">•</span>
                   <span>By {post.author}</span>
                 </div>
@@ -165,6 +177,7 @@ const BlogPage = () => {
           ))}
         </div>
 
+        {/* Show message if no posts match the filter */}
         {currentPosts.length === 0 && (
           <div className="text-center py-12 border rounded-lg bg-gray-50">
             <p className="text-lg text-gray-600">No posts found for this category</p>
@@ -178,6 +191,7 @@ const BlogPage = () => {
           </div>
         )}
 
+        {/* Pagination */}
         {totalPages > 1 && (
           <Pagination className="mt-8">
             <PaginationContent>

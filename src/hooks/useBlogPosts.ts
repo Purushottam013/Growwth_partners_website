@@ -1,105 +1,79 @@
 
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
+import { useState, useEffect } from "react";
+import { blogData, blogOperations } from "@/data/blog";
 
+// Define types for blog posts
 export interface BlogPost {
-  id: string;
+  id: number;
   title: string;
   slug: string;
-  hero_image: string;
+  heroImage: string;
   excerpt: string;
   content: string;
   author: string;
   categories: string[];
-  publish_date: string;
-  status: 'draft' | 'published';
+  publishDate: string;
 }
 
 export const useBlogPosts = () => {
-  const queryClient = useQueryClient();
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const { data: posts = [], isLoading } = useQuery({
-    queryKey: ['posts'],
-    queryFn: async () => {
-      console.log('Fetching posts from Supabase...');
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .eq('status', 'published')
-        .order('publish_date', { ascending: false });
+  // Load posts on mount
+  useEffect(() => {
+    setPosts(blogOperations.getPosts());
+    setLoading(false);
+  }, []);
 
-      if (error) {
-        console.error('Error fetching posts:', error);
-        throw error;
-      }
-      console.log('Posts fetched successfully:', data);
-      return data as BlogPost[];
-    }
-  });
-
-  const getPostBySlug = async (slug: string) => {
-    console.log(`Fetching post with slug: ${slug}`);
-    const { data, error } = await supabase
-      .from('posts')
-      .select('*')
-      .eq('slug', slug)
-      .eq('status', 'published')
-      .single();
-
-    if (error) {
-      console.error('Error fetching post by slug:', error);
-      return null;
-    }
-    console.log('Post fetched successfully:', data);
-    return data as BlogPost;
+  // Get all posts
+  const getAllPosts = () => {
+    return posts;
   };
 
-  const addPost = useMutation({
-    mutationFn: async (post: Omit<BlogPost, 'id'>) => {
-      console.log('Adding new post:', post);
-      const { data, error } = await supabase
-        .from('posts')
-        .insert([post])
-        .select()
-        .single();
+  // Get post by slug
+  const getPostBySlug = (slug: string) => {
+    return posts.find(p => p.slug === slug);
+  };
 
-      if (error) {
-        console.error('Error adding post:', error);
-        throw error;
-      }
-      console.log('Post added successfully:', data);
-      return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
+  // Add new post
+  const addPost = (post: Omit<BlogPost, "id">) => {
+    const newPost = blogOperations.createPost(post);
+    setPosts(blogOperations.getPosts());
+    return newPost;
+  };
+
+  // Delete post
+  const deletePost = (id: number) => {
+    const success = blogOperations.deletePost(id);
+    if (success) {
+      setPosts(blogOperations.getPosts());
     }
-  });
+    return success;
+  };
 
-  const deletePost = useMutation({
-    mutationFn: async (id: string) => {
-      console.log(`Deleting post with id: ${id}`);
-      const { error } = await supabase
-        .from('posts')
-        .delete()
-        .eq('id', id);
-
-      if (error) {
-        console.error('Error deleting post:', error);
-        throw error;
-      }
-      console.log('Post deleted successfully');
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
+  // Update post
+  const updatePost = (id: number, updatedPost: Partial<BlogPost>) => {
+    const updated = blogOperations.updatePost(id, updatedPost);
+    if (updated) {
+      setPosts(blogOperations.getPosts());
     }
-  });
+    return updated;
+  };
+
+  // Get dynamically created posts (excluding default posts)
+  const getDynamicPosts = () => {
+    // Get default post IDs to exclude them
+    const defaultPostIds = blogData.defaultPosts.map(post => post.id);
+    return posts.filter(post => !defaultPostIds.includes(post.id));
+  };
 
   return {
-    posts,
-    loading: isLoading,
+    posts: getAllPosts(),
+    loading,
     getPostBySlug,
-    addPost: addPost.mutate,
-    deletePost: deletePost.mutate,
+    addPost,
+    deletePost,
+    updatePost,
+    dynamicPosts: getDynamicPosts() // Add dynamicPosts property for BlogPostList
   };
 };

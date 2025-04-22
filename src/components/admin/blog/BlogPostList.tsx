@@ -6,11 +6,12 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 export const BlogPostList = () => {
   const { toast } = useToast();
-  const { posts, deletePost } = useBlogPosts();
+  const { posts, deletePost, dynamicPosts } = useBlogPosts();
   
-  const handleDelete = async (id: string) => {
+  // Only display posts that can be deleted (dynamic posts)
+  const handleDelete = (id: number) => {
     try {
-      await deletePost(id);
+      deletePost(id);
       toast({
         description: "Post deleted successfully",
       });
@@ -22,7 +23,7 @@ export const BlogPostList = () => {
     }
   };
 
-  if (posts.length === 0) {
+  if (dynamicPosts.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-muted-foreground">No blog posts yet.</p>
@@ -32,7 +33,7 @@ export const BlogPostList = () => {
 
   return (
     <div className="space-y-4">
-      {posts.map((post) => (
+      {dynamicPosts.map((post) => (
         <div
           key={post.id}
           className="flex items-center justify-between p-4 border rounded-lg"
@@ -40,7 +41,7 @@ export const BlogPostList = () => {
           <div>
             <h3 className="font-semibold">{post.title}</h3>
             <p className="text-sm text-muted-foreground">
-              By {post.author} • {post.publish_date}
+              By {post.author} • {post.publishDate}
             </p>
           </div>
           <Button

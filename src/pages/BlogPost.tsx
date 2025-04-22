@@ -12,26 +12,23 @@ const BlogPostPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { getCountryUrl } = useCountry();
-  const { getPostBySlug } = useBlogPosts();
+  const { getPostBySlug, loading: postsLoading } = useBlogPosts();
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPost = async () => {
-      if (slug) {
-        const postData = await getPostBySlug(slug);
-        setPost(postData);
-        setLoading(false);
-      }
-    };
-    loadPost();
-  }, [slug, getPostBySlug]);
+    if (!postsLoading && slug) {
+      const foundPost = getPostBySlug(slug);
+      setPost(foundPost || null);
+      setLoading(false);
+    }
+  }, [slug, postsLoading, getPostBySlug]);
 
   const handleBackToBlog = () => {
     navigate(getCountryUrl("/blog"));
   };
 
-  if (loading) {
+  if (loading || postsLoading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-12 flex justify-center">
@@ -76,7 +73,7 @@ const BlogPostPage = () => {
           {/* Hero Image */}
           <div className="rounded-lg overflow-hidden mb-8 h-[400px]">
             <img 
-              src={post.hero_image} 
+              src={post.heroImage} 
               alt={post.title} 
               className="w-full h-full object-cover"
             />
@@ -96,7 +93,7 @@ const BlogPostPage = () => {
           
           {/* Author & Date */}
           <div className="text-muted-foreground mb-8">
-            By {post.author} {post.publish_date && `• ${post.publish_date}`}
+            By {post.author} {post.publishDate && `• ${post.publishDate}`}
           </div>
           
           {/* Content */}
