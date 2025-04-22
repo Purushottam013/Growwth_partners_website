@@ -32,8 +32,8 @@ import { Toaster } from "@/components/ui/toaster";
 
 function App() {
   return (
-    <CountryProvider>
-      <Router>
+    <Router>
+      <CountryProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -59,8 +59,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />
-      </Router>
-    </CountryProvider>
+      </CountryProvider>
+    </Router>
   );
 }
 
