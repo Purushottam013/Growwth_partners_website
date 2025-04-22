@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bold, Italic, Underline, ListOrdered, ListUnordered, Link, Image, Heading } from "lucide-react";
+import { Bold, Italic, Underline, ListOrdered, Link, Image, Heading } from "lucide-react";
 
 interface RichTextEditorProps {
   value: string;
@@ -148,7 +147,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleUnorderedList}
           title="Unordered List"
         >
-          <ListUnordered className="h-4 w-4" />
+          <ListOrdered className="h-4 w-4" />
         </Button>
       </div>
       
