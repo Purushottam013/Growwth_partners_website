@@ -9,6 +9,7 @@ import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
+import { Calendar, Tag } from "lucide-react";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -92,8 +93,8 @@ const BlogPage = () => {
     <Layout>
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
-        <div className="relative mb-10 rounded-xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-brand-blue opacity-90"></div>
+        <div className="relative mb-10 rounded-xl overflow-hidden shadow-lg">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-brand-blue opacity-90"></div>
           <div className="relative py-16 px-8 text-white text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Blog</h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto">
@@ -106,7 +107,7 @@ const BlogPage = () => {
         <div className="mb-8 flex flex-wrap gap-2 justify-center">
           <Button 
             variant={!activeCategory ? "default" : "outline"}
-            className="mb-2"
+            className="mb-2 shadow-sm transition-all hover:shadow"
             onClick={() => handleCategoryClick("")}
           >
             All
@@ -115,7 +116,7 @@ const BlogPage = () => {
             <Button
               key={category}
               variant={activeCategory === category ? "default" : "outline"}
-              className="mb-2"
+              className="mb-2 shadow-sm transition-all hover:shadow"
               onClick={() => handleCategoryClick(category)}
             >
               {category}
@@ -126,30 +127,49 @@ const BlogPage = () => {
         {/* Post Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {currentPosts.map((post) => (
-            <Card key={post.slug} className="flex flex-col h-full">
-              <div className="relative h-48 overflow-hidden rounded-t-lg">
+            <Card 
+              key={post.slug} 
+              className="flex flex-col h-full overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200"
+            >
+              <div className="relative h-48 overflow-hidden">
                 <img 
                   src={post.heroImage} 
                   alt={post.title} 
-                  className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-              </div>
-              <CardHeader>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {post.categories.map((category) => (
-                    <Badge key={category} variant="outline" className="bg-slate-100">
+                <div className="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[80%]">
+                  {post.categories.slice(0, 2).map((category) => (
+                    <Badge key={category} variant="secondary" className="bg-white text-gray-800 shadow-sm">
                       {category}
                     </Badge>
                   ))}
+                  {post.categories.length > 2 && (
+                    <Badge variant="secondary" className="bg-white text-gray-800 shadow-sm">
+                      +{post.categories.length - 2}
+                    </Badge>
+                  )}
                 </div>
-                <CardTitle>{post.title}</CardTitle>
+              </div>
+              <CardHeader className="pb-2">
+                <CardTitle className="line-clamp-2 text-xl font-bold hover:text-blue-600 transition-colors">
+                  {post.title}
+                </CardTitle>
               </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground">By {post.author}</p>
-                <p className="mt-2 line-clamp-3">{post.excerpt}</p>
+              <CardContent className="flex-grow pb-2">
+                <div className="flex items-center text-sm text-muted-foreground mb-3">
+                  <Calendar size={16} className="mr-1" />
+                  <span>{post.publishDate}</span>
+                  <span className="mx-2">•</span>
+                  <span>By {post.author}</span>
+                </div>
+                <p className="line-clamp-3 text-gray-600">{post.excerpt}</p>
               </CardContent>
-              <CardFooter>
-                <Button variant="outline" onClick={() => handleReadMore(post.slug)}>
+              <CardFooter className="pt-0 pb-4">
+                <Button 
+                  variant="outline" 
+                  className="w-full hover:bg-blue-50"
+                  onClick={() => handleReadMore(post.slug)}
+                >
                   Read More
                 </Button>
               </CardFooter>
@@ -157,14 +177,28 @@ const BlogPage = () => {
           ))}
         </div>
 
+        {/* Show message if no posts match the filter */}
+        {currentPosts.length === 0 && (
+          <div className="text-center py-12 border rounded-lg bg-gray-50">
+            <p className="text-lg text-gray-600">No posts found for this category</p>
+            <Button 
+              variant="outline" 
+              className="mt-4"
+              onClick={() => handleCategoryClick("")}
+            >
+              View All Posts
+            </Button>
+          </div>
+        )}
+
         {/* Pagination */}
         {totalPages > 1 && (
-          <Pagination>
+          <Pagination className="mt-8">
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious 
                   onClick={() => handlePageChange(currentPage - 1)}
-                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer hover:bg-gray-100"}
                 />
               </PaginationItem>
               
@@ -173,6 +207,7 @@ const BlogPage = () => {
                   <PaginationLink
                     isActive={currentPage === index + 1}
                     onClick={() => handlePageChange(index + 1)}
+                    className="hover:bg-gray-100"
                   >
                     {index + 1}
                   </PaginationLink>
@@ -182,7 +217,7 @@ const BlogPage = () => {
               <PaginationItem>
                 <PaginationNext 
                   onClick={() => handlePageChange(currentPage + 1)}
-                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer hover:bg-gray-100"}
                 />
               </PaginationItem>
             </PaginationContent>

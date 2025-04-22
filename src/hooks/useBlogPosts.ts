@@ -20,20 +20,21 @@ export interface BlogPost {
 const STORAGE_KEY = "shared-blog-posts";
 
 export const useBlogPosts = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Load posts from storage
   useEffect(() => {
     const storedPosts = sessionStorage.getItem(STORAGE_KEY);
-    const parsedPosts = storedPosts ? JSON.parse(storedPosts) : [];
-    setPosts([...blogData.posts, ...parsedPosts]);
+    if (storedPosts) {
+      setDynamicPosts(JSON.parse(storedPosts));
+    }
     setLoading(false);
   }, []);
 
   // Get all posts (combining static and dynamic)
   const getAllPosts = () => {
-    return [...blogData.posts, ...posts.filter(p => !blogData.posts.some(bp => bp.slug === p.slug))];
+    return [...blogData.posts, ...dynamicPosts];
   };
 
   // Get post by slug
@@ -43,7 +44,7 @@ export const useBlogPosts = () => {
     if (staticPost) return staticPost;
 
     // Then check dynamic posts
-    return posts.find(p => p.slug === slug);
+    return dynamicPosts.find(p => p.slug === slug);
   };
 
   // Add new post
@@ -53,8 +54,8 @@ export const useBlogPosts = () => {
       id: Date.now(), // Use timestamp as unique ID
     };
 
-    const updatedPosts = [...posts, newPost];
-    setPosts(updatedPosts);
+    const updatedPosts = [...dynamicPosts, newPost];
+    setDynamicPosts(updatedPosts);
     
     // Update storage
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
@@ -64,8 +65,8 @@ export const useBlogPosts = () => {
 
   // Delete post
   const deletePost = (id: number) => {
-    const updatedPosts = posts.filter(post => post.id !== id);
-    setPosts(updatedPosts);
+    const updatedPosts = dynamicPosts.filter(post => post.id !== id);
+    setDynamicPosts(updatedPosts);
     
     // Update storage
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
@@ -77,6 +78,6 @@ export const useBlogPosts = () => {
     getPostBySlug,
     addPost,
     deletePost,
-    dynamicPosts: posts
+    dynamicPosts
   };
 };
