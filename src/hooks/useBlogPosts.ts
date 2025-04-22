@@ -60,12 +60,20 @@ export const useBlogPosts = () => {
     return updated;
   };
 
+  // Get dynamically created posts (excluding default posts)
+  const getDynamicPosts = () => {
+    // Get default post IDs to exclude them
+    const defaultPostIds = blogData.defaultPosts.map(post => post.id);
+    return posts.filter(post => !defaultPostIds.includes(post.id));
+  };
+
   return {
     posts: getAllPosts(),
     loading,
     getPostBySlug,
     addPost,
     deletePost,
-    updatePost
+    updatePost,
+    dynamicPosts: getDynamicPosts() // Add dynamicPosts property for BlogPostList
   };
 };
