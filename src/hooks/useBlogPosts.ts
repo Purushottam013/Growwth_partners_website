@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { blogData, blogOperations } from "@/data/blog";
+import { blogData } from "@/data/blog";
 
 // Define types for blog posts
 export interface BlogPost {
@@ -15,56 +15,61 @@ export interface BlogPost {
   publishDate: string;
 }
 
+// Mock shared storage - in a real application, this would be replaced with API calls
+// Using sessionStorage instead of localStorage makes it sharable across tabs but still temporary
+const STORAGE_KEY = "shared-blog-posts";
+
 export const useBlogPosts = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [dynamicPosts, setDynamicPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Load posts on mount
+  // Load posts from storage
   useEffect(() => {
-    setPosts(blogOperations.getPosts());
+    const storedPosts = sessionStorage.getItem(STORAGE_KEY);
+    if (storedPosts) {
+      setDynamicPosts(JSON.parse(storedPosts));
+    }
     setLoading(false);
   }, []);
 
-  // Get all posts
+  // Get all posts (combining static and dynamic)
   const getAllPosts = () => {
-    return posts;
+    return [...blogData.posts, ...dynamicPosts];
   };
 
   // Get post by slug
   const getPostBySlug = (slug: string) => {
-    return posts.find(p => p.slug === slug);
+    // First check static data
+    const staticPost = blogData.posts.find(p => p.slug === slug);
+    if (staticPost) return staticPost;
+
+    // Then check dynamic posts
+    return dynamicPosts.find(p => p.slug === slug);
   };
 
   // Add new post
   const addPost = (post: Omit<BlogPost, "id">) => {
-    const newPost = blogOperations.createPost(post);
-    setPosts(blogOperations.getPosts());
+    const newPost = {
+      ...post,
+      id: Date.now(), // Use timestamp as unique ID
+    };
+
+    const updatedPosts = [...dynamicPosts, newPost];
+    setDynamicPosts(updatedPosts);
+    
+    // Update storage
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
+    
     return newPost;
   };
 
   // Delete post
   const deletePost = (id: number) => {
-    const success = blogOperations.deletePost(id);
-    if (success) {
-      setPosts(blogOperations.getPosts());
-    }
-    return success;
-  };
-
-  // Update post
-  const updatePost = (id: number, updatedPost: Partial<BlogPost>) => {
-    const updated = blogOperations.updatePost(id, updatedPost);
-    if (updated) {
-      setPosts(blogOperations.getPosts());
-    }
-    return updated;
-  };
-
-  // Get dynamically created posts (excluding default posts)
-  const getDynamicPosts = () => {
-    // Get default post IDs to exclude them
-    const defaultPostIds = blogData.defaultPosts.map(post => post.id);
-    return posts.filter(post => !defaultPostIds.includes(post.id));
+    const updatedPosts = dynamicPosts.filter(post => post.id !== id);
+    setDynamicPosts(updatedPosts);
+    
+    // Update storage
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPosts));
   };
 
   return {
@@ -73,7 +78,6 @@ export const useBlogPosts = () => {
     getPostBySlug,
     addPost,
     deletePost,
-    updatePost,
-    dynamicPosts: getDynamicPosts() // Add dynamicPosts property for BlogPostList
+    dynamicPosts
   };
 };

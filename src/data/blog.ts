@@ -1,20 +1,36 @@
 
 // Mock blog data for frontend-only CMS
-
-import { BlogPost } from "@/hooks/useBlogPosts";
-
-// Default blog posts for initial setup
-const defaultPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "10 Tax-Saving Strategies for Small Businesses",
-    slug: "tax-saving-strategies-small-businesses",
-    heroImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
-    categories: ["Taxation", "Business Growth"],
-    author: "Sarah Johnson",
-    publishDate: "April 15, 2025",
-    excerpt: "Discover effective strategies to minimize your tax burden legally while maximizing your business's financial health.",
-    content: `
+export const blogData = {
+  categories: [
+    "Growth",
+    "Accounting",
+    "Corporate Secretary",
+    "Expansion",
+    "Fractional CFO",
+    "General",
+    "Guide",
+    "HR & Payroll",
+    "Incorporation",
+    "Mature stage",
+    "News",
+    "Reinvention",
+    "Reviews",
+    "Startup",
+    "Taxation & Compliance",
+    "Tech",
+    "Transition"
+  ],
+  posts: [
+    {
+      id: 1,
+      title: "10 Tax-Saving Strategies for Small Businesses",
+      slug: "tax-saving-strategies-small-businesses",
+      heroImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
+      categories: ["Taxation", "Business Growth"],
+      author: "Sarah Johnson",
+      publishDate: "April 15, 2025",
+      excerpt: "Discover effective strategies to minimize your tax burden legally while maximizing your business's financial health.",
+      content: `
 # 10 Tax-Saving Strategies for Small Businesses
 
 Small business owners often overlook legitimate tax-saving opportunities that could significantly improve their bottom line. Here are ten strategies that can help you keep more of what you earn.
@@ -78,18 +94,18 @@ Self-employed individuals can deduct health insurance premiums for themselves an
 Tax laws are complex and constantly changing. A knowledgeable tax professional who specializes in small businesses can identify strategies specific to your situation and help you implement them correctly.
 
 Remember that tax avoidance (legally minimizing taxes) is perfectly acceptable, while tax evasion (illegally avoiding taxes) can result in severe penalties. Always consult with a qualified tax professional before implementing new tax strategies.
-    `
-  },
-  {
-    id: 2,
-    title: "Understanding Cash Flow Management for Startups",
-    slug: "cash-flow-management-startups",
-    heroImage: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    categories: ["Financial Planning", "Business Growth"],
-    author: "Michael Chen",
-    publishDate: "April 10, 2025",
-    excerpt: "Learn the essentials of cash flow management to ensure your startup's financial stability and growth potential.",
-    content: `
+      `
+    },
+    {
+      id: 2,
+      title: "Understanding Cash Flow Management for Startups",
+      slug: "cash-flow-management-startups",
+      heroImage: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      categories: ["Financial Planning", "Business Growth"],
+      author: "Michael Chen",
+      publishDate: "April 10, 2025",
+      excerpt: "Learn the essentials of cash flow management to ensure your startup's financial stability and growth potential.",
+      content: `
 # Understanding Cash Flow Management for Startups
 
 Cash flow is the lifeblood of any business, particularly startups. Many promising ventures fail not because they weren't profitable on paper, but because they ran out of cash. This guide will help you understand and manage your startup's cash flow effectively.
@@ -210,18 +226,18 @@ Options include:
 For startups, mastering cash flow management is as important as developing your product or service. With diligent monitoring, proactive management, and strategic planning, you can ensure your business has the cash it needs to thrive and grow.
 
 Remember, cash is reality. Profit is an opinion.
-    `
-  },
-  {
-    id: 3,
-    title: "Essential Bookkeeping Practices for Small Businesses",
-    slug: "essential-bookkeeping-practices-small-businesses",
-    heroImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
-    categories: ["Accounting", "Financial Planning"],
-    author: "David Rodriguez",
-    publishDate: "April 5, 2025",
-    excerpt: "Implement these bookkeeping best practices to maintain financial clarity and prepare your business for growth.",
-    content: `
+      `
+    },
+    {
+      id: 3,
+      title: "Essential Bookkeeping Practices for Small Businesses",
+      slug: "essential-bookkeeping-practices-small-businesses",
+      heroImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80",
+      categories: ["Accounting", "Financial Planning"],
+      author: "David Rodriguez",
+      publishDate: "April 5, 2025",
+      excerpt: "Implement these bookkeeping best practices to maintain financial clarity and prepare your business for growth.",
+      content: `
 # Essential Bookkeeping Practices for Small Businesses
 
 Proper bookkeeping is fundamental to business success. It provides the financial data you need to make informed decisions, prepare accurate tax returns, and demonstrate your business's financial health to potential investors or lenders. This guide covers the essential practices that will help you establish and maintain effective bookkeeping for your small business.
@@ -377,81 +393,7 @@ While many small business owners handle their own bookkeeping initially, conside
 Effective bookkeeping is more than just a tax requirement—it's a powerful tool for understanding and improving your business. By implementing these essential practices, you'll build a solid financial foundation that supports informed decision-making and sustainable growth.
 
 Remember that consistency is key. Even the best accounting system will fail if you don't maintain it regularly. Set aside dedicated time for bookkeeping tasks and treat this aspect of your business with the priority it deserves.
-    `
-  }
-];
-
-// Helper function to read posts from local storage on init
-const getInitialPosts = (): BlogPost[] => {
-  const storedPosts = localStorage.getItem("blog-posts");
-  if (storedPosts) {
-    return JSON.parse(storedPosts);
-  }
-  return defaultPosts;
-};
-
-export const blogData = {
-  categories: [
-    "Growth",
-    "Accounting",
-    "Corporate Secretary",
-    "Expansion",
-    "Fractional CFO",
-    "General",
-    "Guide",
-    "HR & Payroll",
-    "Incorporation",
-    "Mature stage",
-    "News",
-    "Reinvention",
-    "Reviews",
-    "Startup",
-    "Taxation & Compliance",
-    "Tech",
-    "Transition"
-  ],
-  defaultPosts,
-  posts: getInitialPosts()
-};
-
-// CRUD operations for blog posts
-export const blogOperations = {
-  // Create new post
-  createPost: (post: Omit<BlogPost, "id">) => {
-    const newPost = {
-      ...post,
-      id: Date.now(), // Use timestamp as unique ID
-    };
-    
-    blogData.posts.push(newPost);
-    localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
-    return newPost;
-  },
-  
-  // Read all posts
-  getPosts: () => {
-    return blogData.posts;
-  },
-  
-  // Update post
-  updatePost: (id: number, updatedPost: Partial<BlogPost>) => {
-    const index = blogData.posts.findIndex(post => post.id === id);
-    if (index !== -1) {
-      blogData.posts[index] = { ...blogData.posts[index], ...updatedPost };
-      localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
-      return blogData.posts[index];
+      `
     }
-    return null;
-  },
-  
-  // Delete post
-  deletePost: (id: number) => {
-    const index = blogData.posts.findIndex(post => post.id === id);
-    if (index !== -1) {
-      blogData.posts.splice(index, 1);
-      localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
-      return true;
-    }
-    return false;
-  }
+  ]
 };
