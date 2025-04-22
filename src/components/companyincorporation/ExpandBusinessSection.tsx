@@ -67,7 +67,7 @@ export const ExpandBusinessSection = () => {
           once: true
         }} className="space-y-6">
             <h3 className="heading-md text-brand-dark">
-              Best Country To Expand Your Business To? <span className="text-brand-green">Singapore</span>
+              Best Country To Expand Your Business To? <span className="text-orange-500">Singapore</span>
             </h3>
             
             <p className="text-lg text-gray-700">
