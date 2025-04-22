@@ -2,14 +2,13 @@
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { blogData } from "@/data/blog";
+import { Card } from "@/components/ui/card";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
-import { Calendar, Tag } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+const DESIGN_IMAGE = "/lovable-uploads/8da3cb28-a1e1-47c6-ab1f-54e65b0395db.png";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -29,9 +28,6 @@ const BlogPage = () => {
     }
   }, [location.search]);
 
-  // Use the categories directly from blogData
-  const allCategories = blogData.categories;
-
   // Filter posts by category if one is selected
   const filteredPosts = activeCategory 
     ? posts.filter(post => post.categories.includes(activeCategory))
@@ -42,19 +38,6 @@ const BlogPage = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-
-  // Handle category filter
-  const handleCategoryClick = (category: string) => {
-    if (activeCategory === category) {
-      // If clicking the active category, clear the filter
-      setActiveCategory("");
-      navigate(getCountryUrl("/blog"));
-    } else {
-      setActiveCategory(category);
-      navigate(getCountryUrl(`/blog?category=${category}`));
-    }
-    setCurrentPage(1); // Reset to first page on filter change
-  };
 
   // Handle page change
   const handlePageChange = (pageNumber: number) => {
@@ -73,11 +56,6 @@ const BlogPage = () => {
         <div className="container mx-auto px-4 py-12">
           <div className="animate-pulse space-y-8">
             <div className="h-64 bg-gray-200 rounded-xl mb-10"></div>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="h-10 w-24 bg-gray-200 rounded mb-2"></div>
-              ))}
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {Array(6).fill(0).map((_, i) => (
                 <div key={i} className="h-80 bg-gray-200 rounded-lg"></div>
@@ -91,138 +69,92 @@ const BlogPage = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
-        <div className="relative mb-10 rounded-xl overflow-hidden shadow-lg">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-brand-blue opacity-90"></div>
-          <div className="relative py-16 px-8 text-white text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Blog</h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto">
-              Explore our collection of articles, insights, and updates on financial management, accounting, and business growth.
+      <div className="blog-gradient-bg min-h-screen">
+        <div className="container mx-auto px-4 py-12">
+          {/* HERO SECTION */}
+          <div className="rounded-xl overflow-hidden flex flex-col items-center text-center py-16 px-4 md:px-8 mb-12">
+            <h1 className="custom-hero-title font-bold text-gray-900 leading-[1.1] mb-4">
+              Business insights from<br />
+              <span className="block font-extrabold text-black">
+                Osome Blog
+              </span>
+            </h1>
+            <p className="text-base md:text-lg max-w-2xl mx-auto text-gray-700 font-medium">
+              Our article provides comprehensive support for businesses operating in Singapore, offering clear guidance on regulatory processes and a wealth of articles covering financial management, accounting principles, and strategies for business expansion
             </p>
           </div>
-        </div>
-
-        {/* Categories Bar */}
-        <div className="mb-8 flex flex-wrap gap-2 justify-center">
-          <Button 
-            variant={!activeCategory ? "default" : "outline"}
-            className="mb-2 shadow-sm transition-all hover:shadow"
-            onClick={() => handleCategoryClick("")}
-          >
-            All
-          </Button>
-          {allCategories.map((category) => (
-            <Button
-              key={category}
-              variant={activeCategory === category ? "default" : "outline"}
-              className="mb-2 shadow-sm transition-all hover:shadow"
-              onClick={() => handleCategoryClick(category)}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
-        {/* Post Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {currentPosts.map((post) => (
-            <Card 
-              key={post.slug} 
-              className="flex flex-col h-full overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={post.heroImage} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                />
-                <div className="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[80%]">
-                  {post.categories.slice(0, 2).map((category) => (
-                    <Badge key={category} variant="secondary" className="bg-white text-gray-800 shadow-sm">
-                      {category}
-                    </Badge>
-                  ))}
-                  {post.categories.length > 2 && (
-                    <Badge variant="secondary" className="bg-white text-gray-800 shadow-sm">
-                      +{post.categories.length - 2}
-                    </Badge>
+          
+          {/* Post Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {currentPosts.map((post) => (
+              <Card 
+                key={post.slug}
+                className="relative flex flex-col h-full bg-[#FAF8F4] rounded-[32px] shadow-xl border-0 p-0 transition-transform duration-200"
+                style={{ boxShadow: '0 6px 36px 0 rgba(51, 51, 79, 0.07)' }}
+              >
+                {/* DESIGN IMAGE */}
+                <div className="rounded-t-3xl bg-[#f1ede7] flex items-center justify-center h-56 overflow-hidden">
+                  <img 
+                    src={DESIGN_IMAGE}
+                    alt=""
+                    className="h-40"
+                    draggable={false}
+                    style={{ objectFit: 'contain', margin: '0 auto' }}
+                  />
+                </div>
+                {/* Date and Author */}
+                <div className="flex justify-start items-center px-8 py-2 text-[#797480] text-base font-semibold tracking-wide uppercase" style={{letterSpacing: 1}}>
+                  {post.author && (
+                    <span className="mr-2">{post.author}</span>
                   )}
-                </div>
-              </div>
-              <CardHeader className="pb-2">
-                <CardTitle className="line-clamp-2 text-xl font-bold hover:text-blue-600 transition-colors">
-                  {post.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow pb-2">
-                <div className="flex items-center text-sm text-muted-foreground mb-3">
-                  <Calendar size={16} className="mr-1" />
+                  {post.author && post.publishDate && <span className="mx-2 text-[#C4C4C8]">•</span>}
                   <span>{post.publishDate}</span>
-                  <span className="mx-2">•</span>
-                  <span>By {post.author}</span>
                 </div>
-                <p className="line-clamp-3 text-gray-600">{post.excerpt}</p>
-              </CardContent>
-              <CardFooter className="pt-0 pb-4">
-                <Button 
-                  variant="outline" 
-                  className="w-full hover:bg-blue-50"
-                  onClick={() => handleReadMore(post.slug)}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-
-        {/* Show message if no posts match the filter */}
-        {currentPosts.length === 0 && (
-          <div className="text-center py-12 border rounded-lg bg-gray-50">
-            <p className="text-lg text-gray-600">No posts found for this category</p>
-            <Button 
-              variant="outline" 
-              className="mt-4"
-              onClick={() => handleCategoryClick("")}
-            >
-              View All Posts
-            </Button>
+                {/* Title */}
+                <div className="flex-1 px-8 pt-2 pb-8 flex flex-col">
+                  <h2 className="text-[#22223F] font-bold leading-tight mb-8 text-[2rem] md:text-[2.3rem] xl:text-[2.3rem] font-sans" style={{lineHeight: 1.15}}>
+                    {post.title}
+                  </h2>
+                  <div className="mt-auto">
+                    <Button
+                      variant="outline"
+                      className="blog-read-btn border-0 bg-[#212134]/[.90] text-white font-semibold text-lg px-7 py-3 rounded-full shadow-md hover:bg-black hover:text-white hover:scale-[1.04] transition-colors duration-150"
+                      onClick={() => handleReadMore(post.slug)}
+                    >
+                      Read <ArrowRight className="ml-2" />
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
-        )}
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <Pagination className="mt-8">
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious 
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer hover:bg-gray-100"}
-                />
-              </PaginationItem>
-              
+          {/* Show message if no posts match the filter */}
+          {currentPosts.length === 0 && (
+            <div className="text-center py-12 border rounded-lg bg-gray-50">
+              <p className="text-lg text-gray-600">No posts found for this category</p>
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center mt-8 space-x-2">
               {Array.from({ length: totalPages }).map((_, index) => (
-                <PaginationItem key={index}>
-                  <PaginationLink
-                    isActive={currentPage === index + 1}
-                    onClick={() => handlePageChange(index + 1)}
-                    className="hover:bg-gray-100"
-                  >
-                    {index + 1}
-                  </PaginationLink>
-                </PaginationItem>
+                <button
+                  key={index}
+                  className={`w-9 h-9 rounded-full flex items-center justify-center ${
+                    currentPage === index + 1
+                      ? "bg-black text-white"
+                      : "bg-white text-black hover:bg-gray-100"
+                  } transition`}
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </button>
               ))}
-              
-              <PaginationItem>
-                <PaginationNext 
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer hover:bg-gray-100"}
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </Layout>
   );
