@@ -6,11 +6,9 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 export const BlogPostList = () => {
   const { toast } = useToast();
-  const { posts, deletePost } = useBlogPosts();
+  const { posts, deletePost, dynamicPosts } = useBlogPosts();
   
-  // Filter out static posts from blogData that can't be deleted
-  const dynamicPosts = posts.filter(post => typeof post.id === 'number');
-
+  // Only display posts that can be deleted (dynamic posts)
   const handleDelete = (id: number) => {
     try {
       deletePost(id);

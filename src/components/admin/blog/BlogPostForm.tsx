@@ -17,11 +17,13 @@ import {
 } from "@/components/ui/form";
 import { blogData } from "@/data/blog";
 import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
+import { RichTextEditor } from "./RichTextEditor";
+import { ImageUpload } from "./ImageUpload";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   slug: z.string().min(1, "Slug is required"),
-  heroImage: z.string().url("Must be a valid URL"),
+  heroImage: z.string().min(1, "Image is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
   author: z.string().min(1, "Author is required"),
@@ -130,9 +132,12 @@ export const BlogPostForm = () => {
           name="heroImage"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Hero Image URL</FormLabel>
+              <FormLabel>Hero Image</FormLabel>
               <FormControl>
-                <Input {...field} type="url" />
+                <ImageUpload 
+                  imageUrl={field.value} 
+                  onImageChange={field.onChange} 
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -200,9 +205,12 @@ export const BlogPostForm = () => {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Content (Markdown)</FormLabel>
+              <FormLabel>Content (Rich Text)</FormLabel>
               <FormControl>
-                <Textarea {...field} rows={10} />
+                <RichTextEditor 
+                  value={field.value} 
+                  onChange={field.onChange} 
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
