@@ -4,6 +4,8 @@ import { CountryProvider } from "./contexts/CountryContext";
 
 // Pages
 import Home from "./pages/Home";
+import HomeUAE from "./pages/HomeUAE";
+import HomeAustralia from "./pages/HomeAustralia";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -57,13 +59,13 @@ function App() {
           <Route path="/news" element={<News />} />
           {/* Resources route redirects to Achievements */}
           <Route path="/resources" element={<Navigate to="/achievements" replace />} />
-          
+
           {/* Admin Routes */}
           <Route path="/admin/blog" element={<BlogAdminPage />} />
           <Route path="/admin/login" element={<BlogAdminLogin />} />
 
           {/* UAE Routes */}
-          <Route path="/uae" element={<Home />} />
+          <Route path="/uae" element={<HomeUAE />} />
           <Route path="/uae/about" element={<About />} />
           <Route path="/uae/blog" element={<Blog />} />
           <Route path="/uae/blog/:slug" element={<BlogPost />} />
@@ -85,7 +87,7 @@ function App() {
           <Route path="/uae/resources" element={<Navigate to="/uae/achievements" replace />} />
 
           {/* Australia Routes */}
-          <Route path="/australia" element={<Home />} />
+          <Route path="/australia" element={<HomeAustralia />} />
           <Route path="/australia/about" element={<About />} />
           <Route path="/australia/blog" element={<Blog />} />
           <Route path="/australia/blog/:slug" element={<BlogPost />} />

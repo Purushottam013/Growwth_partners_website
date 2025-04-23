@@ -45,52 +45,24 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
   // Get full URL with country prefix
   const getCountryUrl = (path: string): string => {
     const countryPrefix = getCountryPrefix();
-    
-    // If path already includes country prefix, return as is
     if (path.startsWith(countryPrefix)) {
       return path;
     }
-    
-    // If path starts with /, remove it to avoid double slashes
     const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-    
-    // Combine prefix with path
     return countryPrefix ? `${countryPrefix}/${cleanPath}` : `/${cleanPath}`;
   };
 
-  // Change country and navigate to equivalent page in new country
+  // Change country and always navigate to home page of that country
   const handleSetCountry = (newCountry: Country) => {
     if (newCountry === country) return;
-    
-    // Get the current path without country prefix
-    let currentPath = location.pathname;
-    
-    // Remove current country prefix if present
-    if (country !== 'singapore') {
-      const currentPrefix = getCountryPrefix();
-      if (currentPath.startsWith(currentPrefix)) {
-        currentPath = currentPath.substring(currentPrefix.length);
-      }
-    }
-    
-    // For empty path after prefix removal, set to root
-    if (!currentPath || currentPath === '/') {
-      currentPath = '/';
-    }
-    
-    // Construct new URL
-    let newPath;
+
+    let newPath: string;
     if (newCountry === 'singapore') {
-      newPath = currentPath;
+      newPath = '/';
     } else {
-      // For other countries, add the country prefix
-      newPath = `/${newCountry}${currentPath}`;
+      newPath = `/${newCountry}`;
     }
-    
-    // Set the country first
     setCountry(newCountry);
-    
-    // Navigate to new path
     console.log(`Switching country from ${country} to ${newCountry}, navigating to: ${newPath}`);
     navigate(newPath, { replace: true });
   };
