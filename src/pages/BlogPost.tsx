@@ -77,10 +77,16 @@ const BlogPostPage = () => {
     }
   };
 
-  // Process content to ensure HTML sections (including img tags) are preserved
-  const processContent = (content: string) => {
-    // Return the content as is - ReactMarkdown will handle HTML nodes properly
-    return content;
+  // Function to safely render HTML content
+  const renderHtmlContent = () => {
+    if (!post.content) return null;
+    
+    return (
+      <div 
+        className="prose prose-lg max-w-none prose-img:rounded-lg prose-img:shadow prose-img:mx-auto"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+    );
   };
 
   return (
@@ -130,15 +136,8 @@ const BlogPostPage = () => {
           </div>
 
           {/* Content */}
-          <div className="prose prose-lg max-w-none mb-8 prose-img:rounded-lg prose-img:shadow prose-img:mx-auto">
-            <ReactMarkdown 
-              components={{
-                img: ({node, ...props}) => renderers.img(props)
-              }}
-              skipHtml={false} // Important: don't skip HTML content
-            >
-              {post.content ? processContent(post.content) : ''}
-            </ReactMarkdown>
+          <div className="mb-8">
+            {renderHtmlContent()}
           </div>
         </article>
       </div>

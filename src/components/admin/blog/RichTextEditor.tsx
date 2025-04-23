@@ -1,5 +1,5 @@
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -26,6 +26,7 @@ interface RichTextEditorProps {
 
 export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -79,7 +80,77 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     }
   };
 
-  // Upload image and insert as HTML img tag instead of markdown
+  // Handle paste event to preserve formatting
+  const handlePaste = useCallback((e: React.ClipboardEvent) => {
+    e.preventDefault();
+    
+    // Get clipboard content
+    const clipboard = e.clipboardData;
+    
+    // Check if clipboard has HTML content
+    if (clipboard.types.includes('text/html')) {
+      const htmlContent = clipboard.getData('text/html');
+      
+      // Insert HTML content directly
+      const textarea = document.getElementById("content") as HTMLTextAreaElement;
+      if (textarea) {
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        
+        const newText = textarea.value.substring(0, start) + 
+                        htmlContent + 
+                        textarea.value.substring(end);
+        
+        onChange(newText);
+      }
+      return;
+    }
+    
+    // If there are images in the clipboard
+    if (clipboard.files && clipboard.files.length > 0) {
+      // Process each file as an image
+      Array.from(clipboard.files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+          // Convert image file to base64
+          const reader = new FileReader();
+          reader.onload = () => {
+            const base64String = reader.result as string;
+            const imgTag = `<img src="${base64String}" alt="Pasted image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
+            
+            const textarea = document.getElementById("content") as HTMLTextAreaElement;
+            if (textarea) {
+              const start = textarea.selectionStart;
+              const end = textarea.selectionEnd;
+              
+              const newText = textarea.value.substring(0, start) + 
+                             imgTag + 
+                             textarea.value.substring(end);
+              
+              onChange(newText);
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      return;
+    }
+    
+    // Fallback to plain text
+    const text = clipboard.getData('text/plain');
+    const textarea = document.getElementById("content") as HTMLTextAreaElement;
+    if (textarea) {
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      
+      const newText = textarea.value.substring(0, start) + 
+                      text + 
+                      textarea.value.substring(end);
+      
+      onChange(newText);
+    }
+  }, [onChange]);
+
+  // Upload image and insert as HTML img tag
   const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
 
@@ -340,12 +411,13 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         id="content"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onPaste={handlePaste}
         rows={15}
         className="font-mono"
       />
       
       <div className="text-xs text-muted-foreground">
-        Tip: You can also directly write Markdown or use the formatting buttons above.
+        Tip: You can also directly paste formatted content or write HTML/Markdown.
       </div>
     </div>
   );
