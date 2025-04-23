@@ -42,10 +42,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/accounting" element={<Accounting />} />
           <Route path="/bookkeeping" element={<Bookkeeping />} />
-          <Route path="/cash-flow-management" element={<CashFlow />} />
+          <Route path="/cash-flow" element={<CashFlow />} />
           <Route path="/company-incorporation" element={<CompanyIncorporation />} />
           <Route path="/corporate-secretary" element={<CorporateSecretary />} />
-          <Route path="/part-time-cfo" element={<FractionalCFO />} />
+          <Route path="/fractional-cfo" element={<FractionalCFO />} />
           <Route path="/payroll" element={<Payroll />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
