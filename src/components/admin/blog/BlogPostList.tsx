@@ -9,16 +9,17 @@ export const BlogPostList = () => {
   const { posts, deletePost, dynamicPosts } = useBlogPosts();
   
   // Only display posts that can be deleted (dynamic posts)
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     try {
-      deletePost(id);
+      await deletePost(id);
       toast({
         description: "Post deleted successfully",
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Failed to delete post:", error?.message || error);
       toast({
         variant: "destructive",
-        description: "Failed to delete post",
+        description: error?.message || "Failed to delete post",
       });
     }
   };

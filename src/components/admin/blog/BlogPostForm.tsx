@@ -35,7 +35,7 @@ type FormValues = z.infer<typeof formSchema>;
 export const BlogPostForm = () => {
   const { toast } = useToast();
   const { addPost } = useBlogPosts();
-  
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,7 +49,8 @@ export const BlogPostForm = () => {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
+  // Instead of direct call, make function async, await addPost and handle errors robustly.
+  const onSubmit = async (data: FormValues) => {
     try {
       // Create a new post object with all required fields
       const newPost: Omit<BlogPost, "id"> = {
@@ -59,26 +60,30 @@ export const BlogPostForm = () => {
         excerpt: data.excerpt,
         content: data.content,
         author: data.author,
-        categories: data.categories, // Now this is compatible with our interface
+        categories: data.categories,
         publishDate: new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric",
         }),
       };
-      
-      addPost(newPost);
-      
+
+      await addPost(newPost);
+
       form.reset();
       toast({
         title: "Success",
         description: "Blog post created successfully!",
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error("Failed to save blog post:", error?.message || error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to save blog post.",
+        description:
+          error?.message && typeof error.message === "string"
+            ? error.message
+            : "Failed to save blog post.",
       });
     }
   };
