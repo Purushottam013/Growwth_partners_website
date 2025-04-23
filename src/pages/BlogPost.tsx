@@ -58,6 +58,19 @@ const BlogPostPage = () => {
     );
   }
 
+  // Custom markdown renderer components
+  const renderers = {
+    img: ({src, alt}: {src: string; alt?: string}) => (
+      <div className="my-6">
+        <img 
+          src={src} 
+          alt={alt || "Blog image"} 
+          className="mx-auto rounded-lg shadow-md max-h-[500px] w-auto"
+        />
+      </div>
+    )
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-10 md:py-20">
@@ -106,8 +119,13 @@ const BlogPostPage = () => {
 
           {/* Content */}
           <div className="prose prose-lg max-w-none mb-8 prose-img:rounded-lg prose-img:shadow prose-img:mx-auto">
-            {/* eslint-disable-next-line react/no-children-prop */}
-            <ReactMarkdown children={post.content} />
+            <ReactMarkdown 
+              components={{
+                img: ({node, ...props}) => renderers.img(props)
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
           </div>
         </article>
       </div>

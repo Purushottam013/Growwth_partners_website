@@ -11,6 +11,7 @@ import {
   Image as ImageIcon,
   Heading,
   Upload,
+  List,
 } from "lucide-react";
 
 interface RichTextEditorProps {
@@ -72,23 +73,38 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
 
     const file = e.target.files?.[0];
     if (!file) return;
+    
     setUploading(true);
+    
     try {
-      // Convert image to base64 for now (should ideally upload to server or storage)
+      // Convert image to base64
       const reader = new FileReader();
+      
       reader.onloadend = () => {
-        const imgUrl = reader.result as string;
-        insertMarkdown("![](", ")", imgUrl);
+        const base64String = reader.result as string;
+        
+        // Insert the image with proper markdown syntax
+        // For uploaded images we need to ensure the syntax is correct
+        insertMarkdown("![Image](", ")", base64String);
+        
         setUploading(false);
+        
+        // Reset the input so the same file can be selected again
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
       };
+      
       reader.onerror = () => {
         setUploading(false);
-        setError("Image upload failed.");
+        setError("Image upload failed. Please try again.");
       };
+      
       reader.readAsDataURL(file);
     } catch (err) {
+      console.error("Image upload error:", err);
       setUploading(false);
-      setError("Image upload failed.");
+      setError("Image upload failed. Please try again.");
     }
   };
 
@@ -140,7 +156,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         >
           <Link className="h-4 w-4" />
         </Button>
-        {/* New: Upload image button */}
+        
+        {/* Image upload button */}
         <input
           type="file"
           accept="image/*"
@@ -169,6 +186,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
             </>
           )}
         </Button>
+        
         <Button
           type="button"
           variant="ghost"
@@ -185,12 +203,14 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleUnorderedList}
           title="Unordered List"
         >
-          <ListOrdered className="h-4 w-4 rotate-90" />
+          <List className="h-4 w-4" />
         </Button>
       </div>
+      
       {error && (
         <div className="text-red-600 text-xs px-1">{error}</div>
       )}
+      
       <Textarea
         id="content"
         value={value}
@@ -198,8 +218,9 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         rows={10}
         className="font-mono"
       />
+      
       <div className="text-xs text-muted-foreground">
-        Tip: Images are inserted as base64; for production use, integrate uploads to a storage service.
+        Tip: Use the toolbar buttons to format your content and insert images.
       </div>
     </div>
   );
