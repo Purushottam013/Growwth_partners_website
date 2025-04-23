@@ -46,6 +46,8 @@ export const useBlogPosts = () => {
           publishDate: post.publishdate || "" // Fixed: using lowercase publishdate from database
         }))
       );
+    } else {
+      console.error("Error fetching posts:", error);
     }
     setLoading(false);
   }, []);
@@ -63,31 +65,38 @@ export const useBlogPosts = () => {
   // Create post
   const addPost = async (post: Omit<BlogPost, "id" | "publishDate">) => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("blog_post")
-      .insert([
-        {
-          title: post.title,
-          slug: post.slug,
-          Hero_image: post.heroImage ?? "",
-          Excerpt: post.excerpt ?? "",
-          Content: post.content ?? "",
-          Author: post.author ?? "",
-          Categories: Array.isArray(post.categories) 
-            ? serializeCategories(post.categories) 
-            : post.categories ?? "",
-          // publishdate is not included - it will be set by the database
-        },
-      ])
-      .select()
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from("blog_post")
+        .insert([
+          {
+            title: post.title,
+            slug: post.slug,
+            Hero_image: post.heroImage ?? "",
+            Excerpt: post.excerpt ?? "",
+            Content: post.content ?? "",
+            Author: post.author ?? "",
+            Categories: Array.isArray(post.categories) 
+              ? serializeCategories(post.categories) 
+              : post.categories ?? "",
+            // publishdate is set by database default
+          },
+        ])
+        .select()
+        .single();
+        
+      if (error) {
+        console.error("Error adding post:", error);
+        setLoading(false);
+        throw error;
+      }
       
-    if (!error && data) {
       await fetchPosts();
       return data;
+    } catch (error) {
+      setLoading(false);
+      throw error;
     }
-    setLoading(false);
-    throw error;
   };
 
   // Delete post

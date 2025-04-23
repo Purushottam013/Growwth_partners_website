@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,7 @@ import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, Plus } from "lucide-react";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -59,6 +60,10 @@ const BlogPage = () => {
   const handleReadMore = (slug: string) => {
     window.open(getCountryUrl(`/blog/${slug}`), "_blank");
   };
+  
+  const handleCreatePost = () => {
+    navigate("/admin/blog");
+  };
 
   if (loading) {
     return (
@@ -81,6 +86,16 @@ const BlogPage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
+        <div className="flex justify-end mb-6">
+          <Button
+            onClick={handleCreatePost}
+            className="bg-brand-orange hover:bg-brand-orange/90 text-white flex items-center gap-2"
+          >
+            <Plus size={18} />
+            Create New Post
+          </Button>
+        </div>
+        
         <div
           className="relative mb-10 rounded-xl overflow-hidden shadow-lg"
           style={{
