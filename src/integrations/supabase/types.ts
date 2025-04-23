@@ -14,9 +14,11 @@ export type Database = {
           Author: string | null
           Categories: string | null
           Content: string | null
+          Date: string | null
           Excerpt: string | null
           Hero_image: string | null
           id: number
+          publishdate: string | null
           slug: string | null
           title: string
         }
@@ -24,9 +26,11 @@ export type Database = {
           Author?: string | null
           Categories?: string | null
           Content?: string | null
+          Date?: string | null
           Excerpt?: string | null
           Hero_image?: string | null
           id?: number
+          publishdate?: string | null
           slug?: string | null
           title: string
         }
@@ -34,9 +38,11 @@ export type Database = {
           Author?: string | null
           Categories?: string | null
           Content?: string | null
+          Date?: string | null
           Excerpt?: string | null
           Hero_image?: string | null
           id?: number
+          publishdate?: string | null
           slug?: string | null
           title?: string
         }

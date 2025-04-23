@@ -76,6 +76,11 @@ export const useBlogPosts = () => {
           Categories: Array.isArray(post.categories) 
             ? serializeCategories(post.categories) 
             : post.categories ?? "",
+          publishDate: post.publishDate || new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
         },
       ])
       .select()
@@ -125,6 +130,9 @@ export const useBlogPosts = () => {
     if (updatedPost.author) {
       toUpdate.Author = updatedPost.author;
       delete toUpdate.author;
+    }
+    if (updatedPost.publishDate) {
+      toUpdate.publishDate = updatedPost.publishDate;
     }
     const { data, error } = await supabase
       .from("blog_post")
