@@ -49,11 +49,11 @@ export const BlogPostForm = () => {
     },
   });
 
-  // Instead of direct call, make function async, await addPost and handle errors robustly.
+  // Only send post fields excluding publishDate
   const onSubmit = async (data: FormValues) => {
     try {
-      // Create a new post object with all required fields
-      const newPost: Omit<BlogPost, "id"> = {
+      // Do NOT add publishDate! Database will set it
+      const newPost: Omit<BlogPost, "id" | "publishDate"> = {
         title: data.title,
         slug: data.slug,
         heroImage: data.heroImage,
@@ -61,14 +61,10 @@ export const BlogPostForm = () => {
         content: data.content,
         author: data.author,
         categories: data.categories,
-        publishDate: new Date().toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }),
+        // publishDate is omitted!
       };
 
-      await addPost(newPost);
+      await addPost(newPost as any);
 
       form.reset();
       toast({
