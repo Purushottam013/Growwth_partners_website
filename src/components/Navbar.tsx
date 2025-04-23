@@ -49,7 +49,7 @@ const navItems = [
   },
   {
     title: "Resources",
-    path: "/resources",
+    path: "/achievements",
     dropdown: true,
     items: [
       { title: "Blog", path: "/blog" },

@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -61,36 +62,37 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
   const handleSetCountry = (newCountry: Country) => {
     if (newCountry === country) return;
     
-    // Construct new URL
+    // Get the current path without country prefix
     let currentPath = location.pathname;
-    let newPath = '';
     
-    // Remove current country prefix if any
+    // Remove current country prefix if present
     if (country !== 'singapore') {
       const currentPrefix = getCountryPrefix();
       if (currentPath.startsWith(currentPrefix)) {
-        currentPath = currentPath.replace(currentPrefix, '');
+        currentPath = currentPath.substring(currentPrefix.length);
       }
     }
     
-    // Keep the path after the country prefix
-    if (currentPath === '/') {
-      currentPath = '';
+    // For empty path after prefix removal, set to root
+    if (!currentPath || currentPath === '/') {
+      currentPath = '/';
     }
     
-    // For Singapore, we need to handle the root path differently
+    // Construct new URL
+    let newPath;
     if (newCountry === 'singapore') {
-      newPath = currentPath || '/';
+      newPath = currentPath;
     } else {
       // For other countries, add the country prefix
-      newPath = `/${newCountry}${currentPath || ''}`;
+      newPath = `/${newCountry}${currentPath}`;
     }
     
     // Set the country first
     setCountry(newCountry);
     
-    // Navigate to new path without scrolling to top
-    navigate(newPath, { replace: true, state: { preventScroll: true } });
+    // Navigate to new path
+    console.log(`Switching country from ${country} to ${newCountry}, navigating to: ${newPath}`);
+    navigate(newPath, { replace: true });
   };
 
   return (
