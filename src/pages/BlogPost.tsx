@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -59,21 +60,27 @@ const BlogPostPage = () => {
 
   // Custom markdown renderer components
   const renderers = {
-    // Fixed the image renderer type to accept all HTML image props
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
       // Ensure we have a src, or return null if not provided
       if (!props.src) return null;
       
+      // Directly pass through the src - this is important for base64 images
       return (
         <div className="my-6">
           <img 
-            {...props}
+            src={props.src}
             alt={props.alt || "Blog image"} 
             className="mx-auto rounded-lg shadow-md max-h-[500px] w-auto"
           />
         </div>
       );
     }
+  };
+
+  // Process content to ensure HTML sections (including img tags) are preserved
+  const processContent = (content: string) => {
+    // Return the content as is - ReactMarkdown will handle HTML nodes properly
+    return content;
   };
 
   return (
@@ -128,8 +135,9 @@ const BlogPostPage = () => {
               components={{
                 img: ({node, ...props}) => renderers.img(props)
               }}
+              skipHtml={false} // Important: don't skip HTML content
             >
-              {post.content}
+              {post.content ? processContent(post.content) : ''}
             </ReactMarkdown>
           </div>
         </article>

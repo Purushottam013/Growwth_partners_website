@@ -79,7 +79,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     }
   };
 
-  // Upload image and insert as markdown into the editor
+  // Upload image and insert as HTML img tag instead of markdown
   const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
 
@@ -95,9 +95,28 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       reader.onloadend = () => {
         const base64String = reader.result as string;
         
-        // Insert the image with proper markdown syntax for HTML
-        const imageMarkdown = `<img src="${base64String}" alt="Uploaded image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
-        insertMarkdown("", "", imageMarkdown);
+        // Insert as direct HTML img tag with proper styling classes
+        // This approach ensures the image is rendered directly as HTML
+        const imgTag = `<img src="${base64String}" alt="Uploaded image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
+        
+        const textarea = document.getElementById("content") as HTMLTextAreaElement;
+        if (textarea) {
+          const start = textarea.selectionStart;
+          const end = textarea.selectionEnd;
+          
+          const newText = textarea.value.substring(0, start) + 
+                          imgTag + 
+                          textarea.value.substring(end);
+          
+          onChange(newText);
+          
+          // Set focus back to textarea after update
+          setTimeout(() => {
+            textarea.focus();
+            textarea.selectionStart = start + imgTag.length;
+            textarea.selectionEnd = start + imgTag.length;
+          }, 0);
+        }
         
         setUploading(false);
         
@@ -331,4 +350,3 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     </div>
   );
 };
-
