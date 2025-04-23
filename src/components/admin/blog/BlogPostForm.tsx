@@ -49,10 +49,10 @@ export const BlogPostForm = () => {
     },
   });
 
-  // Only send post fields excluding publishDate
+  // Submit function - now working with RLS policies
   const onSubmit = async (data: FormValues) => {
     try {
-      // Do NOT add publishDate! Database will set it
+      // Create new post without publishDate (will be set by DB)
       const newPost: Omit<BlogPost, "id" | "publishDate"> = {
         title: data.title,
         slug: data.slug,
@@ -61,10 +61,9 @@ export const BlogPostForm = () => {
         content: data.content,
         author: data.author,
         categories: data.categories,
-        // publishDate is omitted!
       };
 
-      await addPost(newPost as any);
+      await addPost(newPost);
 
       form.reset();
       toast({

@@ -61,7 +61,7 @@ export const useBlogPosts = () => {
   };
 
   // Create post
-  const addPost = async (post: Omit<BlogPost, "id">) => {
+  const addPost = async (post: Omit<BlogPost, "id" | "publishDate">) => {
     setLoading(true);
     const { data, error } = await supabase
       .from("blog_post")
@@ -76,15 +76,12 @@ export const useBlogPosts = () => {
           Categories: Array.isArray(post.categories) 
             ? serializeCategories(post.categories) 
             : post.categories ?? "",
-          publishdate: post.publishDate || new Date().toLocaleDateString("en-US", { // Fixed: using lowercase publishdate for database
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
+          // publishdate is not included - it will be set by the database
         },
       ])
       .select()
       .single();
+      
     if (!error && data) {
       await fetchPosts();
       return data;
