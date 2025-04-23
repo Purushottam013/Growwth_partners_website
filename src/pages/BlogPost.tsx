@@ -60,45 +60,54 @@ const BlogPostPage = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-10 md:py-20">
         <Button 
           variant="outline" 
           onClick={handleBackToBlog}
-          className="mb-6"
+          className="mb-4 md:mb-8"
         >
           ← Back to Blog
         </Button>
-        
-        <article className="max-w-4xl mx-auto">
+        <article className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-5 md:p-12 relative">
+          {/* Categories as colored chips */}
+          {Array.isArray(post.categories) && post.categories.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6 items-center">
+              {post.categories.map((category: string) => (
+                <Badge key={category} variant="outline" className="bg-indigo-100 text-indigo-700 border-indigo-300 px-4 py-1 text-sm rounded-2xl font-medium whitespace-nowrap">
+                  {category}
+                </Badge>
+              ))}
+            </div>
+          )}
           {/* Hero Image */}
-          <div className="rounded-lg overflow-hidden mb-8 h-[400px]">
-            <img 
-              src={post.heroImage} 
-              alt={post.title} 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
-          {/* Categories */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.categories.map((category: string) => (
-              <Badge key={category} variant="outline" className="bg-slate-100">
-                {category}
-              </Badge>
-            ))}
-          </div>
-          
+          {post.heroImage && (
+            <div className="rounded-xl overflow-hidden mb-8 h-60 md:h-96 flex items-center justify-center bg-gray-50 border border-gray-200">
+              <img 
+                src={post.heroImage} 
+                alt={post.title}
+                className="w-full h-full object-cover transition-all duration-300 hover:scale-105"
+                style={{ maxHeight: 400, borderRadius: 18 }}
+              />
+            </div>
+          )}
+
           {/* Title */}
-          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          
+          <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight">
+            {post.title}
+          </h1>
+
           {/* Author & Date */}
-          <div className="text-muted-foreground mb-8">
-            By {post.author} {post.publishDate && `• ${post.publishDate}`}
+          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-10">
+            <div>
+              <span className="font-semibold">{post.author || "Jatin Detwani"}</span>
+              {post.publishDate && <span className="ml-2 text-gray-400">• {post.publishDate}</span>}
+            </div>
           </div>
-          
+
           {/* Content */}
-          <div className="prose prose-lg max-w-none">
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+          <div className="prose prose-lg max-w-none mb-8 prose-img:rounded-lg prose-img:shadow prose-img:mx-auto">
+            {/* eslint-disable-next-line react/no-children-prop */}
+            <ReactMarkdown children={post.content} />
           </div>
         </article>
       </div>

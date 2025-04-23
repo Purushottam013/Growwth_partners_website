@@ -1,7 +1,17 @@
-import { useState } from "react";
+
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bold, Italic, Underline, ListOrdered, Link, Image, Heading } from "lucide-react";
+import {
+  Bold,
+  Italic,
+  Underline,
+  ListOrdered,
+  Link,
+  Image as ImageIcon,
+  Heading,
+  Upload,
+} from "lucide-react";
 
 interface RichTextEditorProps {
   value: string;
@@ -9,19 +19,12 @@ interface RichTextEditorProps {
 }
 
 export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
-  const [selectionStart, setSelectionStart] = useState(0);
-  const [selectionEnd, setSelectionEnd] = useState(0);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const saveSelection = (textarea: HTMLTextAreaElement) => {
-    setSelectionStart(textarea.selectionStart);
-    setSelectionEnd(textarea.selectionEnd);
-  };
-
-  const insertMarkdown = (
-    prefix: string,
-    suffix: string,
-    defaultText: string
-  ) => {
+  // Insert markdown at cursor
+  const insertMarkdown = (prefix: string, suffix: string, defaultText: string) => {
     const textarea = document.getElementById("content") as HTMLTextAreaElement;
     if (!textarea) return;
 
@@ -29,14 +32,16 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     const end = textarea.selectionEnd;
     const selectedText = textarea.value.substring(start, end);
     const replacement = selectedText.length > 0 ? selectedText : defaultText;
-    
-    const newText = 
-      textarea.value.substring(0, start) + 
-      prefix + replacement + suffix + 
+
+    const newText =
+      textarea.value.substring(0, start) +
+      prefix +
+      replacement +
+      suffix +
       textarea.value.substring(end);
-    
+
     onChange(newText);
-    
+
     // Set focus back to textarea after state update
     setTimeout(() => {
       textarea.focus();
@@ -53,30 +58,43 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const handleHeading = () => insertMarkdown("## ", "", "Heading");
   const handleOrderedList = () => insertMarkdown("\n1. ", "", "List item");
   const handleUnorderedList = () => insertMarkdown("\n- ", "", "List item");
-  
+
   const handleLink = () => {
     const url = prompt("Enter URL:", "https://");
     if (url) {
-      const textarea = document.getElementById("content") as HTMLTextAreaElement;
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      const selectedText = textarea.value.substring(start, end);
-      const linkText = selectedText.length > 0 ? selectedText : "link text";
-      
-      insertMarkdown("[" + linkText + "](", ")", url);
+      insertMarkdown("[", `](${url})`, "link text");
     }
   };
-  
-  const handleImage = () => {
-    const url = prompt("Enter image URL:", "https://");
-    if (url) {
-      insertMarkdown("![", "]("+url+")", "image description");
+
+  // Upload image and insert as markdown into the editor
+  const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
+
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      // Convert image to base64 for now (should ideally upload to server or storage)
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imgUrl = reader.result as string;
+        insertMarkdown("![](", ")", imgUrl);
+        setUploading(false);
+      };
+      reader.onerror = () => {
+        setUploading(false);
+        setError("Image upload failed.");
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      setUploading(false);
+      setError("Image upload failed.");
     }
   };
 
   return (
     <div className="space-y-2">
-      <div className="flex flex-wrap gap-1 p-1 border rounded-md bg-gray-50">
+      <div className="flex flex-wrap items-center gap-1.5 p-1 border rounded-md bg-gray-50">
         <Button
           type="button"
           variant="ghost"
@@ -122,14 +140,34 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         >
           <Link className="h-4 w-4" />
         </Button>
+        {/* New: Upload image button */}
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          className="hidden"
+          onChange={handleUploadImage}
+          aria-label="Upload Image"
+        />
         <Button
           type="button"
           variant="ghost"
           size="sm"
-          onClick={handleImage}
-          title="Image"
+          onClick={() => fileInputRef.current?.click()}
+          title="Upload Image"
+          disabled={uploading}
         >
-          <Image className="h-4 w-4" />
+          {uploading ? (
+            <span className="flex items-center gap-1 text-xs text-gray-600">
+              <Upload className="animate-spin mr-1 h-4 w-4" />
+              Uploading...
+            </span>
+          ) : (
+            <>
+              <ImageIcon className="h-4 w-4" />
+              <span className="sr-only">Upload Image</span>
+            </>
+          )}
         </Button>
         <Button
           type="button"
@@ -147,18 +185,22 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleUnorderedList}
           title="Unordered List"
         >
-          <ListOrdered className="h-4 w-4" />
+          <ListOrdered className="h-4 w-4 rotate-90" />
         </Button>
       </div>
-      
+      {error && (
+        <div className="text-red-600 text-xs px-1">{error}</div>
+      )}
       <Textarea
         id="content"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        onSelect={(e) => saveSelection(e.target as HTMLTextAreaElement)}
         rows={10}
         className="font-mono"
       />
+      <div className="text-xs text-muted-foreground">
+        Tip: Images are inserted as base64; for production use, integrate uploads to a storage service.
+      </div>
     </div>
   );
 };
