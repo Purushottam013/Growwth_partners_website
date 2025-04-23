@@ -14,7 +14,6 @@ export type Database = {
           Author: string | null
           Categories: string | null
           Content: string | null
-          Date: string | null
           Excerpt: string | null
           Hero_image: string | null
           id: number
@@ -26,7 +25,6 @@ export type Database = {
           Author?: string | null
           Categories?: string | null
           Content?: string | null
-          Date?: string | null
           Excerpt?: string | null
           Hero_image?: string | null
           id?: number
@@ -38,7 +36,6 @@ export type Database = {
           Author?: string | null
           Categories?: string | null
           Content?: string | null
-          Date?: string | null
           Excerpt?: string | null
           Hero_image?: string | null
           id?: number

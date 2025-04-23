@@ -43,7 +43,7 @@ export const useBlogPosts = () => {
           content: post.Content || "",
           author: post.Author || "",
           categories: deserializeCategories(post.Categories || ""),
-          publishDate: post.publishDate || ""
+          publishDate: post.publishdate || "" // Fixed: using lowercase publishdate from database
         }))
       );
     }
@@ -76,7 +76,7 @@ export const useBlogPosts = () => {
           Categories: Array.isArray(post.categories) 
             ? serializeCategories(post.categories) 
             : post.categories ?? "",
-          publishDate: post.publishDate || new Date().toLocaleDateString("en-US", {
+          publishdate: post.publishDate || new Date().toLocaleDateString("en-US", { // Fixed: using lowercase publishdate for database
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -132,7 +132,8 @@ export const useBlogPosts = () => {
       delete toUpdate.author;
     }
     if (updatedPost.publishDate) {
-      toUpdate.publishDate = updatedPost.publishDate;
+      toUpdate.publishdate = updatedPost.publishDate; // Fixed: using lowercase publishdate for database
+      delete toUpdate.publishDate;
     }
     const { data, error } = await supabase
       .from("blog_post")
