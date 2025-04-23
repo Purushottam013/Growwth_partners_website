@@ -11,7 +11,7 @@ export interface BlogPost {
   excerpt?: string;
   content?: string;
   author?: string;
-  categories?: string;  // store as comma-separated string
+  categories?: string[] | string;  // Modified to handle both string array and string
   publishDate?: string;
 }
 
@@ -35,14 +35,15 @@ export const useBlogPosts = () => {
     if (!error && data) {
       setPosts(
         data.map((post) => ({
-          ...post,
-          categories: deserializeCategories(post.Categories || post.categories),
-          heroImage: post.Hero_image || post.heroImage,
-          excerpt: post.Excerpt || post.excerpt,
-          content: post.Content || post.content,
-          author: post.Author || post.author,
-          slug: post.slug,
-          publishDate: post.publishDate || "",
+          id: post.id,
+          title: post.title,
+          slug: post.slug || "",
+          heroImage: post.Hero_image || "",
+          excerpt: post.Excerpt || "",
+          content: post.Content || "",
+          author: post.Author || "",
+          categories: deserializeCategories(post.Categories || ""),
+          publishDate: post.publishDate || ""
         }))
       );
     }
@@ -72,7 +73,9 @@ export const useBlogPosts = () => {
           Excerpt: post.excerpt ?? "",
           Content: post.content ?? "",
           Author: post.author ?? "",
-          Categories: serializeCategories(post.categories as string[]),
+          Categories: Array.isArray(post.categories) 
+            ? serializeCategories(post.categories) 
+            : post.categories ?? "",
         },
       ])
       .select()
@@ -102,7 +105,9 @@ export const useBlogPosts = () => {
     setLoading(true);
     const toUpdate: any = { ...updatedPost };
     if (updatedPost.categories) {
-      toUpdate.Categories = serializeCategories(updatedPost.categories as string[]);
+      toUpdate.Categories = Array.isArray(updatedPost.categories) 
+        ? serializeCategories(updatedPost.categories) 
+        : updatedPost.categories;
       delete toUpdate.categories;
     }
     if (updatedPost.heroImage) {

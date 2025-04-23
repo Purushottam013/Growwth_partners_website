@@ -59,7 +59,7 @@ export const BlogPostForm = () => {
         excerpt: data.excerpt,
         content: data.content,
         author: data.author,
-        categories: data.categories,
+        categories: data.categories, // Now this is compatible with our interface
         publishDate: new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
