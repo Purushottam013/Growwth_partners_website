@@ -60,15 +60,21 @@ const BlogPostPage = () => {
 
   // Custom markdown renderer components
   const renderers = {
-    img: ({src, alt}: {src: string; alt?: string}) => (
-      <div className="my-6">
-        <img 
-          src={src} 
-          alt={alt || "Blog image"} 
-          className="mx-auto rounded-lg shadow-md max-h-[500px] w-auto"
-        />
-      </div>
-    )
+    // Fixed the image renderer type to accept all HTML image props
+    img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+      // Ensure we have a src, or return null if not provided
+      if (!props.src) return null;
+      
+      return (
+        <div className="my-6">
+          <img 
+            src={props.src} 
+            alt={props.alt || "Blog image"} 
+            className="mx-auto rounded-lg shadow-md max-h-[500px] w-auto"
+          />
+        </div>
+      );
+    }
   };
 
   return (
