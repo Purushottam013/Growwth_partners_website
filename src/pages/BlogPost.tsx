@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -68,7 +67,7 @@ const BlogPostPage = () => {
       return (
         <div className="my-6">
           <img 
-            src={props.src} 
+            {...props}
             alt={props.alt || "Blog image"} 
             className="mx-auto rounded-lg shadow-md max-h-[500px] w-auto"
           />
