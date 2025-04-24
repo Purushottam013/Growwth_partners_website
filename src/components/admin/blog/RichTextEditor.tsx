@@ -1,3 +1,4 @@
+
 import { useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -131,13 +132,12 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         
         // For style attribute, keep only text formatting related properties
         if (el.hasAttribute('style')) {
-          const computedStyle = getComputedStyle(el);
-          const newStyles = [];
+          const htmlEl = el as HTMLElement; // Cast to HTMLElement to access style property
           
           // Preserve font-weight for bold text
-          const fontWeight = el.style.fontWeight;
+          const fontWeight = htmlEl.style.fontWeight;
           if (fontWeight && (fontWeight === 'bold' || parseInt(fontWeight, 10) >= 500)) {
-            el.style.fontWeight = 'bold';
+            htmlEl.style.fontWeight = 'bold';
             // If it's already bold, consider replacing with a strong tag
             if (el.tagName.toLowerCase() !== 'strong' && 
                 el.tagName.toLowerCase() !== 'h1' && 
@@ -152,8 +152,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           }
           
           // Preserve text alignment
-          if (el.style.textAlign) {
-            el.style.textAlign = el.style.textAlign;
+          if (htmlEl.style.textAlign) {
+            htmlEl.style.textAlign = htmlEl.style.textAlign;
           }
           
           // Remove all other styles
