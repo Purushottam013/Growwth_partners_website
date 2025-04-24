@@ -49,8 +49,9 @@ export const BlogPostList = () => {
           </div>
           <div className="flex gap-2">
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
+              color="green"
               onClick={() => setEditingPost(post)}
             >
               <Pencil className="h-4 w-4" />
