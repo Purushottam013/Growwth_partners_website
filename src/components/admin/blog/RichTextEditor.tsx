@@ -87,55 +87,71 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
 
   // Clean HTML content from unwanted styles and attributes
   const cleanHtml = (html: string): string => {
-    // Create a DOMParser to parse the HTML string
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    
-    // Remove meta tags and other unwanted elements
-    const metaTags = doc.querySelectorAll('meta');
-    metaTags.forEach(tag => tag.remove());
-    
-    // Function to clean an element's attributes and styles
-    const cleanElement = (el: Element) => {
-      // Keep only essential attributes
-      const allowedAttrs = ['href', 'src', 'alt'];
+    try {
+      // Create a new document to parse the HTML safely
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
       
-      // Remove all attributes except allowed ones
-      Array.from(el.attributes).forEach(attr => {
-        if (!allowedAttrs.includes(attr.name) && attr.name !== 'style') {
-          el.removeAttribute(attr.name);
-        }
-      });
+      // Remove <meta>, <script>, and <style> tags
+      const unwantedTags = doc.querySelectorAll('meta, script, style');
+      unwantedTags.forEach(tag => tag.remove());
       
-      // Simplify style attribute if present
-      if (el.hasAttribute('style')) {
-        const style = el.getAttribute('style') || '';
-        const simplifiedStyle = style.split(';')
-          .filter(s => 
-            s.trim().startsWith('text-align') || 
-            s.trim().startsWith('font-weight') ||
-            s.trim().startsWith('font-style')
-          )
-          .join(';');
+      // Function to clean an element's attributes and inline styles
+      const cleanElement = (el: Element) => {
+        // List of attributes to keep - add or remove as needed
+        const allowedAttrs = ['href', 'src', 'alt'];
         
-        if (simplifiedStyle) {
-          el.setAttribute('style', simplifiedStyle);
-        } else {
-          el.removeAttribute('style');
+        // Remove all attributes except allowed ones
+        Array.from(el.attributes).forEach(attr => {
+          if (!allowedAttrs.includes(attr.name) && attr.name !== 'style') {
+            el.removeAttribute(attr.name);
+          }
+        });
+        
+        // Keep only basic inline styles if present, remove box-sizing and other complex styles
+        if (el.hasAttribute('style')) {
+          // Get only essential styling properties
+          const styleAttr = el.getAttribute('style') || '';
+          const essentialStyles: string[] = [];
+          
+          // Only keep these few style properties
+          if (styleAttr.includes('text-align')) {
+            const textAlign = styleAttr.match(/text-align:\s*(left|center|right|justify)/i);
+            if (textAlign && textAlign[1]) {
+              essentialStyles.push(`text-align: ${textAlign[1]}`);
+            }
+          }
+          
+          if (styleAttr.includes('font-weight')) {
+            const fontWeight = styleAttr.match(/font-weight:\s*(\d+|bold|normal)/i);
+            if (fontWeight && fontWeight[1]) {
+              essentialStyles.push(`font-weight: ${fontWeight[1]}`);
+            }
+          }
+          
+          if (essentialStyles.length > 0) {
+            el.setAttribute('style', essentialStyles.join('; '));
+          } else {
+            el.removeAttribute('style');
+          }
         }
-      }
-    };
-    
-    // Clean all elements in the document
-    const allElements = doc.querySelectorAll('*');
-    allElements.forEach(cleanElement);
-    
-    // Remove empty paragraphs
-    const emptyParagraphs = doc.querySelectorAll('p:empty');
-    emptyParagraphs.forEach(p => p.remove());
-    
-    // Get the cleaned HTML
-    return doc.body.innerHTML;
+      };
+      
+      // Clean all elements
+      const allElements = doc.body.querySelectorAll('*');
+      allElements.forEach(cleanElement);
+      
+      // Remove empty paragraphs and divs
+      const emptyElements = doc.body.querySelectorAll('p:empty, div:empty');
+      emptyElements.forEach(el => el.remove());
+      
+      // Get the cleaned HTML content
+      return doc.body.innerHTML.trim();
+    } catch (e) {
+      console.error("Error cleaning HTML:", e);
+      // If something goes wrong, return plain text as fallback
+      return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    }
   };
 
   // Process HTML content for pasting
@@ -144,50 +160,50 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     
     // Get clipboard content
     const clipboard = e.clipboardData;
+    const textarea = textareaRef.current;
+    if (!textarea) return;
     
-    // Check if clipboard has HTML content
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    let insertContent = '';
+    
+    // Check for HTML content and clean it
     if (clipboard.types.includes('text/html')) {
       const htmlContent = clipboard.getData('text/html');
-      // Clean and process HTML before inserting
-      const cleanedHtml = cleanHtml(htmlContent);
-      
-      const textarea = textareaRef.current;
-      if (textarea) {
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        
-        const newText = textarea.value.substring(0, start) + 
-                      cleanedHtml + 
-                      textarea.value.substring(end);
-        
-        onChange(newText);
-      }
-      return;
+      insertContent = cleanHtml(htmlContent);
+    }
+    // If there's no HTML or cleaning failed, fall back to plain text
+    else if (clipboard.types.includes('text/plain')) {
+      insertContent = clipboard.getData('text/plain');
     }
     
-    // If there are images in the clipboard
+    // Handle image files in clipboard
     if (clipboard.files && clipboard.files.length > 0) {
-      // Process each file as an image
       Array.from(clipboard.files).forEach(file => {
         if (file.type.startsWith('image/')) {
           handleImageFile(file);
+          return;
         }
       });
       return;
     }
     
-    // Fallback to plain text
-    const text = clipboard.getData('text/plain');
-    const textarea = textareaRef.current;
-    if (textarea) {
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      
-      const newText = textarea.value.substring(0, start) + 
-                     text + 
-                     textarea.value.substring(end);
+    // Insert the content at cursor position
+    if (insertContent) {
+      const newText = 
+        textarea.value.substring(0, start) +
+        insertContent +
+        textarea.value.substring(end);
       
       onChange(newText);
+      
+      // Set focus back to textarea and update cursor position
+      setTimeout(() => {
+        textarea.focus();
+        const newPosition = start + insertContent.length;
+        textarea.selectionStart = newPosition;
+        textarea.selectionEnd = newPosition;
+      }, 0);
     }
   }, [onChange]);
 
