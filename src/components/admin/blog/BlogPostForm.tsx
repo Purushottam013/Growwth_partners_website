@@ -32,13 +32,31 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export const BlogPostForm = () => {
+interface BlogPostFormProps {
+  initialData?: BlogPost | null;
+  mode?: "create" | "edit";
+  onSuccess?: () => void;
+}
+
+export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPostFormProps) => {
   const { toast } = useToast();
-  const { addPost } = useBlogPosts();
+  const { addPost, updatePost } = useBlogPosts();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialData ? {
+      title: initialData.title,
+      slug: initialData.slug || "",
+      heroImage: initialData.heroImage || "",
+      excerpt: initialData.excerpt || "",
+      content: initialData.content || "",
+      author: initialData.author || "",
+      categories: Array.isArray(initialData.categories) 
+        ? initialData.categories 
+        : initialData.categories 
+          ? initialData.categories.split(",").map(c => c.trim())
+          : [],
+    } : {
       title: "",
       slug: "",
       heroImage: "",
@@ -49,27 +67,31 @@ export const BlogPostForm = () => {
     },
   });
 
-  // Submit function - now working with RLS policies
   const onSubmit = async (data: FormValues) => {
     try {
-      // Create new post without publishDate (will be set by DB)
-      const newPost: Omit<BlogPost, "id" | "publishDate"> = {
-        title: data.title,
-        slug: data.slug,
-        heroImage: data.heroImage,
-        excerpt: data.excerpt,
-        content: data.content,
-        author: data.author,
-        categories: data.categories,
-      };
-
-      await addPost(newPost);
-
-      form.reset();
-      toast({
-        title: "Success",
-        description: "Blog post created successfully!",
-      });
+      if (mode === "edit" && initialData) {
+        await updatePost(initialData.id, {
+          title: data.title,
+          slug: data.slug,
+          heroImage: data.heroImage,
+          excerpt: data.excerpt,
+          content: data.content,
+          author: data.author,
+          categories: data.categories,
+        });
+        toast({
+          title: "Success",
+          description: "Blog post updated successfully!",
+        });
+      } else {
+        await addPost(data);
+        form.reset();
+        toast({
+          title: "Success",
+          description: "Blog post created successfully!",
+        });
+      }
+      onSuccess?.();
     } catch (error: any) {
       console.error("Failed to save blog post:", error?.message || error);
       toast({

@@ -2,13 +2,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { useBlogPosts } from "@/hooks/useBlogPosts";
+import { BlogPost, useBlogPosts } from "@/hooks/useBlogPosts";
+import { EditBlogDialog } from "./EditBlogDialog";
+import { Pencil } from "lucide-react";
 
 export const BlogPostList = () => {
   const { toast } = useToast();
   const { posts, deletePost, dynamicPosts } = useBlogPosts();
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   
-  // Only display posts that can be deleted (dynamic posts)
   const handleDelete = async (id: number) => {
     try {
       await deletePost(id);
@@ -45,14 +47,31 @@ export const BlogPostList = () => {
               By {post.author} • {post.publishDate}
             </p>
           </div>
-          <Button
-            variant="destructive"
-            onClick={() => handleDelete(post.id)}
-          >
-            Delete
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setEditingPost(post)}
+            >
+              <Pencil className="h-4 w-4" />
+              <span className="sr-only">Edit</span>
+            </Button>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={() => handleDelete(post.id)}
+            >
+              Delete
+            </Button>
+          </div>
         </div>
       ))}
+
+      <EditBlogDialog 
+        post={editingPost}
+        open={!!editingPost}
+        onOpenChange={(open) => !open && setEditingPost(null)}
+      />
     </div>
   );
 };

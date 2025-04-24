@@ -138,7 +138,7 @@ export const useBlogPosts = () => {
       delete toUpdate.author;
     }
     if (updatedPost.publishDate) {
-      toUpdate.publishdate = updatedPost.publishDate; // Fixed: using lowercase publishdate for database
+      toUpdate.publishdate = updatedPost.publishDate;
       delete toUpdate.publishDate;
     }
     const { data, error } = await supabase
