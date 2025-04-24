@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
-import ReactMarkdown from "react-markdown";
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -58,37 +57,6 @@ const BlogPostPage = () => {
     );
   }
 
-  // Custom markdown renderer components
-  const renderers = {
-    img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-      // Ensure we have a src, or return null if not provided
-      if (!props.src) return null;
-      
-      // Directly pass through the src - this is important for base64 images
-      return (
-        <div className="my-6">
-          <img 
-            src={props.src}
-            alt={props.alt || "Blog image"} 
-            className="mx-auto rounded-lg shadow-md max-h-[500px] w-auto"
-          />
-        </div>
-      );
-    }
-  };
-
-  // Function to safely render HTML content
-  const renderHtmlContent = () => {
-    if (!post.content) return null;
-    
-    return (
-      <div 
-        className="prose prose-lg max-w-none prose-img:rounded-lg prose-img:shadow prose-img:mx-auto"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-    );
-  };
-
   return (
     <Layout>
       <div className="container mx-auto px-4 py-10 md:py-20">
@@ -136,9 +104,10 @@ const BlogPostPage = () => {
           </div>
 
           {/* Content */}
-          <div className="mb-8">
-            {renderHtmlContent()}
-          </div>
+          <div 
+            className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600"
+            dangerouslySetInnerHTML={{ __html: post.content || "" }}
+          />
         </article>
       </div>
     </Layout>

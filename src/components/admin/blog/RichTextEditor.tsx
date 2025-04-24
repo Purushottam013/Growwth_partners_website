@@ -17,6 +17,8 @@ import {
   AlignRight,
   Quote,
   Code,
+  Eye,
+  Edit,
 } from "lucide-react";
 
 interface RichTextEditorProps {
@@ -29,6 +31,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
 
   // Insert markdown at cursor
   const insertMarkdown = (prefix: string, suffix: string, defaultText: string) => {
@@ -111,25 +114,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       // Process each file as an image
       Array.from(clipboard.files).forEach(file => {
         if (file.type.startsWith('image/')) {
-          // Convert image file to base64
-          const reader = new FileReader();
-          reader.onload = () => {
-            const base64String = reader.result as string;
-            const imgTag = `<img src="${base64String}" alt="Pasted image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
-            
-            const textarea = document.getElementById("content") as HTMLTextAreaElement;
-            if (textarea) {
-              const start = textarea.selectionStart;
-              const end = textarea.selectionEnd;
-              
-              const newText = textarea.value.substring(0, start) + 
-                             imgTag + 
-                             textarea.value.substring(end);
-              
-              onChange(newText);
-            }
-          };
-          reader.readAsDataURL(file);
+          handleImageFile(file);
         }
       });
       return;
@@ -150,253 +135,283 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     }
   }, [onChange]);
 
-  // Upload image and insert as HTML img tag
-  const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(null);
-
-    const file = e.target.files?.[0];
-    if (!file) return;
+  // Process image file and insert as HTML
+  const handleImageFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      setError("Please select a valid image file.");
+      return;
+    }
     
     setUploading(true);
+    setError(null);
     
-    try {
-      // Convert image to base64
-      const reader = new FileReader();
+    // Convert image to base64
+    const reader = new FileReader();
+    
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
       
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        
-        // Insert as direct HTML img tag with proper styling classes
-        // This approach ensures the image is rendered directly as HTML
-        const imgTag = `<img src="${base64String}" alt="Uploaded image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
-        
-        const textarea = document.getElementById("content") as HTMLTextAreaElement;
-        if (textarea) {
-          const start = textarea.selectionStart;
-          const end = textarea.selectionEnd;
-          
-          const newText = textarea.value.substring(0, start) + 
-                          imgTag + 
-                          textarea.value.substring(end);
-          
-          onChange(newText);
-          
-          // Set focus back to textarea after update
-          setTimeout(() => {
-            textarea.focus();
-            textarea.selectionStart = start + imgTag.length;
-            textarea.selectionEnd = start + imgTag.length;
-          }, 0);
-        }
-        
-        setUploading(false);
-        
-        // Reset the input so the same file can be selected again
-        if (fileInputRef.current) {
-          fileInputRef.current.value = '';
-        }
-      };
+      // Insert as direct HTML img tag with proper styling classes
+      const imgTag = `<img src="${base64String}" alt="Uploaded image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
       
-      reader.onerror = () => {
-        setUploading(false);
-        setError("Image upload failed. Please try again.");
-      };
+      const textarea = document.getElementById("content") as HTMLTextAreaElement;
+      if (textarea) {
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        
+        const newText = textarea.value.substring(0, start) + 
+                        imgTag + 
+                        textarea.value.substring(end);
+        
+        onChange(newText);
+        
+        // Set focus back to textarea after update
+        setTimeout(() => {
+          textarea.focus();
+          textarea.selectionStart = start + imgTag.length;
+          textarea.selectionEnd = start + imgTag.length;
+        }, 0);
+      }
       
-      reader.readAsDataURL(file);
-    } catch (err) {
-      console.error("Image upload error:", err);
       setUploading(false);
-      setError("Image upload failed. Please try again.");
+      
+      // Reset the input so the same file can be selected again
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    };
+    
+    reader.onerror = () => {
+      setUploading(false);
+      setError("Image processing failed. Please try again.");
+    };
+    
+    reader.readAsDataURL(file);
+  };
+
+  // Upload image and insert as HTML img tag
+  const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleImageFile(file);
     }
+  };
+
+  // Toggle between edit and preview mode
+  const togglePreviewMode = () => {
+    setIsPreviewMode(!isPreviewMode);
   };
 
   return (
     <div className="space-y-2">
-      <div className="flex flex-wrap items-center gap-1.5 p-1 border rounded-md bg-gray-50">
+      <div className="flex flex-wrap items-center justify-between gap-1.5 p-1 border rounded-md bg-gray-50">
         {/* Text Formatting */}
-        <div className="flex items-center gap-1 border-r pr-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleBold}
-            title="Bold"
-          >
-            <Bold className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleItalic}
-            title="Italic"
-          >
-            <Italic className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleUnderline}
-            title="Underline"
-          >
-            <Underline className="h-4 w-4" />
-          </Button>
-        </div>
+        <div className="flex flex-wrap items-center gap-1">
+          <div className="flex items-center gap-1 border-r pr-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleBold}
+              title="Bold"
+            >
+              <Bold className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleItalic}
+              title="Italic"
+            >
+              <Italic className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleUnderline}
+              title="Underline"
+            >
+              <Underline className="h-4 w-4" />
+            </Button>
+          </div>
 
-        {/* Headings */}
-        <div className="flex items-center gap-1 border-r pr-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleHeading1}
-            title="Heading 1"
-          >
-            H1
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleHeading2}
-            title="Heading 2"
-          >
-            H2
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleHeading3}
-            title="Heading 3"
-          >
-            H3
-          </Button>
-        </div>
+          {/* Headings */}
+          <div className="flex items-center gap-1 border-r pr-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleHeading1}
+              title="Heading 1"
+            >
+              H1
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleHeading2}
+              title="Heading 2"
+            >
+              H2
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleHeading3}
+              title="Heading 3"
+            >
+              H3
+            </Button>
+          </div>
 
-        {/* Alignment */}
-        <div className="flex items-center gap-1 border-r pr-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => {}}
-            title="Align Left"
-          >
-            <AlignLeft className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleCenterAlign}
-            title="Align Center"
-          >
-            <AlignCenter className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleRightAlign}
-            title="Align Right"
-          >
-            <AlignRight className="h-4 w-4" />
-          </Button>
-        </div>
+          {/* Alignment */}
+          <div className="flex items-center gap-1 border-r pr-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => {}}
+              title="Align Left"
+            >
+              <AlignLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleCenterAlign}
+              title="Align Center"
+            >
+              <AlignCenter className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleRightAlign}
+              title="Align Right"
+            >
+              <AlignRight className="h-4 w-4" />
+            </Button>
+          </div>
 
-        {/* Lists and Others */}
-        <div className="flex items-center gap-1 border-r pr-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleOrderedList}
-            title="Ordered List"
-          >
-            <ListOrdered className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleUnorderedList}
-            title="Unordered List"
-          >
-            <List className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleQuote}
-            title="Quote"
-          >
-            <Quote className="h-4 w-4" />
-          </Button>
-        </div>
+          {/* Lists and Others */}
+          <div className="flex items-center gap-1 border-r pr-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleOrderedList}
+              title="Ordered List"
+            >
+              <ListOrdered className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleUnorderedList}
+              title="Unordered List"
+            >
+              <List className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleQuote}
+              title="Quote"
+            >
+              <Quote className="h-4 w-4" />
+            </Button>
+          </div>
 
-        {/* Code */}
-        <div className="flex items-center gap-1 border-r pr-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleCode}
-            title="Code Block"
-          >
-            <Code className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={handleInlineCode}
-            title="Inline Code"
-          >
-            <code className="text-xs">{'<>'}</code>
-          </Button>
-        </div>
+          {/* Code */}
+          <div className="flex items-center gap-1 border-r pr-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleCode}
+              title="Code Block"
+            >
+              <Code className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleInlineCode}
+              title="Inline Code"
+            >
+              <code className="text-xs">{'<>'}</code>
+            </Button>
+          </div>
 
-        {/* Links and Images */}
-        <div className="flex items-center gap-1">
+          {/* Links and Images */}
+          <div className="flex items-center gap-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleLink}
+              title="Link"
+            >
+              <Link className="h-4 w-4" />
+            </Button>
+            
+            {/* Image upload button */}
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              className="hidden"
+              onChange={handleUploadImage}
+              aria-label="Upload Image"
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => fileInputRef.current?.click()}
+              title="Upload Image"
+              disabled={uploading}
+            >
+              {uploading ? (
+                <span className="flex items-center gap-1 text-xs text-gray-600">
+                  <Upload className="animate-spin mr-1 h-4 w-4" />
+                  Uploading...
+                </span>
+              ) : (
+                <>
+                  <ImageIcon className="h-4 w-4" />
+                  <span className="sr-only">Upload Image</span>
+                </>
+              )}
+            </Button>
+          </div>
+        </div>
+        
+        {/* Preview Toggle */}
+        <div>
           <Button
             type="button"
-            variant="ghost"
+            variant="outline"
             size="sm"
-            onClick={handleLink}
-            title="Link"
+            onClick={togglePreviewMode}
+            className="ml-auto"
           >
-            <Link className="h-4 w-4" />
-          </Button>
-          
-          {/* Image upload button */}
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            className="hidden"
-            onChange={handleUploadImage}
-            aria-label="Upload Image"
-          />
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => fileInputRef.current?.click()}
-            title="Upload Image"
-            disabled={uploading}
-          >
-            {uploading ? (
-              <span className="flex items-center gap-1 text-xs text-gray-600">
-                <Upload className="animate-spin mr-1 h-4 w-4" />
-                Uploading...
-              </span>
+            {isPreviewMode ? (
+              <>
+                <Edit className="h-4 w-4 mr-1" /> Edit
+              </>
             ) : (
               <>
-                <ImageIcon className="h-4 w-4" />
-                <span className="sr-only">Upload Image</span>
+                <Eye className="h-4 w-4 mr-1" /> Preview
               </>
             )}
           </Button>
@@ -407,17 +422,24 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         <div className="text-red-600 text-xs px-1">{error}</div>
       )}
       
-      <Textarea
-        id="content"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onPaste={handlePaste}
-        rows={15}
-        className="font-mono"
-      />
+      {isPreviewMode ? (
+        <div 
+          className="border p-4 rounded-md min-h-[200px] prose prose-sm max-w-none overflow-auto bg-white"
+          dangerouslySetInnerHTML={{ __html: value }}
+        />
+      ) : (
+        <Textarea
+          id="content"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onPaste={handlePaste}
+          rows={15}
+          className="font-mono"
+        />
+      )}
       
       <div className="text-xs text-muted-foreground">
-        Tip: You can also directly paste formatted content or write HTML/Markdown.
+        Tip: You can directly paste formatted content, images or write HTML/Markdown.
       </div>
     </div>
   );
