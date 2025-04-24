@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -70,9 +69,8 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
   const onSubmit = async (data: FormValues) => {
     try {
       if (mode === "edit" && initialData) {
-        // Here's the fix: Ensure title is always provided and is not optional
         await updatePost(initialData.id, {
-          title: data.title, // This is now explicitly required
+          title: data.title,
           slug: data.slug,
           heroImage: data.heroImage,
           excerpt: data.excerpt,
@@ -85,7 +83,15 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
           description: "Blog post updated successfully!",
         });
       } else {
-        await addPost(data); // addPost already expects title as required
+        await addPost({
+          title: data.title,
+          slug: data.slug,
+          heroImage: data.heroImage,
+          excerpt: data.excerpt,
+          content: data.content,
+          author: data.author,
+          categories: data.categories,
+        });
         form.reset();
         toast({
           title: "Success",
