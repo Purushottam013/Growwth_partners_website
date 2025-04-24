@@ -1,4 +1,3 @@
-
 import { useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,74 +63,82 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     }, 0);
   };
 
-  const handleBold = () => insertMarkdown("**", "**", "bold text");
-  const handleItalic = () => insertMarkdown("*", "*", "italic text");
+  const handleBold = () => insertMarkdown("<strong>", "</strong>", "bold text");
+  const handleItalic = () => insertMarkdown("<em>", "</em>", "italic text");
   const handleUnderline = () => insertMarkdown("<u>", "</u>", "underlined text");
-  const handleHeading1 = () => insertMarkdown("# ", "", "Heading 1");
-  const handleHeading2 = () => insertMarkdown("## ", "", "Heading 2");
-  const handleHeading3 = () => insertMarkdown("### ", "", "Heading 3");
-  const handleOrderedList = () => insertMarkdown("\n1. ", "", "List item");
-  const handleUnorderedList = () => insertMarkdown("\n- ", "", "List item");
-  const handleQuote = () => insertMarkdown("> ", "", "Blockquote text");
-  const handleCode = () => insertMarkdown("```\n", "\n```", "code block");
-  const handleInlineCode = () => insertMarkdown("`", "`", "inline code");
-  const handleCenterAlign = () => insertMarkdown("<div align='center'>\n", "\n</div>", "centered text");
-  const handleRightAlign = () => insertMarkdown("<div align='right'>\n", "\n</div>", "right aligned text");
-  const handleLeftAlign = () => insertMarkdown("<div align='left'>\n", "\n</div>", "left aligned text");
+  const handleHeading1 = () => insertMarkdown("<h1>", "</h1>", "Heading 1");
+  const handleHeading2 = () => insertMarkdown("<h2>", "</h2>", "Heading 2");
+  const handleHeading3 = () => insertMarkdown("<h3>", "</h3>", "Heading 3");
+  const handleOrderedList = () => insertMarkdown("<ol><li>", "</li></ol>", "List item");
+  const handleUnorderedList = () => insertMarkdown("<ul><li>", "</li></ul>", "List item");
+  const handleQuote = () => insertMarkdown("<blockquote>", "</blockquote>", "Blockquote text");
+  const handleCode = () => insertMarkdown("<pre><code>", "</code></pre>", "code block");
+  const handleInlineCode = () => insertMarkdown("<code>", "</code>", "inline code");
+  const handleCenterAlign = () => insertMarkdown("<div style='text-align: center;'>", "</div>", "centered text");
+  const handleRightAlign = () => insertMarkdown("<div style='text-align: right;'>", "</div>", "right aligned text");
+  const handleLeftAlign = () => insertMarkdown("<div style='text-align: left;'>", "</div>", "left aligned text");
 
   const handleLink = () => {
     const url = prompt("Enter URL:", "https://");
     if (url) {
-      insertMarkdown("[", `](${url})`, "link text");
+      insertMarkdown("<a href='" + url + "'>", "</a>", "link text");
     }
   };
 
-  // Process HTML content for pasting
-  const processHtml = (html: string): string => {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
+  // Clean HTML content from unwanted styles and attributes
+  const cleanHtml = (html: string): string => {
+    // Create a DOMParser to parse the HTML string
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
     
-    // Process headers
-    Array.from(tempDiv.querySelectorAll('h1')).forEach(h1 => {
-      h1.outerHTML = `<h1>${h1.innerHTML}</h1>`;
-    });
-    Array.from(tempDiv.querySelectorAll('h2')).forEach(h2 => {
-      h2.outerHTML = `<h2>${h2.innerHTML}</h2>`;
-    });
-    Array.from(tempDiv.querySelectorAll('h3')).forEach(h3 => {
-      h3.outerHTML = `<h3>${h3.innerHTML}</h3>`;
-    });
+    // Remove meta tags and other unwanted elements
+    const metaTags = doc.querySelectorAll('meta');
+    metaTags.forEach(tag => tag.remove());
     
-    // Process formatting
-    Array.from(tempDiv.querySelectorAll('b, strong')).forEach(b => {
-      b.outerHTML = `<strong>${b.innerHTML}</strong>`;
-    });
-    Array.from(tempDiv.querySelectorAll('i, em')).forEach(i => {
-      i.outerHTML = `<em>${i.innerHTML}</em>`;
-    });
-    Array.from(tempDiv.querySelectorAll('u')).forEach(u => {
-      u.outerHTML = `<u>${u.innerHTML}</u>`;
-    });
+    // Function to clean an element's attributes and styles
+    const cleanElement = (el: Element) => {
+      // Keep only essential attributes
+      const allowedAttrs = ['href', 'src', 'alt'];
+      
+      // Remove all attributes except allowed ones
+      Array.from(el.attributes).forEach(attr => {
+        if (!allowedAttrs.includes(attr.name) && attr.name !== 'style') {
+          el.removeAttribute(attr.name);
+        }
+      });
+      
+      // Simplify style attribute if present
+      if (el.hasAttribute('style')) {
+        const style = el.getAttribute('style') || '';
+        const simplifiedStyle = style.split(';')
+          .filter(s => 
+            s.trim().startsWith('text-align') || 
+            s.trim().startsWith('font-weight') ||
+            s.trim().startsWith('font-style')
+          )
+          .join(';');
+        
+        if (simplifiedStyle) {
+          el.setAttribute('style', simplifiedStyle);
+        } else {
+          el.removeAttribute('style');
+        }
+      }
+    };
     
-    // Process lists
-    Array.from(tempDiv.querySelectorAll('ul')).forEach(ul => {
-      const items = Array.from(ul.querySelectorAll('li'))
-        .map(li => `<li>${li.innerHTML}</li>`)
-        .join('');
-      ul.outerHTML = `<ul>${items}</ul>`;
-    });
+    // Clean all elements in the document
+    const allElements = doc.querySelectorAll('*');
+    allElements.forEach(cleanElement);
     
-    Array.from(tempDiv.querySelectorAll('ol')).forEach(ol => {
-      const items = Array.from(ol.querySelectorAll('li'))
-        .map(li => `<li>${li.innerHTML}</li>`)
-        .join('');
-      ol.outerHTML = `<ol>${items}</ol>`;
-    });
+    // Remove empty paragraphs
+    const emptyParagraphs = doc.querySelectorAll('p:empty');
+    emptyParagraphs.forEach(p => p.remove());
     
-    return tempDiv.innerHTML;
+    // Get the cleaned HTML
+    return doc.body.innerHTML;
   };
 
-  // Handle paste event to preserve formatting
+  // Process HTML content for pasting
   const handlePaste = useCallback((e: React.ClipboardEvent) => {
     e.preventDefault();
     
@@ -141,7 +148,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     // Check if clipboard has HTML content
     if (clipboard.types.includes('text/html')) {
       const htmlContent = clipboard.getData('text/html');
-      const processedHtml = processHtml(htmlContent);
+      // Clean and process HTML before inserting
+      const cleanedHtml = cleanHtml(htmlContent);
       
       const textarea = textareaRef.current;
       if (textarea) {
@@ -149,8 +157,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         const end = textarea.selectionEnd;
         
         const newText = textarea.value.substring(0, start) + 
-                        processedHtml + 
-                        textarea.value.substring(end);
+                      cleanedHtml + 
+                      textarea.value.substring(end);
         
         onChange(newText);
       }
@@ -488,7 +496,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       )}
       
       <div className="text-xs text-muted-foreground">
-        Tip: You can directly paste formatted content, images or write HTML/Markdown.
+        Tip: You can directly paste formatted content, images or write HTML.
       </div>
     </div>
   );
