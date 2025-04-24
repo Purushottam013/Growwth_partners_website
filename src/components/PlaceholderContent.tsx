@@ -4,16 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUp } from "lucide-react";
 
+interface Feature {
+  title: string;
+  description: string;
+}
+
 interface PlaceholderContentProps {
   title: string;
   description: string;
   imageBg?: string;
+  features?: Feature[];
 }
 
 export const PlaceholderContent = ({ 
   title, 
   description,
-  imageBg = "bg-gradient-to-r from-brand-blue to-brand-green" 
+  imageBg = "bg-gradient-to-r from-brand-blue to-brand-green",
+  features
 }: PlaceholderContentProps) => {
   const { getCountryUrl } = useCountry();
   
@@ -63,18 +70,18 @@ export const PlaceholderContent = ({
         <div className="mt-16 space-y-8">
           <h2 className="text-2xl md:text-3xl font-bold">What We Offer</h2>
           <p className="text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.
+            Our comprehensive services are designed to meet your specific needs, delivering excellence and expertise in every aspect of our work.
           </p>
           
           <div className="grid md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold mb-3">Feature {item}</h3>
+            {features ? features.map((feature, index) => (
+              <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
                 <p className="text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
+                  {feature.description}
                 </p>
               </div>
-            ))}
+            )) : null}
           </div>
           
           <div className="bg-gray-50 p-8 rounded-lg mt-12">
@@ -84,25 +91,25 @@ export const PlaceholderContent = ({
                 <svg className="h-6 w-6 mr-2 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Professional expertise in financial services</span>
+                <span>Professional expertise backed by industry recognition</span>
               </li>
               <li className="flex items-start">
                 <svg className="h-6 w-6 mr-2 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Tailored solutions for your business needs</span>
+                <span>Innovative solutions tailored to your business needs</span>
               </li>
               <li className="flex items-start">
                 <svg className="h-6 w-6 mr-2 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Transparent pricing and no hidden fees</span>
+                <span>Transparent pricing with competitive rates</span>
               </li>
               <li className="flex items-start">
                 <svg className="h-6 w-6 mr-2 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Dedicated support team available for assistance</span>
+                <span>Dedicated support team for seamless service delivery</span>
               </li>
             </ul>
           </div>

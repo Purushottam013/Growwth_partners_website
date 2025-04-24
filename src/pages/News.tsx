@@ -7,8 +7,22 @@ const NewsPage = () => {
     <Layout>
       <PlaceholderContent 
         title="In The News" 
-        description="Find out about our company's latest feature stories, press releases, and media coverage."
+        description="Stay updated with Growwth's latest developments, media coverage, and industry insights that showcase our impact in the financial services sector."
         imageBg="bg-gradient-to-r from-slate-700 to-slate-900"
+        features={[
+          {
+            title: "Digital Innovation",
+            description: "Featured in Tech Asia for our groundbreaking AI-powered financial advisory platform, revolutionizing how businesses access expert financial guidance"
+          },
+          {
+            title: "Market Leadership",
+            description: "Recognized by Singapore Business Review for our contributions to empowering SMEs with accessible, professional financial services"
+          },
+          {
+            title: "Industry Impact",
+            description: "Highlighted in The Business Times for our role in helping Singapore startups optimize their financial operations and achieve sustainable growth"
+          }
+        ]}
       />
     </Layout>
   );
