@@ -28,7 +28,6 @@ interface RichTextEditorProps {
 
 export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const editorRef = useRef<HTMLDivElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
@@ -128,14 +127,14 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       const end = textarea.selectionEnd;
       
       const newText = textarea.value.substring(0, start) + 
-                      text + 
-                      textarea.value.substring(end);
+                     text + 
+                     textarea.value.substring(end);
       
       onChange(newText);
     }
   }, [onChange]);
 
-  // Process image file and insert as HTML
+  // Process image file and convert to base64
   const handleImageFile = (file: File) => {
     if (!file.type.startsWith('image/')) {
       setError("Please select a valid image file.");
