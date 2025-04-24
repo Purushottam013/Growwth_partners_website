@@ -112,7 +112,8 @@ export const useBlogPosts = () => {
   };
 
   // Update post
-  const updatePost = async (id: number, updatedPost: Partial<BlogPost>) => {
+  // Fix: Ensure the fields are properly typed according to BlogPost interface
+  const updatePost = async (id: number, updatedPost: Partial<BlogPost> & { title: string }) => {
     setLoading(true);
     const toUpdate: any = { ...updatedPost };
     if (updatedPost.categories) {

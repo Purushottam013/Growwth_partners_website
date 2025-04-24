@@ -70,8 +70,9 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
   const onSubmit = async (data: FormValues) => {
     try {
       if (mode === "edit" && initialData) {
+        // Here's the fix: Ensure title is always provided and is not optional
         await updatePost(initialData.id, {
-          title: data.title,
+          title: data.title, // This is now explicitly required
           slug: data.slug,
           heroImage: data.heroImage,
           excerpt: data.excerpt,
@@ -84,7 +85,7 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
           description: "Blog post updated successfully!",
         });
       } else {
-        await addPost(data);
+        await addPost(data); // addPost already expects title as required
         form.reset();
         toast({
           title: "Success",
@@ -239,7 +240,7 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
           )}
         />
 
-        <Button type="submit">Create Post</Button>
+        <Button type="submit">{mode === "edit" ? "Update" : "Create"} Post</Button>
       </form>
     </Form>
   );
