@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
@@ -49,7 +50,15 @@ export const Footer = () => {
     // Always use absolute paths with country prefix for navigation
     const url = getCountryUrl(path);
     console.log("Footer navigating to absolute URL:", url);
+    
+    // Navigate to the URL
     navigate(url);
+    
+    // Scroll to top after navigation
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (

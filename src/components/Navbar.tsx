@@ -83,11 +83,20 @@ export const Navbar = () => {
     console.log("Navigation requested to:", path);
     
     // Always navigate using absolute paths with country prefix
-    // If path already starts with /, use it directly, otherwise prepend /
     const url = getCountryUrl(path);
     console.log("Navigating to absolute URL:", url);
+    
+    // Navigate to the URL
     navigate(url, { replace: false });
+    
+    // Close the mobile menu after navigation
     setMobileMenuOpen(false);
+    
+    // Scroll to top after navigation
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   // Handle logo click to go home
@@ -95,8 +104,18 @@ export const Navbar = () => {
     console.log("Logo clicked, navigating to home");
     const homeUrl = getCountryUrl("");
     console.log("Navigating to home URL:", homeUrl);
+    
+    // Navigate to home
     navigate(homeUrl);
+    
+    // Close the mobile menu
     setMobileMenuOpen(false);
+    
+    // Scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
@@ -108,6 +127,8 @@ export const Navbar = () => {
             <div 
               onClick={handleLogoClick} 
               className="flex items-center ml-8 cursor-pointer"
+              role="button"
+              aria-label="Go to home page"
             >
               <img src={companyLogo} alt="Growwth Partners" className="h-9" />
             </div>
