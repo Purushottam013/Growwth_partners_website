@@ -9,7 +9,9 @@ import {
   ListOrdered,
   Link,
   Image as ImageIcon,
-  Heading,
+  Heading1,
+  Heading2,
+  Heading3,
   Upload,
   List,
   AlignLeft,
@@ -28,13 +30,14 @@ interface RichTextEditorProps {
 
 export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
 
   // Insert markdown at cursor
   const insertMarkdown = (prefix: string, suffix: string, defaultText: string) => {
-    const textarea = document.getElementById("content") as HTMLTextAreaElement;
+    const textarea = textareaRef.current;
     if (!textarea) return;
 
     const start = textarea.selectionStart;
@@ -74,12 +77,58 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const handleInlineCode = () => insertMarkdown("`", "`", "inline code");
   const handleCenterAlign = () => insertMarkdown("<div align='center'>\n", "\n</div>", "centered text");
   const handleRightAlign = () => insertMarkdown("<div align='right'>\n", "\n</div>", "right aligned text");
+  const handleLeftAlign = () => insertMarkdown("<div align='left'>\n", "\n</div>", "left aligned text");
 
   const handleLink = () => {
     const url = prompt("Enter URL:", "https://");
     if (url) {
       insertMarkdown("[", `](${url})`, "link text");
     }
+  };
+
+  // Process HTML content for pasting
+  const processHtml = (html: string): string => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    
+    // Process headers
+    Array.from(tempDiv.querySelectorAll('h1')).forEach(h1 => {
+      h1.outerHTML = `<h1>${h1.innerHTML}</h1>`;
+    });
+    Array.from(tempDiv.querySelectorAll('h2')).forEach(h2 => {
+      h2.outerHTML = `<h2>${h2.innerHTML}</h2>`;
+    });
+    Array.from(tempDiv.querySelectorAll('h3')).forEach(h3 => {
+      h3.outerHTML = `<h3>${h3.innerHTML}</h3>`;
+    });
+    
+    // Process formatting
+    Array.from(tempDiv.querySelectorAll('b, strong')).forEach(b => {
+      b.outerHTML = `<strong>${b.innerHTML}</strong>`;
+    });
+    Array.from(tempDiv.querySelectorAll('i, em')).forEach(i => {
+      i.outerHTML = `<em>${i.innerHTML}</em>`;
+    });
+    Array.from(tempDiv.querySelectorAll('u')).forEach(u => {
+      u.outerHTML = `<u>${u.innerHTML}</u>`;
+    });
+    
+    // Process lists
+    Array.from(tempDiv.querySelectorAll('ul')).forEach(ul => {
+      const items = Array.from(ul.querySelectorAll('li'))
+        .map(li => `<li>${li.innerHTML}</li>`)
+        .join('');
+      ul.outerHTML = `<ul>${items}</ul>`;
+    });
+    
+    Array.from(tempDiv.querySelectorAll('ol')).forEach(ol => {
+      const items = Array.from(ol.querySelectorAll('li'))
+        .map(li => `<li>${li.innerHTML}</li>`)
+        .join('');
+      ol.outerHTML = `<ol>${items}</ol>`;
+    });
+    
+    return tempDiv.innerHTML;
   };
 
   // Handle paste event to preserve formatting
@@ -92,15 +141,15 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     // Check if clipboard has HTML content
     if (clipboard.types.includes('text/html')) {
       const htmlContent = clipboard.getData('text/html');
+      const processedHtml = processHtml(htmlContent);
       
-      // Insert HTML content directly
-      const textarea = document.getElementById("content") as HTMLTextAreaElement;
+      const textarea = textareaRef.current;
       if (textarea) {
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
         
         const newText = textarea.value.substring(0, start) + 
-                        htmlContent + 
+                        processedHtml + 
                         textarea.value.substring(end);
         
         onChange(newText);
@@ -121,7 +170,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     
     // Fallback to plain text
     const text = clipboard.getData('text/plain');
-    const textarea = document.getElementById("content") as HTMLTextAreaElement;
+    const textarea = textareaRef.current;
     if (textarea) {
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
@@ -153,7 +202,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       // Insert as direct HTML img tag with proper styling classes
       const imgTag = `<img src="${base64String}" alt="Uploaded image" class="mx-auto rounded-lg shadow-md max-h-[500px] w-auto" />`;
       
-      const textarea = document.getElementById("content") as HTMLTextAreaElement;
+      const textarea = textareaRef.current;
       if (textarea) {
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -245,7 +294,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
               onClick={handleHeading1}
               title="Heading 1"
             >
-              H1
+              <Heading1 className="h-4 w-4" />
             </Button>
             <Button
               type="button"
@@ -254,7 +303,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
               onClick={handleHeading2}
               title="Heading 2"
             >
-              H2
+              <Heading2 className="h-4 w-4" />
             </Button>
             <Button
               type="button"
@@ -263,7 +312,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
               onClick={handleHeading3}
               title="Heading 3"
             >
-              H3
+              <Heading3 className="h-4 w-4" />
             </Button>
           </div>
 
@@ -273,7 +322,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
               type="button"
               variant="ghost"
               size="sm"
-              onClick={() => {}}
+              onClick={handleLeftAlign}
               title="Align Left"
             >
               <AlignLeft className="h-4 w-4" />
@@ -429,6 +478,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       ) : (
         <Textarea
           id="content"
+          ref={textareaRef}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onPaste={handlePaste}
