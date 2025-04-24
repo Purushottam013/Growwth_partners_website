@@ -88,69 +88,93 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   // Clean HTML content from unwanted styles and attributes
   const cleanHtml = (html: string): string => {
     try {
-      // Create a new document to parse the HTML safely
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+      // Create a temporary div to parse the HTML
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = html;
       
-      // Remove <meta>, <script>, and <style> tags
-      const unwantedTags = doc.querySelectorAll('meta, script, style');
-      unwantedTags.forEach(tag => tag.remove());
+      // Remove meta tags
+      const metaTags = tempDiv.querySelectorAll('meta');
+      metaTags.forEach(tag => tag.remove());
       
-      // Function to clean an element's attributes and inline styles
-      const cleanElement = (el: Element) => {
-        // List of attributes to keep - add or remove as needed
+      // Remove script tags
+      const scriptTags = tempDiv.querySelectorAll('script');
+      scriptTags.forEach(tag => tag.remove());
+      
+      // Remove style tags
+      const styleTags = tempDiv.querySelectorAll('style');
+      styleTags.forEach(tag => tag.remove());
+      
+      // Remove HTML comments
+      const commentNodes = [];
+      const walker = document.createTreeWalker(
+        tempDiv,
+        NodeFilter.SHOW_COMMENT,
+        null
+      );
+      let node;
+      while (node = walker.nextNode()) {
+        commentNodes.push(node);
+      }
+      commentNodes.forEach(node => node.parentNode?.removeChild(node));
+      
+      // Clean all elements, simplifying their styles and attributes
+      const allElements = tempDiv.querySelectorAll('*');
+      allElements.forEach(el => {
+        // Keep only essential attributes
         const allowedAttrs = ['href', 'src', 'alt'];
         
-        // Remove all attributes except allowed ones
         Array.from(el.attributes).forEach(attr => {
           if (!allowedAttrs.includes(attr.name) && attr.name !== 'style') {
             el.removeAttribute(attr.name);
           }
         });
         
-        // Keep only basic inline styles if present, remove box-sizing and other complex styles
+        // For style attribute, keep only text formatting related properties
         if (el.hasAttribute('style')) {
-          // Get only essential styling properties
-          const styleAttr = el.getAttribute('style') || '';
-          const essentialStyles: string[] = [];
+          const computedStyle = getComputedStyle(el);
+          const newStyles = [];
           
-          // Only keep these few style properties
-          if (styleAttr.includes('text-align')) {
-            const textAlign = styleAttr.match(/text-align:\s*(left|center|right|justify)/i);
-            if (textAlign && textAlign[1]) {
-              essentialStyles.push(`text-align: ${textAlign[1]}`);
+          // Preserve font-weight for bold text
+          const fontWeight = el.style.fontWeight;
+          if (fontWeight && (fontWeight === 'bold' || parseInt(fontWeight, 10) >= 500)) {
+            el.style.fontWeight = 'bold';
+            // If it's already bold, consider replacing with a strong tag
+            if (el.tagName.toLowerCase() !== 'strong' && 
+                el.tagName.toLowerCase() !== 'h1' && 
+                el.tagName.toLowerCase() !== 'h2' && 
+                el.tagName.toLowerCase() !== 'h3') {
+              const strongEl = document.createElement('strong');
+              strongEl.innerHTML = el.innerHTML;
+              el.innerHTML = '';
+              el.appendChild(strongEl);
+              el.removeAttribute('style');
             }
           }
           
-          if (styleAttr.includes('font-weight')) {
-            const fontWeight = styleAttr.match(/font-weight:\s*(\d+|bold|normal)/i);
-            if (fontWeight && fontWeight[1]) {
-              essentialStyles.push(`font-weight: ${fontWeight[1]}`);
-            }
+          // Preserve text alignment
+          if (el.style.textAlign) {
+            el.style.textAlign = el.style.textAlign;
           }
           
-          if (essentialStyles.length > 0) {
-            el.setAttribute('style', essentialStyles.join('; '));
-          } else {
+          // Remove all other styles
+          if (el.getAttribute('style') === '') {
             el.removeAttribute('style');
           }
         }
-      };
+      });
       
-      // Clean all elements
-      const allElements = doc.body.querySelectorAll('*');
-      allElements.forEach(cleanElement);
+      // Replace empty paragraphs with line breaks
+      const emptyParagraphs = tempDiv.querySelectorAll('p:empty');
+      emptyParagraphs.forEach(p => {
+        const br = document.createElement('br');
+        p.parentNode?.replaceChild(br, p);
+      });
       
-      // Remove empty paragraphs and divs
-      const emptyElements = doc.body.querySelectorAll('p:empty, div:empty');
-      emptyElements.forEach(el => el.remove());
-      
-      // Get the cleaned HTML content
-      return doc.body.innerHTML.trim();
+      // Return the cleaned HTML
+      return tempDiv.innerHTML;
     } catch (e) {
       console.error("Error cleaning HTML:", e);
-      // If something goes wrong, return plain text as fallback
-      return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      return html;
     }
   };
 
