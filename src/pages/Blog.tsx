@@ -96,10 +96,14 @@ const BlogPage = () => {
                 fontWeight: 500
               }}
             >
-              <span className="block font-semibold">
+              <span className="block">
                 Business insights from
               </span>
-              <span className="block mt-1 font-extrabold text-black text-3xl sm:text-5xl tracking-tight" style={{ fontFamily: `"Suisse Int'l", "Helvetica Neue", Arial, sans-serif` }}>Growwth Blog</span>
+              <span className="block mt-1 font-extrabold text-3xl sm:text-5xl tracking-tight" style={{ fontFamily: `"Suisse Int'l", "Helvetica Neue", Arial, sans-serif`, color:'#FB8136' }}>
+              <span style={{ color: "#FB8136" }}>Growwth</span>{" "}
+              <span style={{ color: "#000000" }}>Blog</span>
+              </span>
+
             </h1>
             <p className="text-base md:text-lg max-w-2xl mx-auto font-normal mt-2 text-gray-800">
               Our article provides comprehensive support for businesses operating in Singapore, offering clear guidance on regulatory processes and a wealth of articles covering financial management, accounting principles, and strategies for business expansion
