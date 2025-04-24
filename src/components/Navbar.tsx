@@ -102,11 +102,11 @@ export const Navbar = () => {
   // Handle logo click to go home
   const handleLogoClick = () => {
     console.log("Logo clicked, navigating to home");
-    const homeUrl = getCountryUrl("");
-    console.log("Navigating to home URL:", homeUrl);
+    // const homeUrl = getCountryUrl("");
+    // console.log("Navigating to home URL:", homeUrl);
     
     // Navigate to home
-    navigate(homeUrl);
+    navigate("/");
     
     // Close the mobile menu
     setMobileMenuOpen(false);
