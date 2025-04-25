@@ -21,8 +21,8 @@ export const ComplianceSection = () => {
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <img 
-              src="/lovable-uploads/fd59f6aa-607b-4701-8af8-38f7feee006f.png" 
-              alt="Tax Compliance" 
+              src="/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png" 
+              alt="Tax Compliance Form" 
               className="w-full h-auto rounded-xl shadow-lg relative z-10" 
             />
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FEF7CD]/30 rounded-full filter blur-3xl"></div>

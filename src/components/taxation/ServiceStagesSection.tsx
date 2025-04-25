@@ -1,22 +1,20 @@
-
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, ClipboardCheck, Clock, LineChart } from "lucide-react";
 
 export const ServiceStagesSection = () => {
   const services = [
     {
-      icon: <Check className="w-10 h-10 text-brand-blue" />,
+      icon: <img src="/lovable-uploads/aee41598-8696-4d33-879b-decd0db603c2.png" alt="Financial Review" className="w-16 h-16" />,
       title: "Accurate and Thorough Financial Review",
       description: "We Ensure all financial statements are meticulously checked for accuracy, identifying any discrepancies or errors that could affect tax calculations."
     },
     {
-      icon: <Clock className="w-10 h-10 text-brand-orange" />,
+      icon: <img src="/lovable-uploads/17ffc44e-243e-4ed5-9ecf-86f42e5c4939.png" alt="Deadline Management" className="w-16 h-16" />,
       title: "Timely Filing and Proactive Deadline Management",
       description: "We provide clear, advance notifications of all tax deadlines, and ensure timely submission to avoid penalties and interest charges."
     },
     {
-      icon: <LineChart className="w-10 h-10 text-brand-green" />,
+      icon: <img src="/lovable-uploads/958bd351-bf88-48a1-957b-61b539526e37.png" alt="Transparent Reporting" className="w-16 h-16" />,
       title: "Transparent and Understandable Reporting",
       description: "Deliver tax reports in a straightforward, easy-to-understand format, linking financials with tax workings for complete transparency and clarity."
     }
