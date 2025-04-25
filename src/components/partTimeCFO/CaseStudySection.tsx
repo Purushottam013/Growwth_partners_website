@@ -7,14 +7,14 @@ import { Card, CardContent } from "@/components/ui/card";
 export const CaseStudySection = () => {
   const caseStudies = [
     {
-      title: "Transforming Patient Engagement In Healthcare Through Better Financial Management And Analysis",
-      description: "Evaluating the business health of all companies within the group with the objective to improve revenue, profits and cash flows.",
-      url: "https://growwthpartners.com/portfolio/transforming-patient-engagement-in-healthcare/"
+      title: "Achieving Remarkable Growth: A Data-Driven Success Story",
+      description: "With a focus on experiential learning, they aimed to optimize their staff costs, capital allocation, and financial forecasting to align with their expansion goals.",
+      url: "https://growwthpartners.com/portfolio/achieving-remarkable-growth-a-data-driven-success-story/"
     },
     {
-      title: "Transforming A Gaming Industry Business For Exponential Growth",
-      description: "As a provider of cutting-edge gaming experiences, they aimed to maximise company valuation and identify additional revenue streams for sustainable growth.",
-      url: "https://growwthpartners.com/portfolio/transforming-a-gaming-industry-business-for-exponential-growth/"
+      title: "Achievening E-Commerce Growth With Automation And Analytics",
+      description: "We leveraged data and technology to automate processes, utilizing advanced tools to analyze financial data and target prospects effectively.",
+      url: "https://growwthpartners.com/portfolio/achievening-e-commerce-growth-with-automation-and-analytics/"
     }
   ];
 
