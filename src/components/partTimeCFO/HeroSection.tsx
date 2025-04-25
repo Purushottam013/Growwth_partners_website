@@ -65,7 +65,7 @@ export const HeroSection: React.FC = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-xl text-gray-700"
             >
-              Strategic financial leadership without the cost of a full-time hire—save 50-70% while accelerating your growth.
+              Strategic financial leadership without the cost of a full-time hire, saving 50-70% while accelerating your growth.
             </motion.p>
 
             <motion.div
@@ -91,7 +91,7 @@ export const HeroSection: React.FC = () => {
               </Dialog>
 
               <Button onClick={scrollToServices} variant="outline" className="px-6 py-4">
-                Learn Our Services
+                Our Services
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
