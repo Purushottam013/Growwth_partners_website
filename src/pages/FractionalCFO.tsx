@@ -1,13 +1,12 @@
 
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
-import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { HeroSection } from "@/components/partTimeCFO/HeroSection";
 import FinancialInsights from "@/components/partTimeCFO/FinancialInsights";
 import ServiceOverview from "@/components/partTimeCFO/ServiceOverview";
 import WorkProcess from "@/components/partTimeCFO/WorkProcess";
 import ExpertForm from "@/components/partTimeCFO/ExpertForm";
-import ExpertArticles from "@/components/partTimeCFO/ExpertArticle";
+import CaseStudySection from "@/components/partTimeCFO/CaseStudySection";
 import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 import CTASection from "@/components/partTimeCFO/CTASection";
 import FAQAccordion from "@/components/partTimeCFO/FAQAccordion";
@@ -25,7 +24,7 @@ const FractionalCFOPage = () => {
         <FinancialInsights/>
         <ServiceOverview/>
         <WorkProcess/>
-        <ExpertArticles/>
+        <CaseStudySection/>
         <CTASection/>
         <FAQAccordion/>
       </motion.div>
