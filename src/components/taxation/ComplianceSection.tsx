@@ -1,12 +1,14 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const ComplianceSection = () => {
-  const [contactModalOpen, setContactModalOpen] = React.useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
     <section className="py-20 bg-white">
@@ -21,10 +23,14 @@ export const ComplianceSection = () => {
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <div className="flex items-center justify-center w-full max-w-md">
+              {!imageLoaded && (
+                <Skeleton className="w-full h-[360px] rounded-xl" />
+              )}
               <img 
                 src="/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png" 
                 alt="Tax Compliance Form" 
-                className="w-full h-auto rounded-xl shadow-lg relative z-10" 
+                className={`w-full h-auto rounded-xl shadow-lg relative z-10 ${!imageLoaded ? 'hidden' : ''}`}
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FEF7CD]/30 rounded-full filter blur-3xl"></div>
