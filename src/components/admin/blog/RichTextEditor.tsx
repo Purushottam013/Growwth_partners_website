@@ -69,32 +69,75 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     insertHTMLAtCursor(pre + text + post);
   };
 
-  // ===== custom block formatter for headings =====
+  // ===== custom block formatter for headings - FIXED =====
   const formatBlock = (tag: keyof HTMLElementTagNameMap) => {
-    const sel = window.getSelection();
-    if (!sel || !sel.anchorNode) return;
-    // find the block ancestor
-    const block = (sel.anchorNode as Element).nodeType === 3
-      ? (sel.anchorNode as Element).parentElement
-      : (sel.anchorNode as Element);
-    if (!block) return;
-    // only operate if it's inside our editor
-    const editor = editorRef.current!;
-    const ancestor = block.closest(
-      "p, div, li, blockquote, h1,h2,h3,h4,h5,h6"
-    );
-    if (!ancestor || !editor.contains(ancestor)) return;
-    // create new heading and swap
-    const h = document.createElement(tag);
-    h.innerHTML = ancestor.innerHTML;
-    ancestor.parentNode!.replaceChild(h, ancestor);
-    // move caret into end of new heading
-    const range = document.createRange();
-    range.selectNodeContents(h);
-    range.collapse(false);
-    sel.removeAllRanges();
-    sel.addRange(range);
-    onChange(editor.innerHTML);
+    try {
+      // Get current selection
+      const sel = window.getSelection();
+      if (!sel || !sel.anchorNode) return;
+      
+      // Get the editor element
+      const editor = editorRef.current!;
+      if (!editor) return;
+      
+      // Check if selection is inside editor
+      if (!editor.contains(sel.anchorNode)) return;
+      
+      // Find the closest block-level ancestor of the current selection
+      let node = sel.anchorNode;
+      
+      // If it's a text node, get its parent
+      if (node.nodeType === 3) { // Text node
+        node = node.parentNode;
+      }
+      
+      let blockElement = node;
+      
+      // Find block-level ancestor
+      while (blockElement && 
+             blockElement !== editor && 
+             !['P', 'DIV', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(blockElement.nodeName)) {
+        blockElement = blockElement.parentNode;
+      }
+      
+      // If we didn't find a block element or we're at the editor itself, create a new paragraph
+      if (!blockElement || blockElement === editor) {
+        document.execCommand('formatBlock', false, '<p>');
+        blockElement = sel.anchorNode;
+        while (blockElement && 
+               blockElement !== editor && 
+               !['P', 'DIV', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(blockElement.nodeName)) {
+          blockElement = blockElement.parentNode;
+        }
+        if (!blockElement || blockElement === editor) return;
+      }
+      
+      // Create the new heading element
+      const newElement = document.createElement(tag);
+      newElement.innerHTML = blockElement.innerHTML;
+      
+      // Replace the old block with the new heading
+      blockElement.parentNode!.replaceChild(newElement, blockElement);
+      
+      // Ensure the cursor remains visible in the editor
+      setTimeout(() => {
+        // Move focus back to editor
+        editor.focus();
+        
+        // Create a new selection at the end of the new heading
+        const range = document.createRange();
+        range.selectNodeContents(newElement);
+        range.collapse(false); // collapse to end
+        
+        sel.removeAllRanges();
+        sel.addRange(range);
+        
+        // Update the content
+        onChange(editor.innerHTML);
+      }, 0);
+    } catch (err) {
+      console.error("Error in formatBlock:", err);
+    }
   };
 
   const handleBold = () =>
