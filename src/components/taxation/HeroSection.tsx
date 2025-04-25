@@ -50,7 +50,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:block relative max-w-md mx-auto"
           >
-            {/* Floating badge */}
+            {/* First floating badge */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,6 +60,19 @@ export const HeroSection = () => {
               <p className="text-sm font-bold text-brand-blue flex items-center">
                 <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
                 Expert Tax Support
+              </p>
+            </motion.div>
+            
+            {/* Second floating badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              className="absolute -bottom-6 -left-6 bg-white shadow-lg rounded-lg px-4 py-2 z-20"
+            >
+              <p className="text-sm font-bold text-brand-orange flex items-center">
+                <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                On-Time Filing
               </p>
             </motion.div>
             

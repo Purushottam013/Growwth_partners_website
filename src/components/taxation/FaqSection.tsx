@@ -58,7 +58,7 @@ export const FaqSection = () => {
             Find answers to common questions about our taxation and compliance services.
           </p>
         </motion.div>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem 
