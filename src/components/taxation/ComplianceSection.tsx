@@ -1,30 +1,30 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 
 export const ComplianceSection = () => {
-  const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = React.useState(false);
 
   return (
     <section className="py-20 bg-white">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center justify-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative h-full flex items-center"
+            className="relative flex items-center justify-center h-full"
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
-            <div className="h-full flex items-center justify-center">
+            <div className="flex items-center justify-center w-full max-w-md">
               <img 
                 src="/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png" 
                 alt="Tax Compliance Form" 
-                className="w-full max-w-md h-auto rounded-xl shadow-lg relative z-10" 
+                className="w-full h-auto rounded-xl shadow-lg relative z-10" 
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FEF7CD]/30 rounded-full filter blur-3xl"></div>
@@ -35,7 +35,7 @@ export const ComplianceSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="h-full flex flex-col justify-center"
+            className="flex flex-col justify-center h-full"
           >
             <h3 className="heading-md mb-6 text-gray-900">
               Stay on top of your tax compliance
@@ -103,3 +103,4 @@ export const ComplianceSection = () => {
     </section>
   );
 };
+
