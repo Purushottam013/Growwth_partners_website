@@ -63,12 +63,7 @@ export const ProcessSection = () => {
                 </div>
               </div>
               <div className="p-8 flex-grow">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-brand-orange font-bold mr-3">
-                    {index + 1}
-                  </div>
-                  <h4 className="text-xl font-bold">{step.title}</h4>
-                </div>
+                <h4 className="text-xl font-bold mb-4">{step.title}</h4>
                 <p className="text-gray-700">{step.description}</p>
               </div>
             </motion.div>

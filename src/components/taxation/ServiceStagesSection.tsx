@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -46,7 +47,7 @@ export const ServiceStagesSection = () => {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col"
             >
-              <div className="mx-auto p-4 bg-gray-50 rounded-full mb-6 flex items-center justify-center w-20 h-20">
+              <div className="mx-auto mb-6 flex items-center justify-center">
                 {service.icon}
               </div>
               <h4 className="text-xl font-bold mb-4">{service.title}</h4>

@@ -48,8 +48,21 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden lg:block"
+            className="hidden lg:block relative max-w-md mx-auto"
           >
+            {/* Floating badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="absolute -top-8 -right-8 bg-white shadow-lg rounded-lg px-4 py-2 z-20"
+            >
+              <p className="text-sm font-bold text-brand-blue flex items-center">
+                <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                Expert Tax Support
+              </p>
+            </motion.div>
+            
             <img 
               src="/lovable-uploads/400ef52e-c935-47c0-8183-c36913218f6c.png"
               alt="Tax Services" 
