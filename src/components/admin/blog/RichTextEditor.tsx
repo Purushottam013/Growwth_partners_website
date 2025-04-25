@@ -91,12 +91,13 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         node = node.parentNode;
       }
       
-      let blockElement = node;
+      let blockElement: Node | null = node;
       
       // Find block-level ancestor
       while (blockElement && 
              blockElement !== editor && 
-             !['P', 'DIV', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(blockElement.nodeName)) {
+             !(blockElement instanceof Element && 
+               ['P', 'DIV', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(blockElement.nodeName))) {
         blockElement = blockElement.parentNode;
       }
       
@@ -106,7 +107,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         blockElement = sel.anchorNode;
         while (blockElement && 
                blockElement !== editor && 
-               !['P', 'DIV', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(blockElement.nodeName)) {
+               !(blockElement instanceof Element && 
+                 ['P', 'DIV', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(blockElement.nodeName))) {
           blockElement = blockElement.parentNode;
         }
         if (!blockElement || blockElement === editor) return;
@@ -114,7 +116,14 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       
       // Create the new heading element
       const newElement = document.createElement(tag);
-      newElement.innerHTML = blockElement.innerHTML;
+      
+      // We need to assert that blockElement is an HTMLElement to access innerHTML
+      if (blockElement instanceof HTMLElement) {
+        newElement.innerHTML = blockElement.innerHTML;
+      } else {
+        // Fallback in case it's not an HTMLElement
+        newElement.textContent = blockElement.textContent || '';
+      }
       
       // Replace the old block with the new heading
       blockElement.parentNode!.replaceChild(newElement, blockElement);
