@@ -51,7 +51,7 @@ export const HeroSection = () => {
             className="hidden lg:block"
           >
             <img 
-              src="/lovable-uploads/15b8b892-3666-4632-833d-5ecceccf580c.png"
+              src="/lovable-uploads/400ef52e-c935-47c0-8183-c36913218f6c.png"
               alt="Tax Services" 
               className="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300" 
             />
