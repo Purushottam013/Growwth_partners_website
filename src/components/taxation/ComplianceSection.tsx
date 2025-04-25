@@ -11,13 +11,13 @@ export const ComplianceSection = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center justify-center">
+        <div className="flex flex-col lg:flex-row gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative flex items-center justify-center h-full"
+            className="relative flex items-center justify-center w-full lg:w-1/2"
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <div className="flex items-center justify-center w-full max-w-md">
@@ -35,7 +35,7 @@ export const ComplianceSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex flex-col justify-center h-full"
+            className="flex flex-col justify-center w-full lg:w-1/2"
           >
             <h3 className="heading-md mb-6 text-gray-900">
               Stay on top of your tax compliance
@@ -90,7 +90,7 @@ export const ComplianceSection = () => {
       </div>
       
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
             <DialogDescription className="text-center">
@@ -103,4 +103,3 @@ export const ComplianceSection = () => {
     </section>
   );
 };
-

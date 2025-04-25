@@ -36,7 +36,7 @@ export const HeroSection = () => {
               Discover the Growwth Partners Advantage
             </p>
             <Button 
-              onClick={() => setContactModalOpen(true)}
+              onClick={() => setContactModalOpen(true)} 
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-8 py-6 text-lg rounded-full"
             >
               Contact Us
@@ -86,7 +86,7 @@ export const HeroSection = () => {
       </div>
 
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-center">Contact Us</DialogTitle>
             <DialogDescription className="text-center">

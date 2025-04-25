@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import reviewsImage from "/lovable-uploads/dffbab4b-f0da-478a-9c0a-f904cf950811.png";
 
 export const CtaSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -53,7 +52,7 @@ export const CtaSection = () => {
       </div>
 
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
             <DialogDescription className="text-center">
