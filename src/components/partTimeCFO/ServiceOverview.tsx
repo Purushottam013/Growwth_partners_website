@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -71,10 +72,10 @@ export const ServiceOverview: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.2, duration: 0.5 }}
               whileHover={{ y: -5 }}
-              className="relative group"
+              className="relative group h-full"
             >
               <div className={`${item.accent} h-3 w-full rounded-t-lg`}></div>
-              <Card className="relative p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <Card className="relative p-8 rounded-2xl bg-gradient-to-br from-blue-50 to-white shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                 <div className={`absolute top-0 right-0 w-24 h-24 bg-blue-100 rounded-bl-[100px] -mr-12 -mt-12 group-hover:bg-blue-200 transition-colors duration-300`}></div>
                 <CardHeader className="px-0 pt-0">
                   <div className={`${item.iconBg} w-16 h-16 mb-6 rounded-2xl flex items-center justify-center transition-all duration-300 transform group-hover:rotate-6`}>
@@ -82,7 +83,7 @@ export const ServiceOverview: React.FC = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-1">{item.title}</h3>
                 </CardHeader>
-                <CardContent className="px-0 pb-0">
+                <CardContent className="px-0 pb-0 flex-grow flex flex-col justify-between">
                   <p className="text-lg text-gray-700">{item.text}</p>
                 </CardContent>
               </Card>

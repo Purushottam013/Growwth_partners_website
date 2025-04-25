@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
@@ -56,10 +57,10 @@ export const WorkProcess: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="group"
+              className="group h-full"
             >
-              <Card className="p-6 rounded-xl shadow-md hover:shadow-lg transition-transform duration-300 transform group-hover:-translate-y-2 border-t-4 border-brand-orange bg-white">
-                <div className="flex flex-col items-center text-center">
+              <Card className="p-6 rounded-xl shadow-md hover:shadow-lg transition-transform duration-300 transform group-hover:-translate-y-2 border-t-4 border-brand-orange bg-white h-full flex flex-col">
+                <div className="flex flex-col items-center text-center h-full justify-between">
                   {svc.icon}
                   <h4 className="text-xl font-semibold mb-3 text-gray-800">{svc.title}</h4>
                   <p className="text-gray-600 text-lg">{svc.description}</p>
@@ -83,7 +84,7 @@ export const WorkProcess: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {/* Connector line */}
           <div className="hidden md:block absolute inset-x-0 top-1/2 h-1 bg-gray-200 -translate-y-1/2"></div>
 
@@ -93,13 +94,13 @@ export const WorkProcess: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.2, duration: 0.5 }}
-              className="relative z-10 flex flex-col items-center"
+              className="relative z-10 flex flex-col items-center h-full"
             >
               <div className="w-16 h-16 bg-brand-orange rounded-full text-white flex items-center justify-center text-2xl font-bold shadow-lg mb-6">
                 {step.label}
               </div>
-              <Card className="w-full p-6 text-center shadow-md hover:shadow-lg transition duration-300 border-none">
-                <CardContent className="pt-4">
+              <Card className="w-full p-6 text-center shadow-md hover:shadow-lg transition duration-300 border-none h-full flex flex-col">
+                <CardContent className="pt-4 flex-grow flex flex-col justify-between">
                   <h5 className="text-xl font-semibold mb-4 text-gray-800">{step.title}</h5>
                   <p className="text-gray-600 text-lg">{step.description}</p>
                 </CardContent>
