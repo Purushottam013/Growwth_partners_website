@@ -10,7 +10,7 @@ export const FoodTechChallenges = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-white">
+    <section id="challenges" className="py-20 bg-gradient-to-br from-slate-50 to-white">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
           <motion.div
@@ -43,7 +43,7 @@ export const FoodTechChallenges = () => {
           >
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/cfad044f-2459-4cc6-b845-3b34a2d834e2.png"
+              src="/lovable-uploads/e13039f9-8178-4cd3-8a0e-80120863119c.png"
               alt="Food Tech Challenges"
               className="rounded-2xl shadow-2xl relative z-10 w-full max-w-md mx-auto"
             />

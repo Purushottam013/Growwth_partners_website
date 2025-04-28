@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { CaseStudyFoodTechHero } from "@/components/case-studies/CaseStudyFoodTechHero";
 import { FoodTechClientOverview } from "@/components/case-studies/FoodTechClientOverview";
@@ -10,8 +11,29 @@ import { FoodTechTimeline } from "@/components/case-studies/FoodTechTimeline";
 import { FoodTechKeyTakeaways } from "@/components/case-studies/FoodTechKeyTakeaways";
 import { CaseStudyCta } from "@/components/case-studies/CaseStudyCta";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const FoodTechCaseStudy = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if there's a hash in the URL (e.g., #challenges)
+    if (location.hash) {
+      // Get the element with the corresponding ID
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        // Wait a brief moment for the page to fully render
+        setTimeout(() => {
+          // Scroll to the element with smooth scrolling
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    } else {
+      // If no hash, scroll to top of page
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
   return (
     <Layout>
       <motion.div

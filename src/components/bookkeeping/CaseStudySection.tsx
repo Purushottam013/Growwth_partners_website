@@ -3,24 +3,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
 
 export const CaseStudySection = () => {
   const caseStudies = [
     {
-      title: "Fueling Food Tech Growth",
-      description: "Strategic planning and meticulous execution, ensuring every aspect of the business was optimised for reducing food wastage and optimizing the supply chain.",
-      url: "/case-studies/food-tech"
+      title: "Transforming Patient Engagement In Healthcare Through Better Financial Management And Analysis",
+      description: "Evaluating the business health of all companies within the group with the objective to improve revenue, profits and cash flows.",
+      url: "https://growwthpartners.com/portfolio/online-cosnsumer-goods/"
     },
     {
-      title: "Achieving Remarkable Growth: A Data-Driven Success Story",
-      description: "Discover how Growwth can empower your business to achieve sustainable growth through data-driven financial solutions.",
-      url: "/case-studies/ecommerce"
+      title: "Fueling Food Tech Growth",
+      description: "Optimizing operations and financial management for a food technology company focused on reducing waste in the supply chain.",
+      url: "/case-studies/food-tech#challenges"
     }
   ];
 
   return (
-    <section className="bg-white py-[60px]">
+    <section className="bg-gray-50 py-[60px]">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,11 +47,8 @@ export const CaseStudySection = () => {
               viewport={{ once: true }}
               className="h-full"
             >
-              <Link
-                to={study.url}
-                className="block h-full group"
-              >
-                <Card className="bg-gray-50 hover:shadow-xl transition-all duration-300 h-full hover:-translate-y-2 border-0 shadow-md overflow-hidden">
+              <a href={study.url} className="block h-full group">
+                <Card className="bg-white hover:shadow-xl transition-all duration-300 h-full hover:-translate-y-2 border-0 shadow-md overflow-hidden">
                   <CardContent className="p-8">
                     <h4 className="text-xl font-bold mb-4 text-brand-dark group-hover:text-brand-orange transition-colors">
                       {study.title}
@@ -64,7 +60,7 @@ export const CaseStudySection = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </Link>
+              </a>
             </motion.div>
           ))}
         </div>
