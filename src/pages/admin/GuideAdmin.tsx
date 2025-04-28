@@ -1,16 +1,15 @@
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGuides, Guide } from "@/hooks/useGuides";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Pencil, Trash2, Plus } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Pencil, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/admin/blog/RichTextEditor";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,11 +26,10 @@ const guideFormSchema = z.object({
 type GuideFormValues = z.infer<typeof guideFormSchema>;
 
 const GuideAdminPage = () => {
-  const navigate = useNavigate();
   const { guides, loading } = useGuides();
   const { toast } = useToast();
+  const [activeTab, setActiveTab] = useState("guides");
   const [editingGuide, setEditingGuide] = useState<Guide | null>(null);
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
   const form = useForm<GuideFormValues>({
     resolver: zodResolver(guideFormSchema),
@@ -43,10 +41,6 @@ const GuideAdminPage = () => {
       Excerpt: "",
       Content: "",
     },
-  });
-
-  const editForm = useForm<GuideFormValues>({
-    resolver: zodResolver(guideFormSchema),
   });
 
   const handleDelete = async (id: number) => {
@@ -93,8 +87,8 @@ const GuideAdminPage = () => {
         title: "Success",
         description: "Guide added successfully",
       });
-      setIsAddDialogOpen(false);
       form.reset();
+      setActiveTab("guides");
       window.location.reload();
     }
   };
@@ -126,6 +120,7 @@ const GuideAdminPage = () => {
         description: "Guide updated successfully",
       });
       setEditingGuide(null);
+      setActiveTab("guides");
       window.location.reload();
     }
   };
@@ -133,17 +128,12 @@ const GuideAdminPage = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Guide Management</h1>
-          <Button onClick={() => setIsAddDialogOpen(true)}>
-            <Plus className="mr-2" />
-            Add New Guide
-          </Button>
-        </div>
+        <h1 className="text-3xl font-bold mb-8">Guide Management</h1>
 
-        <Tabs defaultValue="guides">
-          <TabsList>
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsList className="mb-8">
             <TabsTrigger value="guides">All Guides</TabsTrigger>
+            <TabsTrigger value="add">Add New Guide</TabsTrigger>
           </TabsList>
           
           <TabsContent value="guides">
@@ -166,7 +156,8 @@ const GuideAdminPage = () => {
                         size="sm"
                         onClick={() => {
                           setEditingGuide(guide);
-                          editForm.reset(guide);
+                          setActiveTab("edit");
+                          form.reset(guide);
                         }}
                       >
                         <Pencil className="h-4 w-4" />
@@ -190,15 +181,11 @@ const GuideAdminPage = () => {
               </div>
             )}
           </TabsContent>
-        </Tabs>
 
-        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-          <DialogContent className="sm:max-w-[600px]">
-            <DialogHeader>
-              <DialogTitle>Add New Guide</DialogTitle>
-            </DialogHeader>
+          <TabsContent value="add">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmitAdd)} className="space-y-4">
+                {/* Title Field */}
                 <FormField
                   control={form.control}
                   name="Title"
@@ -215,6 +202,8 @@ const GuideAdminPage = () => {
                     </FormItem>
                   )}
                 />
+
+                {/* Slug Field */}
                 <FormField
                   control={form.control}
                   name="slug"
@@ -231,6 +220,8 @@ const GuideAdminPage = () => {
                     </FormItem>
                   )}
                 />
+
+                {/* Image Field */}
                 <FormField
                   control={form.control}
                   name="Image"
@@ -243,6 +234,8 @@ const GuideAdminPage = () => {
                     </FormItem>
                   )}
                 />
+
+                {/* Category Field */}
                 <FormField
                   control={form.control}
                   name="Category"
@@ -255,6 +248,8 @@ const GuideAdminPage = () => {
                     </FormItem>
                   )}
                 />
+
+                {/* Excerpt Field */}
                 <FormField
                   control={form.control}
                   name="Excerpt"
@@ -262,11 +257,13 @@ const GuideAdminPage = () => {
                     <FormItem>
                       <FormLabel>Excerpt</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Brief description" {...field} rows={3} />
+                        <Input placeholder="Brief description" {...field} />
                       </FormControl>
                     </FormItem>
                   )}
                 />
+
+                {/* Content Field */}
                 <FormField
                   control={form.control}
                   name="Content"
@@ -274,16 +271,20 @@ const GuideAdminPage = () => {
                     <FormItem>
                       <FormLabel>Content</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Full content" {...field} rows={8} />
+                        <RichTextEditor
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                        />
                       </FormControl>
                     </FormItem>
                   )}
                 />
+
                 <div className="flex justify-end gap-2">
                   <Button 
                     type="button" 
                     variant="outline" 
-                    onClick={() => setIsAddDialogOpen(false)}
+                    onClick={() => setActiveTab("guides")}
                   >
                     Cancel
                   </Button>
@@ -291,24 +292,15 @@ const GuideAdminPage = () => {
                 </div>
               </form>
             </Form>
-          </DialogContent>
-        </Dialog>
+          </TabsContent>
 
-        {editingGuide && (
-          <Dialog
-            open={!!editingGuide}
-            onOpenChange={(open) => {
-              if (!open) setEditingGuide(null);
-            }}
-          >
-            <DialogContent className="sm:max-w-[600px]">
-              <DialogHeader>
-                <DialogTitle>Edit Guide</DialogTitle>
-              </DialogHeader>
-              <Form {...editForm}>
-                <form onSubmit={editForm.handleSubmit(onSubmitEdit)} className="space-y-4">
+          <TabsContent value="edit">
+            {editingGuide && (
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmitEdit)} className="space-y-4">
+                  {/* Same form fields as Add form */}
                   <FormField
-                    control={editForm.control}
+                    control={form.control}
                     name="Title"
                     render={({ field }) => (
                       <FormItem>
@@ -323,8 +315,9 @@ const GuideAdminPage = () => {
                       </FormItem>
                     )}
                   />
+
                   <FormField
-                    control={editForm.control}
+                    control={form.control}
                     name="slug"
                     render={({ field }) => (
                       <FormItem>
@@ -339,8 +332,9 @@ const GuideAdminPage = () => {
                       </FormItem>
                     )}
                   />
+
                   <FormField
-                    control={editForm.control}
+                    control={form.control}
                     name="Image"
                     render={({ field }) => (
                       <FormItem>
@@ -351,8 +345,9 @@ const GuideAdminPage = () => {
                       </FormItem>
                     )}
                   />
+
                   <FormField
-                    control={editForm.control}
+                    control={form.control}
                     name="Category"
                     render={({ field }) => (
                       <FormItem>
@@ -363,35 +358,44 @@ const GuideAdminPage = () => {
                       </FormItem>
                     )}
                   />
+
                   <FormField
-                    control={editForm.control}
+                    control={form.control}
                     name="Excerpt"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Excerpt</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Brief description" {...field} rows={3} />
+                          <Input placeholder="Brief description" {...field} />
                         </FormControl>
                       </FormItem>
                     )}
                   />
+
                   <FormField
-                    control={editForm.control}
+                    control={form.control}
                     name="Content"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Content</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Full content" {...field} rows={8} />
+                          <RichTextEditor
+                            value={field.value || ""}
+                            onChange={field.onChange}
+                          />
                         </FormControl>
                       </FormItem>
                     )}
                   />
+
                   <div className="flex justify-end gap-2">
                     <Button 
                       type="button" 
                       variant="outline" 
-                      onClick={() => setEditingGuide(null)}
+                      onClick={() => {
+                        setEditingGuide(null);
+                        setActiveTab("guides");
+                      }}
                     >
                       Cancel
                     </Button>
@@ -399,9 +403,9 @@ const GuideAdminPage = () => {
                   </div>
                 </form>
               </Form>
-            </DialogContent>
-          </Dialog>
-        )}
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </Layout>
   );

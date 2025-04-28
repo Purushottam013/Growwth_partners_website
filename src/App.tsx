@@ -23,6 +23,7 @@ import SuccessStories from "./pages/SuccessStories";
 import Taxation from "./pages/Taxation";
 import Achievements from "./pages/Achievements";
 import Guide from "./pages/Guide";
+import GuideSingle from "./pages/GuideSingle";
 import News from "./pages/News";
 import BlogAdminPage from "./pages/admin/BlogAdmin";
 import BlogAdminLogin from "./pages/admin/BlogAdminLogin";
@@ -56,7 +57,7 @@ function App() {
           <Route path="/taxation" element={<Taxation />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/guide" element={<Guide />} />
-          <Route path="/guide/:slug" element={<BlogPost />} />
+          <Route path="/guide/:slug" element={<GuideSingle />} />
           <Route path="/admin/guide" element={<GuideAdminPage />} />
           <Route path="/news" element={<News />} />
           {/* Resources route redirects to Achievements */}

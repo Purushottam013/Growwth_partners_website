@@ -2,6 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Guide } from "@/hooks/useGuides";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface GuideCardProps {
   guide: Guide;
@@ -9,10 +10,8 @@ interface GuideCardProps {
 
 export const GuideCard = ({ guide }: GuideCardProps) => {
   return (
-    <a 
-      href={`/guide/${guide.slug}`}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link 
+      to={`/guide/${guide.slug}`}
       className="block group"
     >
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
@@ -41,6 +40,6 @@ export const GuideCard = ({ guide }: GuideCardProps) => {
           </div>
         </CardContent>
       </Card>
-    </a>
+    </Link>
   );
 };
