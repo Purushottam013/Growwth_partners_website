@@ -17,7 +17,7 @@ const FoodTechCaseStudy = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if there's a hash in the URL (e.g., #challenges)
+    // If there's a hash in the URL (e.g., #challenges)
     if (location.hash) {
       // Get the element with the corresponding ID
       const element = document.getElementById(location.hash.substring(1));
