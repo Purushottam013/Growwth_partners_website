@@ -45,6 +45,66 @@ export type Database = {
         }
         Relationships: []
       }
+      guide_post: {
+        Row: {
+          Category: string | null
+          Content: string | null
+          Excerpt: string | null
+          id: number
+          Image: string | null
+          slug: string | null
+          Title: string
+        }
+        Insert: {
+          Category?: string | null
+          Content?: string | null
+          Excerpt?: string | null
+          id?: number
+          Image?: string | null
+          slug?: string | null
+          Title: string
+        }
+        Update: {
+          Category?: string | null
+          Content?: string | null
+          Excerpt?: string | null
+          id?: number
+          Image?: string | null
+          slug?: string | null
+          Title?: string
+        }
+        Relationships: []
+      }
+      Guide_post: {
+        Row: {
+          Category: string | null
+          Content: string | null
+          Excerpt: string | null
+          id: number
+          Image: string | null
+          slug: string | null
+          Title: string
+        }
+        Insert: {
+          Category?: string | null
+          Content?: string | null
+          Excerpt?: string | null
+          id?: number
+          Image?: string | null
+          slug?: string | null
+          Title: string
+        }
+        Update: {
+          Category?: string | null
+          Content?: string | null
+          Excerpt?: string | null
+          id?: number
+          Image?: string | null
+          slug?: string | null
+          Title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
