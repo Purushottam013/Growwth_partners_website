@@ -5,7 +5,7 @@ export const GoalsObjectives = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 to-white">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -37,20 +37,38 @@ export const GoalsObjectives = () => {
               ))}
             </ul>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="absolute -bottom-6 -left-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
-            <img
-              src="/lovable-uploads/212caada-6a51-44d9-9976-b026e96af572.png"
-              alt="Strategic Financial Planning"
-              className="rounded-2xl shadow-xl relative z-10"
-            />
-          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -bottom-6 -left-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
+              <img
+                src="/lovable-uploads/e01b50c9-b539-43d5-8a8a-6a608c299738.png"
+                alt="Strategic Key Achievements"
+                className="rounded-2xl shadow-xl relative z-10 w-full h-full object-cover"
+              />
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute -top-6 -right-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
+              <img
+                src="/lovable-uploads/17145ded-a972-43a8-a314-ff80dcd9c243.png"
+                alt="Strategic Planning"
+                className="rounded-2xl shadow-xl relative z-10 w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
