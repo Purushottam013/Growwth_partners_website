@@ -16,6 +16,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { slugify } from "@/utils/slugify";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 
 const GUIDE_CATEGORIES = [
   "Accounting",
@@ -38,10 +40,13 @@ const guideFormSchema = z.object({
 type GuideFormValues = z.infer<typeof guideFormSchema>;
 
 const GuideAdminPage = () => {
-  const { guides, loading } = useGuides();
+  const { guides, loading, refetch } = useGuides();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("guides");
   const [editingGuide, setEditingGuide] = useState<Guide | null>(null);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const form = useForm<GuideFormValues>({
     resolver: zodResolver(guideFormSchema),
@@ -64,40 +69,31 @@ const GuideAdminPage = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      // Use the service role for admin operations
-      // Note: In a production environment, this should be handled by a secure API endpoint
       const { error } = await supabase
         .from("guide_post")
         .delete()
         .eq("id", id);
 
       if (error) {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Failed to delete guide: " + error.message,
-        });
+        setErrorMessage("Failed to delete guide: " + error.message);
+        setShowErrorDialog(true);
+        console.error("Error deleting guide:", error);
       } else {
         toast({
           title: "Success",
           description: "Guide deleted successfully",
         });
-        window.location.reload();
+        refetch();
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error deleting guide:", error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "An unexpected error occurred",
-      });
+      setErrorMessage("An unexpected error occurred: " + error.message);
+      setShowErrorDialog(true);
     }
   };
 
   const onSubmitAdd = async (values: GuideFormValues) => {
     try {
-      // Use the service role for admin operations
-      // Note: In a production environment, this should be handled by a secure API endpoint
       const { error } = await supabase
         .from("guide_post")
         .insert([{
@@ -110,11 +106,9 @@ const GuideAdminPage = () => {
         }]);
 
       if (error) {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Failed to add guide: " + error.message,
-        });
+        setErrorMessage("Failed to add guide: " + error.message);
+        setShowErrorDialog(true);
+        console.error("Error adding guide:", error);
       } else {
         toast({
           title: "Success",
@@ -122,15 +116,12 @@ const GuideAdminPage = () => {
         });
         form.reset();
         setActiveTab("guides");
-        window.location.reload();
+        refetch();
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error adding guide:", error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "An unexpected error occurred",
-      });
+      setErrorMessage("An unexpected error occurred: " + error.message);
+      setShowErrorDialog(true);
     }
   };
 
@@ -138,8 +129,6 @@ const GuideAdminPage = () => {
     if (!editingGuide) return;
 
     try {
-      // Use the service role for admin operations
-      // Note: In a production environment, this should be handled by a secure API endpoint
       const { error } = await supabase
         .from("guide_post")
         .update({
@@ -153,11 +142,9 @@ const GuideAdminPage = () => {
         .eq("id", editingGuide.id);
 
       if (error) {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Failed to update guide: " + error.message,
-        });
+        setErrorMessage("Failed to update guide: " + error.message);
+        setShowErrorDialog(true);
+        console.error("Error updating guide:", error);
       } else {
         toast({
           title: "Success",
@@ -165,16 +152,17 @@ const GuideAdminPage = () => {
         });
         setEditingGuide(null);
         setActiveTab("guides");
-        window.location.reload();
+        refetch();
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating guide:", error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "An unexpected error occurred",
-      });
+      setErrorMessage("An unexpected error occurred: " + error.message);
+      setShowErrorDialog(true);
     }
+  };
+
+  const handleGuideView = (slug: string) => {
+    navigate(`/guide/${slug}`);
   };
 
   return (
@@ -198,11 +186,18 @@ const GuideAdminPage = () => {
                     key={guide.id}
                     className="p-4 border rounded-lg flex items-center justify-between"
                   >
-                    <div>
+                    <div className="flex-1">
                       <h3 className="font-semibold">{guide.Title}</h3>
                       <p className="text-sm text-gray-500">{guide.Category}</p>
                     </div>
                     <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleGuideView(guide.slug || "")}
+                      >
+                        View
+                      </Button>
                       <Button
                         variant="outline"
                         size="sm"
@@ -480,6 +475,24 @@ const GuideAdminPage = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Error Dialog */}
+      <Dialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-red-500">Error</DialogTitle>
+            <DialogDescription>
+              {errorMessage}
+              <div className="mt-4">
+                <p className="text-sm text-gray-500">
+                  This error is likely due to row-level security policies on the guide_post table.
+                  Please make sure you are authenticated with the correct permissions to perform this action.
+                </p>
+              </div>
+            </DialogHeader>
+          </DialogContent>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
