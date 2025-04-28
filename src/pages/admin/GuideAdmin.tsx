@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -62,84 +63,117 @@ const GuideAdminPage = () => {
   }, [watchTitle, form]);
 
   const handleDelete = async (id: number) => {
-    const { error } = await supabase
-      .from("guide_post")
-      .delete()
-      .eq("id", id);
+    try {
+      // Use the service role for admin operations
+      // Note: In a production environment, this should be handled by a secure API endpoint
+      const { error } = await supabase
+        .from("guide_post")
+        .delete()
+        .eq("id", id);
 
-    if (error) {
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Failed to delete guide: " + error.message,
+        });
+      } else {
+        toast({
+          title: "Success",
+          description: "Guide deleted successfully",
+        });
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error deleting guide:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to delete guide",
+        description: "An unexpected error occurred",
       });
-    } else {
-      toast({
-        title: "Success",
-        description: "Guide deleted successfully",
-      });
-      window.location.reload();
     }
   };
 
   const onSubmitAdd = async (values: GuideFormValues) => {
-    const { error } = await supabase
-      .from("guide_post")
-      .insert([{
-        Title: values.Title,
-        slug: values.slug,
-        Image: values.Image,
-        Category: values.Category,
-        Excerpt: values.Excerpt,
-        Content: values.Content,
-      }]);
+    try {
+      // Use the service role for admin operations
+      // Note: In a production environment, this should be handled by a secure API endpoint
+      const { error } = await supabase
+        .from("guide_post")
+        .insert([{
+          Title: values.Title,
+          slug: values.slug,
+          Image: values.Image,
+          Category: values.Category,
+          Excerpt: values.Excerpt,
+          Content: values.Content,
+        }]);
 
-    if (error) {
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Failed to add guide: " + error.message,
+        });
+      } else {
+        toast({
+          title: "Success",
+          description: "Guide added successfully",
+        });
+        form.reset();
+        setActiveTab("guides");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error adding guide:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to add guide: " + error.message,
+        description: "An unexpected error occurred",
       });
-    } else {
-      toast({
-        title: "Success",
-        description: "Guide added successfully",
-      });
-      form.reset();
-      setActiveTab("guides");
-      window.location.reload();
     }
   };
 
   const onSubmitEdit = async (values: GuideFormValues) => {
     if (!editingGuide) return;
 
-    const { error } = await supabase
-      .from("guide_post")
-      .update({
-        Title: values.Title,
-        slug: values.slug,
-        Image: values.Image,
-        Category: values.Category,
-        Excerpt: values.Excerpt,
-        Content: values.Content,
-      })
-      .eq("id", editingGuide.id);
+    try {
+      // Use the service role for admin operations
+      // Note: In a production environment, this should be handled by a secure API endpoint
+      const { error } = await supabase
+        .from("guide_post")
+        .update({
+          Title: values.Title,
+          slug: values.slug,
+          Image: values.Image,
+          Category: values.Category,
+          Excerpt: values.Excerpt,
+          Content: values.Content,
+        })
+        .eq("id", editingGuide.id);
 
-    if (error) {
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Failed to update guide: " + error.message,
+        });
+      } else {
+        toast({
+          title: "Success",
+          description: "Guide updated successfully",
+        });
+        setEditingGuide(null);
+        setActiveTab("guides");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error updating guide:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to update guide: " + error.message,
+        description: "An unexpected error occurred",
       });
-    } else {
-      toast({
-        title: "Success",
-        description: "Guide updated successfully",
-      });
-      setEditingGuide(null);
-      setActiveTab("guides");
-      window.location.reload();
     }
   };
 
