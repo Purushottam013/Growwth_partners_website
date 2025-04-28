@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react";
-import { guides as staticGuides, getGuidesByCategory, Guide } from "@/data/guides";
+import { guides as staticGuides, getGuidesByCategory } from "@/data/guides";
 
-export { Guide } from "@/data/guides";
+// Import the Guide type properly with 'export type'
+export type { Guide } from "@/data/guides";
 
 export const useGuides = (category?: string) => {
-  const [guides, setGuides] = useState<Guide[]>([]);
+  const [guides, setGuides] = useState<import("@/data/guides").Guide[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

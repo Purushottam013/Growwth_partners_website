@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -40,15 +39,17 @@ const guideFormSchema = z.object({
 type GuideFormValues = z.infer<typeof guideFormSchema>;
 
 const GuideAdminPage = () => {
-  const { guides, loading, refetch } = useGuides();
+  const { guides, loading, error } = useGuides();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("guides");
   const [editingGuide, setEditingGuide] = useState<Guide | null>(null);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  
+  const [refreshCounter, setRefreshCounter] = useState(0);
+  const refreshGuides = () => setRefreshCounter(prevCounter => prevCounter + 1);
 
-  // Check if user is authenticated
   useEffect(() => {
     const isAuthenticated = sessionStorage.getItem("guideAdminAuthenticated");
     if (!isAuthenticated) {
@@ -91,7 +92,7 @@ const GuideAdminPage = () => {
           title: "Success",
           description: "Guide deleted successfully",
         });
-        refetch();
+        refreshGuides();
       }
     } catch (error: any) {
       console.error("Error deleting guide:", error);
@@ -131,7 +132,7 @@ const GuideAdminPage = () => {
           Content: "",
         });
         setActiveTab("guides");
-        refetch();
+        refreshGuides();
       }
     } catch (error: any) {
       console.error("Error adding guide:", error);
@@ -167,7 +168,7 @@ const GuideAdminPage = () => {
         });
         setEditingGuide(null);
         setActiveTab("guides");
-        refetch();
+        refreshGuides();
       }
     } catch (error: any) {
       console.error("Error updating guide:", error);
@@ -180,7 +181,6 @@ const GuideAdminPage = () => {
     navigate(`/guide/${slug}`);
   };
 
-  // Return early if not authenticated
   if (loading) {
     return (
       <Layout>
@@ -502,7 +502,6 @@ const GuideAdminPage = () => {
         </Tabs>
       </div>
 
-      {/* Error Dialog */}
       <Dialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
         <DialogContent>
           <DialogHeader>
