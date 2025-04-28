@@ -28,8 +28,6 @@ import GuideSingle from "./pages/GuideSingle";
 import News from "./pages/News";
 import BlogAdminPage from "./pages/admin/BlogAdmin";
 import BlogAdminLogin from "./pages/admin/BlogAdminLogin";
-import GuideAdminPage from "./pages/admin/GuideAdmin";
-import GuideAdminLogin from "./pages/admin/GuideAdminLogin";
 
 // CSS
 import "./App.css";
@@ -67,8 +65,6 @@ function App() {
           {/* Admin Routes */}
           <Route path="/admin/blog" element={<BlogAdminPage />} />
           <Route path="/admin/login" element={<BlogAdminLogin />} />
-          <Route path="/admin/guide" element={<GuideAdminPage />} />
-          <Route path="/admin/guide-login" element={<GuideAdminLogin />} />
 
           {/* UAE Routes */}
           <Route path="/uae" element={<HomeUAE />} />

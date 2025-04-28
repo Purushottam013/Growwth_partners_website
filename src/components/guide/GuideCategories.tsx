@@ -7,12 +7,11 @@ interface GuideCategoriesProps {
 }
 
 export const GuideCategories = ({ selectedCategory, onCategorySelect }: GuideCategoriesProps) => {
+  // Categories from our static guides data
   const categories = [
-    'Accounting',
+    'Bookkeeping',
     'Corporate Secretary',
     'Fractional CFO',
-    'HR & Payroll',
-    'Incorporation',
     'Taxation & Compliance'
   ];
 
