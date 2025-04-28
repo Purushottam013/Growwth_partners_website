@@ -46,7 +46,7 @@ export const GoalsObjectives = () => {
           >
             <div className="absolute -bottom-6 -left-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/53363ea3-e5ab-42d7-8871-5ef86ed8aed6.png"
+              src="/lovable-uploads/212caada-6a51-44d9-9976-b026e96af572.png"
               alt="Strategic Financial Planning"
               className="rounded-2xl shadow-xl relative z-10"
             />

@@ -27,7 +27,7 @@ export const ClientOverview = () => {
           >
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/17ffc44e-243e-4ed5-9ecf-86f42e5c4939.png"
+              src="/lovable-uploads/212caada-6a51-44d9-9976-b026e96af572.png"
               alt="Healthcare Innovation"
               className="rounded-2xl shadow-2xl relative z-10"
             />
