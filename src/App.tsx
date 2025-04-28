@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { CountryProvider } from "./contexts/CountryContext";
 
@@ -28,6 +29,7 @@ import News from "./pages/News";
 import BlogAdminPage from "./pages/admin/BlogAdmin";
 import BlogAdminLogin from "./pages/admin/BlogAdminLogin";
 import GuideAdminPage from "./pages/admin/GuideAdmin";
+import GuideAdminLogin from "./pages/admin/GuideAdminLogin";
 
 // CSS
 import "./App.css";
@@ -58,7 +60,6 @@ function App() {
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/guide/:slug" element={<GuideSingle />} />
-          <Route path="/admin/guide" element={<GuideAdminPage />} />
           <Route path="/news" element={<News />} />
           {/* Resources route redirects to Achievements */}
           <Route path="/resources" element={<Navigate to="/achievements" replace />} />
@@ -66,6 +67,8 @@ function App() {
           {/* Admin Routes */}
           <Route path="/admin/blog" element={<BlogAdminPage />} />
           <Route path="/admin/login" element={<BlogAdminLogin />} />
+          <Route path="/admin/guide" element={<GuideAdminPage />} />
+          <Route path="/admin/guide-login" element={<GuideAdminLogin />} />
 
           {/* UAE Routes */}
           <Route path="/uae" element={<HomeUAE />} />

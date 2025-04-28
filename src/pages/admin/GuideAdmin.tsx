@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGuides, Guide } from "@/hooks/useGuides";
@@ -47,6 +47,14 @@ const GuideAdminPage = () => {
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+  // Check if user is authenticated
+  useEffect(() => {
+    const isAuthenticated = sessionStorage.getItem("guideAdminAuthenticated");
+    if (!isAuthenticated) {
+      navigate("/admin/guide-login");
+    }
+  }, [navigate]);
 
   const form = useForm<GuideFormValues>({
     resolver: zodResolver(guideFormSchema),
@@ -114,7 +122,14 @@ const GuideAdminPage = () => {
           title: "Success",
           description: "Guide added successfully",
         });
-        form.reset();
+        form.reset({
+          Title: "",
+          slug: "",
+          Image: "",
+          Category: "",
+          Excerpt: "",
+          Content: "",
+        });
         setActiveTab("guides");
         refetch();
       }
@@ -164,6 +179,17 @@ const GuideAdminPage = () => {
   const handleGuideView = (slug: string) => {
     navigate(`/guide/${slug}`);
   };
+
+  // Return early if not authenticated
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <p>Loading...</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
