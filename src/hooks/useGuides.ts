@@ -29,8 +29,10 @@ export const useGuides = (category?: string) => {
         const { data, error: supabaseError } = await query;
 
         if (supabaseError) throw supabaseError;
+        console.log("Fetched guides:", data);
         setGuides(data || []);
       } catch (err: any) {
+        console.error("Error fetching guides:", err);
         setError(err.message);
       } finally {
         setLoading(false);
