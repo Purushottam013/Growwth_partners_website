@@ -27,9 +27,9 @@ export const EcommerceClientOverview = () => {
           >
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/c109455f-7ae7-49e1-8463-1f9a14ef8d4b.png"
-              alt="E-commerce Overview"
-              className="rounded-2xl shadow-2xl relative z-10"
+              src="/lovable-uploads/2c1a84a8-da00-42a6-81f2-f2ac4eddb7d0.png"
+              alt="E-commerce Overview Illustration"
+              className="rounded-2xl shadow-2xl relative z-10 w-full"
             />
           </motion.div>
         </div>
