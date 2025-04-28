@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,10 +8,22 @@ import { Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { RichTextEditor } from "@/components/admin/blog/RichTextEditor";
+import { ImageUploadField } from "@/components/admin/guide/ImageUploadField";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { slugify } from "@/utils/slugify";
+
+const GUIDE_CATEGORIES = [
+  "Accounting",
+  "Bookkeeping",
+  "Taxation",
+  "Business Setup",
+  "Corporate Services",
+  "Financial Planning"
+];
 
 const guideFormSchema = z.object({
   Title: z.string().min(1, "Title is required"),
@@ -42,6 +53,13 @@ const GuideAdminPage = () => {
       Content: "",
     },
   });
+
+  const watchTitle = form.watch("Title");
+  
+  React.useEffect(() => {
+    const slug = slugify(watchTitle);
+    form.setValue("slug", slug);
+  }, [watchTitle, form]);
 
   const handleDelete = async (id: number) => {
     const { error } = await supabase
@@ -185,7 +203,6 @@ const GuideAdminPage = () => {
           <TabsContent value="add">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmitAdd)} className="space-y-4">
-                {/* Title Field */}
                 <FormField
                   control={form.control}
                   name="Title"
@@ -203,7 +220,6 @@ const GuideAdminPage = () => {
                   )}
                 />
 
-                {/* Slug Field */}
                 <FormField
                   control={form.control}
                   name="slug"
@@ -221,35 +237,46 @@ const GuideAdminPage = () => {
                   )}
                 />
 
-                {/* Image Field */}
                 <FormField
                   control={form.control}
                   name="Image"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Image URL</FormLabel>
+                      <FormLabel>Hero Image</FormLabel>
                       <FormControl>
-                        <Input placeholder="https://example.com/image.jpg" {...field} />
+                        <ImageUploadField
+                          value={field.value || ""}
+                          onChange={field.onChange}
+                        />
                       </FormControl>
                     </FormItem>
                   )}
                 />
 
-                {/* Category Field */}
                 <FormField
                   control={form.control}
                   name="Category"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Category</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Category" {...field} />
-                      </FormControl>
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a category" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {GUIDE_CATEGORIES.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </FormItem>
                   )}
                 />
 
-                {/* Excerpt Field */}
                 <FormField
                   control={form.control}
                   name="Excerpt"
@@ -263,7 +290,6 @@ const GuideAdminPage = () => {
                   )}
                 />
 
-                {/* Content Field */}
                 <FormField
                   control={form.control}
                   name="Content"
@@ -298,7 +324,6 @@ const GuideAdminPage = () => {
             {editingGuide && (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmitEdit)} className="space-y-4">
-                  {/* Same form fields as Add form */}
                   <FormField
                     control={form.control}
                     name="Title"
@@ -338,9 +363,12 @@ const GuideAdminPage = () => {
                     name="Image"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Image URL</FormLabel>
+                        <FormLabel>Hero Image</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://example.com/image.jpg" {...field} />
+                          <ImageUploadField
+                            value={field.value || ""}
+                            onChange={field.onChange}
+                          />
                         </FormControl>
                       </FormItem>
                     )}
@@ -352,9 +380,20 @@ const GuideAdminPage = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Category</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Category" {...field} />
-                        </FormControl>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a category" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {GUIDE_CATEGORIES.map((category) => (
+                              <SelectItem key={category} value={category}>
+                                {category}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </FormItem>
                     )}
                   />
