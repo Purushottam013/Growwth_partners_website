@@ -70,6 +70,16 @@ const GuideAdminPage = () => {
   };
 
   const onSubmitAdd = async (values: GuideFormValues) => {
+    // Ensure the Title field is always present and required
+    if (!values.Title) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Title is required",
+      });
+      return;
+    }
+
     const { error } = await supabase
       .from("Guide_post")
       .insert([values]);
@@ -93,6 +103,16 @@ const GuideAdminPage = () => {
 
   const onSubmitEdit = async (values: GuideFormValues) => {
     if (!editingGuide) return;
+
+    // Ensure the Title field is always present and required
+    if (!values.Title) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Title is required",
+      });
+      return;
+    }
 
     const { error } = await supabase
       .from("Guide_post")
