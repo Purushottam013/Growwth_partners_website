@@ -31,9 +31,9 @@ export const ClientChallenges = () => {
           >
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-red-500/5 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/60a22a67-08dc-4496-a008-cb945442b8e3.png"
-              alt="Healthcare Challenges"
-              className="rounded-2xl shadow-xl relative z-10"
+              src="/lovable-uploads/25d006e3-62fa-40b0-80bb-6d363fd1a5ac.png"
+              alt="Business Challenge Concept"
+              className="rounded-2xl shadow-xl relative z-10 w-full h-full object-cover"
             />
           </motion.div>
           
