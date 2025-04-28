@@ -2,20 +2,22 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
+
 export const ExpertBlogSection = () => {
   const blogs = [{
     title: "Why Singapore is the ideal location for startups",
     description: "Singapore has a reputation for ease in starting a business owing to startup grants and efficient tax administration. It is known as the 'Silicon Valley of Asia'.",
-    url: "https://growwthpartners.com/blog/startup/why-singapore-is-the-ideal-location-for-startups/"
+    url: "https://growwth-digital-hub.lovable.app/blog/why-singapore-is-the-ideal-location-for-startups"
   }, {
     title: "Various funding options available for startups",
     description: "Everything a company requires, including financing programmes, tax breaks, cash grants, everything must be available in the economy.",
-    url: "https://growwthpartners.com/blog/startup/various-funding-options-available-for-startups/"
+    url: "https://growwth-digital-hub.lovable.app/blog/various-funding-options-available-for-startups"
   }, {
     title: "Grants for Singapore Startups",
     description: "Singapore is known as Asia's 'Silicon Valley' because it is the most desirable location for business startups. In addition to its low tax rates",
-    url: "https://growwthpartners.com/blog/news/grants-for-singapore-startups/"
+    url: "https://growwth-digital-hub.lovable.app/blog/grants-for-singapore-startups"
   }];
+
   return <section className="bg-gradient-to-br from-gray-50 to-white py-[60px]">
       <div className="container-custom">
         <motion.div initial={{
