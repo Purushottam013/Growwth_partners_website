@@ -1,29 +1,34 @@
-
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
-
 export const FoodTechTimeline = () => {
-  return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-white">
+  return <section className="bg-gradient-to-br from-slate-50 to-white py-[60px]">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.5
+      }} viewport={{
+        once: true
+      }} className="text-center mb-16">
           <h3 className="heading-md text-brand-dark">Timelines</h3>
           <div className="w-24 h-1 bg-brand-orange mx-auto mt-4"></div>
         </motion.div>
         
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6
+      }} viewport={{
+        once: true
+      }} className="max-w-3xl mx-auto">
           <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8">
             <div className="flex items-center gap-4 mb-6">
               <div className="p-3 bg-brand-orange/10 rounded-full">
@@ -49,6 +54,5 @@ export const FoodTechTimeline = () => {
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 };

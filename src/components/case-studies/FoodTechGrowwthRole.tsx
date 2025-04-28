@@ -1,30 +1,36 @@
-
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
-
 export const FoodTechGrowwthRole = () => {
-  return (
-    <section className="py-20 bg-white">
+  return <section className="bg-white py-[60px]">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.5
+        }} viewport={{
+          once: true
+        }} className="text-center mb-12">
             <h3 className="heading-md text-brand-dark">Growwth's Role</h3>
             <div className="w-24 h-1 bg-brand-orange mx-auto mt-4"></div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="prose prose-lg max-w-none text-gray-600"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6,
+          delay: 0.1
+        }} viewport={{
+          once: true
+        }} className="prose prose-lg max-w-none text-gray-600">
             <h4 className="text-xl font-semibold text-brand-dark mb-4">Growwth played a pivotal role by:</h4>
             
             <div className="space-y-4">
@@ -49,6 +55,5 @@ export const FoodTechGrowwthRole = () => {
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
