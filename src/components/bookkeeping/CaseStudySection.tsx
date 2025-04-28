@@ -14,7 +14,7 @@ export const CaseStudySection = () => {
     {
       title: "Fueling Food Tech Growth",
       description: "Optimizing operations and financial management for a food technology company focused on reducing waste in the supply chain.",
-      url: "/case-studies/food-tech#challenges"
+      url: "/case-studies/food-tech"
     }
   ];
 
