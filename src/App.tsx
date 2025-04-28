@@ -31,6 +31,7 @@ import BlogAdminLogin from "./pages/admin/BlogAdminLogin";
 // CSS
 import "./App.css";
 import { Toaster } from "@/components/ui/toaster";
+import HealthcareCaseStudy from "./pages/case-studies/HealthcareCaseStudy";
 
 function App() {
   return (
@@ -108,6 +109,9 @@ function App() {
           <Route path="/australia/guide" element={<Guide />} />
           <Route path="/australia/news" element={<News />} />
           <Route path="/australia/resources" element={<Navigate to="/australia/achievements" replace />} />
+
+          {/* Case Study Routes */}
+          <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
 
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />

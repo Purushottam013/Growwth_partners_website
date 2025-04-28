@@ -2,16 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+
 export const CaseStudySection = () => {
   const caseStudies = [{
     title: "Transforming Patient Engagement In Healthcare Through Better Financial Management And Analysis",
     description: "Evaluating the business health of all companies within the group with the objective to improve revenue, profits and cash flows.",
-    url: "https://growwthpartners.com/portfolio/transforming-patient-engagement-in-healthcare/"
+    url: "/case-studies/healthcare"
   }, {
     title: "Achievening E-Commerce Growth With Automation And Analytics",
     description: "This success story highlights the effectiveness and sustainability of data-driven strategies in achieving remarkable growth in e-commerce operations.",
-    url: "https://growwthpartners.com/portfolio/achievening-e-commerce-growth-with-automation-and-analytics/"
+    url: "/case-studies/ecommerce"
   }];
+
   return <section className="py-20 bg-white">
       <div className="container-custom">
         <motion.div initial={{
