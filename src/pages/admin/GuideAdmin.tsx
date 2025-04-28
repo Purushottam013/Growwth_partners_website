@@ -489,8 +489,8 @@ const GuideAdminPage = () => {
                   Please make sure you are authenticated with the correct permissions to perform this action.
                 </p>
               </div>
-            </DialogHeader>
-          </DialogContent>
+            </DialogDescription>
+          </DialogHeader>
         </DialogContent>
       </Dialog>
     </Layout>
