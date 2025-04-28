@@ -6,15 +6,19 @@ export const EcommerceChallenges = () => {
   const challenges = [
     {
       title: "Manual Process Dependencies",
-      description: "Heavy reliance on manual processes leading to inefficiencies and errors."
+      description: "Manual management of operations and financials in Excel."
     },
     {
-      title: "Data Analysis Bottlenecks",
-      description: "Difficulty in processing and analyzing large volumes of sales data."
+      title: "Tracking System Gaps",
+      description: "Lack of a tracking system for day-to-day operations."
     },
     {
-      title: "Scalability Issues",
-      description: "Challenges in scaling operations while maintaining efficiency."
+      title: "Reporting Inaccuracies",
+      description: "Inaccurate monthly financial reports."
+    },
+    {
+      title: "Product Profitability",
+      description: "Inability to effectively track the profitability of their main products."
     }
   ];
 
@@ -32,8 +36,8 @@ export const EcommerceChallenges = () => {
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-red-500/5 rounded-full filter blur-3xl"></div>
             <img
               src="/lovable-uploads/a40fc3fa-3b8d-48f8-b24a-e20230e9f49c.png"
-              alt="E-commerce Challenge"
-              className="rounded-2xl shadow-xl relative z-10 w-full h-full object-cover"
+              alt="E-commerce Challenges"
+              className="rounded-2xl shadow-xl relative z-10"
             />
           </motion.div>
           

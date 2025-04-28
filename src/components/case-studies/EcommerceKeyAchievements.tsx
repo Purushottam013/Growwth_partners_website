@@ -1,23 +1,23 @@
 
 import { motion } from "framer-motion";
-import { ArrowUp, ArrowRight } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 export const EcommerceKeyAchievements = () => {
   const achievements = [
     {
-      percentage: "48%",
-      title: "Increase in Conversion Rate",
-      description: "Through optimized sales funnels and improved customer journey mapping"
+      percentage: "95%",
+      title: "Increased Accuracy",
+      description: "Improved accuracy in financial reporting systems"
     },
     {
-      percentage: "65%",
-      title: "Growth in Monthly Revenue",
-      description: "Resulting from enhanced analytics and data-driven decision making"
+      percentage: "75%",
+      title: "Reduced Processing Time",
+      description: "Faster processing of financial data"
     },
     {
-      percentage: "32%",
-      title: "Reduction in Customer Acquisition Cost",
-      description: "By implementing more efficient marketing automation strategies"
+      percentage: "20%",
+      title: "Profitability Increase",
+      description: "Higher profits through enhanced product tracking"
     }
   ];
 
@@ -56,19 +56,6 @@ export const EcommerceKeyAchievements = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            These results demonstrate the power of combining data analytics with strategic automation to 
-            create sustainable growth for e-commerce businesses.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

@@ -15,8 +15,7 @@ export const EcommerceClientOverview = () => {
           >
             <h2 className="heading-lg text-brand-dark">Client Overview</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Our client is a rapidly growing e-commerce company focusing on automation and data-driven strategies. 
-              They aim to revolutionize online retail through innovative technology solutions and analytics-based decision making.
+              Client X, a leading e-commerce entity, specializes in offering high-quality products to customers worldwide.
             </p>
           </motion.div>
           <motion.div
@@ -28,8 +27,8 @@ export const EcommerceClientOverview = () => {
           >
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/de9005b3-7786-4eef-811d-5686088912b2.png"
-              alt="E-commerce Growth"
+              src="/lovable-uploads/c109455f-7ae7-49e1-8463-1f9a14ef8d4b.png"
+              alt="E-commerce Overview"
               className="rounded-2xl shadow-2xl relative z-10"
             />
           </motion.div>
