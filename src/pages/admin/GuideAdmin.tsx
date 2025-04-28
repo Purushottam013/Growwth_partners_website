@@ -81,9 +81,13 @@ const GuideAdminPage = () => {
                 <h2 className="text-2xl font-bold mb-4">Edit Guide</h2>
                 <BlogPostForm
                   initialData={{
-                    ...editingGuide,
-                    categories: [editingGuide.Category],
+                    id: editingGuide.id,
+                    title: editingGuide.Title, // Map Title to title
+                    slug: editingGuide.slug,
                     heroImage: editingGuide.Image,
+                    excerpt: editingGuide.Excerpt,
+                    content: editingGuide.Content,
+                    categories: editingGuide.Category ? [editingGuide.Category] : [],
                   }}
                   mode="edit"
                   onSuccess={() => {
