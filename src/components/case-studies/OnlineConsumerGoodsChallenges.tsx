@@ -27,8 +27,8 @@ export const OnlineConsumerGoodsChallenges = () => {
           >
             <div className="absolute -top-6 -right-6 w-64 h-64 bg-red-500/5 rounded-full filter blur-3xl"></div>
             <img
-              src="/lovable-uploads/f8fb3d93-a82a-4c96-bcd3-f9d68f64fb4b.png"
-              alt="Business Challenge Concept"
+              src="/lovable-uploads/17c89a7a-aa74-463c-ae6c-fa457f0a48a9.png"
+              alt="Business Challenge Concept - Wooden blocks representing challenges"
               className="rounded-2xl shadow-xl relative z-10 w-full h-full object-cover"
             />
           </motion.div>
