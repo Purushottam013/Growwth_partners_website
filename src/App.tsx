@@ -32,6 +32,7 @@ import BlogAdminLogin from "./pages/admin/BlogAdminLogin";
 import "./App.css";
 import { Toaster } from "@/components/ui/toaster";
 import HealthcareCaseStudy from "./pages/case-studies/HealthcareCaseStudy";
+import EcommerceCaseStudy from "./pages/case-studies/EcommerceCaseStudy";
 
 function App() {
   return (
@@ -112,6 +113,7 @@ function App() {
 
           {/* Case Study Routes */}
           <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
+          <Route path="/case-studies/ecommerce" element={<EcommerceCaseStudy />} />
 
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
