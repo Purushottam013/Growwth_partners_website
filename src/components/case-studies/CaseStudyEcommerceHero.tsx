@@ -6,7 +6,7 @@ export const CaseStudyEcommerceHero = () => {
     <section className="relative bg-gradient-to-br from-brand-dark to-brand-dark/90 text-white py-24 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/lovable-uploads/de9005b3-7786-4eef-811d-5686088912b2.png"
+          src="/lovable-uploads/8756792b-d0d5-4443-a7a6-67fa6f75fb1e.png"
           alt="E-commerce Growth"
           className="w-full h-full object-cover opacity-20"
         />
@@ -29,3 +29,4 @@ export const CaseStudyEcommerceHero = () => {
     </section>
   );
 };
+
