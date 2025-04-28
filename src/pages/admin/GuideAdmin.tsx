@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Define the form schema
 const guideFormSchema = z.object({
@@ -35,6 +36,7 @@ const GuideAdminPage = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
   const form = useForm<GuideFormValues>({
+    resolver: zodResolver(guideFormSchema),
     defaultValues: {
       Title: "",
       slug: "",
@@ -45,7 +47,9 @@ const GuideAdminPage = () => {
     },
   });
 
-  const editForm = useForm<GuideFormValues>();
+  const editForm = useForm<GuideFormValues>({
+    resolver: zodResolver(guideFormSchema),
+  });
 
   const handleDelete = async (id: number) => {
     const { error } = await supabase
@@ -70,19 +74,17 @@ const GuideAdminPage = () => {
   };
 
   const onSubmitAdd = async (values: GuideFormValues) => {
-    // Ensure the Title field is always present and required
-    if (!values.Title) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Title is required",
-      });
-      return;
-    }
-
+    // Here values.Title is guaranteed to be set due to the form validation
     const { error } = await supabase
       .from("Guide_post")
-      .insert([values]);
+      .insert([{
+        Title: values.Title, // Explicitly include this to ensure it's present
+        slug: values.slug,
+        Image: values.Image,
+        Category: values.Category,
+        Excerpt: values.Excerpt,
+        Content: values.Content,
+      }]);
 
     if (error) {
       toast({
@@ -104,19 +106,17 @@ const GuideAdminPage = () => {
   const onSubmitEdit = async (values: GuideFormValues) => {
     if (!editingGuide) return;
 
-    // Ensure the Title field is always present and required
-    if (!values.Title) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Title is required",
-      });
-      return;
-    }
-
+    // Here values.Title is guaranteed to be set due to the form validation
     const { error } = await supabase
       .from("Guide_post")
-      .update(values)
+      .update({
+        Title: values.Title, // Explicitly include this to ensure it's present
+        slug: values.slug,
+        Image: values.Image,
+        Category: values.Category,
+        Excerpt: values.Excerpt,
+        Content: values.Content,
+      })
       .eq("id", editingGuide.id);
 
     if (error) {
@@ -210,9 +210,13 @@ const GuideAdminPage = () => {
                   name="Title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Title</FormLabel>
+                      <FormLabel>Title<span className="text-red-500">*</span></FormLabel>
                       <FormControl>
-                        <Input placeholder="Guide title" {...field} />
+                        <Input 
+                          placeholder="Guide title" 
+                          {...field} 
+                          required 
+                        />
                       </FormControl>
                     </FormItem>
                   )}
@@ -222,9 +226,13 @@ const GuideAdminPage = () => {
                   name="slug"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Slug</FormLabel>
+                      <FormLabel>Slug<span className="text-red-500">*</span></FormLabel>
                       <FormControl>
-                        <Input placeholder="guide-slug" {...field} />
+                        <Input 
+                          placeholder="guide-slug" 
+                          {...field} 
+                          required 
+                        />
                       </FormControl>
                     </FormItem>
                   )}
@@ -311,9 +319,13 @@ const GuideAdminPage = () => {
                     name="Title"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Title</FormLabel>
+                        <FormLabel>Title<span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input placeholder="Guide title" {...field} />
+                          <Input 
+                            placeholder="Guide title" 
+                            {...field} 
+                            required 
+                          />
                         </FormControl>
                       </FormItem>
                     )}
@@ -323,9 +335,13 @@ const GuideAdminPage = () => {
                     name="slug"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Slug</FormLabel>
+                        <FormLabel>Slug<span className="text-red-500">*</span></FormLabel>
                         <FormControl>
-                          <Input placeholder="guide-slug" {...field} />
+                          <Input 
+                            placeholder="guide-slug" 
+                            {...field} 
+                            required 
+                          />
                         </FormControl>
                       </FormItem>
                     )}
