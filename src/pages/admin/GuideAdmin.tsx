@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -16,7 +15,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-// Define the form schema
 const guideFormSchema = z.object({
   Title: z.string().min(1, "Title is required"),
   slug: z.string().min(1, "Slug is required"),
@@ -53,7 +51,7 @@ const GuideAdminPage = () => {
 
   const handleDelete = async (id: number) => {
     const { error } = await supabase
-      .from("Guide_post")
+      .from("guide_post")
       .delete()
       .eq("id", id);
 
@@ -68,17 +66,15 @@ const GuideAdminPage = () => {
         title: "Success",
         description: "Guide deleted successfully",
       });
-      // Refresh the page to update the list
       window.location.reload();
     }
   };
 
   const onSubmitAdd = async (values: GuideFormValues) => {
-    // Here values.Title is guaranteed to be set due to the form validation
     const { error } = await supabase
-      .from("Guide_post")
+      .from("guide_post")
       .insert([{
-        Title: values.Title, // Explicitly include this to ensure it's present
+        Title: values.Title,
         slug: values.slug,
         Image: values.Image,
         Category: values.Category,
@@ -106,11 +102,10 @@ const GuideAdminPage = () => {
   const onSubmitEdit = async (values: GuideFormValues) => {
     if (!editingGuide) return;
 
-    // Here values.Title is guaranteed to be set due to the form validation
     const { error } = await supabase
-      .from("Guide_post")
+      .from("guide_post")
       .update({
-        Title: values.Title, // Explicitly include this to ensure it's present
+        Title: values.Title,
         slug: values.slug,
         Image: values.Image,
         Category: values.Category,
@@ -197,7 +192,6 @@ const GuideAdminPage = () => {
           </TabsContent>
         </Tabs>
 
-        {/* Add Guide Dialog */}
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogContent className="sm:max-w-[600px]">
             <DialogHeader>
@@ -300,7 +294,6 @@ const GuideAdminPage = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Edit Guide Dialog */}
         {editingGuide && (
           <Dialog
             open={!!editingGuide}

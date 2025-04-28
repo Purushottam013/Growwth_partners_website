@@ -20,7 +20,7 @@ export const useGuides = (category?: string) => {
   useEffect(() => {
     const fetchGuides = async () => {
       try {
-        let query = supabase.from("Guide_post").select("*");
+        let query = supabase.from("guide_post").select("*");
         
         if (category) {
           query = query.eq("Category", category);
