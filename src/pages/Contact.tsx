@@ -17,8 +17,8 @@ const ContactPage = () => {
       >
         <ContactHero />
         <ContactFormSection />
-        <LocationsSection />
         <ContactTestimonials />
+        <LocationsSection />
       </motion.div>
     </Layout>
   );
