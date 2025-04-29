@@ -9,12 +9,12 @@ export const CaseStudySection = () => {
     {
       title: "Transforming Patient Engagement In Healthcare Through Better Financial Management And Analysis",
       description: "Evaluating the business health of all companies within the group with the objective to improve revenue, profits and cash flows.",
-      url: "https://growwthpartners.com/portfolio/online-cosnsumer-goods/"
+      url: "/case-studies/healthcare"
     },
     {
       title: "Achievening E-Commerce Growth With Automation And Analytics",
       description: "This success story highlights the effectiveness and sustainability of data-driven strategies in achieving remarkable growth in e-commerce operations.",
-      url: "https://growwthpartners.com/portfolio/achievening-e-commerce-growth-with-automation-and-analytics/"
+      url: "/case-studies/ecommerce"
     }
   ];
 
