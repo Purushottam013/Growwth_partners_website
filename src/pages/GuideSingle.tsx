@@ -1,9 +1,9 @@
-
 import { useParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { getGuideBySlug } from "@/data/guides";
 import { useState, useEffect } from "react";
 import { FaqSection } from "@/components/accounting/FaqSection";
+import BookkeepingGuidePage from "@/components/guide/BookkeepingGuidePage";
 
 const GuideSingle = () => {
   const { slug } = useParams();
@@ -21,6 +21,11 @@ const GuideSingle = () => {
       }, 300);
     }
   }, [slug]);
+
+  // Special handling for the bookkeeping guide to use the custom component
+  if (slug === "comprehensive-guide-to-bookkeeping-practices") {
+    return <BookkeepingGuidePage />;
+  }
 
   if (loading) {
     return (
@@ -79,6 +84,21 @@ const GuideSingle = () => {
           {
             question: "What happens if I don't appoint a Corporate Secretary?",
             answer: "Failure to appoint a qualified corporate secretary is a statutory breach that can result in penalties for the company and its directors."
+          }
+        ];
+      case 'Accounting':
+        return [
+          {
+            question: "What is the difference between bookkeeping and accounting?",
+            answer: "Bookkeeping involves recording daily transactions, while accounting encompasses analyzing, interpreting, and summarizing financial data to make business decisions."
+          },
+          {
+            question: "How often should financial statements be prepared?",
+            answer: "Most businesses prepare financial statements monthly for internal use and quarterly or annually for external reporting and compliance purposes."
+          },
+          {
+            question: "What accounting software is recommended for small businesses?",
+            answer: "Popular options include Xero, QuickBooks, and FreshBooks, but the best choice depends on your specific business needs, industry, and scale of operations."
           }
         ];
       default:

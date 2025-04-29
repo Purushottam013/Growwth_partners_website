@@ -1,4 +1,3 @@
-
 export interface Guide {
   id: number;
   Title: string;
@@ -326,6 +325,16 @@ export const guides: Guide[] = [
       <p>Incorporating a company in Singapore offers numerous advantages for entrepreneurs and businesses looking to establish a presence in Asia. While the process is straightforward, engaging professional assistance can ensure smooth incorporation and ongoing compliance. With the right structure and support, your Singapore company can serve as an effective vehicle for business growth and expansion in the region.</p>
     `,
     publishedAt: "2024-01-15"
+  },
+  {
+    id: 6,
+    Title: "A Comprehensive Guide to Bookkeeping Practices",
+    slug: "comprehensive-guide-to-bookkeeping-practices",
+    Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+    Category: "Accounting",
+    Excerpt: "Learn everything you need to know about bookkeeping practices, from basic principles to addressing common challenges for business success.",
+    Content: "",
+    publishedAt: "2024-04-20"
   }
 ];
 
