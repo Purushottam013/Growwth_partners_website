@@ -14,7 +14,7 @@ export const CaseStudySection = () => {
     {
       title: "Transforming A Gaming Industry Business For Exponential Growth",
       description: "As a provider of cutting-edge gaming experiences, they aimed to maximise company valuation and identify additional revenue streams for sustainable growth.",
-      url: "https://growwthpartners.com/portfolio/transforming-a-gaming-industry-business-for-exponential-growth/"
+      url: "/case-studies/gaming-industry"
     }
   ];
 
@@ -46,9 +46,7 @@ export const CaseStudySection = () => {
               className="h-full"
             >
               <a 
-                href={study.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href={study.url}
                 className="block h-full group"
               >
                 <Card className="bg-gray-50 hover:shadow-xl transition-all duration-300 h-full hover:-translate-y-2 border-0 shadow-md overflow-hidden">

@@ -37,6 +37,7 @@ import EcommerceCaseStudy from "./pages/case-studies/EcommerceCaseStudy";
 import FoodTechCaseStudy from "./pages/case-studies/FoodTechCaseStudy";
 import OnlineConsumerGoodsCaseStudy from "./pages/case-studies/OnlineConsumerGoodsCaseStudy";
 import DataDrivenSuccessCaseStudy from "./pages/case-studies/DataDrivenSuccessCaseStudy";
+import GamingIndustryCaseStudy from "./pages/case-studies/GamingIndustryCaseStudy";
 
 function App() {
   return (
@@ -121,6 +122,7 @@ function App() {
           <Route path="/case-studies/food-tech" element={<FoodTechCaseStudy />} />
           <Route path="/case-studies/online-consumer-goods" element={<OnlineConsumerGoodsCaseStudy />} />
           <Route path="/case-studies/data-driven-success" element={<DataDrivenSuccessCaseStudy />} />
+          <Route path="/case-studies/gaming-industry" element={<GamingIndustryCaseStudy />} />
 
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
