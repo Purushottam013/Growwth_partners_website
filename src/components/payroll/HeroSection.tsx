@@ -1,15 +1,12 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, CircleDollarSign } from "lucide-react";
+import { Link } from "react-router-dom";
 import payrollHeroImage from "/lovable-uploads/a98ed889-8aa1-431a-aa5c-2883e1d8f642.png";
 
 export const HeroSection = () => {
-  const [contactModalOpen, setContactModalOpen] = useState(false);
-
   return (
     <section className="relative py-10 md:py-16 overflow-hidden bg-gradient-to-b from-white to-[#FFF3E8]/30">
       <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
@@ -34,10 +31,12 @@ export const HeroSection = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <Button 
-                onClick={() => setContactModalOpen(true)}
+                asChild
                 className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-5 text-lg font-medium rounded-full"
               >
-                Contact Us
+                <Link to="/contact#consultation-form">
+                  Contact Us
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -93,18 +92,6 @@ export const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-
-      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
-            <DialogDescription className="text-center">
-              Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
-            </DialogDescription>
-          </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
-        </DialogContent>
-      </Dialog>
     </section>
   );
 };
