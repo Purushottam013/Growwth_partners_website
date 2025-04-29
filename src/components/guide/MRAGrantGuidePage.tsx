@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Layout } from "@/components/Layout";
 import { FaqSection } from "@/components/accounting/FaqSection";
@@ -84,14 +83,18 @@ const MRAGrantGuidePage = () => {
       <article className="container mx-auto px-4 py-8">
         {/* Section 1: Title and Key Takeaways */}
         <header className="max-w-full mx-auto mb-12">
-          <h1 className="text-4xl font-bold mb-6 w-[95%] mx-auto text-center">Comprehensive Guide to the Market Readiness Assistance (MRA) Grant in Singapore</h1>
+          <div className="bg-gradient-to-r from-brand-orange/10 to-blue-50 p-8 rounded-lg shadow-sm">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 w-[95%] mx-auto text-center bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-blue-700 leading-tight">
+              Comprehensive Guide to the Market Readiness Assistance (MRA) Grant in Singapore
+            </h1>
+          </div>
           
-          <div className="bg-gray-50 p-8 rounded-lg">
+          <div className="bg-gray-50 p-8 rounded-lg mt-8">
             <h2 className="text-2xl font-semibold mb-8 text-center">Key Takeaways</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
-                  src="/lovable-uploads/f65b1ac4-5df9-412a-bcea-91829022f179.png" 
+                  src="/lovable-uploads/abaa6aa3-ceb7-40b5-9636-ca82c5b8c29b.png" 
                   alt="Comprehensive Financial Support" 
                   className="w-48 h-48 mb-6 object-contain"
                 />
@@ -100,7 +103,7 @@ const MRAGrantGuidePage = () => {
               </div>
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
-                  src="/lovable-uploads/af8677aa-5aae-405e-bc5b-f990607e3755.png" 
+                  src="/lovable-uploads/308d588e-05ac-4334-9ca7-e998193b4708.png" 
                   alt="Diverse Eligible Activities" 
                   className="w-48 h-48 mb-6 object-contain"
                 />
@@ -109,7 +112,7 @@ const MRAGrantGuidePage = () => {
               </div>
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
-                  src="/lovable-uploads/8187e304-541b-4e46-a4bd-048867849161.png" 
+                  src="/lovable-uploads/cdbf73a9-9cef-4018-adde-e5c0be7cf472.png" 
                   alt="Clear Eligibility Criteria" 
                   className="w-48 h-48 mb-6 object-contain"
                 />
@@ -120,7 +123,7 @@ const MRAGrantGuidePage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
-                  src="/lovable-uploads/f65b1ac4-5df9-412a-bcea-91829022f179.png" 
+                  src="/lovable-uploads/b3d1e1e1-3d2f-4c1c-b1b5-fc83bb2ed310.png" 
                   alt="Structured Application Process" 
                   className="w-48 h-48 mb-6 object-contain"
                 />
@@ -129,7 +132,7 @@ const MRAGrantGuidePage = () => {
               </div>
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
-                  src="/lovable-uploads/af8677aa-5aae-405e-bc5b-f990607e3755.png" 
+                  src="/lovable-uploads/1445524d-767b-4a85-a8ca-8c8ae332cfdf.png" 
                   alt="Importance of Thorough Preparation" 
                   className="w-48 h-48 mb-6 object-contain"
                 />
