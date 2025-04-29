@@ -1,9 +1,9 @@
-
 import React from "react";
 import { Layout } from "@/components/Layout";
 import { FaqSection } from "@/components/accounting/FaqSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { TrendingUp, Search, Flag, Rocket, LayoutDashboard } from "lucide-react";
 
 const BookkeepingGuidePage = () => {
   // FAQs for different sections
@@ -80,25 +80,52 @@ const BookkeepingGuidePage = () => {
           <h1 className="text-4xl font-bold mb-6">A Comprehensive Guide to Bookkeeping Practices</h1>
           
           <div className="bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4">Key Takeaways</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-white rounded shadow-sm">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Key Takeaways</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="p-4 bg-white rounded shadow-sm flex flex-col items-center text-center">
+                <img 
+                  src="/lovable-uploads/8512cbec-531f-47eb-b4b9-07c45d8af9a3.png" 
+                  alt="Definition" 
+                  className="w-16 h-16 mb-3"
+                />
                 <h3 className="font-medium mb-2">Definition</h3>
                 <p>Understand the basics of bookkeeping and its primary methods.</p>
               </div>
-              <div className="p-4 bg-white rounded shadow-sm">
+              <div className="p-4 bg-white rounded shadow-sm flex flex-col items-center text-center">
+                <img 
+                  src="/lovable-uploads/f3a56b78-d040-4625-860c-5244fa5b6aa9.png" 
+                  alt="Significance" 
+                  className="w-16 h-16 mb-3"
+                />
                 <h3 className="font-medium mb-2">Significance</h3>
                 <p>Realise the importance of bookkeeping for compliance and management.</p>
               </div>
-              <div className="p-4 bg-white rounded shadow-sm">
+              <div className="p-4 bg-white rounded shadow-sm flex flex-col items-center text-center">
+                <img 
+                  src="/lovable-uploads/ea8d2d58-1f4b-4396-b555-b2c99d049b4f.png" 
+                  alt="Roles and Responsibilities" 
+                  className="w-16 h-16 mb-3"
+                />
                 <h3 className="font-medium mb-2">Roles and Responsibilities</h3>
                 <p>Learn what a bookkeeper does and the skills needed.</p>
               </div>
-              <div className="p-4 bg-white rounded shadow-sm">
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-white rounded shadow-sm flex flex-col items-center text-center">
+                <img 
+                  src="/lovable-uploads/a789441a-bd8a-4480-a2ce-1a8108aa187c.png" 
+                  alt="Process Steps" 
+                  className="w-16 h-16 mb-3"
+                />
                 <h3 className="font-medium mb-2">Process Steps</h3>
                 <p>Get familiar with the steps involved in the bookkeeping process.</p>
               </div>
-              <div className="p-4 bg-white rounded shadow-sm">
+              <div className="p-4 bg-white rounded shadow-sm flex flex-col items-center text-center">
+                <img 
+                  src="/lovable-uploads/12a63d37-c083-4866-91bf-a8fe64ececbd.png" 
+                  alt="Challenges" 
+                  className="w-16 h-16 mb-3"
+                />
                 <h3 className="font-medium mb-2">Challenges</h3>
                 <p>Identify common challenges and understand the need for professional help.</p>
               </div>
