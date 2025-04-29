@@ -13,7 +13,8 @@ export const GuideCategories = ({ selectedCategory, onCategorySelect }: GuideCat
     'Fractional CFO',
     'HR & Payroll',
     'Incorporation',
-    'Taxation & Compliance'
+    'Taxation & Compliance',
+    'Accounting'
   ];
 
   return (
@@ -25,7 +26,7 @@ export const GuideCategories = ({ selectedCategory, onCategorySelect }: GuideCat
             variant={selectedCategory === null ? "default" : "outline"}
             onClick={() => onCategorySelect(null)}
           >
-            All Guides
+            All
           </Button>
           {categories.map((category) => (
             <Button
