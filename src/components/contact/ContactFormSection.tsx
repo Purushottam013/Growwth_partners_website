@@ -1,12 +1,30 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ContactForm } from "./ContactForm";
 import { ContactDetails } from "./ContactDetails";
+import { useLocation } from "react-router-dom";
 
 export const ContactFormSection = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if the URL has the consultation-form hash
+    if (location.hash === "#consultation-form") {
+      // Find the element with the consultation-form ID
+      const element = document.getElementById("consultation-form");
+      if (element) {
+        // Wait a brief moment for the page to render
+        setTimeout(() => {
+          // Scroll to the element with smooth scrolling
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
   return (
-    <section className="py-20 bg-gradient-to-br from-[#E5DEFF]/20 via-white to-[#D6BCFA]/20">
+    <section id="consultation-form" className="py-20 bg-gradient-to-br from-[#E5DEFF]/20 via-white to-[#D6BCFA]/20">
       <div className="container-custom max-w-5xl px-4 sm:px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

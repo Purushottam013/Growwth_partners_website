@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { GamingIndustryHero } from "@/components/case-studies/GamingIndustryHero";
 import { GamingClientOverview } from "@/components/case-studies/GamingClientOverview";
@@ -12,6 +13,11 @@ import { CaseStudyCta } from "@/components/case-studies/CaseStudyCta";
 import { motion } from "framer-motion";
 
 const GamingIndustryCaseStudy = () => {
+  useEffect(() => {
+    // Always scroll to top of page when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <Layout>
       <motion.div

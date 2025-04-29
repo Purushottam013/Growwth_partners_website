@@ -19,7 +19,7 @@ export const CaseStudyCta = () => {
           </h3>
           
           <Link 
-            to="/contact" 
+            to="/contact#consultation-form" 
             className="inline-flex items-center gap-2 bg-brand-orange text-white font-semibold py-4 px-8 rounded-lg hover:bg-opacity-90 transition-colors text-lg"
           >
             Speak To An Expert
