@@ -14,7 +14,7 @@ const CaseStudySection = () => {
     {
       title: "Achievening E-Commerce Growth With Automation And Analytics",
       description: "We leveraged data and technology to automate processes, utilizing advanced tools to analyze financial data and target prospects effectively.",
-      url: "https://growwthpartners.com/portfolio/achievening-e-commerce-growth-with-automation-and-analytics/"
+      url: "/case-studies/ecommerce"
     }
   ];
 
