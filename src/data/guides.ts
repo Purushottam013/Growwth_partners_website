@@ -1,3 +1,4 @@
+
 export interface Guide {
   id: number;
   Title: string;
@@ -335,6 +336,16 @@ export const guides: Guide[] = [
     Excerpt: "Learn everything you need to know about bookkeeping practices, from basic principles to addressing common challenges for business success.",
     Content: "",
     publishedAt: "2024-04-20"
+  },
+  {
+    id: 7,
+    Title: "Comprehensive Guide to the Market Readiness Assistance (MRA) Grant in Singapore",
+    slug: "comprehensive-guide-to-mra-grant-singapore",
+    Image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c",
+    Category: "Grants & Funding",
+    Excerpt: "Everything you need to know about the MRA Grant in Singapore, including eligibility criteria, application process, and how to maximize your chances of success.",
+    Content: "",
+    publishedAt: "2024-04-28"
   }
 ];
 

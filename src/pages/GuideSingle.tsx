@@ -1,9 +1,11 @@
+
 import { useParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { getGuideBySlug } from "@/data/guides";
 import { useState, useEffect } from "react";
 import { FaqSection } from "@/components/accounting/FaqSection";
 import BookkeepingGuidePage from "@/components/guide/BookkeepingGuidePage";
+import MRAGrantGuidePage from "@/components/guide/MRAGrantGuidePage";
 
 const GuideSingle = () => {
   const { slug } = useParams();
@@ -25,6 +27,11 @@ const GuideSingle = () => {
   // Special handling for the bookkeeping guide to use the custom component
   if (slug === "comprehensive-guide-to-bookkeeping-practices") {
     return <BookkeepingGuidePage />;
+  }
+
+  // Special handling for the MRA grant guide to use the custom component
+  if (slug === "comprehensive-guide-to-mra-grant-singapore") {
+    return <MRAGrantGuidePage />;
   }
 
   if (loading) {
@@ -99,6 +106,21 @@ const GuideSingle = () => {
           {
             question: "What accounting software is recommended for small businesses?",
             answer: "Popular options include Xero, QuickBooks, and FreshBooks, but the best choice depends on your specific business needs, industry, and scale of operations."
+          }
+        ];
+      case 'Grants & Funding':
+        return [
+          {
+            question: "What other grants are available for Singapore businesses?",
+            answer: "Besides the MRA Grant, Singapore businesses can access the Enterprise Development Grant (EDG), Productivity Solutions Grant (PSG), and various sector-specific grants through Enterprise Singapore and other government agencies."
+          },
+          {
+            question: "How long does it take to receive approval for the MRA Grant?",
+            answer: "The evaluation process typically takes 4-6 weeks, though this timeline can vary depending on the complexity of your application and the current volume of submissions."
+          },
+          {
+            question: "Can I apply for multiple grants simultaneously?",
+            answer: "Yes, you can apply for multiple grants as long as you meet the eligibility criteria for each and the same expense item is not being funded by more than one grant program."
           }
         ];
       default:
