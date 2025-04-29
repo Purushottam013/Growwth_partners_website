@@ -7,9 +7,9 @@ import { Card, CardContent } from "@/components/ui/card";
 export const CaseStudySection = () => {
   const caseStudies = [
     {
-      title: "Transforming Patient Engagement In Healthcare Through Better Financial Management And Analysis",
+      title: "Transforming A Fast Growing Online Consumer Goods Business Through Virtual CFO Partnership",
       description: "Evaluating the business health of all companies within the group with the objective to improve revenue, profits and cash flows.",
-      url: "https://growwthpartners.com/portfolio/online-cosnsumer-goods/"
+      url: "/case-studies/online-consumer-goods"
     },
     {
       title: "Transforming A Gaming Industry Business For Exponential Growth",
