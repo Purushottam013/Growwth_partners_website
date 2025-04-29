@@ -86,7 +86,7 @@ const BookkeepingGuidePage = () => {
       <article className="container mx-auto px-4 py-8">
         {/* Section 1: Title and Key Takeaways */}
         <header className="max-w-full mx-auto mb-12">
-          <h1 className="text-4xl font-bold mb-6 w-[95%] mx-auto">A Comprehensive Guide to Bookkeeping Practices</h1>
+          <h1 className="text-4xl font-bold mb-6 w-[95%] mx-auto text-center">A Comprehensive Guide to Bookkeeping Practices</h1>
           
           <div className="bg-gray-50 p-8 rounded-lg">
             <h2 className="text-2xl font-semibold mb-8 text-center">Key Takeaways</h2>
