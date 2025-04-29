@@ -1,9 +1,18 @@
+
 import React from "react";
 import { Layout } from "@/components/Layout";
 import { FaqSection } from "@/components/accounting/FaqSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrendingUp, Search, Flag, Rocket, LayoutDashboard } from "lucide-react";
+import { 
+  Card, 
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle 
+} from "@/components/ui/card";
 
 const BookkeepingGuidePage = () => {
   // FAQs for different sections
@@ -81,52 +90,52 @@ const BookkeepingGuidePage = () => {
           
           <div className="bg-gray-50 p-8 rounded-lg">
             <h2 className="text-2xl font-semibold mb-8 text-center">Key Takeaways</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
                   src="/lovable-uploads/8512cbec-531f-47eb-b4b9-07c45d8af9a3.png" 
                   alt="Definition" 
-                  className="w-20 h-20 mb-4"
+                  className="w-32 h-32 mb-6"
                 />
-                <h3 className="font-medium mb-3 text-lg">Definition</h3>
+                <h3 className="font-medium mb-4 text-xl">Definition</h3>
                 <p className="text-base">Understand the basics of bookkeeping and its primary methods.</p>
               </div>
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
                   src="/lovable-uploads/f3a56b78-d040-4625-860c-5244fa5b6aa9.png" 
                   alt="Significance" 
-                  className="w-20 h-20 mb-4"
+                  className="w-32 h-32 mb-6"
                 />
-                <h3 className="font-medium mb-3 text-lg">Significance</h3>
+                <h3 className="font-medium mb-4 text-xl">Significance</h3>
                 <p className="text-base">Realise the importance of bookkeeping for compliance and management.</p>
               </div>
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
                   src="/lovable-uploads/ea8d2d58-1f4b-4396-b555-b2c99d049b4f.png" 
                   alt="Roles and Responsibilities" 
-                  className="w-20 h-20 mb-4"
+                  className="w-32 h-32 mb-6"
                 />
-                <h3 className="font-medium mb-3 text-lg">Roles and Responsibilities</h3>
+                <h3 className="font-medium mb-4 text-xl">Roles and Responsibilities</h3>
                 <p className="text-base">Learn what a bookkeeper does and the skills needed.</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
                   src="/lovable-uploads/a789441a-bd8a-4480-a2ce-1a8108aa187c.png" 
                   alt="Process Steps" 
-                  className="w-20 h-20 mb-4"
+                  className="w-32 h-32 mb-6"
                 />
-                <h3 className="font-medium mb-3 text-lg">Process Steps</h3>
+                <h3 className="font-medium mb-4 text-xl">Process Steps</h3>
                 <p className="text-base">Get familiar with the steps involved in the bookkeeping process.</p>
               </div>
               <div className="p-6 bg-white rounded shadow-sm flex flex-col items-center text-center h-full">
                 <img 
                   src="/lovable-uploads/12a63d37-c083-4866-91bf-a8fe64ececbd.png" 
                   alt="Challenges" 
-                  className="w-20 h-20 mb-4"
+                  className="w-32 h-32 mb-6"
                 />
-                <h3 className="font-medium mb-3 text-lg">Challenges</h3>
+                <h3 className="font-medium mb-4 text-xl">Challenges</h3>
                 <p className="text-base">Identify common challenges and understand the need for professional help.</p>
               </div>
             </div>
