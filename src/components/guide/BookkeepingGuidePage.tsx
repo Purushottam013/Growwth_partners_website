@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Layout } from "@/components/Layout";
 import { FaqSection } from "@/components/accounting/FaqSection";
@@ -123,7 +124,7 @@ const BookkeepingGuidePage = () => {
           </div>
           
           <img 
-            src="public/lovable-uploads/9b09d6da-f51b-4ea8-adfa-2e55f3ee1359.png" 
+            src="/lovable-uploads/9b09d6da-f51b-4ea8-adfa-2e55f3ee1359.png" 
             alt="Differences between Bookkeeping and Accounting" 
             className="w-full max-w-3xl mx-auto my-8 rounded-lg shadow-md"
           />
@@ -168,7 +169,7 @@ const BookkeepingGuidePage = () => {
           </div>
           
           <img 
-            src="public/lovable-uploads/dad81a7c-7ca5-4f6f-af5e-e5dcc560d434.png" 
+            src="/lovable-uploads/dad81a7c-7ca5-4f6f-af5e-e5dcc560d434.png" 
             alt="Role of a Bookkeeper" 
             className="w-full max-w-3xl mx-auto my-8 rounded-lg shadow-md"
           />
@@ -230,7 +231,7 @@ const BookkeepingGuidePage = () => {
           </div>
           
           <img 
-            src="public/lovable-uploads/bb44494d-3122-46fe-b8dc-68eb2efc6856.png" 
+            src="/lovable-uploads/bb44494d-3122-46fe-b8dc-68eb2efc6856.png" 
             alt="7 Step Guide to Effective Bookkeeping" 
             className="w-full max-w-3xl mx-auto my-8 rounded-lg shadow-md"
           />
