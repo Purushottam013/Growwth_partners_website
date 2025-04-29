@@ -11,22 +11,24 @@ export const useGuides = (category?: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate a database fetch with a slight delay
+    // Simulate loading with a slight delay (no database connection)
     setLoading(true);
     
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       try {
+        // Use the static data function to get guides by category
         const filteredGuides = getGuidesByCategory(category);
         setGuides(filteredGuides);
         setError(null);
       } catch (err: any) {
         console.error("Error fetching guides:", err);
-        setError("Failed to fetch guides");
+        setError("Failed to load guides");
       } finally {
         setLoading(false);
       }
-    }, 300); // Small delay to simulate fetch
+    }, 300); // Small delay to simulate loading
     
+    return () => clearTimeout(timer);
   }, [category]);
 
   return { guides, loading, error };

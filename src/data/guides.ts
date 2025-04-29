@@ -193,81 +193,139 @@ export const guides: Guide[] = [
   },
   {
     id: 4,
-    Title: "Bookkeeping Best Practices for Singapore SMEs",
-    slug: "bookkeeping-best-practices-singapore-smes",
-    Image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-    Category: "Bookkeeping",
-    Excerpt: "Learn essential bookkeeping practices to help your Singapore SME maintain accurate financial records and make informed business decisions.",
+    Title: "HR & Payroll Management Guide for Singapore Companies",
+    slug: "hr-payroll-management-singapore-companies",
+    Image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0",
+    Category: "HR & Payroll",
+    Excerpt: "Essential strategies for effective HR and payroll management in Singapore, including compliance requirements and best practices.",
     Content: `
-      <h2>The Importance of Proper Bookkeeping</h2>
-      <p>Effective bookkeeping is the foundation of financial management for any business. For Singapore SMEs, maintaining accurate records is not only a statutory requirement but also essential for making informed business decisions, securing financing, and planning for growth.</p>
+      <h2>Introduction to HR & Payroll in Singapore</h2>
+      <p>Human resources and payroll management in Singapore requires adherence to specific regulations while implementing effective strategies to attract and retain talent. This guide covers the essentials for businesses operating in Singapore's competitive landscape.</p>
       
-      <h2>Setting Up a Bookkeeping System</h2>
-      <p>To establish an effective bookkeeping system:</p>
+      <h2>Key Compliance Requirements</h2>
+      <p>Singapore employers must comply with:</p>
       <ul>
-        <li>Choose between cash or accrual accounting methods</li>
-        <li>Select appropriate accounting software for your business size</li>
-        <li>Set up a chart of accounts that reflects your business operations</li>
-        <li>Establish consistent record-keeping procedures</li>
-        <li>Create a system for tracking receipts and invoices</li>
+        <li>Employment Act provisions</li>
+        <li>Central Provident Fund (CPF) contributions</li>
+        <li>Skills Development Levy (SDL)</li>
+        <li>Foreign worker levy payments (if applicable)</li>
+        <li>IR8A filing requirements</li>
+        <li>Work injury compensation insurance</li>
       </ul>
       
-      <h2>Essential Bookkeeping Tasks</h2>
-      <p>Maintain financial health with these regular tasks:</p>
+      <h2>CPF Contributions</h2>
+      <p>The CPF is Singapore's social security system that helps employees save for retirement, healthcare, and housing needs. Employers must make monthly CPF contributions based on:</p>
       <ul>
-        <li>Record all business transactions promptly</li>
-        <li>Reconcile bank statements monthly</li>
-        <li>Monitor accounts receivable and payable</li>
-        <li>Track inventory and fixed assets</li>
-        <li>Manage petty cash systematically</li>
-        <li>Prepare financial statements (income statement, balance sheet, cash flow statement)</li>
+        <li>Employee's age</li>
+        <li>Citizenship status</li>
+        <li>Monthly ordinary wages</li>
+        <li>Additional wages (bonuses, commissions)</li>
       </ul>
       
-      <h2>Compliance with Singapore Regulations</h2>
-      <p>SMEs in Singapore must comply with:</p>
+      <h2>Payroll Processing Best Practices</h2>
+      <p>For efficient payroll management:</p>
       <ul>
-        <li>Singapore Financial Reporting Standards (SFRS)</li>
-        <li>Companies Act requirements for financial record keeping</li>
-        <li>IRAS requirements for tax documentation</li>
-        <li>GST record-keeping requirements (if GST-registered)</li>
-        <li>Statutory retention periods for financial records (minimum 5 years)</li>
+        <li>Establish a clear payroll schedule and timeline</li>
+        <li>Implement automated payroll systems</li>
+        <li>Keep accurate attendance and leave records</li>
+        <li>Stay updated with tax and CPF rate changes</li>
+        <li>Maintain secure records of payroll information</li>
+        <li>Provide detailed pay slips to employees</li>
       </ul>
       
-      <h2>Technology Solutions for Efficient Bookkeeping</h2>
-      <p>Leverage these tools for better financial management:</p>
+      <h2>HR Management Strategies</h2>
+      <p>Effective HR practices for Singapore companies include:</p>
       <ul>
-        <li>Cloud-based accounting software (Xero, QuickBooks, MYOB)</li>
-        <li>Receipt scanning and management apps</li>
-        <li>Automated bank feeds for transaction imports</li>
-        <li>Expense management systems</li>
-        <li>Integrated payroll solutions</li>
+        <li>Developing comprehensive employment contracts</li>
+        <li>Creating clear employee handbooks and policies</li>
+        <li>Implementing structured performance review systems</li>
+        <li>Offering competitive benefits packages</li>
+        <li>Investing in employee development and training</li>
+        <li>Fostering an inclusive workplace culture</li>
       </ul>
       
-      <h2>Common Bookkeeping Mistakes to Avoid</h2>
-      <p>Prevent these frequent errors:</p>
-      <ul>
-        <li>Mixing personal and business finances</li>
-        <li>Neglecting regular reconciliations</li>
-        <li>Misclassifying expenses</li>
-        <li>Failing to track reimbursable expenses</li>
-        <li>Not maintaining backup documentation</li>
-        <li>Overlooking small transactions</li>
-      </ul>
-      
-      <h2>When to Seek Professional Help</h2>
-      <p>Consider outsourcing bookkeeping when:</p>
+      <h2>When to Outsource HR & Payroll</h2>
+      <p>Consider outsourcing when:</p>
       <ul>
         <li>Your business is growing rapidly</li>
-        <li>Financial transactions are becoming complex</li>
-        <li>You lack time or expertise for proper record-keeping</li>
-        <li>You need strategic financial guidance</li>
-        <li>You're preparing for funding rounds or audits</li>
+        <li>You need to reduce compliance risks</li>
+        <li>Internal resources are limited</li>
+        <li>You want to focus on core business functions</li>
+        <li>Payroll complexity increases with international operations</li>
       </ul>
       
       <h2>Conclusion</h2>
-      <p>Implementing sound bookkeeping practices helps Singapore SMEs maintain financial clarity, comply with regulations, and make data-driven decisions. Whether managing your books in-house or outsourcing to professionals, consistent and accurate record-keeping is essential for business success and growth.</p>
+      <p>Effective HR and payroll management is crucial for business success in Singapore. Whether handled in-house or outsourced to professionals, ensuring compliance while implementing strategic human resource practices will help companies maintain a productive workforce and avoid costly penalties. As regulations evolve, staying informed and adapting your processes accordingly is essential for long-term success.</p>
     `,
-    publishedAt: "2024-01-30"
+    publishedAt: "2024-03-05"
+  },
+  {
+    id: 5,
+    Title: "Complete Guide to Company Incorporation in Singapore",
+    slug: "complete-guide-company-incorporation-singapore",
+    Image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623",
+    Category: "Incorporation",
+    Excerpt: "A step-by-step guide to incorporating your company in Singapore, from choosing the right business structure to post-registration requirements.",
+    Content: `
+      <h2>Why Incorporate in Singapore?</h2>
+      <p>Singapore consistently ranks as one of the world's easiest places to do business, offering advantages such as:</p>
+      <ul>
+        <li>Strategic location in the heart of Asia</li>
+        <li>Political stability and transparent legal system</li>
+        <li>Extensive network of tax treaties</li>
+        <li>Competitive corporate tax rates</li>
+        <li>Business-friendly policies and government incentives</li>
+        <li>Access to skilled workforce</li>
+      </ul>
+      
+      <h2>Types of Business Structures</h2>
+      <p>Choose from several business structures in Singapore:</p>
+      <ul>
+        <li><strong>Private Limited Company</strong>: Most popular option, offering limited liability and separate legal entity status</li>
+        <li><strong>Sole Proprietorship</strong>: Simple structure with no separate legal entity</li>
+        <li><strong>Partnership</strong>: Business owned by 2-20 partners with shared liability</li>
+        <li><strong>Limited Liability Partnership (LLP)</strong>: Partners have limited liability while maintaining partnership flexibility</li>
+        <li><strong>Branch Office</strong>: Extension of foreign company, not a separate legal entity</li>
+        <li><strong>Representative Office</strong>: Temporary setup for market research</li>
+      </ul>
+      
+      <h2>Incorporation Requirements</h2>
+      <p>To incorporate a private limited company, you need:</p>
+      <ul>
+        <li>At least one shareholder (individual or corporate entity)</li>
+        <li>At least one director who is a Singapore resident</li>
+        <li>A qualified company secretary</li>
+        <li>Minimum paid-up capital of S$1</li>
+        <li>A registered office address in Singapore</li>
+        <li>Company name approval from ACRA</li>
+      </ul>
+      
+      <h2>Incorporation Process</h2>
+      <p>The steps to incorporate a company include:</p>
+      <ol>
+        <li>Name reservation with ACRA</li>
+        <li>Preparation of incorporation documents</li>
+        <li>Filing incorporation application via BizFile+</li>
+        <li>Payment of registration fees</li>
+        <li>Receipt of certificate of incorporation</li>
+      </ol>
+      
+      <h2>Post-Incorporation Requirements</h2>
+      <p>After incorporation, companies must:</p>
+      <ul>
+        <li>Open a corporate bank account</li>
+        <li>Register for GST (if annual turnover exceeds S$1 million)</li>
+        <li>Apply for relevant business licenses</li>
+        <li>Setup proper accounting systems</li>
+        <li>Hold annual general meetings</li>
+        <li>File annual returns with ACRA</li>
+        <li>Submit tax returns</li>
+      </ul>
+      
+      <h2>Conclusion</h2>
+      <p>Incorporating a company in Singapore offers numerous advantages for entrepreneurs and businesses looking to establish a presence in Asia. While the process is straightforward, engaging professional assistance can ensure smooth incorporation and ongoing compliance. With the right structure and support, your Singapore company can serve as an effective vehicle for business growth and expansion in the region.</p>
+    `,
+    publishedAt: "2024-01-15"
   }
 ];
 
