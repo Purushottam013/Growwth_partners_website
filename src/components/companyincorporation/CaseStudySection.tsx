@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 
 export const CaseStudySection = () => {
   const caseStudies = [
-    {
-      title: "Streamlining Business Setup For Tech Startup",
-      description: "How Growwth Partners helped a tech startup navigate complex incorporation processes and achieve operational readiness in record time.",
-      url: "/case-studies/tech-startup-incorporation"
+   {
+      title: "Transforming A Fast Growing Online Consumer Goods Business Through Virtual CFO Partnership",
+      description: "Evaluating the business health of all companies within the group with the objective to improve revenue, profits and cash flows.",
+      url: "/case-studies/online-consumer-goods"
     },
     {
-      title: "International Expansion Made Simple",
-      description: "Supporting a Singapore-based business in establishing their UAE operations through comprehensive incorporation and compliance services.",
-      url: "/case-studies/international-expansion"
+      title: "Achievening E-Commerce Growth With Automation And Analytics",
+      description: "This success story highlights the effectiveness and sustainability of data-driven strategies in achieving remarkable growth in e-commerce operations.",
+      url: "/case-studies/ecommerce"
     }
   ];
 
