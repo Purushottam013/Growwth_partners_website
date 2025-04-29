@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-export const CaseStudySection = () => {
+const CaseStudySection = () => {
   const caseStudies = [
     {
       title: "Achieving Remarkable Growth: A Data-Driven Success Story",
       description: "With a focus on experiential learning, they aimed to optimize their staff costs, capital allocation, and financial forecasting to align with their expansion goals.",
-      url: "https://growwthpartners.com/portfolio/achieving-remarkable-growth-a-data-driven-success-story/"
+      url: "/case-studies/data-driven-success"
     },
     {
       title: "Achievening E-Commerce Growth With Automation And Analytics",
@@ -46,9 +46,7 @@ export const CaseStudySection = () => {
               className="h-full"
             >
               <a 
-                href={study.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href={study.url}
                 className="block h-full group"
               >
                 <Card className="bg-gray-50 hover:shadow-xl transition-all duration-300 h-full hover:-translate-y-2 border-0 shadow-md overflow-hidden">
