@@ -22,7 +22,7 @@ const GuideDetail = ({
   }, []);
   return <Layout>
       <article className="py-12 font-['Montserrat']">
-        <div className="container mx-auto px-4 max-w-4xl bg-green">
+        <div className="container mx-auto px-4 max-w-4xl">
           {/* Guide Header */}
           <div className="mb-12 text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-['Poppins'] font-bold mb-6 py-4 px-6 rounded-lg bg-gradient-to-r from-amber-200 to-amber-400 inline-block shadow-lg">
@@ -31,7 +31,7 @@ const GuideDetail = ({
           </div>
 
           {/* Section 1: Key Takeaways */}
-          <section className="mb-16 mx-auto w-[90%]">
+          <section className="mb-16 mx-auto w-full">
             <div className="flex items-center justify-center mb-8">
               <BookOpen className="mr-3 h-7 w-7 text-brand-orange" />
               <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
