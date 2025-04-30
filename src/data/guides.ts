@@ -13,10 +13,21 @@ export interface Guide {
 // Empty guides array - will be populated later when the feature is ready
 export const guides: Guide[] = [];
 
+// Define available guide categories
+export const guideCategories = [
+  "Accounting", 
+  "Corporate Secretary", 
+  "HR & Payroll", 
+  "Incorporation", 
+  "Fractional CFO", 
+  "Taxation & Compliance"
+];
+
 export const getGuidesByCategory = (category?: string): Guide[] => {
-  return guides;
+  if (!category) return guides;
+  return guides.filter(guide => guide.Category === category);
 };
 
 export const getGuideBySlug = (slug: string): Guide | undefined => {
-  return undefined;
+  return guides.find(guide => guide.slug === slug);
 };

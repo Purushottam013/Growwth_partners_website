@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { guides as staticGuides, getGuidesByCategory } from "@/data/guides";
+import { guides as staticGuides, getGuidesByCategory, guideCategories } from "@/data/guides";
 
 // Import the Guide type properly with 'export type'
 export type { Guide } from "@/data/guides";
@@ -17,5 +17,5 @@ export const useGuides = (category?: string) => {
     setError(null);
   }, [category]);
 
-  return { guides, loading, error };
+  return { guides, loading, error, categories: guideCategories };
 };
