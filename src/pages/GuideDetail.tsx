@@ -1,12 +1,13 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { PhoneCall, BookOpen } from "lucide-react";
+import { PhoneCall, BookOpen, Search, Users, FileText, Presentation, DollarSign } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Guide } from "@/data/guides";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Plus, Minus } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface GuideDetailProps {
   guide: Guide;
@@ -35,92 +36,82 @@ const GuideDetail = ({
             </h1>
           </div>
 
-          {/* Section 1: Key Takeaways */}
+          {/* Section 1: Key Takeaways - Redesigned */}
           <section className="mb-16 mx-auto w-[90%]">
             <div className="flex items-center justify-center mb-8">
               <BookOpen className="mr-3 h-7 w-7 text-brand-orange" />
               <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
             </div>
-            <div className="bg-gray-50 border border-gray-100 rounded-xl p-8 shadow-lg">
+            <div className="bg-gradient-to-br from-gray-50 to-amber-50 border border-amber-100 rounded-xl p-8 shadow-lg">
               {/* First row with 3 images */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 {/* Item 1 */}
-                <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-white border-amber-200">
+                  <div className="overflow-hidden h-48 w-full flex items-center justify-center bg-white p-4 border-b border-amber-100">
                     <img src={keyTakeawayImages[0]} alt="Business Needs" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-2">
-                      <h3 className="text-xl font-['Poppins'] font-semibold">Business Needs</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
+                  <CardContent className="p-5">
+                    <h3 className="text-xl font-['Poppins'] font-semibold mb-2 text-center text-gray-800">Business Needs</h3>
+                    <p className="text-gray-700 leading-relaxed text-center">
                       Realise when and why a company will need outside funding to scale effectively.
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
 
                 {/* Item 2 */}
-                <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-white border-amber-200">
+                  <div className="overflow-hidden h-48 w-full flex items-center justify-center bg-white p-4 border-b border-amber-100">
                     <img src={keyTakeawayImages[1]} alt="Different Investors" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-2">
-                      <h3 className="text-xl font-['Poppins'] font-semibold">Different Investors</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
+                  <CardContent className="p-5">
+                    <h3 className="text-xl font-['Poppins'] font-semibold mb-2 text-center text-gray-800">Different Investors</h3>
+                    <p className="text-gray-700 leading-relaxed text-center">
                       Know the various kinds of investors and what they anticipate.
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
 
                 {/* Item 3 */}
-                <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-white border-amber-200">
+                  <div className="overflow-hidden h-48 w-full flex items-center justify-center bg-white p-4 border-b border-amber-100">
                     <img src={keyTakeawayImages[2]} alt="Create an Engaging Pitch Deck" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-2">
-                      <h3 className="text-xl font-['Poppins'] font-semibold">Create an Engaging Pitch Deck</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
+                  <CardContent className="p-5">
+                    <h3 className="text-xl font-['Poppins'] font-semibold mb-2 text-center text-gray-800">Create an Engaging Pitch Deck</h3>
+                    <p className="text-gray-700 leading-relaxed text-center">
                       Organise your pitch deck well so that it captures the attention of investors who want to see your business potential.
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Second row with 2 images */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:max-w-3xl md:mx-auto">
                 {/* Item 4 */}
-                <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-white border-amber-200">
+                  <div className="overflow-hidden h-48 w-full flex items-center justify-center bg-white p-4 border-b border-amber-100">
                     <img src={keyTakeawayImages[3]} alt="Perfect Your Elevator Pitch" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-2">
-                      <h3 className="text-xl font-['Poppins'] font-semibold">Perfect Your Elevator Pitch</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
+                  <CardContent className="p-5">
+                    <h3 className="text-xl font-['Poppins'] font-semibold mb-2 text-center text-gray-800">Perfect Your Elevator Pitch</h3>
+                    <p className="text-gray-700 leading-relaxed text-center">
                       Create a concise, compelling elevator pitch that will leave a lasting impression on potential investors.
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
 
                 {/* Item 5 */}
-                <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 bg-white border-amber-200">
+                  <div className="overflow-hidden h-48 w-full flex items-center justify-center bg-white p-4 border-b border-amber-100">
                     <img src={keyTakeawayImages[4]} alt="Navigate Investor Networks" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
-                  <div className="text-center">
-                    <div className="flex items-center justify-center mb-2">
-                      <h3 className="text-xl font-['Poppins'] font-semibold">Navigate Investor Networks</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
+                  <CardContent className="p-5">
+                    <h3 className="text-xl font-['Poppins'] font-semibold mb-2 text-center text-gray-800">Navigate Investor Networks</h3>
+                    <p className="text-gray-700 leading-relaxed text-center">
                       Understanding where and how to find suitable investors can greatly increase the chances of securing required funds for growth.
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>
@@ -421,32 +412,103 @@ const GuideDetail = ({
             </div>
           </section>
 
-          {/* Section 9: Finding Investors */}
+          {/* Section 9: Finding Investors - Enhanced UI/UX */}
           <section className="mb-16">
             <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Finding Investors: Where and How</h3>
-            <div className="prose max-w-none">
-              <h4 className="text-xl font-semibold mb-4">Where to Find Investors</h4>
-              <p className="mb-4">To locate suitable investors, use multiple channels like:</p>
-              <ul className="mb-6">
-                <li><strong>Networking Events:</strong> Attend industry conferences, startup events or networking meet-ups where you could potentially meet interested investors.</li>
-                <li><strong>Online Resources:</strong> Utilise platforms such as LinkedIn or crowdfunding websites. These allow for easy identification and connection with people willing to put capital into ventures like yours.</li>
-                <li><strong>Accelerators and Incubator Programs:</strong> Joining one of these programs provides access to funds as well as investor relations among other benefits.</li>
-                <li><strong>Referrals:</strong> Reach out to mentors, advisors or other business owners within your existing network for referrals.</li>
-              </ul>
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                {/* Left column: Where to Find Investors */}
+                <div className="bg-amber-50 p-6 rounded-lg border-l-4 border-brand-orange">
+                  <div className="flex items-center mb-4">
+                    <Search className="h-6 w-6 text-brand-orange mr-2" />
+                    <h4 className="text-xl font-['Poppins'] font-semibold">Where to Find Investors</h4>
+                  </div>
+                  <ul className="space-y-4">
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">1</span>
+                      <div>
+                        <p className="font-semibold">Networking Events</p>
+                        <p className="text-gray-700">Attend industry conferences, startup events or networking meet-ups where you could potentially meet interested investors.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">2</span>
+                      <div>
+                        <p className="font-semibold">Online Resources</p>
+                        <p className="text-gray-700">Utilise platforms such as LinkedIn or crowdfunding websites. These allow for easy identification and connection with people willing to put capital into ventures like yours.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">3</span>
+                      <div>
+                        <p className="font-semibold">Accelerators and Incubator Programs</p>
+                        <p className="text-gray-700">Joining one of these programs provides access to funds as well as investor relations among other benefits.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">4</span>
+                      <div>
+                        <p className="font-semibold">Referrals</p>
+                        <p className="text-gray-700">Reach out to mentors, advisors or other business owners within your existing network for referrals.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                
+                {/* Right column: How to Approach Investors */}
+                <div className="bg-amber-50 p-6 rounded-lg border-l-4 border-brand-orange">
+                  <div className="flex items-center mb-4">
+                    <Users className="h-6 w-6 text-brand-orange mr-2" />
+                    <h4 className="text-xl font-['Poppins'] font-semibold">How to Approach Investors</h4>
+                  </div>
+                  <ul className="space-y-4">
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">1</span>
+                      <div>
+                        <p className="font-semibold">Investigate</p>
+                        <p className="text-gray-700">Learn about the investor's investing preferences, portfolio, and history.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">2</span>
+                      <div>
+                        <p className="font-semibold">Customise</p>
+                        <p className="text-gray-700">Make your strategy specific to every investor. Emphasise how your company's operations complement their investment goals.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">3</span>
+                      <div>
+                        <p className="font-semibold">Act with professionalism</p>
+                        <p className="text-gray-700">Be sure to communicate in a professional manner at all times. Be succinct, precise, and considerate of their time.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="bg-brand-orange text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1">4</span>
+                      <div>
+                        <p className="font-semibold">Follow Up</p>
+                        <p className="text-gray-700">To maintain the conversation after making the first contact, follow up. As needed, provide updates and more details.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
               
-              <h4 className="text-xl font-semibold mb-4">How to Approach Investors</h4>
-              <p className="mb-4">When approaching investors, follow these steps:</p>
-              <ul className="mb-6">
-                <li><strong>Investigate:</strong> Learn about the investor's investing preferences, portfolio, and history.</li>
-                <li><strong>Customise:</strong> Make your strategy specific to every investor. Emphasise how your company's operations complement their investment goals and areas of interest.</li>
-                <li><strong>Act with professionalism:</strong> Be sure to communicate in a professional manner at all times. Be succinct, precise, and considerate of their time.</li>
-                <li><strong>Follow Up:</strong> To maintain the conversation after making the first contact, follow up. As needed, provide updates and more details.</li>
-              </ul>
-              
-              <h4 className="text-xl font-semibold mb-4">How Difficult Is It to Get Investments?</h4>
-              <p className="mb-6">Securing investment is not easy; there's stiff competition for limited funds, so having a great business idea alone won't cut it. Building relationships with potential investors takes time, but can significantly improve chances of success.</p>
-              
-              <p>For expert financial management services, from accounting to capital acquisition, connect with Growwth Partners.</p>
+              {/* Bottom section: How Difficult Is It to Get Investments? */}
+              <div className="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <FileText className="h-6 w-6 text-brand-orange mr-2" />
+                  <h4 className="text-xl font-['Poppins'] font-semibold">How Difficult Is It to Get Investments?</h4>
+                </div>
+                <p className="mb-4 text-gray-700">Securing investment is not easy; there's stiff competition for limited funds, so having a great business idea alone won't cut it. Building relationships with potential investors takes time, but can significantly improve chances of success.</p>
+                
+                <div className="mt-6 flex items-center justify-center">
+                  <div className="flex items-center justify-center p-4 bg-brand-orange text-white rounded-lg max-w-md">
+                    <DollarSign className="h-5 w-5 mr-2" />
+                    <p className="font-medium">For expert financial management services, from accounting to capital acquisition, connect with Growwth Partners.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 

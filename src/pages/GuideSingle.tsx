@@ -23,7 +23,16 @@ const GuideSingle = () => {
   ];
 
   const handleContactClick = () => {
-    navigate("/contact#consultation-form");
+    // Navigate to contact page and scroll to consultation form
+    navigate("/contact");
+    
+    // Use setTimeout to ensure navigation completes before trying to scroll
+    setTimeout(() => {
+      const consultationForm = document.getElementById("consultation-form");
+      if (consultationForm) {
+        consultationForm.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return <GuideDetail guide={guide} keyTakeawayImages={keyTakeawayImages} onContactClick={handleContactClick} />;
