@@ -1,3 +1,4 @@
+
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -30,7 +31,7 @@ const GuideDetail = ({
           </div>
 
           {/* Section 1: Key Takeaways */}
-          <section className="mb-16">
+          <section className="mb-16 mx-auto w-[90%]">
             <div className="flex items-center justify-center mb-8">
               <BookOpen className="mr-3 h-7 w-7 text-brand-orange" />
               <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
