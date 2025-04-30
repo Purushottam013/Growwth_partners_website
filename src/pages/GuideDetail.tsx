@@ -1,4 +1,3 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -11,9 +10,10 @@ import { Plus, Minus } from "lucide-react";
 
 interface GuideDetailProps {
   guide: Guide;
+  keyTakeawayImages: string[];
 }
 
-const GuideDetail = ({ guide }: GuideDetailProps) => {
+const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
   useEffect(() => {
@@ -22,59 +22,121 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
   return (
     <Layout>
-      <article className="py-12">
+      <article className="py-12 font-['Montserrat']">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Guide Header */}
           <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 py-4 px-6 rounded-lg bg-gradient-to-r from-amber-200 to-amber-400 inline-block">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-['Poppins'] font-bold mb-6 py-4 px-6 rounded-lg bg-gradient-to-r from-amber-200 to-amber-400 inline-block shadow-lg">
               {guide.Title}
             </h1>
           </div>
 
           {/* Section 1: Key Takeaways */}
           <section className="mb-16">
-            <div className="flex items-center justify-center mb-4">
-              <BookOpen className="mr-3 h-6 w-6 text-brand-orange" />
-              <h2 className="text-2xl font-bold">Key Takeaways</h2>
+            <div className="flex items-center justify-center mb-8">
+              <BookOpen className="mr-3 h-7 w-7 text-brand-orange" />
+              <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
             </div>
-            <div className="bg-gray-50 border border-gray-100 rounded-xl p-8">
-              <div className="flex items-start mb-6">
-                <TrendingUp className="h-6 w-6 text-brand-orange mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Business Needs</h3>
-                  <p>Realise when and why a company will need outside funding to scale effectively.</p>
+            <div className="bg-gray-50 border border-gray-100 rounded-xl p-8 shadow-md">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Item 1 */}
+                <div className="flex flex-col items-center">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                    <img 
+                      src={keyTakeawayImages[0]} 
+                      alt="Business Needs" 
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center mb-2">
+                      <TrendingUp className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
+                      <h3 className="text-xl font-['Poppins'] font-semibold">Business Needs</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Realise when and why a company will need outside funding to scale effectively.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-start mb-6">
-                <Users className="h-6 w-6 text-brand-orange mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Different Investors</h3>
-                  <p>Know the various kinds of investors and what they anticipate.</p>
+
+                {/* Item 2 */}
+                <div className="flex flex-col items-center">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                    <img 
+                      src={keyTakeawayImages[1]} 
+                      alt="Different Investors" 
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center mb-2">
+                      <Users className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
+                      <h3 className="text-xl font-['Poppins'] font-semibold">Different Investors</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Know the various kinds of investors and what they anticipate.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-start mb-6">
-                <FileText className="h-6 w-6 text-brand-orange mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Create an Engaging Pitch Deck</h3>
-                  <p>Organise your pitch deck well so that it captures the attention of investors who want to see your business potential.</p>
+
+                {/* Item 3 */}
+                <div className="flex flex-col items-center">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                    <img 
+                      src={keyTakeawayImages[2]} 
+                      alt="Create an Engaging Pitch Deck" 
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center mb-2">
+                      <FileText className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
+                      <h3 className="text-xl font-['Poppins'] font-semibold">Create an Engaging Pitch Deck</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Organise your pitch deck well so that it captures the attention of investors who want to see your business potential.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-start mb-6">
-                <Lightbulb className="h-6 w-6 text-brand-orange mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Perfect Your Elevator Pitch</h3>
-                  <p>Create a concise, compelling elevator pitch that will leave a lasting impression on potential investors.</p>
+
+                {/* Item 4 */}
+                <div className="flex flex-col items-center">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                    <img 
+                      src={keyTakeawayImages[3]} 
+                      alt="Perfect Your Elevator Pitch" 
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center mb-2">
+                      <Lightbulb className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
+                      <h3 className="text-xl font-['Poppins'] font-semibold">Perfect Your Elevator Pitch</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Create a concise, compelling elevator pitch that will leave a lasting impression on potential investors.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="flex items-start">
-                <Globe className="h-6 w-6 text-brand-orange mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Navigate Investor Networks</h3>
-                  <p>Understanding where and how to find suitable investors can greatly increase the chances of securing required funds for growth.</p>
+
+                {/* Item 5 - This will be full width on mobile and centered on desktop */}
+                <div className="flex flex-col items-center md:col-span-2 md:max-w-md md:mx-auto">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                    <img 
+                      src={keyTakeawayImages[4]} 
+                      alt="Navigate Investor Networks" 
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center mb-2">
+                      <Globe className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
+                      <h3 className="text-xl font-['Poppins'] font-semibold">Navigate Investor Networks</h3>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">
+                      Understanding where and how to find suitable investors can greatly increase the chances of securing required funds for growth.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,13 +144,13 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 2: Introduction */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Introduction</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Introduction</h3>
             <div className="prose max-w-none">
-              <p className="mb-4 text-center">
+              <p className="mb-6 text-center text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 Gaining funds from investors is often seen as one of the most important moments in any business. 
                 It is usually regarded as the end of being just another small company and the start of becoming an established business.
               </p>
-              <p className="text-center">
+              <p className="text-center text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 However, pitching to investors and securing investments is a complex process that requires detailed preparation, 
                 strategic thinking and thoroughly knowing your business needs and potentials. This comprehensive guide provides 
                 everything you need to know about pitching to investors, including when is the right time to seek for investment, 
@@ -99,19 +161,19 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 3: Pitching to Investors */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Pitching to Investors</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Pitching to Investors</h3>
             <div className="grid grid-cols-1 items-center mb-8">
               <div className="prose max-w-none mb-8 text-center">
-                <p className="mb-4">
+                <p className="mb-6 text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                   In order to obtain funding, you must pitch your business idea, growth strategies, and financial requirements 
                   to possible investors. Presenting your company's story in an engaging way, supported by reliable data and a 
                   distinct future vision, is the art of pitching.
                 </p>
-                <p className="mb-4">
+                <p className="mb-6 text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                   For newly established and expanding companies that require funding to grow, innovate, or maintain operations, 
                   this procedure is essential.
                 </p>
-                <p>
+                <p className="text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                   Trust Growwth Partners to handle everything from pre-fundraising preparations to maintaining strong investor relationships.
                 </p>
               </div>
@@ -119,7 +181,7 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
                 <img 
                   src="/lovable-uploads/753ca010-8990-4e45-a02a-523a4c61a109.png" 
                   alt="Signs Your Business Needs Investors" 
-                  className="rounded-lg shadow-md w-full mx-auto"
+                  className="rounded-lg shadow-md w-full max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -127,20 +189,20 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 4: FAQ 1 */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Frequently Asked Questions</h3>
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem 
                 value="faq-1" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
               >
-                <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
-                  <span className="text-lg font-medium text-gray-800">How do I know if my business is ready for investment?</span>
+                <AccordionTrigger className="group px-6 py-4 flex justify-between items-center hover:no-underline">
+                  <span className="text-lg font-medium text-gray-800 font-['Poppins']">How do I know if my business is ready for investment?</span>
                   <div className="flex-shrink-0">
                     <Plus className="h-6 w-6 text-brand-orange group-data-[state=open]:hidden transition-transform" />
                     <Minus className="h-6 w-6 text-brand-orange hidden group-data-[state=open]:block transition-transform" />
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6 bg-gray-50">
+                <AccordionContent className="px-6 pb-6 bg-gray-50 text-gray-700 font-['Montserrat'] leading-relaxed">
                   <p>You can look for indicators like quick growth opportunities, product development needs, plans to expand into new markets, financial strain, and the need to stay competitive.</p>
                 </AccordionContent>
               </AccordionItem>
@@ -213,39 +275,43 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 5: Kinds of Investors and Investments */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Kinds of Investors and Investments</h3>
-            <div className="prose max-w-none text-center">
-              <p className="mb-6">
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Kinds of Investors and Investments</h3>
+            <div className="prose max-w-none text-center mb-8">
+              <p className="mb-6 text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 Investors are people or organisations that put their money into businesses with the aim of making profits later. Here are some types:
               </p>
             </div>
               
-            <div className="prose max-w-none">  
-              <h4 className="text-xl font-semibold mb-4">Angel Investors</h4>
-              <p className="mb-6">
-                These are often wealthy individuals who provide capital for startups in exchange for ownership equity. 
-                They may also offer mentorship services as well as industry connections with funding support.
-              </p>
+            <div className="prose max-w-none space-y-8">  
+              <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-brand-orange">
+                <h4 className="text-xl font-['Poppins'] font-semibold mb-3 text-gray-800">Angel Investors</h4>
+                <p className="text-gray-700 leading-relaxed font-['Montserrat']">
+                  These are often wealthy individuals who provide capital for startups in exchange for ownership equity. 
+                  They may also offer mentorship services as well as industry connections with funding support.
+                </p>
+              </div>
               
-              <h4 className="text-xl font-semibold mb-4">Venture Capitalists (VCs)</h4>
-              <p className="mb-6">
-                Venture capitalists are professional groups or companies that pool investments together from different sources before 
-                investing them into high-growth-potential startups. They take significant stakes in such firms while also occupying positions on their boards.
-              </p>
+              <div className="bg-white rounded-lg p-6 shadow-sm border-l-4 border-brand-orange">
+                <h4 className="text-xl font-['Poppins'] font-semibold mb-3 text-gray-800">Venture Capitalists (VCs)</h4>
+                <p className="text-gray-700 leading-relaxed font-['Montserrat']">
+                  Venture capitalists are professional groups or companies that pool investments together from different sources before 
+                  investing them into high-growth-potential startups. They take significant stakes in such firms while also occupying positions on their boards.
+                </p>
+              </div>
               
-              <h4 className="text-xl font-semibold mb-4">Crowdfunding</h4>
+              <h4 className="text-xl font-['Poppins'] font-semibold mb-4">Crowdfunding</h4>
               <p className="mb-6">
                 This refers to raising small amounts of money from numerous people through online platforms, mostly in form of donations or product pre-orders. 
                 It's more suited for consumer-oriented products and can help build up the customer base too.
               </p>
               
-              <h4 className="text-xl font-semibold mb-4">Corporate Investors</h4>
+              <h4 className="text-xl font-['Poppins'] font-semibold mb-4">Corporate Investors</h4>
               <p className="mb-6">
                 Sometimes, large corporations invest in smaller ones so that they can acquire new technologies or business models. 
                 Such deals may involve substantial amounts of capital besides bringing about strategic advantages.
               </p>
               
-              <h4 className="text-xl font-semibold mb-4">Government Grants and Loans</h4>
+              <h4 className="text-xl font-['Poppins'] font-semibold mb-4">Government Grants and Loans</h4>
               <p>
                 Governments provide financial aid to startups and small businesses in many forms. 
                 They are not investors per se, but can represent an important source of non-dilutive capital.
@@ -255,7 +321,7 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 6: FAQ 2 */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">More Questions About Investors</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">More Questions About Investors</h3>
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem 
                 value="faq-6" 
@@ -341,7 +407,7 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 7: Step by Step Guide */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Step by Step Guide to Pitching to Investors</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Step by Step Guide to Pitching to Investors</h3>
             <div className="grid grid-cols-1 items-center mb-8">
               <div>
                 <img 
@@ -384,7 +450,7 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 8: How to Make an Elevator Pitch */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">How to Make an Elevator Pitch</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">How to Make an Elevator Pitch</h3>
             <div className="prose max-w-none">
               <p className="mb-6 text-center">An elevator pitch is a concise, persuasive summary of your business. Below is a guide on how to create one:</p>
               
@@ -412,14 +478,14 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 9: Finding Investors */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Finding Investors: Where and How</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Finding Investors: Where and How</h3>
             <div className="prose max-w-none">
               <h4 className="text-xl font-semibold mb-4">Where to Find Investors</h4>
               <p className="mb-4">To locate suitable investors, use multiple channels like:</p>
               <ul className="mb-6">
                 <li><strong>Networking Events:</strong> Attend industry conferences, startup events or networking meet-ups where you could potentially meet interested investors.</li>
                 <li><strong>Online Resources:</strong> Utilise platforms such as LinkedIn or crowdfunding websites. These allow for easy identification and connection with people willing to put capital into ventures like yours.</li>
-                <li><strong>Accelerators and Incubators Programs:</strong> Joining one of these programs provides access to funds as well as investor relations among other benefits.</li>
+                <li><strong>Accelerators and Incubator Programs:</strong> Joining one of these programs provides access to funds as well as investor relations among other benefits.</li>
                 <li><strong>Referrals:</strong> Reach out to mentors, advisors or other business owners within your existing network for referrals.</li>
               </ul>
               
@@ -441,7 +507,7 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 10: FAQ 3 */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Finding Investors: Common Questions</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Finding Investors: Common Questions</h3>
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem 
                 value="faq-11" 
@@ -527,41 +593,41 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
 
           {/* Section 11: Summary */}
           <section className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center">Summary</h3>
+            <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Summary</h3>
             <div className="prose max-w-none">
-              <p className="mb-4 text-center">
+              <p className="mb-4 text-center text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 Being able to pitch to investors is essential for an entrepreneur who wants to grow his or her business. 
                 It's important to recognise when your business needs money, what kinds of investors and investments there are, 
                 as well as how best to go about making and giving a presentation, because it is these things which will increase your chances for getting funded.
               </p>
-              <p className="mb-4 text-center">
+              <p className="mb-4 text-center text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 But another part of the process involves putting together a captivating pitch deck, perfecting an elevator speech, 
                 and understanding who you are talking with on this journey. Maintaining persistence and professionalism will be key, 
                 as securing investments is often a complex process.
               </p>
-              <p className="mb-4 text-center">
+              <p className="mb-4 text-center text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 Growwth Partners offers a full range of fundraising services, such as customised funding plans, investor matching, 
                 professional valuation, flawless pitches, streamlined due diligence, and transparent financial statements. 
                 You can rely on Growwth Partners's team of financial experts to help you with every stage of the investing process, 
                 from planning ahead to upholding enduring relationships with investors.
               </p>
-              <p className="text-center">
+              <p className="text-center text-lg leading-relaxed text-gray-700 font-['Montserrat']">
                 Putting important parts of your investment-seeking journey in the hands of professionals can greatly increase your chances of success!
               </p>
             </div>
           </section>
 
           {/* Section 12: Call To Action */}
-          <section className="mb-16 bg-gradient-to-br from-brand-orange/90 to-brand-orange py-[40px] px-8 rounded-2xl text-white">
+          <section className="mb-16 bg-gradient-to-br from-brand-orange/90 to-brand-orange py-[40px] px-8 rounded-2xl text-white shadow-lg">
             <div className="max-w-3xl mx-auto text-center">
-              <h3 className="text-3xl font-bold mb-6">Ready to Take the Next Step?</h3>
-              <p className="text-xl mb-8">
+              <h3 className="text-3xl font-['Poppins'] font-bold mb-6">Ready to Take the Next Step?</h3>
+              <p className="text-xl mb-8 font-['Montserrat']">
                 Book a free call with our expert to discuss your bookkeeping needs and save time and effort.
                 We are here to help you!
               </p>
               <Button 
                 onClick={() => setContactModalOpen(true)}
-                className="bg-white text-brand-orange hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full"
+                className="bg-white text-brand-orange hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full transform transition hover:scale-105 shadow-md"
               >
                 <PhoneCall className="mr-2 h-5 w-5" />
                 Book a Free Call
@@ -574,8 +640,8 @@ const GuideDetail = ({ guide }: GuideDetailProps) => {
       <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
-            <DialogDescription className="text-center">
+            <DialogTitle className="text-xl font-bold text-center font-['Poppins']">Speak To An Expert</DialogTitle>
+            <DialogDescription className="text-center font-['Montserrat']">
               Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
             </DialogDescription>
           </DialogHeader>
