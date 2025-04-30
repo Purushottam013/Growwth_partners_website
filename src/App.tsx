@@ -63,7 +63,7 @@ function App() {
             <Route path="/taxation" element={<Taxation />} />
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/guide" element={<Guide />} />
-            <Route path="/guide/:slug" element={<Guide />} /> {/* Redirect all guide slugs to main guide page */}
+            <Route path="/guide/:slug" element={<GuideSingle />} />
             <Route path="/news" element={<News />} />
             {/* Resources route redirects to Achievements */}
             <Route path="/resources" element={<Navigate to="/achievements" replace />} />
@@ -91,6 +91,7 @@ function App() {
             <Route path="/uae/taxation" element={<Taxation />} />
             <Route path="/uae/achievements" element={<Achievements />} />
             <Route path="/uae/guide" element={<Guide />} />
+            <Route path="/uae/guide/:slug" element={<GuideSingle />} />
             <Route path="/uae/news" element={<News />} />
             <Route path="/uae/resources" element={<Navigate to="/uae/achievements" replace />} />
 
@@ -113,6 +114,7 @@ function App() {
             <Route path="/australia/taxation" element={<Taxation />} />
             <Route path="/australia/achievements" element={<Achievements />} />
             <Route path="/australia/guide" element={<Guide />} />
+            <Route path="/australia/guide/:slug" element={<GuideSingle />} />
             <Route path="/australia/news" element={<News />} />
             <Route path="/australia/resources" element={<Navigate to="/australia/achievements" replace />} />
 

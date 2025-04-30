@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { guideCategories } from "@/data/guides";
+import { guideCategories, getGuidesByCategory } from "@/data/guides";
 
 // Import the Guide type properly with 'export type'
 export type { Guide } from "@/data/guides";
@@ -14,10 +14,18 @@ export const useGuides = (category?: string) => {
   const selectedCategory = category;
 
   useEffect(() => {
-    // Since we're removing the guides feature for now, we'll just return an empty array
-    setGuides([]);
-    setLoading(false);
-    setError(null);
+    setLoading(true);
+    try {
+      // Get guides by category
+      const filteredGuides = getGuidesByCategory(category);
+      setGuides(filteredGuides);
+      setError(null);
+    } catch (err) {
+      setError("Failed to fetch guides");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   }, [category]);
 
   return { guides, loading, error, categories: guideCategories, selectedCategory };

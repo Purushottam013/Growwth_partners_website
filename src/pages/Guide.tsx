@@ -1,13 +1,14 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { useGuides } from "@/hooks/useGuides";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const GuidePage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
-  const { categories, selectedCategory: activeCategory } = useGuides(selectedCategory);
+  const { guides, categories, selectedCategory: activeCategory } = useGuides(selectedCategory);
 
   return <Layout>
       <section className="relative w-full flex justify-center">
@@ -52,6 +53,33 @@ const GuidePage = () => {
                 </CardHeader>
               </Card>
             ))}
+          </div>
+
+          {/* Guides Grid */}
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6">Available Guides</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {guides.map((guide) => (
+                <Link to={`/guide/${guide.slug}`} key={guide.id}>
+                  <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
+                    <div className="aspect-video overflow-hidden bg-gray-100">
+                      <img 
+                        src={guide.Image} 
+                        alt={guide.Title} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <CardHeader>
+                      <p className="text-sm text-primary mb-1">{guide.Category}</p>
+                      <CardTitle className="text-lg font-semibold line-clamp-2">{guide.Title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 line-clamp-3">{guide.Excerpt}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
