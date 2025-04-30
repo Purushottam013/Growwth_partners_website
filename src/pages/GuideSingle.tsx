@@ -12,13 +12,13 @@ const GuideSingle = () => {
     return <Navigate to="/guide" replace />;
   }
 
-  // Images for key takeaways
+  // Images for key takeaways - updated with new uploaded images
   const keyTakeawayImages = [
-    "/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png",
-    "/lovable-uploads/a789441a-bd8a-4480-a2ce-1a8108aa187c.png",
-    "/lovable-uploads/9f095a7e-c6a7-42c7-91f7-1392ee523a5e.png", 
-    "/lovable-uploads/88257c1a-be18-4216-a182-5c9094b565b9.png",
-    "/lovable-uploads/99dda4f2-b7f4-46c0-8ee6-1c166ae0e0a3.png"
+    "/lovable-uploads/eada7e0d-02d0-4ab8-84f0-be181df1f606.png", // Business Needs
+    "/lovable-uploads/78de0c98-849c-433a-8091-906cc975db44.png", // Different Investors
+    "/lovable-uploads/a0163cd7-4dda-4a9b-b88a-6ce847f553d9.png", // Create an Engaging Pitch Deck
+    "/lovable-uploads/676d8878-101f-4447-8aca-a029fd75c735.png", // Perfect Your Elevator Pitch
+    "/lovable-uploads/c68f7426-d276-476e-b69f-7d01150ca25e.png"  // Navigate Investor Networks
   ];
 
   return <GuideDetail guide={guide} keyTakeawayImages={keyTakeawayImages} />;

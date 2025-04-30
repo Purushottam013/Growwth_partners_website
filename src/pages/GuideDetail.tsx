@@ -38,14 +38,15 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
               <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
             </div>
             <div className="bg-gray-50 border border-gray-100 rounded-xl p-8 shadow-md">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* First row with 3 images */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 {/* Item 1 */}
                 <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
                     <img 
                       src={keyTakeawayImages[0]} 
                       alt="Business Needs" 
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="text-center">
@@ -61,11 +62,11 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
 
                 {/* Item 2 */}
                 <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
                     <img 
                       src={keyTakeawayImages[1]} 
                       alt="Different Investors" 
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="text-center">
@@ -81,11 +82,11 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
 
                 {/* Item 3 */}
                 <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
                     <img 
                       src={keyTakeawayImages[2]} 
                       alt="Create an Engaging Pitch Deck" 
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="text-center">
@@ -98,14 +99,17 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                     </p>
                   </div>
                 </div>
+              </div>
 
+              {/* Second row with 2 images */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:max-w-3xl md:mx-auto">
                 {/* Item 4 */}
                 <div className="flex flex-col items-center">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
                     <img 
                       src={keyTakeawayImages[3]} 
                       alt="Perfect Your Elevator Pitch" 
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="text-center">
@@ -119,13 +123,13 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                   </div>
                 </div>
 
-                {/* Item 5 - This will be full width on mobile and centered on desktop */}
-                <div className="flex flex-col items-center md:col-span-2 md:max-w-md md:mx-auto">
-                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full">
+                {/* Item 5 */}
+                <div className="flex flex-col items-center">
+                  <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
                     <img 
                       src={keyTakeawayImages[4]} 
                       alt="Navigate Investor Networks" 
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="text-center">
