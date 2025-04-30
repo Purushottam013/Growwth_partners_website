@@ -1,16 +1,9 @@
-
 import { Layout } from "@/components/Layout";
 import { BookOpen } from "lucide-react";
-
 const GuidePage = () => {
-  return (
-    <Layout>
+  return <Layout>
       <section className="relative w-full flex justify-center">
-        <img
-          src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png"
-          alt="Guides"
-          className="w-4/5 h-auto" /* Changed from w-full to w-4/5 (80%) */
-        />
+        <img src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" alt="Guides" className="w-4/6 h-auto py-8" />
       </section>
 
       <section className="py-32 bg-white">
@@ -25,8 +18,6 @@ const GuidePage = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default GuidePage;
