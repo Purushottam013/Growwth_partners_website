@@ -1,25 +1,30 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { PhoneCall, BookOpen, TrendingUp, Users, FileText, Lightbulb, Globe } from "lucide-react";
+import { PhoneCall, BookOpen } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Guide } from "@/data/guides";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Plus, Minus } from "lucide-react";
+
 interface GuideDetailProps {
   guide: Guide;
   keyTakeawayImages: string[];
+  onContactClick: () => void;
 }
+
 const GuideDetail = ({
   guide,
-  keyTakeawayImages
+  keyTakeawayImages,
+  onContactClick
 }: GuideDetailProps) => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   return <Layout>
       <article className="py-12 font-['Montserrat']">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -31,7 +36,7 @@ const GuideDetail = ({
           </div>
 
           {/* Section 1: Key Takeaways */}
-          <section className="mb-16 mx-auto w-full">
+          <section className="mb-16 mx-auto w-[90%]">
             <div className="flex items-center justify-center mb-8">
               <BookOpen className="mr-3 h-7 w-7 text-brand-orange" />
               <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
@@ -46,7 +51,6 @@ const GuideDetail = ({
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
-                      <TrendingUp className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
                       <h3 className="text-xl font-['Poppins'] font-semibold">Business Needs</h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -62,7 +66,6 @@ const GuideDetail = ({
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
-                      <Users className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
                       <h3 className="text-xl font-['Poppins'] font-semibold">Different Investors</h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -78,7 +81,6 @@ const GuideDetail = ({
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
-                      <FileText className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
                       <h3 className="text-xl font-['Poppins'] font-semibold">Create an Engaging Pitch Deck</h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -97,7 +99,6 @@ const GuideDetail = ({
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
-                      <Lightbulb className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
                       <h3 className="text-xl font-['Poppins'] font-semibold">Perfect Your Elevator Pitch</h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -113,7 +114,6 @@ const GuideDetail = ({
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
-                      <Globe className="h-6 w-6 text-brand-orange mr-2 flex-shrink-0" />
                       <h3 className="text-xl font-['Poppins'] font-semibold">Navigate Investor Networks</h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
@@ -547,7 +547,7 @@ const GuideDetail = ({
             </div>
           </section>
 
-          {/* Section 12: Call To Action */}
+          {/* Section 12: Call To Action - Updated with navigation handler */}
           <section className="mb-16 bg-gradient-to-br from-brand-orange/90 to-brand-orange py-[40px] px-8 rounded-2xl text-white shadow-lg">
             <div className="max-w-3xl mx-auto text-center">
               <h3 className="text-3xl font-['Poppins'] font-bold mb-6">Ready to Take the Next Step?</h3>
@@ -555,7 +555,7 @@ const GuideDetail = ({
                 Book a free call with our expert to discuss your bookkeeping needs and save time and effort.
                 We are here to help you!
               </p>
-              <Button onClick={() => setContactModalOpen(true)} className="bg-white text-brand-orange hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full transform transition hover:scale-105 shadow-md">
+              <Button onClick={onContactClick} className="bg-white text-brand-orange hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full transform transition hover:scale-105 shadow-md">
                 <PhoneCall className="mr-2 h-5 w-5" />
                 Book a Free Call
               </Button>
@@ -577,4 +577,5 @@ const GuideDetail = ({
       </Dialog>
     </Layout>;
 };
+
 export default GuideDetail;

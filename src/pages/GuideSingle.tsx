@@ -1,9 +1,10 @@
 
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { getGuideBySlug } from "@/data/guides";
 import GuideDetail from "./GuideDetail";
 
 const GuideSingle = () => {
+  const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const guide = getGuideBySlug(slug || "");
   
@@ -21,7 +22,11 @@ const GuideSingle = () => {
     "/lovable-uploads/c68f7426-d276-476e-b69f-7d01150ca25e.png"  // Navigate Investor Networks
   ];
 
-  return <GuideDetail guide={guide} keyTakeawayImages={keyTakeawayImages} />;
+  const handleContactClick = () => {
+    navigate("/contact#consultation-form");
+  };
+
+  return <GuideDetail guide={guide} keyTakeawayImages={keyTakeawayImages} onContactClick={handleContactClick} />;
 };
 
 export default GuideSingle;
