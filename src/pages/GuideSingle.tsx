@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { FaqSection } from "@/components/accounting/FaqSection";
 import BookkeepingGuidePage from "@/components/guide/BookkeepingGuidePage";
 import MRAGrantGuidePage from "@/components/guide/MRAGrantGuidePage";
+import InvestorPitchGuidePage from "@/components/guide/InvestorPitchGuidePage";
 
 const GuideSingle = () => {
   const { slug } = useParams();
@@ -32,6 +33,11 @@ const GuideSingle = () => {
   // Special handling for the MRA grant guide to use the custom component
   if (slug === "comprehensive-guide-to-mra-grant-singapore") {
     return <MRAGrantGuidePage />;
+  }
+
+  // Special handling for the investor pitch guide to use the custom component
+  if (slug === "comprehensive-guide-to-pitching-to-investors") {
+    return <InvestorPitchGuidePage />;
   }
 
   if (loading) {
@@ -121,6 +127,21 @@ const GuideSingle = () => {
           {
             question: "Can I apply for multiple grants simultaneously?",
             answer: "Yes, you can apply for multiple grants as long as you meet the eligibility criteria for each and the same expense item is not being funded by more than one grant program."
+          }
+        ];
+      case 'Funding & Investment':
+        return [
+          {
+            question: "How do I know if my business is ready for investment?",
+            answer: "You can look for indicators like quick growth opportunities, product development needs, plans to expand into new markets, financial strain, and the need to stay competitive."
+          },
+          {
+            question: "What is the difference between venture capitalists and angel investors?",
+            answer: "Angel investors usually use their own money while venture capitalists invest pooled funds from many different sources."
+          },
+          {
+            question: "How can I improve my investor pitch?",
+            answer: "Focus on clearly articulating your value proposition, demonstrate traction with data, know your market inside out, present realistic financial projections, and practice your delivery until it's polished and confident."
           }
         ];
       default:

@@ -346,6 +346,16 @@ export const guides: Guide[] = [
     Excerpt: "Everything you need to know about the MRA Grant in Singapore, including eligibility criteria, application process, and how to maximize your chances of success.",
     Content: "",
     publishedAt: "2024-04-28"
+  },
+  {
+    id: 8,
+    Title: "The Most Comprehensive Guide to Pitching to Investors",
+    slug: "comprehensive-guide-to-pitching-to-investors",
+    Image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf",
+    Category: "Funding & Investment",
+    Excerpt: "Master the art of pitching to investors with this complete guide covering everything from preparing your pitch deck to finding the right investors for your business.",
+    Content: "",
+    publishedAt: "2024-04-30"
   }
 ];
 
