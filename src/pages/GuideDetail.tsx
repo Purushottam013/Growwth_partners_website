@@ -7,21 +7,19 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { Guide } from "@/data/guides";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Plus, Minus } from "lucide-react";
-
 interface GuideDetailProps {
   guide: Guide;
   keyTakeawayImages: string[];
 }
-
-const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
+const GuideDetail = ({
+  guide,
+  keyTakeawayImages
+}: GuideDetailProps) => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <Layout>
+  return <Layout>
       <article className="py-12 font-['Montserrat']">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Guide Header */}
@@ -37,17 +35,13 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
               <BookOpen className="mr-3 h-7 w-7 text-brand-orange" />
               <h2 className="text-2xl md:text-3xl font-['Poppins'] font-bold text-gray-800">Key Takeaways</h2>
             </div>
-            <div className="bg-gray-50 border border-gray-100 rounded-xl p-8 shadow-md">
+            <div className="bg-gray-50 border border-gray-100 rounded-xl p-8 shadow-lg">
               {/* First row with 3 images */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 {/* Item 1 */}
                 <div className="flex flex-col items-center">
                   <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
-                    <img 
-                      src={keyTakeawayImages[0]} 
-                      alt="Business Needs" 
-                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
-                    />
+                    <img src={keyTakeawayImages[0]} alt="Business Needs" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
@@ -63,11 +57,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 {/* Item 2 */}
                 <div className="flex flex-col items-center">
                   <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
-                    <img 
-                      src={keyTakeawayImages[1]} 
-                      alt="Different Investors" 
-                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
-                    />
+                    <img src={keyTakeawayImages[1]} alt="Different Investors" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
@@ -83,11 +73,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 {/* Item 3 */}
                 <div className="flex flex-col items-center">
                   <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
-                    <img 
-                      src={keyTakeawayImages[2]} 
-                      alt="Create an Engaging Pitch Deck" 
-                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
-                    />
+                    <img src={keyTakeawayImages[2]} alt="Create an Engaging Pitch Deck" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
@@ -106,11 +92,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 {/* Item 4 */}
                 <div className="flex flex-col items-center">
                   <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
-                    <img 
-                      src={keyTakeawayImages[3]} 
-                      alt="Perfect Your Elevator Pitch" 
-                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
-                    />
+                    <img src={keyTakeawayImages[3]} alt="Perfect Your Elevator Pitch" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
@@ -126,11 +108,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 {/* Item 5 */}
                 <div className="flex flex-col items-center">
                   <div className="mb-4 overflow-hidden rounded-lg shadow-lg h-48 w-full flex items-center justify-center bg-white p-6">
-                    <img 
-                      src={keyTakeawayImages[4]} 
-                      alt="Navigate Investor Networks" 
-                      className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105"
-                    />
+                    <img src={keyTakeawayImages[4]} alt="Navigate Investor Networks" className="object-contain max-h-full max-w-full transition-transform duration-300 hover:scale-105" />
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center mb-2">
@@ -182,11 +160,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </p>
               </div>
               <div>
-                <img 
-                  src="/lovable-uploads/753ca010-8990-4e45-a02a-523a4c61a109.png" 
-                  alt="Signs Your Business Needs Investors" 
-                  className="rounded-lg shadow-md w-full max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300"
-                />
+                <img src="/lovable-uploads/753ca010-8990-4e45-a02a-523a4c61a109.png" alt="Signs Your Business Needs Investors" className="rounded-lg shadow-md w-full max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300" />
               </div>
             </div>
           </section>
@@ -195,10 +169,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
           <section className="mb-16">
             <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Frequently Asked Questions</h3>
             <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem 
-                value="faq-1" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
-              >
+              <AccordionItem value="faq-1" className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center hover:no-underline">
                   <span className="text-lg font-medium text-gray-800 font-['Poppins']">How do I know if my business is ready for investment?</span>
                   <div className="flex-shrink-0">
@@ -211,10 +182,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-2" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-2" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">What are the dangers of looking for investments outside?</span>
                   <div className="flex-shrink-0">
@@ -227,10 +195,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-3" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-3" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">Is it bad to seek investment too early?</span>
                   <div className="flex-shrink-0">
@@ -243,10 +208,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-4" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-4" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">What financial indicators should I consider before seeking investors?</span>
                   <div className="flex-shrink-0">
@@ -259,10 +221,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-5" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-5" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">How do I prepare my business for investment?</span>
                   <div className="flex-shrink-0">
@@ -327,10 +286,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
           <section className="mb-16">
             <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">More Questions About Investors</h3>
             <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem 
-                value="faq-6" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-6" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">What is the difference between venture capitalists and angel investors?</span>
                   <div className="flex-shrink-0">
@@ -343,10 +299,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-7" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-7" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">What is equity crowdfunding?</span>
                   <div className="flex-shrink-0">
@@ -359,10 +312,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-8" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-8" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">How do corporate investors differ from other types of investors?</span>
                   <div className="flex-shrink-0">
@@ -375,10 +325,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-9" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-9" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">What factors should I take into account when deciding between various investor types?</span>
                   <div className="flex-shrink-0">
@@ -391,10 +338,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-10" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-10" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">How can government grants and loans help my business?</span>
                   <div className="flex-shrink-0">
@@ -414,11 +358,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
             <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Step by Step Guide to Pitching to Investors</h3>
             <div className="grid grid-cols-1 items-center mb-8">
               <div>
-                <img 
-                  src="/lovable-uploads/da2a31da-9077-4593-8489-06aea79fe594.png" 
-                  alt="How to Make a Pitch Deck" 
-                  className="rounded-lg shadow-md w-full mx-auto mb-8"
-                />
+                <img src="/lovable-uploads/da2a31da-9077-4593-8489-06aea79fe594.png" alt="How to Make a Pitch Deck" className="rounded-lg shadow-md w-full mx-auto mb-8" />
               </div>
               <div className="prose max-w-none">
                 <h4 className="text-xl font-semibold mb-4">STEP 1: Research Potential Investors</h4>
@@ -513,10 +453,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
           <section className="mb-16">
             <h3 className="text-2xl md:text-3xl font-['Poppins'] font-bold mb-6 text-center text-gray-800">Finding Investors: Common Questions</h3>
             <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem 
-                value="faq-11" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-11" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">Where can I look to raise money for my new business?</span>
                   <div className="flex-shrink-0">
@@ -529,10 +466,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-12" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-12" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">How should I make my first contact with an investor?</span>
                   <div className="flex-shrink-0">
@@ -545,10 +479,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-13" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-13" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">How challenging is it to get funding?</span>
                   <div className="flex-shrink-0">
@@ -561,10 +492,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-14" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-14" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">Is networking necessary to find investors?</span>
                   <div className="flex-shrink-0">
@@ -577,10 +505,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem 
-                value="faq-15" 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              >
+              <AccordionItem value="faq-15" className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
                   <span className="text-lg font-medium text-gray-800">How can I increase my chances of getting investment?</span>
                   <div className="flex-shrink-0">
@@ -629,10 +554,7 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
                 Book a free call with our expert to discuss your bookkeeping needs and save time and effort.
                 We are here to help you!
               </p>
-              <Button 
-                onClick={() => setContactModalOpen(true)}
-                className="bg-white text-brand-orange hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full transform transition hover:scale-105 shadow-md"
-              >
+              <Button onClick={() => setContactModalOpen(true)} className="bg-white text-brand-orange hover:bg-gray-100 px-8 py-6 text-lg font-bold rounded-full transform transition hover:scale-105 shadow-md">
                 <PhoneCall className="mr-2 h-5 w-5" />
                 Book a Free Call
               </Button>
@@ -652,8 +574,6 @@ const GuideDetail = ({ guide, keyTakeawayImages }: GuideDetailProps) => {
           <ContactForm />
         </DialogContent>
       </Dialog>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default GuideDetail;
