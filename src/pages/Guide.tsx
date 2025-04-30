@@ -42,7 +42,7 @@ const GuidePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {guideCategories.map((category) => (
+            {categories.map((category) => (
               <Card 
                 key={category} 
                 className={`overflow-hidden border ${activeCategory === category ? 'border-primary shadow-md' : 'border-gray-200 shadow-sm'} hover:shadow-md transition-shadow`}
