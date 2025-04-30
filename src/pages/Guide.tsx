@@ -5,11 +5,11 @@ import { BookOpen } from "lucide-react";
 const GuidePage = () => {
   return (
     <Layout>
-      <section className="relative w-full">
+      <section className="relative w-full flex justify-center">
         <img
           src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png"
           alt="Guides"
-          className="w-full h-auto"
+          className="w-4/5 h-auto" /* Changed from w-full to w-4/5 (80%) */
         />
       </section>
 
