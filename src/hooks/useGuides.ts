@@ -7,28 +7,14 @@ export type { Guide } from "@/data/guides";
 
 export const useGuides = (category?: string) => {
   const [guides, setGuides] = useState<import("@/data/guides").Guide[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate loading with a slight delay (no database connection)
-    setLoading(true);
-    
-    const timer = setTimeout(() => {
-      try {
-        // Use the static data function to get guides by category
-        const filteredGuides = getGuidesByCategory(category);
-        setGuides(filteredGuides);
-        setError(null);
-      } catch (err: any) {
-        console.error("Error fetching guides:", err);
-        setError("Failed to load guides");
-      } finally {
-        setLoading(false);
-      }
-    }, 300); // Small delay to simulate loading
-    
-    return () => clearTimeout(timer);
+    // Since we're removing the guides feature for now, we'll just return an empty array
+    setGuides([]);
+    setLoading(false);
+    setError(null);
   }, [category]);
 
   return { guides, loading, error };

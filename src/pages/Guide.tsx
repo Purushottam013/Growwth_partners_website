@@ -1,17 +1,10 @@
 
 import { Layout } from "@/components/Layout";
-import { useState } from "react";
-import { useGuides } from "@/hooks/useGuides";
-import { GuideCategories } from "@/components/guide/GuideCategories";
-import { GuidesGrid } from "@/components/guide/GuidesGrid";
+import { BookOpen } from "lucide-react";
 
 const GuidePage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const { guides, loading } = useGuides(selectedCategory || undefined);
-
   return (
     <Layout>
-      {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div className="absolute inset-0 overflow-hidden">
           <img
@@ -23,7 +16,7 @@ const GuidePage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Your Complete Business Guide Hub
+              Business Guides
             </h1>
             <p className="text-xl text-gray-300">
               Comprehensive resources and expert insights to help you navigate your business journey
@@ -32,18 +25,18 @@ const GuidePage = () => {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <GuideCategories
-        selectedCategory={selectedCategory}
-        onCategorySelect={setSelectedCategory}
-      />
-
-      {/* Guides Grid Section */}
-      {loading ? (
-        <div className="py-20 text-center">Loading guides...</div>
-      ) : (
-        <GuidesGrid guides={guides} />
-      )}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto">
+            <BookOpen className="w-16 h-16 text-brand-orange mx-auto mb-6" />
+            <h2 className="text-3xl font-bold mb-6">Coming Soon</h2>
+            <p className="text-gray-600 text-lg mb-8">
+              We're working on creating comprehensive business guides to help you navigate your business journey. 
+              Check back soon for expert insights, strategies, and practical advice.
+            </p>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

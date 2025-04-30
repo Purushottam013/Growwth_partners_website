@@ -24,7 +24,6 @@ import SuccessStories from "./pages/SuccessStories";
 import Taxation from "./pages/Taxation";
 import Achievements from "./pages/Achievements";
 import Guide from "./pages/Guide";
-import GuideSingle from "./pages/GuideSingle";
 import News from "./pages/News";
 import BlogAdminPage from "./pages/admin/BlogAdmin";
 import BlogAdminLogin from "./pages/admin/BlogAdminLogin";
@@ -64,7 +63,7 @@ function App() {
             <Route path="/taxation" element={<Taxation />} />
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/guide" element={<Guide />} />
-            <Route path="/guide/:slug" element={<GuideSingle />} />
+            <Route path="/guide/:slug" element={<Guide />} /> {/* Redirect all guide slugs to main guide page */}
             <Route path="/news" element={<News />} />
             {/* Resources route redirects to Achievements */}
             <Route path="/resources" element={<Navigate to="/achievements" replace />} />
