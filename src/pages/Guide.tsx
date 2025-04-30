@@ -7,7 +7,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 const GuidePage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
-  const { categories } = useGuides(selectedCategory);
+  const { categories, selectedCategory: activeCategory } = useGuides(selectedCategory);
 
   return <Layout>
       <section className="relative w-full flex justify-center">
@@ -42,8 +42,11 @@ const GuidePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {categories.map((category) => (
-              <Card key={category} className="overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            {guideCategories.map((category) => (
+              <Card 
+                key={category} 
+                className={`overflow-hidden border ${activeCategory === category ? 'border-primary shadow-md' : 'border-gray-200 shadow-sm'} hover:shadow-md transition-shadow`}
+              >
                 <CardHeader>
                   <CardTitle className="text-lg font-semibold">{category}</CardTitle>
                 </CardHeader>

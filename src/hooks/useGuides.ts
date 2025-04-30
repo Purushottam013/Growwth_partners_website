@@ -10,8 +10,8 @@ export const useGuides = (category?: string) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
-  // Get the filtered categories based on selected category
-  const filteredCategories = category ? [category] : guideCategories;
+  // Return all categories regardless of selected category
+  const selectedCategory = category;
 
   useEffect(() => {
     // Since we're removing the guides feature for now, we'll just return an empty array
@@ -20,5 +20,5 @@ export const useGuides = (category?: string) => {
     setError(null);
   }, [category]);
 
-  return { guides, loading, error, categories: filteredCategories };
+  return { guides, loading, error, categories: guideCategories, selectedCategory };
 };
