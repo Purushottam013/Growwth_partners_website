@@ -1,38 +1,22 @@
-
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
-import { getGuideBySlug } from "@/data/guides";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { ArrowLeft, PhoneCall, BookOpen } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { Guide } from "@/data/guides";
 
-const GuideDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+interface GuideDetailProps {
+  guide: Guide;
+}
+
+const GuideDetail = ({ guide }: GuideDetailProps) => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
-  const guide = getGuideBySlug(slug || "");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  if (!guide) {
-    return (
-      <Layout>
-        <div className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-3xl font-bold mb-4">Guide Not Found</h1>
-          <p className="mb-8">The guide you're looking for doesn't exist or has been removed.</p>
-          <Link to="/guide">
-            <Button>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Guides
-            </Button>
-          </Link>
-        </div>
-      </Layout>
-    );
-  }
 
   return (
     <Layout>
@@ -410,7 +394,7 @@ const GuideDetail = () => {
               Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
             </DialogDescription>
           </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
+          <ContactForm />
         </DialogContent>
       </Dialog>
     </Layout>

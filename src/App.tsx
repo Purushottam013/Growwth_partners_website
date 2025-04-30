@@ -24,6 +24,7 @@ import SuccessStories from "./pages/SuccessStories";
 import Taxation from "./pages/Taxation";
 import Achievements from "./pages/Achievements";
 import Guide from "./pages/Guide";
+import GuideSingle from "./pages/GuideSingle";
 import News from "./pages/News";
 import BlogAdminPage from "./pages/admin/BlogAdmin";
 import BlogAdminLogin from "./pages/admin/BlogAdminLogin";

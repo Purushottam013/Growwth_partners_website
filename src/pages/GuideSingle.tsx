@@ -12,7 +12,7 @@ const GuideSingle = () => {
     return <Navigate to="/guide" replace />;
   }
 
-  return <GuideDetail />;
+  return <GuideDetail guide={guide} />;
 };
 
 export default GuideSingle;
