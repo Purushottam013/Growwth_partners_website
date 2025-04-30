@@ -22,6 +22,16 @@ export const guides: Guide[] = [
     Content: "Full guide content for pitching to investors",
     publishedAt: "2025-04-15"
   },
+  {
+    id: 2,
+    Title: "Guide to Financial Reporting Standards in Singapore for Small Entities",
+    slug: "financial-reporting-standards-singapore",
+    Image: "/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png", // Using the same guide banner image for now
+    Category: "Accounting",
+    Excerpt: "Learn about the simplified accounting framework targeted at smaller entities in Singapore.",
+    Content: "Full guide content for financial reporting standards",
+    publishedAt: "2025-04-30"
+  },
 ];
 
 // Define available guide categories
