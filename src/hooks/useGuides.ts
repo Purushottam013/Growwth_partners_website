@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { guides as staticGuides, getGuidesByCategory, guideCategories } from "@/data/guides";
+import { guideCategories } from "@/data/guides";
 
 // Import the Guide type properly with 'export type'
 export type { Guide } from "@/data/guides";
@@ -9,6 +9,9 @@ export const useGuides = (category?: string) => {
   const [guides, setGuides] = useState<import("@/data/guides").Guide[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  // Get the filtered categories based on selected category
+  const filteredCategories = category ? [category] : guideCategories;
 
   useEffect(() => {
     // Since we're removing the guides feature for now, we'll just return an empty array
@@ -17,5 +20,5 @@ export const useGuides = (category?: string) => {
     setError(null);
   }, [category]);
 
-  return { guides, loading, error, categories: guideCategories };
+  return { guides, loading, error, categories: filteredCategories };
 };
