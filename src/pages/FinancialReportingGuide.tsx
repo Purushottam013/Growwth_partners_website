@@ -1,4 +1,3 @@
-
 import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
@@ -23,13 +22,13 @@ const FinancialReportingGuide = () => {
     }, 100);
   };
 
-  // Key takeaway images - we'll use the same concept but with the supplied content
+  // Updated key takeaway images with the newly uploaded images
   const keyTakeawayImages = [
-    "/lovable-uploads/eada7e0d-02d0-4ab8-84f0-be181df1f606.png", // Simplified Financial Reporting
-    "/lovable-uploads/78de0c98-849c-433a-8091-906cc975db44.png", // Eligibility Criteria
-    "/lovable-uploads/a0163cd7-4dda-4a9b-b88a-6ce847f553d9.png", // Cost Efficacy
-    "/lovable-uploads/676d8878-101f-4447-8aca-a029fd75c735.png", // Growth Orientation
-    "/lovable-uploads/c68f7426-d276-476e-b69f-7d01150ca25e.png"  // Compliance and Transparency
+    "/lovable-uploads/ff64989c-dab9-4050-814e-d90bca79f42b.png", // Simplified Financial Reporting
+    "/lovable-uploads/15e6b360-d5dd-4d93-8dd8-86e3b6815a2c.png", // Eligibility Criteria
+    "/lovable-uploads/ff10cb0e-544a-4e37-b61b-8e4174ede681.png", // Cost Efficacy
+    "/lovable-uploads/29d7a505-65ef-443d-bc30-78185338c79b.png", // Growth Orientation
+    "/lovable-uploads/7950ef2b-fec5-470f-8003-13b293af4b08.png"  // Compliance and Transparency
   ];
 
   return (
@@ -73,6 +72,13 @@ const FinancialReportingGuide = () => {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src={keyTakeawayImages[0]}
+                    alt="Simplified Financial Reporting"
+                    className="h-20 w-auto"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-center">Simplified Financial Reporting</h3>
                 <p className="text-gray-700">
                   Singapore Financial Reporting Standards for Small Entities provides a streamlined framework tailored for small entities.
@@ -86,6 +92,13 @@ const FinancialReportingGuide = () => {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src={keyTakeawayImages[1]}
+                    alt="Eligibility Criteria"
+                    className="h-20 w-auto"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-center">Eligibility Criteria</h3>
                 <p className="text-gray-700">
                   There are specific criteria that have to be met, related to revenue, assets and number of employees.
@@ -99,6 +112,13 @@ const FinancialReportingGuide = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src={keyTakeawayImages[2]}
+                    alt="Cost Efficacy"
+                    className="h-20 w-auto"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-center">Cost Efficacy</h3>
                 <p className="text-gray-700">
                   Businesses could save much on compliance, auditing and financial reporting costs by using this framework, allowing them to allocate their resources more efficiently.
@@ -112,6 +132,13 @@ const FinancialReportingGuide = () => {
                 transition={{ duration: 0.5, delay: 0.6 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src={keyTakeawayImages[3]}
+                    alt="Growth Orientation"
+                    className="h-20 w-auto"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-center">Growth Orientation</h3>
                 <p className="text-gray-700">
                   Forging ahead with the core operations and growth strategies becomes easier with less time committed into financial reporting operations.
@@ -125,6 +152,13 @@ const FinancialReportingGuide = () => {
                 transition={{ duration: 0.5, delay: 0.7 }}
                 className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
+                <div className="flex justify-center mb-4">
+                  <img 
+                    src={keyTakeawayImages[4]}
+                    alt="Compliance and Transparency"
+                    className="h-20 w-auto"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-center">Compliance and Transparency</h3>
                 <p className="text-gray-700">
                   This is an approach that ensures accuracy, transparency and adherence to legal requirements in financial reporting.
