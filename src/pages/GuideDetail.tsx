@@ -22,7 +22,7 @@ const GuideDetail = ({
   }, []);
   return <Layout>
       <article className="py-12 font-['Montserrat']">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-4xl bg-green">
           {/* Guide Header */}
           <div className="mb-12 text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-['Poppins'] font-bold mb-6 py-4 px-6 rounded-lg bg-gradient-to-r from-amber-200 to-amber-400 inline-block shadow-lg">
