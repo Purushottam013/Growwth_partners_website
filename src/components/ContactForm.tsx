@@ -166,7 +166,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Country" className="text-base" />
             </SelectTrigger>
-            <SelectContent className="max-h-[250px] overflow-y-auto">
+            <SelectContent>
               {countryCodes.map((country) => (
                 <SelectItem key={country.code} value={country.code} className="text-base py-2">
                   <span className="flex items-center">
@@ -203,7 +203,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
           <SelectTrigger>
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent className="max-h-[250px] overflow-y-auto">
+          <SelectContent>
             {services.map((service) => (
               <SelectItem key={service} value={service}>
                 {service}
