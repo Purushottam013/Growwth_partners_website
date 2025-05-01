@@ -54,7 +54,7 @@ const SelectContent = React.forwardRef<
             "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
         )}
         style={{
-          maxHeight: "200px" // Fixed height instead of variable
+          maxHeight: "300px" // Increased height for better scrolling
         }}
       >
         {children}
