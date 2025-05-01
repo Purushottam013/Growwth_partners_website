@@ -8,60 +8,38 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Separator } from "@/components/ui/separator";
 import { Guide } from "@/data/guides";
 
+interface KeyTakeaway {
+  title: string;
+  description: string;
+}
+
+interface Section {
+  title: string;
+  content: string;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 interface GuideDetailProps {
   guide: Guide;
   keyTakeawayImages: string[];
+  keyTakeaways?: KeyTakeaway[];
+  sections?: Section[];
+  faqs?: FAQ[];
   onContactClick: () => void;
 }
 
-const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onContactClick }) => {
-  // Create a mock structure for keyTakeaways and other missing properties if they don't exist
-  const keyTakeaways = [
-    { title: "Growth Orientation", description: "FRS for Small Entities focuses on essential reporting areas to support business growth." },
-    { title: "Simplified Reporting", description: "Less complex disclosure requirements make financial reporting more manageable." },
-    { title: "Cost Efficiency", description: "Reduced reporting burden leads to lower compliance costs and resource savings." },
-    { title: "Compliance and Transparency", description: "Maintains adherence to accounting principles while ensuring clarity." },
-    { title: "Business Decision Support", description: "Provides a framework for informed decisions based on accurate financial data." }
-  ];
-  
-  // Content sections
-  const sections = [
-    { title: "Who Can Apply FRS for Small Entities?", content: `<p>The FRS for Small Entities is designed for businesses that meet specific criteria. To qualify, an entity must:</p>
-      <ul class="list-disc pl-6 mt-3 space-y-2">
-        <li>Be non-publicly accountable</li>
-        <li>Publish general purpose financial statements for external users</li>
-        <li>Meet two of the following size criteria:
-          <ul class="list-disc pl-6 mt-2 mb-2">
-            <li>Annual revenue of less than S$10 million</li>
-            <li>Total assets of less than S$10 million</li>
-            <li>Fewer than 50 employees</li>
-          </ul>
-        </li>
-      </ul>` },
-    { title: "Key Differences from Full FRS", content: `<p>The FRS for Small Entities differs from the full FRS framework in several important ways:</p>
-      <ul class="list-disc pl-6 mt-3 space-y-2">
-        <li><strong>Simplified Recognition and Measurement:</strong> Less complex approaches to financial instruments, goodwill amortization, and research and development costs.</li>
-        <li><strong>Reduced Disclosures:</strong> Fewer required notes and explanations in financial statements.</li>
-        <li><strong>Eliminated Topics:</strong> Certain complex areas like share-based payments, intermediate reporting, and earnings per share are not required.</li>
-      </ul>` },
-    { title: "Implementation Considerations", content: `<p>Transitioning to FRS for Small Entities requires careful planning:</p>
-      <ul class="list-disc pl-6 mt-3 space-y-2">
-        <li><strong>Initial Assessment:</strong> Evaluate if your business meets the qualifying criteria.</li>
-        <li><strong>Impact Analysis:</strong> Determine how the transition will affect your financial statements.</li>
-        <li><strong>System Updates:</strong> Adjust accounting systems and processes as needed.</li>
-        <li><strong>Staff Training:</strong> Ensure your team understands the new requirements.</li>
-        <li><strong>Communication:</strong> Inform stakeholders about the changes in financial reporting.</li>
-      </ul>` }
-  ];
-  
-  // FAQ items
-  const faqs = [
-    { question: "Is FRS for Small Entities mandatory for qualifying businesses?", answer: "No, it's optional. Qualifying businesses can choose between FRS for Small Entities or full FRS." },
-    { question: "Can a business switch back to full FRS after adopting FRS for Small Entities?", answer: "Yes, but the change must be justified and properly documented, with retrospective application." },
-    { question: "How frequently is FRS for Small Entities updated?", answer: "It's typically updated every few years, rather than the more frequent updates to full FRS." },
-    { question: "Does using FRS for Small Entities affect tax calculations?", answer: "Not generally, as Singapore tax calculations have their own rules, but some simplifications may affect certain tax computations." }
-  ];
-  
+const GuideDetail: React.FC<GuideDetailProps> = ({ 
+  guide, 
+  keyTakeawayImages, 
+  keyTakeaways = [], 
+  sections = [], 
+  faqs = [],
+  onContactClick 
+}) => {
   return (
     <Layout>
       {/* Hero Section with Title - Gradient background */}
@@ -205,9 +183,12 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-900">Introduction</h3>
             <div className="prose max-w-none text-lg text-gray-700 leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: `
+              <div dangerouslySetInnerHTML={{ __html: guide.slug === "financial-reporting-standards-singapore" ? `
                 <p>Singapore's financial reporting landscape offers specialized frameworks for businesses of different sizes. The Financial Reporting Standard for Small Entities (FRS for Small Entities) provides a simplified alternative to the full FRS framework, specifically designed for smaller businesses that meet certain criteria.</p>
                 <p>This comprehensive guide explores the key aspects of FRS for Small Entities, helping business owners and financial professionals understand its applications, benefits, and implementation considerations.</p>
+              ` : `
+                <p>Successfully pitching to investors is a critical skill for entrepreneurs seeking to grow their businesses. Whether you're raising capital for a startup or seeking expansion funding for an established company, your ability to effectively communicate your vision, business model, and potential return on investment can make all the difference.</p>
+                <p>This guide provides a comprehensive framework for creating compelling investor pitches, understanding investor psychology, and navigating the fundraising process from preparation to closing the deal.</p>
               ` }} />
             </div>
           </motion.div>
@@ -260,9 +241,12 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-900">Summary</h3>
             <div className="text-lg text-gray-700 mb-10 leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: `
+              <div dangerouslySetInnerHTML={{ __html: guide.slug === "financial-reporting-standards-singapore" ? `
                 <p>The FRS for Small Entities represents an important tool for smaller businesses in Singapore to streamline their financial reporting while maintaining compliance with accounting standards. By reducing complexity and focusing on the most relevant aspects of financial reporting, it allows business owners to allocate resources more efficiently without compromising on financial transparency.</p>
                 <p>For eligible businesses, adopting this framework can lead to significant cost and time savings, while still providing stakeholders with the financial information they need to make informed decisions. As with any accounting framework, proper implementation and understanding are key to maximizing its benefits.</p>
+              ` : `
+                <p>Securing investment is both an art and a science. It requires thorough preparation, compelling storytelling, and strategic relationship building. The most successful fundraisers understand that pitching is not a one-time event but an ongoing process of building credibility and trust with potential investors.</p>
+                <p>By following the principles outlined in this guide—understanding investor motivations, crafting a compelling narrative backed by solid data, tailoring your approach to different investor types, and maintaining persistent follow-up—you'll significantly increase your chances of fundraising success.</p>
               ` }} />
             </div>
 
