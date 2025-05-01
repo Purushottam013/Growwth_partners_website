@@ -77,12 +77,15 @@ export const HeroSection = () => {
               </p>
             </motion.div>
             
-            <OptimizedImage 
-              src="/lovable-uploads/400ef52e-c935-47c0-8183-c36913218f6c.png"
-              alt="Tax Services" 
-              className="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300" 
-              fallbackSrc="/placeholder.svg"
-            />
+            {/* Image with white frame and rounded corners */}
+            <div className="p-3 bg-white rounded-2xl shadow-md">
+              <OptimizedImage 
+                src="/lovable-uploads/400ef52e-c935-47c0-8183-c36913218f6c.png"
+                alt="Tax Services" 
+                className="w-full h-auto rounded-xl shadow-sm transform hover:scale-105 transition-transform duration-300" 
+                fallbackSrc="/placeholder.svg"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

@@ -22,12 +22,15 @@ export const ComplianceSection = () => {
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <div className="flex items-center justify-center w-full max-w-md">
-              <OptimizedImage 
-                src="/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png" 
-                alt="Tax Compliance Form" 
-                className="w-full h-auto rounded-xl shadow-lg relative z-10" 
-                fallbackSrc="/placeholder.svg"
-              />
+              {/* Added white frame with border radius */}
+              <div className="p-3 bg-white rounded-2xl shadow-md">
+                <OptimizedImage 
+                  src="/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png" 
+                  alt="Tax Compliance Form" 
+                  className="w-full h-auto rounded-xl relative z-10" 
+                  fallbackSrc="/placeholder.svg"
+                />
+              </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FEF7CD]/30 rounded-full filter blur-3xl"></div>
           </motion.div>
