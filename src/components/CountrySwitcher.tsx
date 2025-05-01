@@ -7,7 +7,9 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
+  SelectScrollUpButton,
+  SelectScrollDownButton
 } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
