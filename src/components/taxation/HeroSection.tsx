@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -76,10 +77,11 @@ export const HeroSection = () => {
               </p>
             </motion.div>
             
-            <img 
+            <OptimizedImage 
               src="/lovable-uploads/400ef52e-c935-47c0-8183-c36913218f6c.png"
               alt="Tax Services" 
               className="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300" 
+              fallbackSrc="/placeholder.svg"
             />
           </motion.div>
         </div>
