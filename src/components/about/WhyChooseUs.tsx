@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 const whyImage = "/lovable-uploads/47bf1b36-0034-4da2-8f26-d79eb6ff205a.png";
 const features = [{
@@ -29,11 +30,11 @@ export const WhyChooseUs = () => {
         }} transition={{
           duration: 0.7
         }}>
-            <div className="h-full flex items-center">
+            <div className="h-full flex items-center mt-8">
               <img src={whyImage} alt="Why Choose Us Visual" style={{
               background: "#fff",
               maxHeight: "100%"
-            }} className="rounded-2xl shadow-md w-full max-w-[102%] object-contain mx-auto " />
+            }} className="rounded-2xl shadow-md w-full max-w-[108%] object-contain mx-auto" />
             </div>
           </motion.div>
 
