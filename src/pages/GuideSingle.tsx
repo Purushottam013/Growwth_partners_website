@@ -7,15 +7,15 @@ const GuideSingle = () => {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   
-  // If the slug is for the financial reporting guide, redirect to the specific page
-  if (slug === "financial-reporting-standards-singapore") {
-    return <Navigate to="/guide/financial-reporting-standards-singapore" replace />;
+  // If no slug is provided, redirect to guide listing
+  if (!slug) {
+    return <Navigate to="/guide" replace />;
   }
   
-  const guide = getGuideBySlug(slug || "");
+  const guide = getGuideBySlug(slug);
   
-  // If no slug is provided or guide does not exist, redirect to guide listing
-  if (!slug || !guide) {
+  // If guide does not exist, redirect to guide listing
+  if (!guide) {
     return <Navigate to="/guide" replace />;
   }
 
