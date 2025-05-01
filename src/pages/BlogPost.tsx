@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -9,7 +8,7 @@ import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowRight, Share, Mail } from "lucide-react";
+import { ArrowRight, Share, Mail, FileText, File, FileCheck } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 const BlogPostPage = () => {
@@ -228,6 +227,87 @@ const BlogPostPage = () => {
               </div>
             </div>
           </div>
+
+          {/* Related Services Section */}
+          <section className="mt-16 mb-12">
+            <h2 className="text-2xl font-bold mb-8">Related Services/Solutions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Card 1: Accounting Services */}
+              <Link to={getCountryUrl("/accounting")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
+                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="relative">
+                    <span className="absolute top-4 right-4 text-sm font-semibold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                      SERVICE
+                    </span>
+                  </div>
+                  <CardContent className="pt-10 pb-6 px-5">
+                    <div className="h-12 mb-2 flex items-center">
+                      <FileText className="w-8 h-8 text-indigo-600 mr-2" />
+                      <h3 className="text-lg font-bold">Accounting Services in Singapore</h3>
+                    </div>
+                    <p className="text-gray-600 mt-3 text-sm">
+                      Leverage our generative AI development services to streamline workflows, boost
+                      productivity and drive innovation, while ensuring seamless integration with your
+                      existing systems.
+                    </p>
+                    <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
+                      Learn more <ArrowRight className="ml-1 w-4 h-4" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              
+              {/* Card 2: Part Time CFO Services */}
+              <Link to={getCountryUrl("/fractional-cfo")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
+                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="relative">
+                    <span className="absolute top-4 right-4 text-sm font-semibold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                      SERVICE
+                    </span>
+                  </div>
+                  <CardContent className="pt-10 pb-6 px-5">
+                    <div className="h-12 mb-2 flex items-center">
+                      <File className="w-8 h-8 text-purple-600 mr-2" />
+                      <h3 className="text-lg font-bold">Part Time CFO Services in Singapore</h3>
+                    </div>
+                    <p className="text-gray-600 mt-3 text-sm">
+                      Optimize your business potential with our comprehensive generative AI consulting
+                      services, designed to guide you in leveraging GenAI for operational excellence and
+                      product innovation, while also upholding ethical AI principles.
+                    </p>
+                    <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
+                      Learn more <ArrowRight className="ml-1 w-4 h-4" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              
+              {/* Card 3: Bookkeeping Services */}
+              <Link to={getCountryUrl("/bookkeeping")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
+                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="relative">
+                    <span className="absolute top-4 right-4 text-sm font-semibold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                      SERVICE
+                    </span>
+                  </div>
+                  <CardContent className="pt-10 pb-6 px-5">
+                    <div className="h-12 mb-2 flex items-center">
+                      <FileCheck className="w-8 h-8 text-teal-600 mr-2" />
+                      <h3 className="text-lg font-bold">Bookkeeping Services in Singapore</h3>
+                    </div>
+                    <p className="text-gray-600 mt-3 text-sm">
+                      Unlock AI's full potential for your business through our comprehensive AI development
+                      services, designed to tackle intricate tech challenges, streamline business workflows,
+                      and achieve operational excellence.
+                    </p>
+                    <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
+                      Learn more <ArrowRight className="ml-1 w-4 h-4" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
+          </section>
 
           {/* Related Posts Section */}
           {relatedPosts.length > 0 && (
