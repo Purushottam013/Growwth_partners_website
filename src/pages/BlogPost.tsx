@@ -9,7 +9,7 @@ import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowRight, Share } from "lucide-react";
+import { ArrowRight, Share, Mail } from "lucide-react";
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -73,6 +73,10 @@ const BlogPostPage = () => {
         .then(() => alert("Link copied to clipboard!"))
         .catch(err => console.error("Error copying to clipboard:", err));
     }
+  };
+
+  const handleWriteToAuthor = () => {
+    window.location.href = "mailto:jatin@growwthpartners.com?subject=Regarding your blog post: " + (post?.title || "");
   };
 
   if (loading || postsLoading) {
@@ -206,19 +210,31 @@ const BlogPostPage = () => {
                 dangerouslySetInnerHTML={{ __html: post.content || "" }}
               />
 
-              {/* Author Card */}
+              {/* Author Bio Card */}
               {post.author && (
                 <div className="mt-12 pt-6 border-t border-gray-100">
                   <div className="bg-gray-50 rounded-lg p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-xl font-medium text-gray-600">
+                    <div className="flex flex-col md:flex-row md:items-start gap-4">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-xl font-medium text-gray-600 shrink-0">
                         {post.author.charAt(0)}
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold mb-1">About {post.author}</h3>
-                        <p className="text-gray-600">
-                          Finance & accounting expert at Growwth Partners
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold mb-1">Author's Bio</h3>
+                        <h4 className="font-medium text-brand-orange mb-3">Jatin Detwani<br />Founder</h4>
+                        <p className="text-gray-700 mb-4">
+                          <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
+                          multinationals, PE/C investors, family-owned businesses, and startups worldwide.
+                          <br /><br />
+                          <strong>Global Presence:</strong> Worked in India, Singapore, France, the UK,
+                          Luxembourg, providing a broad perspective on business landscapes.
                         </p>
+                        <Button 
+                          onClick={handleWriteToAuthor}
+                          className="flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90"
+                        >
+                          <Mail className="w-4 h-4" />
+                          Write To Jatin
+                        </Button>
                       </div>
                     </div>
                   </div>
