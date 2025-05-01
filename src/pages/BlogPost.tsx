@@ -135,92 +135,100 @@ const BlogPostPage = () => {
               </div>
             )}
 
-            {/* Post Info Banner */}
-            <div className="bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-4">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 bg-indigo-200 rounded-full flex items-center justify-center text-sm font-medium text-indigo-700 mr-3">
-                    J
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-800">Jatin Detwani</p>
-                    <p className="text-sm text-gray-500">{post.publishDate || "2025-04-24"}</p>
-                  </div>
-                </div>
-                <Separator orientation="vertical" className="hidden sm:block h-8" />
-                <div className="text-sm text-gray-700 flex-1">Various funding options available for startups</div>
-                <button 
-                  onClick={handleShare}
-                  className="ml-auto flex items-center gap-1 text-gray-600 hover:text-indigo-600 transition-colors"
-                >
-                  <Share className="w-4 h-4" />
-                  <span>Share</span>
-                </button>
-              </div>
-            </div>
-
             {/* Content Container */}
-            <div className="p-6 md:p-10">
-              {/* Categories */}
-              {Array.isArray(post.categories) && post.categories.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {post.categories.map((category: string) => (
-                    <Badge 
-                      key={category} 
-                      variant="outline" 
-                      className="bg-indigo-50 text-indigo-700 border-indigo-200 px-3 py-1 rounded-full"
-                    >
-                      {category}
-                    </Badge>
-                  ))}
+            <div>
+              {/* Gradient Info Section */}
+              <div className="bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-8">
+                {/* Categories */}
+                {Array.isArray(post.categories) && post.categories.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {post.categories.map((category: string) => (
+                      <Badge 
+                        key={category} 
+                        variant="outline" 
+                        className="bg-indigo-50 text-indigo-700 border-indigo-200 px-3 py-1 rounded-full"
+                      >
+                        {category}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl font-bold mb-5 leading-tight text-gray-900">
+                  {post.title}
+                </h1>
+
+                {/* Author and Share */}
+                <div className="flex flex-wrap items-center justify-between">
+                  <div className="flex items-center mb-4 md:mb-0">
+                    <div className="w-8 h-8 bg-indigo-200 rounded-full flex items-center justify-center text-sm font-medium text-indigo-700 mr-3">
+                      J
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-800">Jatin Detwani</p>
+                      <p className="text-sm text-gray-500">{post.publishDate || "2025-04-24"}</p>
+                    </div>
+                  </div>
+                  <div className="text-sm text-gray-700 flex-1 mx-4 hidden md:block">
+                    Various funding options available for startups
+                  </div>
+                  <button 
+                    onClick={handleShare}
+                    className="flex items-center gap-1 text-gray-600 hover:text-indigo-600 transition-colors"
+                  >
+                    <Share className="w-4 h-4" />
+                    <span>Share</span>
+                  </button>
                 </div>
-              )}
+              </div>
 
-              {/* Title */}
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-gray-900">
-                {post.title}
-              </h1>
+              <Separator className="mx-auto my-4 w-[95%]" />
 
-              {/* Main Content */}
-              <div 
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 
-                          prose-a:text-brand-orange prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-                          prose-img:rounded-lg prose-img:mx-auto prose-img:shadow-sm
-                          prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:text-gray-600 prose-blockquote:bg-gray-50 prose-blockquote:p-4
-                          prose-strong:text-gray-900"
-                dangerouslySetInnerHTML={{ __html: post.content || "" }}
-              />
+              <div className="p-6 md:p-10">
+                {/* Main Content */}
+                <div 
+                  className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 
+                            prose-a:text-brand-orange prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                            prose-img:rounded-lg prose-img:mx-auto prose-img:shadow-sm
+                            prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:text-gray-600 prose-blockquote:bg-gray-50 prose-blockquote:p-4
+                            prose-strong:text-gray-900"
+                  dangerouslySetInnerHTML={{ __html: post.content || "" }}
+                />
 
-              {/* Author Bio Card */}
-              {post.author && (
-                <div className="mt-12 pt-6 border-t border-gray-100">
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <div className="flex flex-col md:flex-row md:items-start gap-4">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-xl font-medium text-gray-600 shrink-0">
-                        {post.author.charAt(0)}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold mb-1 text-center md:text-left">Author's Bio</h3>
-                        <h4 className="font-bold text-brand-orange mb-3">Jatin Detwani<br /><span className="font-bold text-purple-700">Founder</span></h4>
-                        <p className="text-gray-700 mb-4">
-                          <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
-                          multinationals, PE/C investors, family-owned businesses, and startups worldwide.
-                          <br /><br />
-                          <strong>Global Presence:</strong> Worked in India, Singapore, France, the UK,
-                          Luxembourg, providing a broad perspective on business landscapes.
-                        </p>
-                        <Button 
-                          onClick={handleWriteToAuthor}
-                          className="flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90"
-                        >
-                          <Mail className="w-4 h-4" />
-                          Write To Jatin
-                        </Button>
+                {/* Author Bio Card */}
+                {post.author && (
+                  <div className="mt-12 pt-6 border-t border-gray-100">
+                    <div className="bg-gray-50 rounded-lg p-6">
+                      <div className="flex flex-col md:flex-row md:items-start gap-4">
+                        <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-xl font-medium text-gray-600 shrink-0 mx-auto md:mx-0">
+                          {post.author.charAt(0)}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold mb-1 text-center md:text-left">Author's Bio</h3>
+                          <h4 className="font-bold text-brand-orange mb-3 text-center md:text-left">Jatin Detwani<br /><span className="font-bold text-purple-700">Founder</span></h4>
+                          <p className="text-gray-700 mb-4">
+                            <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
+                            multinationals, PE/C investors, family-owned businesses, and startups worldwide.
+                            <br /><br />
+                            <strong>Global Presence:</strong> Worked in India, Singapore, France, the UK,
+                            Luxembourg, providing a broad perspective on business landscapes.
+                          </p>
+                          <div className="flex justify-center md:justify-start">
+                            <Button 
+                              onClick={handleWriteToAuthor}
+                              className="flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90"
+                            >
+                              <Mail className="w-4 h-4" />
+                              Write To Jatin
+                            </Button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
 
