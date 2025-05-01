@@ -37,7 +37,7 @@ const services = [
   "Valuation",
   "Due Diligence",
   "Pitch Your StartUp",
-  "Invester Growth Services"
+  "Invester Growth Services",
   "Other"
 ];
 
