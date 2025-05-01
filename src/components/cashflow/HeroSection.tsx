@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, TrendingUp, Clock, DollarSign } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 // Use the user uploaded image here
 import heroImage from "/lovable-uploads/b51c5473-b592-468a-9952-259fa777df74.png";
 
@@ -76,10 +77,15 @@ export const HeroSection = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[320px] lg:h-[380px] border-4 border-white p-1">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/20 to-[#F87315]/20 mix-blend-overlay rounded-2xl"></div>
-              <img 
+              <OptimizedImage 
                 src={heroImage} 
                 alt="Cash Flow Modeling Services" 
-                className="w-full h-full object-cover rounded-xl transform hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover rounded-xl"
+                style={{
+                  objectPosition: "center",
+                  aspectRatio: "16/9"
+                }}
+                fallbackSrc="/placeholder.svg"
               />
             </div>
             

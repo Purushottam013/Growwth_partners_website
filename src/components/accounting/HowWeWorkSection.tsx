@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Users, BookOpen, FileCheck, Laptop } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import calculationImage from "/lovable-uploads/221e982a-6266-4524-962a-3f5d957224fb.png";
 
 export const HowWeWorkSection = () => {
@@ -56,10 +57,11 @@ export const HowWeWorkSection = () => {
             <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
               <div className="bg-white p-2 rounded-2xl shadow-2xl relative">
-                <img 
+                <OptimizedImage 
                   src={calculationImage} 
                   alt="Team Collaboration" 
                   className="w-full h-[400px] rounded-xl object-cover"
+                  fallbackSrc="/placeholder.svg"
                 />
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-orange/10 rounded-full"></div>
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-brand-blue/10 rounded-full"></div>

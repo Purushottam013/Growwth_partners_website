@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Upload, Image as ImageIcon } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface ImageUploadProps {
   imageUrl: string;
@@ -73,7 +74,7 @@ export const ImageUpload = ({ imageUrl, onImageChange }: ImageUploadProps) => {
       
       {preview && (
         <div className="mt-4 border rounded-md overflow-hidden">
-          <img
+          <OptimizedImage
             src={preview}
             alt="Preview"
             className="w-full max-h-64 object-contain"

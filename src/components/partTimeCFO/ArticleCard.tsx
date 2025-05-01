@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/optimized-image';
 
 interface ArticleCardProps {
   title: string;
@@ -13,12 +15,6 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ title, excerpt, image,
   const fallbackImage =
     'https://as2.ftcdn.net/v2/jpg/10/28/35/13/1000_F_1028351361_FZ2vwpQEZZjEDQxp70ICUoC7Qmb9nuZi.jpg';
 
-  const handleImageError = (
-    e: React.SyntheticEvent<HTMLImageElement, Event>
-  ) => {
-    e.currentTarget.src = fallbackImage;
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,13 +24,10 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ title, excerpt, image,
       className="article-card h-full flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300"
     >
       <div className="relative h-48 overflow-hidden">
-        <motion.img
+        <OptimizedImage
           src={image}
           alt={title}
-          onError={handleImageError}
-          initial={{ scale: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.5 }}
+          fallbackSrc={fallbackImage}
           className="w-full h-full object-cover"
         />
       </div>

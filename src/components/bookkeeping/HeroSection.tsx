@@ -1,9 +1,11 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, BadgePercent, PhoneCall } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import bookkeepingHeroImage from "/lovable-uploads/cf4931e3-eac5-452b-9fb1-71a1922b7e30.png";
 
 export const HeroSection = () => {
@@ -50,11 +52,15 @@ export const HeroSection = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#FB8136]/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
-              <img 
+              <OptimizedImage 
                 src={bookkeepingHeroImage} 
                 alt="Bookkeeping Services" 
-                className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
-                style={{ maxHeight: "360px", objectPosition: "center" }}
+                className="w-full h-full object-cover rounded-2xl"
+                style={{
+                  maxHeight: "360px", 
+                  objectPosition: "center"
+                }}
+                fallbackSrc="/placeholder.svg"
               />
             </div>
             

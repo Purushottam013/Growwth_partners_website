@@ -1,7 +1,10 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { BookText, UserCheck, Percent, LineChart, BarChart3 } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import accountingServiceImage from "/lovable-uploads/15b8b892-3666-4632-833d-5ecceccf580c.png";
+
 export const ServicesSection = () => {
   const services = [{
     icon: <BookText className="h-8 w-8 text-brand-orange" />,
@@ -82,7 +85,12 @@ export const ServicesSection = () => {
         }} className="order-1 lg:order-2 relative">
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
-              <img src={accountingServiceImage} alt="Accounting Services" className="w-full h-auto rounded-2xl shadow-xl" />
+              <OptimizedImage 
+                src={accountingServiceImage} 
+                alt="Accounting Services" 
+                className="w-full h-auto rounded-2xl shadow-xl"
+                fallbackSrc="/placeholder.svg"
+              />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
           </motion.div>
