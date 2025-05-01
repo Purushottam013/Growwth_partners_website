@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,13 +7,11 @@ import {
   SelectContent, 
   SelectItem, 
   SelectTrigger, 
-  SelectValue,
-  SelectScrollUpButton,
-  SelectScrollDownButton
+  SelectValue
 } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { PhoneIcon, User, Building, Mail, ChevronUp, ChevronDown } from "lucide-react";
+import { PhoneIcon, User, Building, Mail, ChevronDown } from "lucide-react";
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -170,9 +167,6 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
               <SelectValue placeholder="Country" className="text-base" />
             </SelectTrigger>
             <SelectContent className="max-h-[250px]">
-              <SelectScrollUpButton className="flex items-center justify-center h-7">
-                <ChevronUp className="h-4 w-4" />
-              </SelectScrollUpButton>
               <ScrollArea className="h-[200px]">
                 {countryCodes.map((country) => (
                   <SelectItem key={country.code} value={country.code} className="text-base py-2">
@@ -183,9 +177,6 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
                   </SelectItem>
                 ))}
               </ScrollArea>
-              <SelectScrollDownButton className="flex items-center justify-center h-7">
-                <ChevronDown className="h-4 w-4" />
-              </SelectScrollDownButton>
             </SelectContent>
           </Select>
           <div className="relative flex-1">
