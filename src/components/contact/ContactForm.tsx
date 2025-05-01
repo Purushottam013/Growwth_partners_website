@@ -30,10 +30,14 @@ const services = [
   "Bookkeeping",
   "Payroll",
   "Taxation & Compliance",
-  "Fractional CFO",
+  "Part-Time/Fractional CFO",
   "Cash Flow Modelling",
   "Corporate Secretary",
   "Company Incorporation",
+  "Valuation",
+  "Due Diligence",
+  "Pitch Your StartUp",
+  "Invester Growth Services"
   "Other"
 ];
 
