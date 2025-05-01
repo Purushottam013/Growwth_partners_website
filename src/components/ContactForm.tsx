@@ -8,13 +8,10 @@ import {
   SelectContent, 
   SelectItem, 
   SelectTrigger, 
-  SelectValue,
-  SelectScrollUpButton,
-  SelectScrollDownButton
+  SelectValue
 } from "@/components/ui/select";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { PhoneIcon, User, Building, Mail, ChevronUp, ChevronDown } from "lucide-react";
+import { PhoneIcon, User, Building, Mail } from "lucide-react";
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -169,7 +166,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Country" className="text-base" />
             </SelectTrigger>
-            <SelectContent className="max-h-[250px] overflow-auto">
+            <SelectContent className="max-h-[250px] overflow-y-auto">
               {countryCodes.map((country) => (
                 <SelectItem key={country.code} value={country.code} className="text-base py-2">
                   <span className="flex items-center">
@@ -206,7 +203,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
           <SelectTrigger>
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent className="max-h-[250px] overflow-auto">
+          <SelectContent className="max-h-[250px] overflow-y-auto">
             {services.map((service) => (
               <SelectItem key={service} value={service}>
                 {service}

@@ -170,7 +170,7 @@ export const ContactForm = () => {
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Country" className="text-base" />
             </SelectTrigger>
-            <SelectContent className="max-h-[250px] overflow-auto">
+            <SelectContent className="max-h-[250px] overflow-y-auto">
               {countryCodes.map((country) => (
                 <SelectItem key={country.code} value={country.code} className="text-base py-2">
                   <span className="flex items-center">
@@ -207,7 +207,7 @@ export const ContactForm = () => {
           <SelectTrigger>
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent className="max-h-[250px] overflow-auto">
+          <SelectContent className="max-h-[250px] overflow-y-auto">
             {services.map((service) => (
               <SelectItem key={service} value={service}>
                 {service}
