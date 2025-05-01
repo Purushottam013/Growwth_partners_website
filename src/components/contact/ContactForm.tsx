@@ -9,20 +9,15 @@ import {
   SelectContent, 
   SelectItem, 
   SelectTrigger, 
-  SelectValue,
-  SelectScrollUpButton,
-  SelectScrollDownButton
+  SelectValue
 } from "@/components/ui/select";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { 
   PhoneIcon, 
   User, 
   Building, 
   Mail, 
-  MessageSquare, 
-  ChevronUp, 
-  ChevronDown
+  MessageSquare
 } from "lucide-react";
 
 const services = [
@@ -175,23 +170,15 @@ export const ContactForm = () => {
             <SelectTrigger className="w-[130px]">
               <SelectValue placeholder="Country" className="text-base" />
             </SelectTrigger>
-            <SelectContent className="max-h-[250px]">
-              <SelectScrollUpButton className="flex items-center justify-center h-7">
-                <ChevronUp className="h-4 w-4" />
-              </SelectScrollUpButton>
-              <ScrollArea className="h-[200px]">
-                {countryCodes.map((country) => (
-                  <SelectItem key={country.code} value={country.code} className="text-base py-2">
-                    <span className="flex items-center">
-                      <span className="mr-2 text-lg">{country.flag}</span>
-                      <span>{country.code}</span>
-                    </span>
-                  </SelectItem>
-                ))}
-              </ScrollArea>
-              <SelectScrollDownButton className="flex items-center justify-center h-7">
-                <ChevronDown className="h-4 w-4" />
-              </SelectScrollDownButton>
+            <SelectContent className="max-h-[250px] overflow-auto">
+              {countryCodes.map((country) => (
+                <SelectItem key={country.code} value={country.code} className="text-base py-2">
+                  <span className="flex items-center">
+                    <span className="mr-2 text-lg">{country.flag}</span>
+                    <span>{country.code}</span>
+                  </span>
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
           <div className="relative flex-1">
@@ -220,14 +207,12 @@ export const ContactForm = () => {
           <SelectTrigger>
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent>
-            <ScrollArea className="h-[200px]">
-              {services.map((service) => (
-                <SelectItem key={service} value={service}>
-                  {service}
-                </SelectItem>
-              ))}
-            </ScrollArea>
+          <SelectContent className="max-h-[250px] overflow-auto">
+            {services.map((service) => (
+              <SelectItem key={service} value={service}>
+                {service}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
