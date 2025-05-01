@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 
-const whyImage = "/lovable-uploads/78c4750b-addc-4785-be6f-132043bef618.png";
+const whyImage = "/lovable-uploads/47bf1b36-0034-4da2-8f26-d79eb6ff205a.png";
 
 const features = [
   {
