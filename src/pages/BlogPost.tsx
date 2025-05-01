@@ -10,6 +10,7 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, Share, Mail } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -56,10 +57,6 @@ const BlogPostPage = () => {
       }
     }
   }, [slug, postsLoading, getPostBySlug, posts]);
-
-  const handleBackToBlog = () => {
-    navigate(getCountryUrl("/blog"));
-  };
 
   const handleShare = () => {
     if (navigator.share) {
@@ -113,7 +110,7 @@ const BlogPostPage = () => {
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
             <p className="mb-6">The blog post you're looking for doesn't exist.</p>
-            <Button onClick={handleBackToBlog}>Back to Blog</Button>
+            <Button onClick={() => navigate(getCountryUrl("/blog"))}>Back to Blog</Button>
           </div>
         </div>
       </Layout>
@@ -122,18 +119,6 @@ const BlogPostPage = () => {
 
   return (
     <Layout>
-      <div className="bg-gray-50 py-6">
-        <div className="container mx-auto px-4">
-          <Button 
-            variant="ghost" 
-            onClick={handleBackToBlog}
-            className="mb-2 text-gray-600 hover:text-brand-orange transition-colors"
-          >
-            ← Back to Blog
-          </Button>
-        </div>
-      </div>
-      
       <article className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto">
           {/* Content wrapper */}
@@ -149,6 +134,30 @@ const BlogPostPage = () => {
                 />
               </div>
             )}
+
+            {/* Post Info Banner */}
+            <div className="bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-indigo-200 rounded-full flex items-center justify-center text-sm font-medium text-indigo-700 mr-3">
+                    J
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-800">Jatin Detwani</p>
+                    <p className="text-sm text-gray-500">{post.publishDate || "2025-04-24"}</p>
+                  </div>
+                </div>
+                <Separator orientation="vertical" className="hidden sm:block h-8" />
+                <div className="text-sm text-gray-700 flex-1">Various funding options available for startups</div>
+                <button 
+                  onClick={handleShare}
+                  className="ml-auto flex items-center gap-1 text-gray-600 hover:text-indigo-600 transition-colors"
+                >
+                  <Share className="w-4 h-4" />
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
 
             {/* Content Container */}
             <div className="p-6 md:p-10">
@@ -172,34 +181,6 @@ const BlogPostPage = () => {
                 {post.title}
               </h1>
 
-              {/* Author & Date */}
-              <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-8 pb-6 border-b border-gray-100">
-                {post.author && (
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full mr-2 flex items-center justify-center text-sm font-medium text-gray-600">
-                      {post.author.charAt(0)}
-                    </div>
-                    <span className="font-medium">{post.author}</span>
-                  </div>
-                )}
-                
-                {post.publishDate && (
-                  <div className="flex items-center">
-                    <span className="text-gray-400 mx-2">•</span>
-                    <span className="text-gray-500">{post.publishDate}</span>
-                  </div>
-                )}
-                
-                {/* Share Button */}
-                <button 
-                  onClick={handleShare}
-                  className="ml-auto flex items-center gap-1 text-gray-500 hover:text-brand-orange transition-colors"
-                >
-                  <Share className="w-4 h-4" />
-                  <span>Share</span>
-                </button>
-              </div>
-
               {/* Main Content */}
               <div 
                 className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 
@@ -219,8 +200,8 @@ const BlogPostPage = () => {
                         {post.author.charAt(0)}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-semibold mb-1">Author's Bio</h3>
-                        <h4 className="font-medium text-brand-orange mb-3">Jatin Detwani<br />Founder</h4>
+                        <h3 className="text-xl font-semibold mb-1 text-center md:text-left">Author's Bio</h3>
+                        <h4 className="font-bold text-brand-orange mb-3">Jatin Detwani<br /><span className="font-bold text-purple-700">Founder</span></h4>
                         <p className="text-gray-700 mb-4">
                           <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
                           multinationals, PE/C investors, family-owned businesses, and startups worldwide.
