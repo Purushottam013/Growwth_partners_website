@@ -15,6 +15,53 @@ interface GuideDetailProps {
 }
 
 const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onContactClick }) => {
+  // Create a mock structure for keyTakeaways and other missing properties if they don't exist
+  const keyTakeaways = [
+    { title: "Growth Orientation", description: "FRS for Small Entities focuses on essential reporting areas to support business growth." },
+    { title: "Simplified Reporting", description: "Less complex disclosure requirements make financial reporting more manageable." },
+    { title: "Cost Efficiency", description: "Reduced reporting burden leads to lower compliance costs and resource savings." },
+    { title: "Compliance and Transparency", description: "Maintains adherence to accounting principles while ensuring clarity." },
+    { title: "Business Decision Support", description: "Provides a framework for informed decisions based on accurate financial data." }
+  ];
+  
+  // Content sections
+  const sections = [
+    { title: "Who Can Apply FRS for Small Entities?", content: `<p>The FRS for Small Entities is designed for businesses that meet specific criteria. To qualify, an entity must:</p>
+      <ul class="list-disc pl-6 mt-3 space-y-2">
+        <li>Be non-publicly accountable</li>
+        <li>Publish general purpose financial statements for external users</li>
+        <li>Meet two of the following size criteria:
+          <ul class="list-disc pl-6 mt-2 mb-2">
+            <li>Annual revenue of less than S$10 million</li>
+            <li>Total assets of less than S$10 million</li>
+            <li>Fewer than 50 employees</li>
+          </ul>
+        </li>
+      </ul>` },
+    { title: "Key Differences from Full FRS", content: `<p>The FRS for Small Entities differs from the full FRS framework in several important ways:</p>
+      <ul class="list-disc pl-6 mt-3 space-y-2">
+        <li><strong>Simplified Recognition and Measurement:</strong> Less complex approaches to financial instruments, goodwill amortization, and research and development costs.</li>
+        <li><strong>Reduced Disclosures:</strong> Fewer required notes and explanations in financial statements.</li>
+        <li><strong>Eliminated Topics:</strong> Certain complex areas like share-based payments, intermediate reporting, and earnings per share are not required.</li>
+      </ul>` },
+    { title: "Implementation Considerations", content: `<p>Transitioning to FRS for Small Entities requires careful planning:</p>
+      <ul class="list-disc pl-6 mt-3 space-y-2">
+        <li><strong>Initial Assessment:</strong> Evaluate if your business meets the qualifying criteria.</li>
+        <li><strong>Impact Analysis:</strong> Determine how the transition will affect your financial statements.</li>
+        <li><strong>System Updates:</strong> Adjust accounting systems and processes as needed.</li>
+        <li><strong>Staff Training:</strong> Ensure your team understands the new requirements.</li>
+        <li><strong>Communication:</strong> Inform stakeholders about the changes in financial reporting.</li>
+      </ul>` }
+  ];
+  
+  // FAQ items
+  const faqs = [
+    { question: "Is FRS for Small Entities mandatory for qualifying businesses?", answer: "No, it's optional. Qualifying businesses can choose between FRS for Small Entities or full FRS." },
+    { question: "Can a business switch back to full FRS after adopting FRS for Small Entities?", answer: "Yes, but the change must be justified and properly documented, with retrospective application." },
+    { question: "How frequently is FRS for Small Entities updated?", answer: "It's typically updated every few years, rather than the more frequent updates to full FRS." },
+    { question: "Does using FRS for Small Entities affect tax calculations?", answer: "Not generally, as Singapore tax calculations have their own rules, but some simplifications may affect certain tax computations." }
+  ];
+  
   return (
     <Layout>
       {/* Hero Section with Title - Gradient background */}
@@ -27,10 +74,10 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
             className="text-center"
           >
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-              {guide.title}
+              {guide.Title}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {guide.description}
+              {guide.Excerpt}
             </p>
           </motion.div>
         </div>
@@ -49,10 +96,10 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
             </h2>
             
             {/* Conditional rendering based on the number of takeaways */}
-            {guide.keyTakeaways.length <= 3 ? (
+            {keyTakeaways.length <= 3 ? (
               // If 3 or fewer takeaways, show them in one row
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {guide.keyTakeaways.map((takeaway, index) => (
+                {keyTakeaways.map((takeaway, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -72,11 +119,11 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
                   </motion.div>
                 ))}
               </div>
-            ) : guide.keyTakeaways.length === 5 ? (
+            ) : keyTakeaways.length === 5 ? (
               // Special case for 5 takeaways (3 in first row, 2 centered in second)
               <>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {guide.keyTakeaways.slice(0, 3).map((takeaway, index) => (
+                  {keyTakeaways.slice(0, 3).map((takeaway, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
@@ -97,7 +144,7 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
                   ))}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
-                  {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
+                  {keyTakeaways.slice(3, 5).map((takeaway, index) => (
                     <motion.div
                       key={index + 3}
                       initial={{ opacity: 0, y: 20 }}
@@ -121,7 +168,7 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
             ) : (
               // Default grid layout for 4+ takeaways
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {guide.keyTakeaways.map((takeaway, index) => (
+                {keyTakeaways.map((takeaway, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -158,12 +205,15 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-900">Introduction</h3>
             <div className="prose max-w-none text-lg text-gray-700 leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: guide.introduction }} />
+              <div dangerouslySetInnerHTML={{ __html: `
+                <p>Singapore's financial reporting landscape offers specialized frameworks for businesses of different sizes. The Financial Reporting Standard for Small Entities (FRS for Small Entities) provides a simplified alternative to the full FRS framework, specifically designed for smaller businesses that meet certain criteria.</p>
+                <p>This comprehensive guide explores the key aspects of FRS for Small Entities, helping business owners and financial professionals understand its applications, benefits, and implementation considerations.</p>
+              ` }} />
             </div>
           </motion.div>
 
           {/* Main content */}
-          {guide.sections.map((section, index) => (
+          {sections.map((section, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0 }}
@@ -188,7 +238,7 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
             <h3 className="text-2xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h3>
             
             <Accordion type="single" collapsible className="w-full space-y-4">
-              {guide.faqs.map((faq, index) => (
+              {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg overflow-hidden">
                   <AccordionTrigger className="px-6 py-4 hover:no-underline">
                     <span className="text-left font-medium">{faq.question}</span>
@@ -210,7 +260,10 @@ const GuideDetail: React.FC<GuideDetailProps> = ({ guide, keyTakeawayImages, onC
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-900">Summary</h3>
             <div className="text-lg text-gray-700 mb-10 leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: guide.summary }} />
+              <div dangerouslySetInnerHTML={{ __html: `
+                <p>The FRS for Small Entities represents an important tool for smaller businesses in Singapore to streamline their financial reporting while maintaining compliance with accounting standards. By reducing complexity and focusing on the most relevant aspects of financial reporting, it allows business owners to allocate resources more efficiently without compromising on financial transparency.</p>
+                <p>For eligible businesses, adopting this framework can lead to significant cost and time savings, while still providing stakeholders with the financial information they need to make informed decisions. As with any accounting framework, proper implementation and understanding are key to maximizing its benefits.</p>
+              ` }} />
             </div>
 
             <Separator className="my-10" />

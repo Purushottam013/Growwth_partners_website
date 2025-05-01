@@ -25,7 +25,7 @@ const GuideSingle = () => {
     "/lovable-uploads/15e6b360-d5dd-4d93-8dd8-86e3b6815a2c.png", // Different Investors
     "/lovable-uploads/ff10cb0e-544a-4e37-b61b-8e4174ede681.png", // Create an Engaging Pitch Deck
     "/lovable-uploads/29d7a505-65ef-443d-bc30-78185338c79b.png", // Perfect Your Elevator Pitch
-    "/lovable-uploads/7950ef2b-fec5-470f-8003-13b293af4b08.png"  // Navigate Investor Networks
+    "/lovable-uploads/7950ef2b-fec5-470f-8003-13b293af4b08.png"  // Growth Orientation
   ];
 
   const handleContactClick = () => {
