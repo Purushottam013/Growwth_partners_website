@@ -33,8 +33,8 @@ const FinancialReportingGuide = () => {
 
   return (
     <Layout>
-      {/* Hero Section with Title */}
-      <section className="relative py-16 bg-gradient-to-b from-blue-50/50 to-white">
+      {/* Hero Section with Title - Now with background gradient */}
+      <section className="relative py-16 bg-gradient-to-b from-blue-100 to-white">
         <div className="container mx-auto px-4 w-[90%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -52,7 +52,7 @@ const FinancialReportingGuide = () => {
         </div>
       </section>
 
-      {/* Key Takeaways Section */}
+      {/* Key Takeaways Section - Modified to center the last two boxes */}
       <section className="py-12 bg-gradient-to-r from-blue-50/30 via-purple-50/30 to-blue-50/30">
         <div className="container mx-auto px-4 w-[90%]">
           <motion.div
@@ -64,8 +64,8 @@ const FinancialReportingGuide = () => {
               Key Takeaways
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Simplified Financial Reporting */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* First row - 3 boxes */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,6 @@ const FinancialReportingGuide = () => {
                 </p>
               </motion.div>
 
-              {/* Eligibility Criteria */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -105,7 +104,6 @@ const FinancialReportingGuide = () => {
                 </p>
               </motion.div>
 
-              {/* Cost Efficacy */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -124,8 +122,10 @@ const FinancialReportingGuide = () => {
                   Businesses could save much on compliance, auditing and financial reporting costs by using this framework, allowing them to allocate their resources more efficiently.
                 </p>
               </motion.div>
-
-              {/* Growth Orientation */}
+            </div>
+            
+            {/* Second row - 2 centered boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-3xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -145,7 +145,6 @@ const FinancialReportingGuide = () => {
                 </p>
               </motion.div>
 
-              {/* Compliance and Transparency */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
