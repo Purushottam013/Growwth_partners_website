@@ -1,26 +1,29 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
 const teamMembers = [{
   name: "Bijal Shah",
   role: "Senior Manager, CFO Advisory Services",
-  image: "/lovable-uploads/18de98ba-27fa-40d2-bd48-fb2431a40bc6.png",
+  image: "/lovable-uploads/b5d27231-58dd-4eac-b4d3-abd1dd4ffdba.png",
   description: "A Chartered Accountant with 15+ years of experience, specializes in corporate finance, strategic financial management, and operational excellence. She excels in optimizing financial structures, driving profitability, and ensuring regulatory compliance. She is also proficient in ERP systems like SAP and Oracle."
 }, {
   name: "Preeti",
   role: "Head of Finance",
-  image: "/lovable-uploads/b3f5b032-60d2-4732-bc8f-d45a373b18f1.png",
+  image: "/lovable-uploads/f8c7677a-09c4-45c4-bda6-dc581b59d47f.png",
   description: "A Chartered Accountant with over 20 years of experience in finance and tax. Formerly the Chief Editor at ClearTax, she has a deep understanding of economic and tax policy. She has also worked with PwC and American Express, bringing extensive expertise to Growth Partners."
 }, {
   name: "Hemavathy",
   role: "Financial Services Expert",
-  image: "/lovable-uploads/60a22a67-08dc-4496-a008-cb945442b8e3.png",
+  image: "/lovable-uploads/65c4db5e-29e5-4f58-ac84-22c7dfd540c0.png",
   description: "With 13 years of experience in financial services, internal and statutory audits, taxation, and regulatory compliance across sectors like banks, corporates, and trusts. She brings expertise in data analytics, risk analysis, and Indian Accounting Standards."
 }, {
   name: "Pooja Agarwal",
   role: "Financial Consultant",
-  image: "/lovable-uploads/c2037031-500d-4bae-8f4a-c11499b5343d.png",
+  image: "/lovable-uploads/a7c74764-af55-4450-9ba3-c4f194ca96c6.png",
   description: "A Chartered Accountant with over 10 years of experience in commercial lending analysis, audits, corporate finance, legal compliance, bookkeeping, treasury, risk consulting, taxation, and budgeting. Her versatile job profile spans various industries."
 }];
+
 export const TeamSection = () => {
   return <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-[60px]">
       <div className="container-custom">
