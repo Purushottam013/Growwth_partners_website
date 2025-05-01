@@ -51,12 +51,12 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:block relative max-w-md mx-auto"
           >
-            {/* First floating badge */}
+            {/* First floating badge - added animate-float class */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="absolute -top-8 -right-8 bg-white shadow-lg rounded-lg px-4 py-2 z-20"
+              className="absolute -top-8 -right-8 bg-white shadow-lg rounded-lg px-4 py-2 z-20 animate-float"
             >
               <p className="text-sm font-bold text-brand-blue flex items-center">
                 <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
@@ -64,12 +64,12 @@ export const HeroSection = () => {
               </p>
             </motion.div>
             
-            {/* Second floating badge */}
+            {/* Second floating badge - added animate-float-slow class */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute -bottom-6 -left-6 bg-white shadow-lg rounded-lg px-4 py-2 z-20"
+              className="absolute -bottom-6 -left-6 bg-white shadow-lg rounded-lg px-4 py-2 z-20 animate-float-slow"
             >
               <p className="text-sm font-bold text-brand-orange flex items-center">
                 <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
