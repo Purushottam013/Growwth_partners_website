@@ -38,7 +38,7 @@ export const WhyChooseUs = () => {
             <img
               src={whyImage}
               alt="Why Choose Us Visual"
-              className="rounded-2xl shadow-md w-full max-w-md object-contain mx-auto"
+              className="rounded-2xl shadow-md w-full max-w-[108%] object-contain mx-auto" 
               style={{ background: "#fff" }}
             />
           </motion.div>
