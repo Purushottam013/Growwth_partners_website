@@ -170,9 +170,6 @@ const BlogPostPage = () => {
                       <p className="text-sm text-gray-500">{post.publishDate || "2025-04-24"}</p>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-700 flex-1 mx-4 hidden md:block">
-                    Various funding options available for startups
-                  </div>
                   <button 
                     onClick={handleShare}
                     className="flex items-center gap-1 text-gray-600 hover:text-indigo-600 transition-colors"
@@ -205,9 +202,9 @@ const BlogPostPage = () => {
                           {post.author.charAt(0)}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-semibold mb-1 text-center md:text-left">Author's Bio</h3>
-                          <h4 className="font-bold text-brand-orange mb-3 text-center md:text-left">Jatin Detwani<br /><span className="font-bold text-purple-700">Founder</span></h4>
-                          <p className="text-gray-700 mb-4">
+                          <h3 className="text-xl font-semibold mb-1 text-center w-full">Author's Bio</h3>
+                          <h4 className="font-bold text-center md:text-left">Jatin Detwani<br /><span className="font-bold text-purple-600">Founder</span></h4>
+                          <p className="text-gray-700 mb-4 mt-3">
                             <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
                             multinationals, PE/C investors, family-owned businesses, and startups worldwide.
                             <br /><br />
