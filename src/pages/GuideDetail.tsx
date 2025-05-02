@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -17,6 +16,33 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
     // Scroll to top when the component mounts
     window.scrollTo(0, 0);
   }, []);
+
+  // Function to render FAQs by index range
+  const renderFAQs = (startIndex: number, endIndex: number) => {
+    if (!guide.faqs) return null;
+    
+    const faqsToRender = guide.faqs.slice(startIndex, endIndex);
+    if (faqsToRender.length === 0) return null;
+    
+    return (
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
+        <Accordion type="single" collapsible className="w-full">
+          {faqsToRender.map((faq, index) => (
+            <AccordionItem key={`${startIndex}-${index}`} value={`faq-${startIndex}-${index}`} className="border-b">
+              <AccordionTrigger className="text-left font-medium py-4 flex justify-between">
+                {faq.question}
+                <ChevronDown className="h-5 w-5 shrink-0 text-gray-500 transition-transform duration-200" />
+              </AccordionTrigger>
+              <AccordionContent className="pb-4 pt-0">
+                <p className="py-2 text-gray-600">{faq.answer}</p>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    );
+  };
 
   return (
     <Layout>
@@ -60,7 +86,7 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               />
             </div>
             
-            {/* Key Takeaways Section */}
+            {/* Key Takeaways Section - Fixed to display properly */}
             {guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
@@ -83,35 +109,115 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               </div>
             )}
             
-            {/* Content Sections */}
-            {guide.sections && guide.sections.length > 0 && (
-              <div className="mb-16 space-y-12">
-                {guide.sections.map((section, index) => (
-                  <div key={index} className="prose max-w-none">
-                    <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
-                    <div dangerouslySetInnerHTML={{ __html: section.content }} />
+            {/* Content and FAQ Sections - Now interspersed as per content structure */}
+            {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" ? (
+              <>
+                {/* Introduction Section */}
+                {guide.sections && guide.sections[0] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[0].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[0].content }} />
                   </div>
-                ))}
-              </div>
-            )}
-            
-            {/* FAQ Section */}
-            {guide.faqs && guide.faqs.length > 0 && (
-              <div className="mb-16">
-                <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
-                <Accordion type="single" collapsible className="w-full">
-                  {guide.faqs.map((faq, index) => (
-                    <AccordionItem key={index} value={`faq-${index}`} className="border-b">
-                      <AccordionTrigger className="text-left font-medium py-4">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="pb-4 pt-0">
-                        <p className="py-2 text-gray-600">{faq.answer}</p>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
+                )}
+                
+                {/* What is Bookkeeping Section */}
+                {guide.sections && guide.sections[1] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[1].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[1].content }} />
+                  </div>
+                )}
+                
+                {/* First FAQ Section */}
+                {renderFAQs(0, 4)}
+                
+                {/* Importance of Bookkeeping Section */}
+                {guide.sections && guide.sections[2] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[2].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[2].content }} />
+                  </div>
+                )}
+                
+                {/* Basic Bookkeeping Terms Section */}
+                {guide.sections && guide.sections[3] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[3].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[3].content }} />
+                  </div>
+                )}
+                
+                {/* Second FAQ Section */}
+                {renderFAQs(4, 9)}
+                
+                {/* Comprehensive Steps Section */}
+                {guide.sections && guide.sections[4] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[4].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[4].content }} />
+                  </div>
+                )}
+                
+                {/* Common Challenges Section */}
+                {guide.sections && guide.sections[5] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[5].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[5].content }} />
+                  </div>
+                )}
+                
+                {/* Third FAQ Section */}
+                {renderFAQs(9, 14)}
+                
+                {/* Summary Section */}
+                {guide.sections && guide.sections[6] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[6].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[6].content }} />
+                  </div>
+                )}
+                
+                {/* Book a Free Consultation Section */}
+                {guide.sections && guide.sections[7] && (
+                  <div className="mb-12 prose max-w-none">
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[7].content }} />
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {/* Content Sections for other guides */}
+                {guide.sections && guide.sections.length > 0 && (
+                  <div className="mb-16 space-y-12">
+                    {guide.sections.map((section, index) => (
+                      <div key={index} className="prose max-w-none">
+                        <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
+                        <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {/* FAQ Section for other guides */}
+                {guide.faqs && guide.faqs.length > 0 && (
+                  <div className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
+                    <Accordion type="single" collapsible className="w-full">
+                      {guide.faqs.map((faq, index) => (
+                        <AccordionItem key={index} value={`faq-${index}`} className="border-b">
+                          <AccordionTrigger className="text-left font-medium py-4 flex justify-between">
+                            {faq.question}
+                            <ChevronDown className="h-5 w-5 shrink-0 text-gray-500 transition-transform duration-200" />
+                          </AccordionTrigger>
+                          <AccordionContent className="pb-4 pt-0">
+                            <p className="py-2 text-gray-600">{faq.answer}</p>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </div>
+                )}
+              </>
             )}
             
             {/* CTA Section */}
