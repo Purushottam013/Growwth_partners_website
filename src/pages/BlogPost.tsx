@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -239,10 +238,10 @@ const BlogPostPage = () => {
           <div className="w-[90%] max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Card 1: Accounting Services */}
-              <Link to={getCountryUrl("/accounting")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-6">
+              <Link to={getCountryUrl("/accounting")} className="block h-full">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
-                    <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Accounting Services in Singapore</h3>
+                    <h3 className="text-xl font-bold text-[#6A7280] mb-3">Accounting Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
                       Leverage our generative AI development services to streamline workflows, boost
                       productivity and drive innovation, while ensuring seamless integration with your
@@ -256,10 +255,10 @@ const BlogPostPage = () => {
               </Link>
               
               {/* Card 2: Part Time CFO Services */}
-              <Link to={getCountryUrl("/fractional-cfo")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-6">
+              <Link to={getCountryUrl("/fractional-cfo")} className="block h-full">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
-                    <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Part Time CFO Services in Singapore</h3>
+                    <h3 className="text-xl font-bold text-[#6A7280] mb-3">Part Time CFO Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
                       Optimize your business potential with our comprehensive generative AI consulting
                       services, designed to guide you in leveraging GenAI for operational excellence and
@@ -273,10 +272,10 @@ const BlogPostPage = () => {
               </Link>
               
               {/* Card 3: Bookkeeping Services */}
-              <Link to={getCountryUrl("/bookkeeping")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-6">
+              <Link to={getCountryUrl("/bookkeeping")} className="block h-full">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
-                    <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Bookkeeping Services in Singapore</h3>
+                    <h3 className="text-xl font-bold text-[#6A7280] mb-3">Bookkeeping Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
                       Unlock AI's full potential for your business through our comprehensive AI development
                       services, designed to tackle intricate tech challenges, streamline business workflows,
@@ -299,7 +298,7 @@ const BlogPostPage = () => {
             <div className="w-[90%] max-w-7xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost) => (
-                  <Card key={relatedPost.id} className="transition-all duration-300 hover:shadow-md h-full">
+                  <Card key={relatedPost.id} className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 h-full cursor-pointer">
                     <Link to={getCountryUrl(`/blog/${relatedPost.slug}`)} className="h-full flex flex-col">
                       {relatedPost.heroImage && (
                         <div className="w-full h-52 overflow-hidden">
@@ -319,7 +318,7 @@ const BlogPostPage = () => {
                             </Badge>
                           )}
                         </div>
-                        <h3 className="font-bold text-xl mb-3 line-clamp-2 text-[#6A7280] hover:text-[#F87315] transition-colors">{relatedPost.title}</h3>
+                        <h3 className="font-bold text-xl mb-3 line-clamp-2 text-[#6A7280]">{relatedPost.title}</h3>
                         <p className="text-gray-600 text-md line-clamp-3 flex-grow">
                           {relatedPost.excerpt || ""}
                         </p>
