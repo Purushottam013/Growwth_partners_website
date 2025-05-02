@@ -190,9 +190,14 @@ const BlogPostPage = () => {
                   dangerouslySetInnerHTML={{ __html: post.content || "" }}
                 />
 
+                {/* Add divider between content and author bio */}
+                <div className="flex justify-center my-8">
+                  <Separator className="w-[90%] max-w-7xl bg-indigo-200 h-[2px]" />
+                </div>
+
                 {/* Author Bio Card */}
                 {post.author && (
-                  <div className="mt-12 pt-6 border-t border-gray-100">
+                  <div className="mt-8">
                     <div className="bg-gray-50 rounded-lg p-6">
                       <div className="flex flex-col md:flex-row md:items-start gap-4">
                         <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-xl font-medium text-gray-600 shrink-0 mx-auto md:mx-0">
@@ -288,11 +293,6 @@ const BlogPostPage = () => {
             </div>
           </div>
         </section>
-
-        {/* Updated bottom Separator with increased width and styling - matches the top one */}
-        <div className="flex justify-center my-8">
-          <Separator className="w-[90%] max-w-7xl bg-indigo-200 h-[2px]" />
-        </div>
 
         {/* Related Posts Section with wider cards */}
         {relatedPosts.length > 0 && (
