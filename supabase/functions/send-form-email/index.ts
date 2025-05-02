@@ -1,4 +1,3 @@
-
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
 // Get environment variables
@@ -26,50 +25,178 @@ interface FormSubmissionRequest {
 
 // HTML email templates
 const getAdminEmailTemplate = (data: FormSubmissionRequest): string => {
+  const formTypeColors = {
+    contact: "#f97316",
+    expert: "#2563eb",
+    consultation: "#059669"
+  };
+  
+  const formTypeColor = formTypeColors[data.formType] || "#f97316";
+  const formTypeLabel = data.formType.charAt(0).toUpperCase() + data.formType.slice(1);
+  
+  const formattedDateTime = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  }).format(new Date());
+  
   return `
     <!DOCTYPE html>
     <html>
     <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>New Form Submission</title>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
-        .container { padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
-        h1 { color: #f97316; }
-        .field { margin-bottom: 10px; }
-        .label { font-weight: bold; }
-        .footer { margin-top: 30px; font-size: 12px; color: #777; text-align: center; }
+        body { 
+          font-family: 'Segoe UI', Arial, sans-serif;
+          line-height: 1.6; 
+          color: #333;
+          max-width: 600px;
+          margin: 0 auto; 
+          background-color: #f9f9f9;
+        }
+        .container { 
+          padding: 30px; 
+          border-radius: 8px; 
+          background-color: #ffffff;
+          box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+          margin: 20px auto;
+        }
+        .header {
+          border-left: 4px solid ${formTypeColor};
+          padding-left: 15px;
+          margin-bottom: 25px;
+        }
+        h1 { 
+          color: ${formTypeColor}; 
+          margin: 0;
+          font-size: 24px;
+          font-weight: 600;
+        }
+        .timestamp {
+          color: #666;
+          font-size: 14px;
+          margin-top: 5px;
+        }
+        .form-type {
+          display: inline-block;
+          background-color: ${formTypeColor};
+          color: white;
+          padding: 5px 10px;
+          border-radius: 15px;
+          font-size: 12px;
+          margin-top: 5px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .section {
+          margin-top: 25px;
+          background-color: #f9f9f9;
+          border-radius: 6px;
+          padding: 15px;
+        }
+        .section-title {
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 10px;
+          color: #555;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          border-bottom: 1px solid #eee;
+          padding-bottom: 5px;
+        }
+        .field { 
+          margin-bottom: 12px;
+          padding: 8px 0;
+        }
+        .field:not(:last-child) {
+          border-bottom: 1px solid #eee;
+        }
+        .label {
+          font-weight: 600;
+          display: inline-block;
+          min-width: 120px;
+          color: #555;
+        }
+        .value {
+          display: inline-block;
+        }
+        .message-content {
+          background-color: #fff;
+          border-left: 3px solid ${formTypeColor};
+          padding: 10px 15px;
+          margin-top: 10px;
+          border-radius: 0 4px 4px 0;
+        }
+        .footer { 
+          margin-top: 30px;
+          font-size: 12px;
+          color: #777;
+          text-align: center;
+          padding-top: 15px;
+          border-top: 1px solid #eee;
+        }
+        @media only screen and (max-width: 600px) {
+          .container { padding: 20px; margin: 10px; }
+          .label, .value { display: block; }
+          .label { margin-bottom: 3px; }
+        }
       </style>
     </head>
     <body>
       <div class="container">
-        <h1>New Form Submission</h1>
-        <p>You have received a new ${data.formType} form submission:</p>
+        <div class="header">
+          <h1>New Form Submission</h1>
+          <div class="timestamp">${formattedDateTime}</div>
+          <div class="form-type">${formTypeLabel} Form</div>
+        </div>
         
-        <div class="field">
-          <span class="label">Name:</span> ${data.name}
+        <div class="section">
+          <div class="section-title">Contact Information</div>
+          <div class="field">
+            <span class="label">Name:</span>
+            <span class="value"><strong>${data.name}</strong></span>
+          </div>
+          <div class="field">
+            <span class="label">Email:</span>
+            <span class="value"><a href="mailto:${data.email}" style="color: ${formTypeColor}; text-decoration: none;">${data.email}</a></span>
+          </div>
+          ${data.company ? `
+          <div class="field">
+            <span class="label">Company:</span>
+            <span class="value">${data.company}</span>
+          </div>` : ''}
+          ${data.phone ? `
+          <div class="field">
+            <span class="label">Phone:</span>
+            <span class="value">${data.countryCode || ''} ${data.phone}</span>
+          </div>` : ''}
         </div>
-        <div class="field">
-          <span class="label">Email:</span> ${data.email}
-        </div>
-        ${data.company ? `
-        <div class="field">
-          <span class="label">Company:</span> ${data.company}
-        </div>` : ''}
-        ${data.phone ? `
-        <div class="field">
-          <span class="label">Phone:</span> ${data.countryCode || ''} ${data.phone}
-        </div>` : ''}
+
         ${data.service ? `
-        <div class="field">
-          <span class="label">Service:</span> ${data.service}
+        <div class="section">
+          <div class="section-title">Service Details</div>
+          <div class="field">
+            <span class="label">Service:</span>
+            <span class="value">${data.service}</span>
+          </div>
         </div>` : ''}
+        
         ${data.message ? `
-        <div class="field">
-          <span class="label">Message:</span> 
-          <p>${data.message}</p>
+        <div class="section">
+          <div class="section-title">Message</div>
+          <div class="message-content">
+            ${data.message.replace(/\n/g, '<br>')}
+          </div>
         </div>` : ''}
         
         <div class="footer">
-          This is an automated notification from your website.
+          <p>This is an automated notification from your website.</p>
+          <p><strong>Growwth Partners</strong> • Form Submission System</p>
         </div>
       </div>
     </body>
