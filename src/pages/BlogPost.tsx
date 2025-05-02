@@ -231,18 +231,18 @@ const BlogPostPage = () => {
           {/* Related Services/Solutions Section */}
           <section className="mt-16 mb-12 mx-auto w-[90%]">
             <h2 className="text-2xl font-bold mb-8 text-center">Related Services/Solutions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {/* Card 1: Accounting Services */}
               <Link to={getCountryUrl("/accounting")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="pt-10 pb-6 px-5">
-                    <h3 className="text-lg font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-2">Accounting Services in Singapore</h3>
-                    <p className="text-gray-600 mt-3 text-sm">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-2">
+                  <CardContent className="pt-8 pb-6 px-6">
+                    <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Accounting Services in Singapore</h3>
+                    <p className="text-gray-600 mt-3">
                       Leverage our generative AI development services to streamline workflows, boost
                       productivity and drive innovation, while ensuring seamless integration with your
                       existing systems.
                     </p>
-                    <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
+                    <div className="mt-5 flex items-center text-brand-orange font-medium text-sm">
                       Learn more <ArrowRight className="ml-1 w-4 h-4" />
                     </div>
                   </CardContent>
@@ -251,15 +251,15 @@ const BlogPostPage = () => {
               
               {/* Card 2: Part Time CFO Services */}
               <Link to={getCountryUrl("/fractional-cfo")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="pt-10 pb-6 px-5">
-                    <h3 className="text-lg font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-2">Part Time CFO Services in Singapore</h3>
-                    <p className="text-gray-600 mt-3 text-sm">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-2">
+                  <CardContent className="pt-8 pb-6 px-6">
+                    <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Part Time CFO Services in Singapore</h3>
+                    <p className="text-gray-600 mt-3">
                       Optimize your business potential with our comprehensive generative AI consulting
                       services, designed to guide you in leveraging GenAI for operational excellence and
                       product innovation, while also upholding ethical AI principles.
                     </p>
-                    <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
+                    <div className="mt-5 flex items-center text-brand-orange font-medium text-sm">
                       Learn more <ArrowRight className="ml-1 w-4 h-4" />
                     </div>
                   </CardContent>
@@ -268,15 +268,15 @@ const BlogPostPage = () => {
               
               {/* Card 3: Bookkeeping Services */}
               <Link to={getCountryUrl("/bookkeeping")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="pt-10 pb-6 px-5">
-                    <h3 className="text-lg font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-2">Bookkeeping Services in Singapore</h3>
-                    <p className="text-gray-600 mt-3 text-sm">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-2">
+                  <CardContent className="pt-8 pb-6 px-6">
+                    <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Bookkeeping Services in Singapore</h3>
+                    <p className="text-gray-600 mt-3">
                       Unlock AI's full potential for your business through our comprehensive AI development
                       services, designed to tackle intricate tech challenges, streamline business workflows,
                       and achieve operational excellence.
                     </p>
-                    <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
+                    <div className="mt-5 flex items-center text-brand-orange font-medium text-sm">
                       Learn more <ArrowRight className="ml-1 w-4 h-4" />
                     </div>
                   </CardContent>
@@ -289,12 +289,12 @@ const BlogPostPage = () => {
           {relatedPosts.length > 0 && (
             <section className="mt-16 mx-auto w-[90%]">
               <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {relatedPosts.map((relatedPost) => (
-                  <Card key={relatedPost.id} className="transition-all duration-300 hover:shadow-md">
-                    <Link to={getCountryUrl(`/blog/${relatedPost.slug}`)}>
+                  <Card key={relatedPost.id} className="transition-all duration-300 hover:shadow-md h-full">
+                    <Link to={getCountryUrl(`/blog/${relatedPost.slug}`)} className="h-full flex flex-col">
                       {relatedPost.heroImage && (
-                        <div className="w-full h-48 overflow-hidden">
+                        <div className="w-full h-52 overflow-hidden">
                           <OptimizedImage
                             src={relatedPost.heroImage}
                             alt={relatedPost.title}
@@ -303,7 +303,7 @@ const BlogPostPage = () => {
                           />
                         </div>
                       )}
-                      <CardContent className="p-5">
+                      <CardContent className="p-6 flex flex-col flex-grow">
                         <div className="mb-2 flex flex-wrap gap-1">
                           {Array.isArray(relatedPost.categories) && relatedPost.categories.length > 0 && (
                             <Badge variant="outline" className="text-xs bg-gray-50">
@@ -311,8 +311,8 @@ const BlogPostPage = () => {
                             </Badge>
                           )}
                         </div>
-                        <h3 className="font-bold text-lg mb-2 line-clamp-2 text-[#6A7280] hover:text-[#F87315] transition-colors">{relatedPost.title}</h3>
-                        <p className="text-gray-600 text-sm line-clamp-3">
+                        <h3 className="font-bold text-xl mb-3 line-clamp-2 text-[#6A7280] hover:text-[#F87315] transition-colors">{relatedPost.title}</h3>
+                        <p className="text-gray-600 text-md line-clamp-3 flex-grow">
                           {relatedPost.excerpt || ""}
                         </p>
                         <div className="mt-4 flex items-center text-brand-orange font-medium text-sm">
