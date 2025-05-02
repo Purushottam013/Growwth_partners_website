@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -179,7 +180,10 @@ const BlogPostPage = () => {
                 </div>
               </div>
 
-              <Separator className="mx-auto my-4 w-[95%]" />
+              {/* Updated Separator with increased width and styling */}
+              <div className="flex justify-center my-4">
+                <Separator className="w-[95%] bg-indigo-200 h-[2px]" />
+              </div>
 
               <div className="p-6 md:p-10">
                 {/* Main Content */}
