@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -294,6 +293,11 @@ const BlogPostPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Updated bottom Separator with increased width and styling - matches the top one */}
+        <div className="flex justify-center my-8">
+          <Separator className="w-[90%] max-w-7xl bg-indigo-200 h-[2px]" />
+        </div>
 
         {/* Related Posts Section with wider cards */}
         {relatedPosts.length > 0 && (
