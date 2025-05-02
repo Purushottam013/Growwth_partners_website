@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
@@ -39,9 +40,6 @@ const GuideDetail: React.FC<GuideDetailProps> = ({
   faqs = [],
   onContactClick 
 }) => {
-  // Determine if this is the bookkeeping guide
-  const isBookkeepingGuide = guide.slug === "comprehensive-bookkeeping-practices-guide";
-
   return (
     <Layout>
       {/* Hero Section with Title - Gradient background */}
@@ -65,7 +63,7 @@ const GuideDetail: React.FC<GuideDetailProps> = ({
 
       {/* Key Takeaways Section - With centered layout for last items if needed */}
       <section className="py-12 bg-gradient-to-r from-blue-50/30 via-purple-50/30 to-blue-50/30">
-        <div className={`container mx-auto px-4 ${isBookkeepingGuide ? 'w-[90%]' : 'w-[90%]'}`}>
+        <div className="container mx-auto px-4 w-[90%]">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -188,10 +186,6 @@ const GuideDetail: React.FC<GuideDetailProps> = ({
               <div dangerouslySetInnerHTML={{ __html: guide.slug === "financial-reporting-standards-singapore" ? `
                 <p>Singapore's financial reporting landscape offers specialized frameworks for businesses of different sizes. The Financial Reporting Standard for Small Entities (FRS for Small Entities) provides a simplified alternative to the full FRS framework, specifically designed for smaller businesses that meet certain criteria.</p>
                 <p>This comprehensive guide explores the key aspects of FRS for Small Entities, helping business owners and financial professionals understand its applications, benefits, and implementation considerations.</p>
-              ` : guide.slug === "comprehensive-bookkeeping-practices-guide" ? `
-                <p>No business can prosper without bookkeeping. It is the lifeblood of any prosperous enterprise undertaking accurate financial decisions and staying within the law. But it is also one of those things that are often overlooked in small businesses.</p>
-                <p>This authoritative guide covers everything you need to know about book-keeping starting with its basic principles and methods, why it's important as well as common challenges faced when doing it. Whether you're a small business owner or an aspiring entrepreneur, understanding how to do your accounts is key.</p>
-                <p>But if this sounds overwhelming or time-consuming for you, then there are professional services available which can help manage your records keeping them in good order.</p>
               ` : `
                 <p>Successfully pitching to investors is a critical skill for entrepreneurs seeking to grow their businesses. Whether you're raising capital for a startup or seeking expansion funding for an established company, your ability to effectively communicate your vision, business model, and potential return on investment can make all the difference.</p>
                 <p>This guide provides a comprehensive framework for creating compelling investor pitches, understanding investor psychology, and navigating the fundraising process from preparation to closing the deal.</p>
@@ -250,10 +244,6 @@ const GuideDetail: React.FC<GuideDetailProps> = ({
               <div dangerouslySetInnerHTML={{ __html: guide.slug === "financial-reporting-standards-singapore" ? `
                 <p>The FRS for Small Entities represents an important tool for smaller businesses in Singapore to streamline their financial reporting while maintaining compliance with accounting standards. By reducing complexity and focusing on the most relevant aspects of financial reporting, it allows business owners to allocate resources more efficiently without compromising on financial transparency.</p>
                 <p>For eligible businesses, adopting this framework can lead to significant cost and time savings, while still providing stakeholders with the financial information they need to make informed decisions. As with any accounting framework, proper implementation and understanding are key to maximizing its benefits.</p>
-              ` : guide.slug === "comprehensive-bookkeeping-practices-guide" ? `
-                <p>Bookkeeping is a vital part of running a successful business. It gives you insight into your financial health, keeps you compliant with the law and helps build trust with investors. By following this comprehensive guide, you will have a better understanding of what bookkeeping involves and why it's so important for any healthy business.</p>
-                <p>While bookkeeping can seem exhausting, there are always professionals who can help. Growwth Partners offer a comprehensive range of services designed to meet all your business financial needs.</p>
-                <p>Don't let the complexities of bookkeeping hold you back from doing what you do best – running your business. Reach out to us today!</p>
               ` : `
                 <p>Securing investment is both an art and a science. It requires thorough preparation, compelling storytelling, and strategic relationship building. The most successful fundraisers understand that pitching is not a one-time event but an ongoing process of building credibility and trust with potential investors.</p>
                 <p>By following the principles outlined in this guide—understanding investor motivations, crafting a compelling narrative backed by solid data, tailoring your approach to different investor types, and maintaining persistent follow-up—you'll significantly increase your chances of fundraising success.</p>
@@ -265,14 +255,10 @@ const GuideDetail: React.FC<GuideDetailProps> = ({
             {/* CTA Section - Highlighted */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-10 rounded-xl text-center">
               <h3 className="text-2xl font-bold mb-4">
-                {guide.slug === "comprehensive-bookkeeping-practices-guide" 
-                  ? "Book a free call with our expert to discuss your bookkeeping needs and save time and effort." 
-                  : "Ready to take the next step?"}
+                Ready to take the next step?
               </h3>
               <p className="text-xl mb-6">
-                {guide.slug === "comprehensive-bookkeeping-practices-guide" 
-                  ? "We are here to help you!" 
-                  : "Book a free call with our expert to discuss your needs."}
+                Book a free call with our expert to discuss your needs.
               </p>
               <Button 
                 onClick={onContactClick}

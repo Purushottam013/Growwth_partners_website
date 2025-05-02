@@ -66,10 +66,8 @@ function App() {
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/guide" element={<Guide />} />
             <Route path="/guide/:slug" element={<GuideSingle />} />
-            {/* Add specific routes for individual guides */}
+            {/* Add specific route for the financial reporting guide */}
             <Route path="/guide/financial-reporting-standards-singapore" element={<FinancialReportingGuide />} />
-            <Route path="/guide/comprehensive-bookkeeping-practices-guide" element={<GuideSingle />} />
-            <Route path="/guide/pitching-to-investors-guide" element={<GuideSingle />} />
             <Route path="/news" element={<News />} />
             {/* Resources route redirects to Achievements */}
             <Route path="/resources" element={<Navigate to="/achievements" replace />} />
@@ -99,7 +97,6 @@ function App() {
             <Route path="/uae/guide" element={<Guide />} />
             <Route path="/uae/guide/:slug" element={<GuideSingle />} />
             <Route path="/uae/guide/financial-reporting-standards-singapore" element={<FinancialReportingGuide />} />
-            <Route path="/uae/guide/comprehensive-bookkeeping-practices-guide" element={<GuideSingle />} />
             <Route path="/uae/news" element={<News />} />
             <Route path="/uae/resources" element={<Navigate to="/uae/achievements" replace />} />
 
@@ -124,7 +121,6 @@ function App() {
             <Route path="/australia/guide" element={<Guide />} />
             <Route path="/australia/guide/:slug" element={<GuideSingle />} />
             <Route path="/australia/guide/financial-reporting-standards-singapore" element={<FinancialReportingGuide />} />
-            <Route path="/australia/guide/comprehensive-bookkeeping-practices-guide" element={<GuideSingle />} />
             <Route path="/australia/news" element={<News />} />
             <Route path="/australia/resources" element={<Navigate to="/australia/achievements" replace />} />
 

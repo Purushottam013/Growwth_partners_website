@@ -23,8 +23,6 @@ const GuidePage = () => {
             alt="Guides" 
             className="w-full h-full py-8" 
             fallbackSrc="/placeholder.svg"
-            loading="eager"
-            decoding="async"
           />
         </div>
       </section>
@@ -60,12 +58,14 @@ const GuidePage = () => {
           <div className="mt-12">
             <h2 className="text-2xl font-bold mb-6">Available Guides</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {guides.map((guide) => (
+              {guides.map((guide, index) => (
                 <Link to={`/guide/${guide.slug}`} key={guide.id}>
                   <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
                     <div className="aspect-video overflow-hidden bg-gray-100">
                       <OptimizedImage 
-                        src={guide.Image || "/placeholder.svg"} 
+                        src={index === 0 
+                          ? "/lovable-uploads/f2073f22-e161-45c6-9d26-1c99e770e553.png" 
+                          : "/lovable-uploads/a1793127-4e29-402b-b80a-6163df4177cb.png"} 
                         alt={guide.Title} 
                         className="w-full h-full object-cover" 
                         fallbackSrc="/placeholder.svg"
