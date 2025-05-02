@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -180,6 +181,11 @@ const BlogPostPage = () => {
               </div>
 
               <div className="p-6 md:p-10">
+                {/* Divider above content with padding */}
+                <div className="flex justify-center mb-8">
+                  <Separator className="w-[90%] max-w-7xl bg-indigo-200 h-[2px]" />
+                </div>
+                
                 {/* Main Content */}
                 <div 
                   className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 
