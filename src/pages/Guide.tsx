@@ -65,14 +65,10 @@ const GuidePage = () => {
                   <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
                     <div className="aspect-video overflow-hidden bg-gray-100">
                       <OptimizedImage 
-                        src={index === 0 
-                          ? "/lovable-uploads/f2073f22-e161-45c6-9d26-1c99e770e553.png" 
-                          : "/lovable-uploads/a1793127-4e29-402b-b80a-6163df4177cb.png"} 
+                        src={guide.Image || "/placeholder.svg"} 
                         alt={guide.Title} 
                         className="w-full h-full object-cover" 
                         fallbackSrc="/placeholder.svg"
-                        loading="eager"
-                        decoding="async"
                       />
                     </div>
                     <CardHeader>

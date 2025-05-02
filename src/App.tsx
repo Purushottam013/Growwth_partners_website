@@ -69,6 +69,7 @@ function App() {
             {/* Add specific routes for individual guides */}
             <Route path="/guide/financial-reporting-standards-singapore" element={<FinancialReportingGuide />} />
             <Route path="/guide/comprehensive-bookkeeping-practices-guide" element={<GuideSingle />} />
+            <Route path="/guide/pitching-to-investors-guide" element={<GuideSingle />} />
             <Route path="/news" element={<News />} />
             {/* Resources route redirects to Achievements */}
             <Route path="/resources" element={<Navigate to="/achievements" replace />} />
