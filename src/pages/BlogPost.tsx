@@ -58,6 +58,43 @@ const BlogPostPage = () => {
     }
   }, [slug, postsLoading, getPostBySlug, posts]);
 
+  // Handler for internal links
+  useEffect(() => {
+    if (post && !loading) {
+      // Add event listeners for internal links after content is loaded
+      const handleInternalLinks = () => {
+        const contentDiv = document.querySelector('.prose');
+        if (!contentDiv) return;
+
+        const internalLinks = contentDiv.querySelectorAll('a[data-internal-link]');
+        
+        internalLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const path = (link as HTMLAnchorElement).getAttribute('data-internal-link');
+            if (path) {
+              navigate(getCountryUrl(path));
+            }
+          });
+        });
+      };
+
+      // Call the handler after a short timeout to ensure content is rendered
+      setTimeout(handleInternalLinks, 100);
+      
+      // Cleanup function
+      return () => {
+        const contentDiv = document.querySelector('.prose');
+        if (!contentDiv) return;
+
+        const internalLinks = contentDiv.querySelectorAll('a[data-internal-link]');
+        internalLinks.forEach(link => {
+          link.removeEventListener('click', () => {});
+        });
+      };
+    }
+  }, [post, loading, navigate, getCountryUrl]);
+
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({

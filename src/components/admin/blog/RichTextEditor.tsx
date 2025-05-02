@@ -1,3 +1,4 @@
+
 // components/RichTextEditor.tsx
 import React, {
   useRef,
@@ -26,7 +27,14 @@ import {
   Link as LinkIcon,
   Image as ImageIcon,
   Upload,
+  Palette,
+  ExternalLink,
 } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface RichTextEditorProps {
   value: string;
@@ -190,13 +198,40 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       "right text"
     );
 
-  const handleLink = () => {
-    const url = prompt("Enter URL", "https://");
-    if (url) {
-      insertMarkdown(
-        `<a href="${url}" target="_blank" rel="noopener">`,
-        "</a>",
-        "link"
+  // New functions for text coloring
+  const handleTextColor = (color: string) => {
+    insertMarkdown(`<span style="color:${color}">`, "</span>", "colored text");
+  };
+
+  // Enhanced link handler for both external and internal links
+  const handleLink = (isInternal: boolean = false) => {
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return;
+    
+    const text = sel.toString() || "link text";
+    let url = "";
+    let path = "";
+    
+    if (isInternal) {
+      // For internal page links
+      path = prompt("Enter page path (e.g., /blog, /accounting)", "/");
+      if (!path) return;
+      
+      // Ensure path starts with /
+      if (!path.startsWith('/')) {
+        path = '/' + path;
+      }
+      
+      insertHTMLAtCursor(
+        `<a href="#" data-internal-link="${path}" class="text-brand-orange hover:underline cursor-pointer">${text}</a>`
+      );
+    } else {
+      // For external links
+      url = prompt("Enter URL", "https://");
+      if (!url) return;
+      
+      insertHTMLAtCursor(
+        `<a href="${url}" target="_blank" rel="noopener">${text}</a>`
       );
     }
   };
@@ -211,7 +246,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     while ((c = walker.nextNode())) c.parentNode!.removeChild(c);
     tmp.querySelectorAll("*").forEach((el) => {
       Array.from(el.attributes).forEach((a) => {
-        if (!["href", "src", "alt", "style"].includes(a.name)) {
+        if (!["href", "src", "alt", "style", "data-internal-link", "class", "target", "rel"].includes(a.name)) {
           el.removeAttribute(a.name);
         }
       });
@@ -274,6 +309,19 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
 
   const togglePreview = () => setIsPreviewMode((p) => !p);
 
+  // Color options array
+  const colorOptions = [
+    { name: "Brand Orange", value: "#f97316" },
+    { name: "Indigo", value: "#6366f1" },
+    { name: "Red", value: "#ef4444" },
+    { name: "Green", value: "#22c55e" },
+    { name: "Blue", value: "#3b82f6" },
+    { name: "Purple", value: "#8b5cf6" },
+    { name: "Pink", value: "#ec4899" },
+    { name: "Yellow", value: "#eab308" },
+    { name: "Gray", value: "#6b7280" },
+  ];
+
   return (
     <div className="space-y-2">
       {/* Toolbar */}
@@ -283,6 +331,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleBold}
           size="sm"
           variant="ghost"
+          title="Bold"
         >
           <Bold />
         </Button>
@@ -291,6 +340,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleItalic}
           size="sm"
           variant="ghost"
+          title="Italic"
         >
           <Italic />
         </Button>
@@ -299,6 +349,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleUnderline}
           size="sm"
           variant="ghost"
+          title="Underline"
         >
           <Underline />
         </Button>
@@ -308,6 +359,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleHeading1}
           size="sm"
           variant="ghost"
+          title="Heading 1"
         >
           <Heading1 />
         </Button>
@@ -316,6 +368,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleHeading2}
           size="sm"
           variant="ghost"
+          title="Heading 2"
         >
           <Heading2 />
         </Button>
@@ -324,6 +377,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleHeading3}
           size="sm"
           variant="ghost"
+          title="Heading 3"
         >
           <Heading3 />
         </Button>
@@ -333,6 +387,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleLeftAlign}
           size="sm"
           variant="ghost"
+          title="Align Left"
         >
           <AlignLeft />
         </Button>
@@ -341,6 +396,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleCenterAlign}
           size="sm"
           variant="ghost"
+          title="Align Center"
         >
           <AlignCenter />
         </Button>
@@ -349,6 +405,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleRightAlign}
           size="sm"
           variant="ghost"
+          title="Align Right"
         >
           <AlignRight />
         </Button>
@@ -358,6 +415,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleOrderedList}
           size="sm"
           variant="ghost"
+          title="Ordered List"
         >
           <ListOrdered />
         </Button>
@@ -366,6 +424,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleUnorderedList}
           size="sm"
           variant="ghost"
+          title="Unordered List"
         >
           <List />
         </Button>
@@ -374,6 +433,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleQuote}
           size="sm"
           variant="ghost"
+          title="Quote"
         >
           <Quote />
         </Button>
@@ -382,6 +442,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleCodeBlock}
           size="sm"
           variant="ghost"
+          title="Code Block"
         >
           <Code />
         </Button>
@@ -390,18 +451,59 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           onClick={handleInlineCode}
           size="sm"
           variant="ghost"
+          title="Inline Code"
         >
           <code className="text-xs">{`<>`}</code>
         </Button>
 
+        {/* External Link Button */}
         <Button
           type="button"
-          onClick={handleLink}
+          onClick={() => handleLink()}
           size="sm"
           variant="ghost"
+          title="External Link"
         >
           <LinkIcon />
         </Button>
+        
+        {/* Internal Page Link Button */}
+        <Button
+          type="button"
+          onClick={() => handleLink(true)}
+          size="sm"
+          variant="ghost"
+          title="Page Link"
+        >
+          <ExternalLink />
+        </Button>
+
+        {/* Color Picker Popover */}
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              title="Text Color"
+            >
+              <Palette />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-64 p-2">
+            <div className="grid grid-cols-3 gap-2">
+              {colorOptions.map((color) => (
+                <Button 
+                  key={color.value} 
+                  className="h-8 w-full"
+                  style={{ backgroundColor: color.value }}
+                  onClick={() => handleTextColor(color.value)}
+                  title={color.name}
+                />
+              ))}
+            </div>
+          </PopoverContent>
+        </Popover>
 
         <input
           type="file"
@@ -416,6 +518,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           size="sm"
           variant="ghost"
           disabled={uploading}
+          title="Insert Image"
         >
           {uploading ? <Upload className="animate-spin" /> : <ImageIcon />}
         </Button>
@@ -455,7 +558,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       />
 
       <div className="text-xs text-gray-500">
-        Tip: Paste text/images or use the toolbar.
+        Tip: Paste text/images or use the toolbar. New: Add colored text and page links.
       </div>
     </div>
   );
