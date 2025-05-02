@@ -7,7 +7,7 @@ export type { Guide } from "@/data/guides";
 
 export const useGuides = (category?: string) => {
   const [guides, setGuides] = useState<import("@/data/guides").Guide[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
   // Return all categories regardless of selected category
@@ -15,16 +15,27 @@ export const useGuides = (category?: string) => {
 
   useEffect(() => {
     setLoading(true);
+    setError(null);
+    
     try {
-      // Get guides by category
-      const filteredGuides = getGuidesByCategory(category);
-      setGuides(filteredGuides);
-      setError(null);
+      // Simulate async loading for better UX
+      setTimeout(() => {
+        try {
+          // Get guides by category
+          const filteredGuides = getGuidesByCategory(category);
+          setGuides(filteredGuides);
+          setError(null);
+          setLoading(false);
+        } catch (err) {
+          console.error("Error fetching guides:", err);
+          setError("Failed to fetch guides");
+          setLoading(false);
+        }
+      }, 300); // Small delay for better UX
     } catch (err) {
       setError("Failed to fetch guides");
-      console.error(err);
-    } finally {
       setLoading(false);
+      console.error(err);
     }
   }, [category]);
 

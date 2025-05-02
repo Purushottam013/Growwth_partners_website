@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { useGuides } from "@/hooks/useGuides";
@@ -12,8 +12,14 @@ const GuidePage = () => {
   const {
     guides,
     categories,
-    selectedCategory: activeCategory
+    loading,
+    error
   } = useGuides(selectedCategory);
+  
+  useEffect(() => {
+    // Scroll to top when the component mounts or category changes
+    window.scrollTo(0, 0);
+  }, [selectedCategory]);
   
   return <Layout>
       <section className="relative w-full flex justify-center">
@@ -30,8 +36,8 @@ const GuidePage = () => {
       <section className="py-8">
         <div className="container mx-auto px-4">
           <div className="mb-8">
-            <Tabs defaultValue="all" className="w-full">
-              <TabsList className="w-full flex justify-center mb-6 p-1">
+            <Tabs defaultValue={selectedCategory || "all"} className="w-full">
+              <TabsList className="w-full flex justify-center mb-6 p-1 overflow-x-auto">
                 <TabsTrigger 
                   value="all" 
                   className="px-4 py-2 mx-2" 
@@ -57,31 +63,50 @@ const GuidePage = () => {
           {/* Guides Grid */}
           <div className="mt-12">
             <h2 className="text-2xl font-bold mb-6">Available Guides</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {guides.map((guide, index) => (
-                <Link to={`/guide/${guide.slug}`} key={guide.id}>
-                  <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
-                    <div className="aspect-video overflow-hidden bg-gray-100">
-                      <OptimizedImage 
-                        src={index === 0 
-                          ? "/lovable-uploads/f2073f22-e161-45c6-9d26-1c99e770e553.png" 
-                          : "/lovable-uploads/a1793127-4e29-402b-b80a-6163df4177cb.png"} 
-                        alt={guide.Title} 
-                        className="w-full h-full object-cover" 
-                        fallbackSrc="/placeholder.svg"
-                      />
-                    </div>
-                    <CardHeader>
-                      <p className="text-sm text-primary mb-1">{guide.Category}</p>
-                      <CardTitle className="text-lg font-semibold line-clamp-2">{guide.Title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 line-clamp-3">{guide.Excerpt}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
+            
+            {loading && (
+              <div className="flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+              </div>
+            )}
+            
+            {error && (
+              <div className="text-center text-red-500 py-8">
+                {error}
+              </div>
+            )}
+            
+            {!loading && guides.length === 0 && (
+              <div className="text-center py-8">
+                <p>No guides available in this category.</p>
+              </div>
+            )}
+            
+            {!loading && guides.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {guides.map((guide) => (
+                  <Link to={`/guide/${guide.slug}`} key={guide.id}>
+                    <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
+                      <div className="aspect-video overflow-hidden bg-gray-100">
+                        <OptimizedImage 
+                          src={guide.Image} 
+                          alt={guide.Title} 
+                          className="w-full h-full object-cover" 
+                          fallbackSrc="/placeholder.svg"
+                        />
+                      </div>
+                      <CardHeader>
+                        <p className="text-sm text-primary mb-1">{guide.Category}</p>
+                        <CardTitle className="text-lg font-semibold line-clamp-2">{guide.Title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-600 line-clamp-3">{guide.Excerpt}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
