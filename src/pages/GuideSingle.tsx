@@ -28,7 +28,7 @@ const GuideSingle = () => {
 
   const handleContactClick = () => {
     // Navigate to contact page and scroll to consultation form
-    navigate("/contact#consultation-form");
+    navigate("/contact");
     
     // Use setTimeout to ensure navigation completes before trying to scroll
     setTimeout(() => {
