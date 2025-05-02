@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -227,15 +228,20 @@ const BlogPostPage = () => {
               </div>
             </div>
           </div>
+        </div>
+      </article>
 
-          {/* Related Services/Solutions Section */}
-          <section className="mt-16 mb-12 mx-auto w-[90%]">
-            <h2 className="text-2xl font-bold mb-8 text-center">Related Services/Solutions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Full-width container for related sections */}
+      <div className="w-full">
+        {/* Related Services/Solutions Section with wider cards */}
+        <section className="mt-16 mb-12">
+          <h2 className="text-2xl font-bold mb-8 text-center">Related Services/Solutions</h2>
+          <div className="w-[90%] max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Card 1: Accounting Services */}
               <Link to={getCountryUrl("/accounting")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-2">
-                  <CardContent className="pt-8 pb-6 px-6">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-6">
+                  <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Accounting Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
                       Leverage our generative AI development services to streamline workflows, boost
@@ -251,8 +257,8 @@ const BlogPostPage = () => {
               
               {/* Card 2: Part Time CFO Services */}
               <Link to={getCountryUrl("/fractional-cfo")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-2">
-                  <CardContent className="pt-8 pb-6 px-6">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-6">
+                  <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Part Time CFO Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
                       Optimize your business potential with our comprehensive generative AI consulting
@@ -268,8 +274,8 @@ const BlogPostPage = () => {
               
               {/* Card 3: Bookkeeping Services */}
               <Link to={getCountryUrl("/bookkeeping")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-2">
-                  <CardContent className="pt-8 pb-6 px-6">
+                <Card className="h-full shadow-sm hover:shadow-lg transition-shadow p-6">
+                  <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Bookkeeping Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
                       Unlock AI's full potential for your business through our comprehensive AI development
@@ -283,13 +289,15 @@ const BlogPostPage = () => {
                 </Card>
               </Link>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Related Posts Section */}
-          {relatedPosts.length > 0 && (
-            <section className="mt-16 mx-auto w-[90%]">
-              <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Related Posts Section with wider cards */}
+        {relatedPosts.length > 0 && (
+          <section className="mt-16 mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-center">Related Articles</h2>
+            <div className="w-[90%] max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost) => (
                   <Card key={relatedPost.id} className="transition-all duration-300 hover:shadow-md h-full">
                     <Link to={getCountryUrl(`/blog/${relatedPost.slug}`)} className="h-full flex flex-col">
@@ -323,10 +331,10 @@ const BlogPostPage = () => {
                   </Card>
                 ))}
               </div>
-            </section>
-          )}
-        </div>
-      </article>
+            </div>
+          </section>
+        )}
+      </div>
     </Layout>
   );
 };
