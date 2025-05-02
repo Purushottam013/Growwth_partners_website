@@ -179,11 +179,6 @@ const BlogPostPage = () => {
                 </div>
               </div>
 
-              {/* Updated Separator with increased width and styling */}
-              <div className="flex justify-center my-4">
-                <Separator className="w-[95%] bg-indigo-200 h-[2px]" />
-              </div>
-
               <div className="p-6 md:p-10">
                 {/* Main Content */}
                 <div 
