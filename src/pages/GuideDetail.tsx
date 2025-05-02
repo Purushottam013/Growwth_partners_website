@@ -5,6 +5,7 @@ import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Guide } from "@/data/guides";
+import { ChevronDown } from "lucide-react";
 
 interface GuideDetailProps {
   guide: Guide;
@@ -101,7 +102,9 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                 <Accordion type="single" collapsible className="w-full">
                   {guide.faqs.map((faq, index) => (
                     <AccordionItem key={index} value={`faq-${index}`}>
-                      <AccordionTrigger className="text-left font-medium">{faq.question}</AccordionTrigger>
+                      <AccordionTrigger className="text-left font-medium">
+                        {faq.question}
+                      </AccordionTrigger>
                       <AccordionContent>
                         <p className="py-2 text-gray-600">{faq.answer}</p>
                       </AccordionContent>
