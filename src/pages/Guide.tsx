@@ -23,6 +23,8 @@ const GuidePage = () => {
             alt="Guides" 
             className="w-full h-full py-8" 
             fallbackSrc="/placeholder.svg"
+            loading="eager"
+            decoding="async"
           />
         </div>
       </section>
@@ -69,6 +71,8 @@ const GuidePage = () => {
                         alt={guide.Title} 
                         className="w-full h-full object-cover" 
                         fallbackSrc="/placeholder.svg"
+                        loading="eager"
+                        decoding="async"
                       />
                     </div>
                     <CardHeader>
