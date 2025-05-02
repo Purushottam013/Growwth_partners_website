@@ -49,7 +49,7 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className={`mx-auto ${guide.Title === "A Comprehensive Guide to Bookkeeping Practices" ? "w-[90%]" : "max-w-4xl"}`}>
             {/* Banner Image */}
             <div className="mb-12 rounded-lg overflow-hidden">
               <OptimizedImage 
@@ -101,11 +101,11 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                 <h2 className="text-2xl font-bold mb-8">Frequently Asked Questions</h2>
                 <Accordion type="single" collapsible className="w-full">
                   {guide.faqs.map((faq, index) => (
-                    <AccordionItem key={index} value={`faq-${index}`}>
-                      <AccordionTrigger className="text-left font-medium">
+                    <AccordionItem key={index} value={`faq-${index}`} className="border-b">
+                      <AccordionTrigger className="text-left font-medium py-4">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent>
+                      <AccordionContent className="pb-4 pt-0">
                         <p className="py-2 text-gray-600">{faq.answer}</p>
                       </AccordionContent>
                     </AccordionItem>
