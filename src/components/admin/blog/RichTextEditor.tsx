@@ -222,8 +222,9 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         path = '/' + path;
       }
       
+      // Updated to make internal page link text bold
       insertHTMLAtCursor(
-        `<a href="#" data-internal-link="${path}" class="text-brand-orange hover:underline cursor-pointer">${text}</a>`
+        `<a href="#" data-internal-link="${path}" class="text-brand-orange hover:underline cursor-pointer"><strong>${text}</strong></a>`
       );
     } else {
       // For external links
@@ -563,3 +564,4 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     </div>
   );
 };
+
