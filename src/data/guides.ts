@@ -32,6 +32,16 @@ export const guides: Guide[] = [
     Content: "Full guide content for financial reporting standards",
     publishedAt: "2025-04-30"
   },
+  {
+    id: 3,
+    Title: "A Comprehensive Guide to Bookkeeping Practices",
+    slug: "comprehensive-bookkeeping-practices-guide",
+    Image: "/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png", // Using the same guide banner image for now
+    Category: "Incorporation",
+    Excerpt: "Master the basics of bookkeeping to ensure financial accuracy and compliance for your business.",
+    Content: "Full guide content for bookkeeping practices",
+    publishedAt: "2025-05-01"
+  }
 ];
 
 // Define available guide categories
