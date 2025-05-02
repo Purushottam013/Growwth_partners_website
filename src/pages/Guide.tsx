@@ -60,7 +60,7 @@ const GuidePage = () => {
           <div className="mt-12">
             <h2 className="text-2xl font-bold mb-6">Available Guides</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {guides.map((guide, index) => (
+              {guides.map((guide) => (
                 <Link to={`/guide/${guide.slug}`} key={guide.id}>
                   <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
                     <div className="aspect-video overflow-hidden bg-gray-100">
