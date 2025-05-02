@@ -1,10 +1,10 @@
-
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Guide } from "@/data/guides";
+import { useNavigate } from "react-router-dom";
 
 interface GuideDetailProps {
   guide: Guide;
@@ -61,7 +61,7 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
             
             {/* Key Takeaways Section */}
             {guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
-              <div className="mb-16">
+              <div className="mb-16 w-[90%] mx-auto">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                   {guide.keyTakeaways.map((takeaway, index) => (
@@ -121,6 +121,19 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                 Schedule A Consultation
               </Button>
             </div>
+
+            {/* Highlighted CTA Section for bookkeeping guide */}
+            {guide.slug === "bookkeeping-practices-guide" && (
+              <div className="bg-primary/10 p-8 rounded-lg text-center mt-12 border-2 border-primary">
+                <h2 className="text-2xl font-bold mb-4">Book a free call with our expert</h2>
+                <p className="text-gray-700 mb-6">
+                  We are here to help you discuss your bookkeeping needs and save time and effort!
+                </p>
+                <Button onClick={onContactClick} className="bg-primary hover:bg-primary/90">
+                  Book a free call
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
