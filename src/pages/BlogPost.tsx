@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -192,32 +193,38 @@ const BlogPostPage = () => {
                   dangerouslySetInnerHTML={{ __html: post.content || "" }}
                 />
 
-                {/* Author Bio Card */}
+                {/* Improved Author Bio Card */}
                 {post.author && (
                   <div className="mt-12 pt-6 border-t border-gray-100">
-                    <div className="bg-gray-50 rounded-lg p-6">
-                      <div className="flex flex-col md:flex-row md:items-start gap-4">
-                        <div className="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-xl font-medium text-gray-600 shrink-0 mx-auto md:mx-0">
+                    <div className="bg-gradient-to-r from-gray-50 to-white rounded-xl p-6 shadow-sm border border-gray-100">
+                      <div className="flex flex-col md:flex-row md:items-center gap-6">
+                        <div className="w-24 h-24 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center text-2xl font-medium text-white shadow-md mx-auto md:mx-0 shrink-0">
                           {post.author.charAt(0)}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-semibold mb-1 text-center w-full">Author's Bio</h3>
-                          <h4 className="font-bold text-center md:text-left">Jatin Detwani<br /><span className="font-bold text-indigo-600">Founder</span></h4>
-                          <p className="text-gray-700 mb-4 mt-3">
-                            <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
-                            multinationals, PE/C investors, family-owned businesses, and startups worldwide.
-                            <br /><br />
-                            <strong>Global Presence:</strong> Worked in India, Singapore, France, the UK,
-                            Luxembourg, providing a broad perspective on business landscapes.
-                          </p>
-                          <div className="flex justify-center md:justify-start">
-                            <Button 
-                              onClick={handleWriteToAuthor}
-                              className="flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90"
-                            >
-                              <Mail className="w-4 h-4" />
-                              Write To Jatin
-                            </Button>
+                          <h3 className="text-xl font-semibold mb-4 text-center md:text-left text-gray-800">Author's Bio</h3>
+                          <h4 className="font-bold text-center md:text-left">
+                            Jatin Detwani
+                            <br />
+                            <span className="font-bold text-gray-600">Founder</span>
+                          </h4>
+                          <div className="bg-white rounded-lg p-4 mt-3 shadow-sm border border-gray-50">
+                            <p className="text-gray-700 mb-4">
+                              <strong>Diverse Background:</strong> Extensive expertise advising technology firms,
+                              multinationals, PE/C investors, family-owned businesses, and startups worldwide.
+                              <br /><br />
+                              <strong>Global Presence:</strong> Worked in India, Singapore, France, the UK,
+                              Luxembourg, providing a broad perspective on business landscapes.
+                            </p>
+                            <div className="flex justify-center md:justify-start">
+                              <Button 
+                                onClick={handleWriteToAuthor}
+                                className="flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90"
+                              >
+                                <Mail className="w-4 h-4" />
+                                Write To Jatin
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -228,15 +235,15 @@ const BlogPostPage = () => {
             </div>
           </div>
 
-          {/* Related Services/Solutions Section */}
-          <section className="mt-16 mb-12 max-w-6xl mx-auto">
+          {/* Related Services/Solutions Section - Improved */}
+          <section className="mt-16 mb-12 mx-auto w-[85%]">
             <h2 className="text-2xl font-bold mb-8 text-center">Related Services/Solutions</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Card 1: Accounting Services */}
               <Link to={getCountryUrl("/accounting")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="pt-10 pb-6 px-5">
-                    <h3 className="text-lg font-bold text-[#E7EFFA] hover:text-[#F87315] transition-colors duration-300 mb-2">Accounting Services in Singapore</h3>
+                <Card className="h-full bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden rounded-xl">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Accounting Services in Singapore</h3>
                     <p className="text-gray-600 mt-3 text-sm">
                       Leverage our generative AI development services to streamline workflows, boost
                       productivity and drive innovation, while ensuring seamless integration with your
@@ -251,9 +258,9 @@ const BlogPostPage = () => {
               
               {/* Card 2: Part Time CFO Services */}
               <Link to={getCountryUrl("/fractional-cfo")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="pt-10 pb-6 px-5">
-                    <h3 className="text-lg font-bold text-[#E7EFFA] hover:text-[#F87315] transition-colors duration-300 mb-2">Part Time CFO Services in Singapore</h3>
+                <Card className="h-full bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden rounded-xl">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Part Time CFO Services in Singapore</h3>
                     <p className="text-gray-600 mt-3 text-sm">
                       Optimize your business potential with our comprehensive generative AI consulting
                       services, designed to guide you in leveraging GenAI for operational excellence and
@@ -268,9 +275,9 @@ const BlogPostPage = () => {
               
               {/* Card 3: Bookkeeping Services */}
               <Link to={getCountryUrl("/bookkeeping")} className="block h-full transition-transform duration-300 hover:-translate-y-1">
-                <Card className="h-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="pt-10 pb-6 px-5">
-                    <h3 className="text-lg font-bold text-[#E7EFFA] hover:text-[#F87315] transition-colors duration-300 mb-2">Bookkeeping Services in Singapore</h3>
+                <Card className="h-full bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden rounded-xl">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-bold text-[#6A7280] hover:text-[#F87315] transition-colors duration-300 mb-3">Bookkeeping Services in Singapore</h3>
                     <p className="text-gray-600 mt-3 text-sm">
                       Unlock AI's full potential for your business through our comprehensive AI development
                       services, designed to tackle intricate tech challenges, streamline business workflows,
@@ -285,9 +292,9 @@ const BlogPostPage = () => {
             </div>
           </section>
 
-          {/* Related Posts Section */}
+          {/* Related Posts Section - Width Increased */}
           {relatedPosts.length > 0 && (
-            <section className="mt-16">
+            <section className="mt-16 mx-auto w-[85%]">
               <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedPosts.map((relatedPost) => (
