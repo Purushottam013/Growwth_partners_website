@@ -248,7 +248,7 @@ const BlogPostPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Card 1: Accounting Services */}
               <Link to={getCountryUrl("/accounting")} className="block h-full">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 p-6 cursor-pointer">
+                <Card className="h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] mb-3">Accounting Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
@@ -265,7 +265,7 @@ const BlogPostPage = () => {
               
               {/* Card 2: Part Time CFO Services */}
               <Link to={getCountryUrl("/fractional-cfo")} className="block h-full">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 p-6 cursor-pointer">
+                <Card className="h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] mb-3">Part Time CFO Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
@@ -282,7 +282,7 @@ const BlogPostPage = () => {
               
               {/* Card 3: Bookkeeping Services */}
               <Link to={getCountryUrl("/bookkeeping")} className="block h-full">
-                <Card className="h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-orange hover:bg-gray-50 p-6 cursor-pointer">
+                <Card className="h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] mb-3">Bookkeeping Services in Singapore</h3>
                     <p className="text-gray-600 mt-3">
