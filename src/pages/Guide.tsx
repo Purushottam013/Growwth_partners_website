@@ -5,6 +5,7 @@ import { Layout } from "@/components/Layout";
 import { useGuides } from "@/hooks/useGuides";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const GuidePage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
@@ -16,7 +17,14 @@ const GuidePage = () => {
   
   return <Layout>
       <section className="relative w-full flex justify-center">
-        <img src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" alt="Guides" className="w-4/6 h-auto py-8" />
+        <div className="w-4/6 h-[250px] md:h-[300px] lg:h-[350px]">
+          <OptimizedImage 
+            src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" 
+            alt="Guides" 
+            className="w-full h-full py-8" 
+            fallbackSrc="/placeholder.svg"
+          />
+        </div>
       </section>
 
       <section className="py-8">
@@ -54,12 +62,13 @@ const GuidePage = () => {
                 <Link to={`/guide/${guide.slug}`} key={guide.id}>
                   <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
                     <div className="aspect-video overflow-hidden bg-gray-100">
-                      <img 
+                      <OptimizedImage 
                         src={index === 0 
                           ? "/lovable-uploads/f2073f22-e161-45c6-9d26-1c99e770e553.png" 
                           : "/lovable-uploads/a1793127-4e29-402b-b80a-6163df4177cb.png"} 
                         alt={guide.Title} 
                         className="w-full h-full object-cover" 
+                        fallbackSrc="/placeholder.svg"
                       />
                     </div>
                     <CardHeader>

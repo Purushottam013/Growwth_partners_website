@@ -31,13 +31,14 @@ export function OptimizedImage({
   return (
     <div className={`relative ${className}`}>
       {isLoading && (
-        <Skeleton className="absolute inset-0 w-full h-full rounded-[inherit] bg-gray-200" />
+        <Skeleton className="absolute inset-0 w-full h-full rounded-[inherit] bg-gray-200 animate-pulse" />
       )}
       <img
         src={imageSrc}
         alt={alt || ""}
         className={`w-full h-full object-cover ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
-        loading="lazy"
+        loading="eager" 
+        decoding="async"
         onLoad={handleLoad}
         onError={handleError}
         {...props}
