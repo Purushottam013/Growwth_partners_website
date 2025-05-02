@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { PhoneIcon, User, Building, Mail, ChevronDown } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -82,17 +84,33 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Call the Supabase Edge Function to send emails
+      const { data, error } = await supabase.functions.invoke("send-form-email", {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          countryCode: formData.countryCode,
+          service: formData.service,
+          formType: "contact"
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
       toast({
         title: "Request Submitted",
         description: "Our expert will contact you shortly.",
       });
-      setIsSubmitting(false);
+      
       setFormData({
         name: "",
         company: "",
@@ -101,8 +119,19 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
         phone: "",
         service: "",
       });
+      
       if (onSuccess) onSuccess();
-    }, 1000);
+      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Error",
+        description: "There was a problem submitting your request. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

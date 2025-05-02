@@ -25,6 +25,7 @@ const FractionalCFOPage = () => {
         <ServiceOverview/>
         <WorkProcess/>
         <CaseStudySection/>
+        <ContactTestimonials/>
         <CTASection/>
         <FAQAccordion/>
       </motion.div>

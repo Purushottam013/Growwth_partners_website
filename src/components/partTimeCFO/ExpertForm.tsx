@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { supabase } from "@/integrations/supabase/client";
 
 interface ExpertFormProps {
   onSuccess?: () => void;
@@ -23,17 +25,36 @@ export const ExpertForm: React.FC<ExpertFormProps> = ({ onSuccess }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Call the Supabase Edge Function to send emails
+      const { data, error } = await supabase.functions.invoke("send-form-email", {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+          formType: "expert"
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+      
       toast.success('Your message has been sent successfully!');
       setFormData({ name: '', email: '', company: '', message: '' });
       if (onSuccess) onSuccess();
-    }, 1500);
+      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error('Failed to send your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
