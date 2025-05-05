@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -57,9 +58,10 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className={`mx-auto ${guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide" ? "w-[90%]" : "max-w-4xl"}`}>
-            {/* Hero Section - For all guides */}
-            <section className="bg-gray-50 py-16 mb-12 rounded-lg">
-              <div className="container mx-auto px-4">
+            {/* Hero Section - For all guides with consistent styling */}
+            <section className="bg-gradient-to-b from-white to-[#F2FCE2]/30 py-16 mb-12 rounded-lg relative overflow-hidden">
+              <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
+              <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto">
                   <div className="flex flex-col items-center text-center">
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
