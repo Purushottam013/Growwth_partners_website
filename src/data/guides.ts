@@ -1,3 +1,4 @@
+
 export interface Guide {
   id: number;
   Title: string;
@@ -398,4 +399,59 @@ export const guides: Guide[] = [
         </ul>
         
         <h4 class="text-lg font-semibold mt-4 mb-3">Post-Approval</h4>
-        <ul class="list-disc pl-6 mt
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Claim Submission:</strong> After implementing your project, submit claims for reimbursement with supporting documents.</li>
+          <li><strong>Reporting:</strong> Provide progress updates and final reports on the outcomes of your overseas expansion efforts.</li>
+          <li><strong>Compliance:</strong> Adhere to all terms and conditions specified in the grant agreement.</li>
+        </ul>`
+      },
+      {
+        title: "Common Mistakes in MRA Grant Applications",
+        content: `<p>When applying for the MRA Grant, businesses should avoid these common pitfalls:</p>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Inadequate Research</h4>
+        <p>Many businesses fail to conduct thorough market research before applying for the grant. Understanding your target market is crucial for a successful application and overseas expansion.</p>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Unclear Business Proposition</h4>
+        <p>Applications with vague business propositions or value offerings often get rejected. Be specific about how your product or service adds value to the target market.</p>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Poor Planning</h4>
+        <p>Inadequate project planning or unrealistic timelines can signal a lack of preparedness. Develop a comprehensive plan with clear milestones and activities.</p>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Budget Miscalculations</h4>
+        <p>Inaccurate budget estimates or including non-eligible expenses can delay or jeopardize your application. Ensure all costs are legitimate and properly documented.</p>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-6">
+          <p class="font-semibold">Pro-tip:</p>
+          <p>Work with experienced consultants who understand the MRA Grant application process to increase your chances of approval. Their expertise can help you avoid common mistakes and present a compelling case for funding.</p>
+        </div>`
+      },
+      {
+        title: "Summary",
+        content: `<p>The Market Readiness Assistance (MRA) Grant is a valuable resource for Singapore-based SMEs looking to expand internationally. By providing financial support for key expansion activities, the grant helps businesses mitigate the risks and costs associated with entering new markets.</p>
+        
+        <p class="mt-3">To maximize your chances of securing the grant, ensure that you:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li>Meet all eligibility requirements</li>
+          <li>Prepare a comprehensive and realistic expansion plan</li>
+          <li>Submit complete and accurate documentation</li>
+          <li>Avoid common application mistakes</li>
+          <li>Consider seeking professional assistance</li>
+        </ul>
+        
+        <p class="mt-3">With proper preparation and execution, the MRA Grant can be a significant catalyst for your business's global expansion journey.</p>
+        
+        <div class="bg-primary/10 text-primary p-4 rounded-lg mt-6">
+          <p>Ready to take your business global? Growwth Partners can assist you in navigating the MRA Grant application process and developing effective international expansion strategies. Contact us today to get started!</p>
+        </div>`
+      }
+    ],
+    faqs: [
+      { question: "Is there a limit to how many times a company can apply for the MRA Grant?", answer: "Yes, companies can apply for the MRA Grant multiple times, but each application must be for a different overseas market." },
+      { question: "What is considered a 'new market' for MRA Grant purposes?", answer: "A new market is typically a country where your company hasn't had significant business presence or revenue in the past three years." },
+      { question: "Can the MRA Grant be used for online marketing to overseas customers?", answer: "Yes, digital marketing activities targeting specific overseas markets are eligible, provided they are part of a comprehensive market entry strategy." },
+      { question: "How long does it take to process an MRA Grant application?", answer: "The processing time varies, but it typically takes around 4-6 weeks from submission to receiving a decision." },
+      { question: "Can I apply for the MRA Grant for multiple countries at once?", answer: "Yes, you can apply for multiple countries, but each country requires a separate application and will be evaluated independently." }
+    ]
+  }
+];
