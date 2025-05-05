@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -278,12 +279,12 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   <div className="mb-12 prose max-w-none">
                     <h2 className="text-2xl font-bold mb-4">{guide.sections[1].title}</h2>
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[1].content }} />
-                    {/* Reduce the image size by 10% */}
+                    {/* Display image if available */}
                     {guide.sections[1].image && (
                       <div className="flex justify-center my-6">
                         <OptimizedImage 
                           src={guide.sections[1].image} 
-                          alt={guide.sections[1].title} 
+                          alt={guide.sections[1].title || "Section image"} 
                           className="w-[90%] h-auto rounded-lg shadow-lg" 
                           fallbackSrc="/placeholder.svg"
                         />
@@ -297,12 +298,12 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   <div className="mb-12 prose max-w-none">
                     <h2 className="text-2xl font-bold mb-4">{guide.sections[2].title}</h2>
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[2].content }} />
-                    {/* Reduce the image size by 10% */}
+                    {/* Display image if available */}
                     {guide.sections[2].image && (
                       <div className="flex justify-center my-6">
                         <OptimizedImage 
                           src={guide.sections[2].image} 
-                          alt={guide.sections[2].title} 
+                          alt={guide.sections[2].title || "Section image"} 
                           className="w-[90%] h-auto rounded-lg shadow-lg" 
                           fallbackSrc="/placeholder.svg"
                         />
@@ -335,12 +336,12 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   <div className="mb-12 prose max-w-none">
                     <h2 className="text-2xl font-bold mb-4">{guide.sections[3].title}</h2>
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[3].content }} />
-                    {/* Reduce the image size by 10% */}
+                    {/* Display image if available */}
                     {guide.sections[3].image && (
                       <div className="flex justify-center my-6">
                         <OptimizedImage 
                           src={guide.sections[3].image} 
-                          alt={guide.sections[3].title} 
+                          alt={guide.sections[3].title || "Section image"} 
                           className="w-[90%] h-auto rounded-lg shadow-lg" 
                           fallbackSrc="/placeholder.svg"
                         />
