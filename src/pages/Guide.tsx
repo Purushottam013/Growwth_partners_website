@@ -6,20 +6,51 @@ import { useGuides } from "@/hooks/useGuides";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "@/components/ui/pagination";
+
+const GUIDES_PER_PAGE = 3;
 
 const GuidePage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
   const {
     guides,
     categories,
     loading,
     error
   } = useGuides(selectedCategory);
+
+  // Reset pagination when category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
   
   useEffect(() => {
     // Scroll to top when the component mounts or category changes
     window.scrollTo(0, 0);
   }, [selectedCategory]);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(guides.length / GUIDES_PER_PAGE);
+  const startIndex = (currentPage - 1) * GUIDES_PER_PAGE;
+  const endIndex = startIndex + GUIDES_PER_PAGE;
+  const currentGuides = guides.slice(startIndex, endIndex);
+
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
   
   return <Layout>
       <section className="relative w-full flex justify-center">
@@ -37,7 +68,7 @@ const GuidePage = () => {
         <div className="container mx-auto px-4">
           <div className="mb-8">
             <Tabs defaultValue={selectedCategory || "all"} className="w-full">
-              <TabsList className="w-full flex justify-center mb-6 p-1 overflow-x-auto">
+              <TabsList className="w-full flex justify-center mb-6 p-1">
                 <TabsTrigger 
                   value="all" 
                   className="px-4 py-2 mx-2" 
@@ -83,29 +114,65 @@ const GuidePage = () => {
             )}
             
             {!loading && guides.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {guides.map((guide) => (
-                  <Link to={`/guide/${guide.slug}`} key={guide.id}>
-                    <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
-                      <div className="aspect-video overflow-hidden bg-gray-100">
-                        <OptimizedImage 
-                          src={guide.Image} 
-                          alt={guide.Title} 
-                          className="w-full h-full object-cover" 
-                          fallbackSrc="/placeholder.svg"
-                        />
-                      </div>
-                      <CardHeader>
-                        <p className="text-sm text-primary mb-1">{guide.Category}</p>
-                        <CardTitle className="text-lg font-semibold line-clamp-2">{guide.Title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-600 line-clamp-3">{guide.Excerpt}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {currentGuides.map((guide) => (
+                    <Link to={`/guide/${guide.slug}`} key={guide.id}>
+                      <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
+                        <div className="aspect-video overflow-hidden bg-gray-100">
+                          <OptimizedImage 
+                            src={guide.Image} 
+                            alt={guide.Title} 
+                            className="w-full h-full object-cover" 
+                            fallbackSrc="/placeholder.svg"
+                          />
+                        </div>
+                        <CardHeader>
+                          <p className="text-sm text-primary mb-1">{guide.Category}</p>
+                          <CardTitle className="text-lg font-semibold line-clamp-2">{guide.Title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-600 line-clamp-3">{guide.Excerpt}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+                
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <Pagination className="mt-12">
+                    <PaginationContent>
+                      {currentPage > 1 && (
+                        <PaginationItem>
+                          <PaginationPrevious 
+                            onClick={() => handlePageChange(currentPage - 1)} 
+                          />
+                        </PaginationItem>
+                      )}
+                      
+                      {[...Array(totalPages)].map((_, i) => (
+                        <PaginationItem key={i}>
+                          <PaginationLink 
+                            onClick={() => handlePageChange(i + 1)}
+                            isActive={currentPage === i + 1}
+                          >
+                            {i + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ))}
+                      
+                      {currentPage < totalPages && (
+                        <PaginationItem>
+                          <PaginationNext 
+                            onClick={() => handlePageChange(currentPage + 1)} 
+                          />
+                        </PaginationItem>
+                      )}
+                    </PaginationContent>
+                  </Pagination>
+                )}
+              </>
             )}
           </div>
         </div>
