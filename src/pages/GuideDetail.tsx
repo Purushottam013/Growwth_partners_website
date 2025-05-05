@@ -12,6 +12,13 @@ interface GuideDetailProps {
   onContactClick: () => void;
 }
 
+// We need to extend the section type to include the optional image property
+interface Section {
+  title: string;
+  content: string;
+  image?: string; // Add optional image property
+}
+
 const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
   useEffect(() => {
     // Scroll to top when the component mounts
@@ -279,13 +286,13 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   <div className="mb-12 prose max-w-none">
                     <h2 className="text-2xl font-bold mb-4">{guide.sections[1].title}</h2>
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[1].content }} />
-                    {/* Display image if available */}
-                    {guide.sections[1].image && (
+                    {/* Display image if available - Now properly typed */}
+                    {(guide.sections[1] as Section).image && (
                       <div className="flex justify-center my-6">
                         <OptimizedImage 
-                          src={guide.sections[1].image} 
-                          alt={guide.sections[1].title || "Section image"} 
-                          className="w-[90%] h-auto rounded-lg shadow-lg" 
+                          src={(guide.sections[1] as Section).image || ""} 
+                          alt={(guide.sections[1] as Section).title || "Section image"} 
+                          className="w-[81%] h-auto rounded-lg shadow-lg" 
                           fallbackSrc="/placeholder.svg"
                         />
                       </div>
@@ -298,13 +305,13 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   <div className="mb-12 prose max-w-none">
                     <h2 className="text-2xl font-bold mb-4">{guide.sections[2].title}</h2>
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[2].content }} />
-                    {/* Display image if available */}
-                    {guide.sections[2].image && (
+                    {/* Display image if available - Now properly typed */}
+                    {(guide.sections[2] as Section).image && (
                       <div className="flex justify-center my-6">
                         <OptimizedImage 
-                          src={guide.sections[2].image} 
-                          alt={guide.sections[2].title || "Section image"} 
-                          className="w-[90%] h-auto rounded-lg shadow-lg" 
+                          src={(guide.sections[2] as Section).image || ""} 
+                          alt={(guide.sections[2] as Section).title || "Section image"} 
+                          className="w-[81%] h-auto rounded-lg shadow-lg" 
                           fallbackSrc="/placeholder.svg"
                         />
                       </div>
@@ -336,13 +343,13 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   <div className="mb-12 prose max-w-none">
                     <h2 className="text-2xl font-bold mb-4">{guide.sections[3].title}</h2>
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[3].content }} />
-                    {/* Display image if available */}
-                    {guide.sections[3].image && (
+                    {/* Display image if available - Now properly typed */}
+                    {(guide.sections[3] as Section).image && (
                       <div className="flex justify-center my-6">
                         <OptimizedImage 
-                          src={guide.sections[3].image} 
-                          alt={guide.sections[3].title || "Section image"} 
-                          className="w-[90%] h-auto rounded-lg shadow-lg" 
+                          src={(guide.sections[3] as Section).image || ""} 
+                          alt={(guide.sections[3] as Section).title || "Section image"} 
+                          className="w-[81%] h-auto rounded-lg shadow-lg" 
                           fallbackSrc="/placeholder.svg"
                         />
                       </div>
