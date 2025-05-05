@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Construction } from "lucide-react";
 
 const AchievementsPage = () => {
   const { country } = useCountry();
@@ -37,6 +39,15 @@ const AchievementsPage = () => {
           }
         ]}
       />
+      
+      <div className="container-custom mb-16">
+        <Alert className="bg-amber-50 border-amber-200">
+          <Construction className="h-5 w-5 text-amber-500" />
+          <AlertDescription className="text-amber-800">
+            We're currently expanding our achievements showcase. Check back soon for a more detailed view of our awards and recognition.
+          </AlertDescription>
+        </Alert>
+      </div>
     </Layout>
   );
 };
