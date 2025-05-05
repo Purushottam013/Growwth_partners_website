@@ -46,36 +46,50 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col items-center text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
-              <p className="text-lg text-gray-600 mb-8">{guide.Excerpt}</p>
-              <div className="flex items-center space-x-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                  {guide.Category}
-                </span>
-                {guide.publishedAt && (
-                  <time className="text-gray-500 text-sm">
-                    Published on {new Date(guide.publishedAt).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </time>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className={`mx-auto ${guide.Title === "A Comprehensive Guide to Bookkeeping Practices" ? "w-[90%]" : "max-w-4xl"}`}>
+            {/* Title - Only showing title without hero section for bookkeeping practices guide */}
+            {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" && (
+              <div className="mb-8 text-center">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">{guide.Title}</h1>
+                <div className="flex items-center justify-center mt-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                    {guide.Category}
+                  </span>
+                </div>
+              </div>
+            )}
+            
+            {/* Hero Section - Only for other guides */}
+            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && (
+              <section className="bg-gray-50 py-16 mb-12 rounded-lg">
+                <div className="container mx-auto px-4">
+                  <div className="max-w-4xl mx-auto">
+                    <div className="flex flex-col items-center text-center">
+                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
+                      <p className="text-lg text-gray-600 mb-8">{guide.Excerpt}</p>
+                      <div className="flex items-center space-x-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                          {guide.Category}
+                        </span>
+                        {guide.publishedAt && (
+                          <time className="text-gray-500 text-sm">
+                            Published on {new Date(guide.publishedAt).toLocaleDateString('en-US', { 
+                              year: 'numeric', 
+                              month: 'long', 
+                              day: 'numeric' 
+                            })}
+                          </time>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+            
             {/* Banner Image */}
             <div className="mb-12 rounded-lg overflow-hidden">
               <OptimizedImage 
@@ -86,8 +100,52 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               />
             </div>
             
-            {/* Key Takeaways Section - Fixed to display properly */}
-            {guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            {/* Key Takeaways Section - Custom layout for Bookkeeping guide */}
+            {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+              <div className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
+                <div className="space-y-6">
+                  {/* First row - 3 items */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {guide.keyTakeaways.slice(0, 3).map((takeaway, index) => (
+                      <div key={index} className="flex flex-col items-center text-center">
+                        <div className="w-24 h-24 mb-4">
+                          <OptimizedImage 
+                            src={guide.keyTakeawayImages?.[index] || "/placeholder.svg"} 
+                            alt={takeaway.title} 
+                            className="w-full h-full" 
+                            fallbackSrc="/placeholder.svg"
+                          />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
+                        <p className="text-sm text-gray-600">{takeaway.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Second row - 2 items */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-w-2/3 mx-auto">
+                    {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
+                      <div key={index + 3} className="flex flex-col items-center text-center">
+                        <div className="w-24 h-24 mb-4">
+                          <OptimizedImage 
+                            src={guide.keyTakeawayImages?.[index + 3] || "/placeholder.svg"} 
+                            alt={takeaway.title} 
+                            className="w-full h-full" 
+                            fallbackSrc="/placeholder.svg"
+                          />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
+                        <p className="text-sm text-gray-600">{takeaway.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Key Takeaways Section - Default layout for other guides */}
+            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -179,8 +237,11 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                 
                 {/* Book a Free Consultation Section */}
                 {guide.sections && guide.sections[7] && (
-                  <div className="mb-12 prose max-w-none">
+                  <div className="mb-12 prose max-w-none bg-gray-50 p-8 rounded-lg text-center">
                     <div dangerouslySetInnerHTML={{ __html: guide.sections[7].content }} />
+                    <Button onClick={onContactClick} className="bg-primary hover:bg-primary/90 mt-6">
+                      Book a Free Call
+                    </Button>
                   </div>
                 )}
               </>
@@ -220,16 +281,18 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               </>
             )}
             
-            {/* CTA Section */}
-            <div className="bg-gray-50 p-8 rounded-lg text-center">
-              <h2 className="text-2xl font-bold mb-4">Need Help With Your Business?</h2>
-              <p className="text-gray-600 mb-6">
-                Our team of experts is ready to provide you with personalized advice and solutions.
-              </p>
-              <Button onClick={onContactClick} className="bg-primary hover:bg-primary/90">
-                Schedule A Consultation
-              </Button>
-            </div>
+            {/* CTA Section - except for Bookkeeping guide as it already has one */}
+            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && (
+              <div className="bg-gray-50 p-8 rounded-lg text-center">
+                <h2 className="text-2xl font-bold mb-4">Need Help With Your Business?</h2>
+                <p className="text-gray-600 mb-6">
+                  Our team of experts is ready to provide you with personalized advice and solutions.
+                </p>
+                <Button onClick={onContactClick} className="bg-primary hover:bg-primary/90">
+                  Schedule A Consultation
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
