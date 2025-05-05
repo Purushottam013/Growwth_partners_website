@@ -41,7 +41,7 @@ const mountApp = () => {
               // Report FID
               const fidObserver = new PerformanceObserver((entryList) => {
                 const entries = entryList.getEntries();
-                const firstEntry = entries[0];
+                const firstEntry = entries[0] as PerformanceEventTiming;
                 console.log('FID:', firstEntry.processingStart - firstEntry.startTime);
               });
               
