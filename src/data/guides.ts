@@ -1,4 +1,3 @@
-
 export interface Guide {
   id: number;
   Title: string;
@@ -340,6 +339,205 @@ export const guides: Guide[] = [
       { question: "What is the impact of poor bookkeeping on a business?", answer: "Poorly done bookkeeping can lead to mismanaged funds, non-compliance with taxes and loss of investors or funding." },
       { question: "Why is compliance important in bookkeeping?", answer: "Compliance ensures adherence to tax laws and regulations, avoiding legal issues and penalties." },
       { question: "How can I secure my bookkeeping records?", answer: "Encrypting software can be used to secure your bookkeeping recording. Also, making backups often and restricting access to only authorised persons may also help ensure security." }
+    ]
+  },
+  {
+    id: 4,
+    Title: "Comprehensive Guide to the Market Readiness Assistance (MRA) Grant in Singapore",
+    slug: "mra-grant-singapore",
+    Image: "/lovable-uploads/bb637a74-6152-4665-943f-66054058edf0.png",
+    Category: "Incorporation",
+    Excerpt: "Learn about the MRA Grant in Singapore and how it can help your business expand internationally.",
+    Content: "Full guide content for MRA Grant",
+    publishedAt: "2025-05-05",
+    keyTakeaways: [
+      { title: "Comprehensive Financial Support", description: "Up to 70% of eligible costs may be covered by the MRA Grant, which offers up to S$100,000 per new market." },
+      { title: "Diverse Eligible Activities", description: "The grant can be used for a variety of activities, such as trade show participation, business matching, market research, and international marketing." },
+      { title: "Clear Eligibility Criteria", description: "Companies must be Singapore-registered SMEs with an annual turnover of no more than S$100 million in order to be eligible for the MRA Grant." },
+      { title: "Structured Application Process", description: "There are multiple steps in the MRA Grant application process, including pre-application, submission, assessment, and post-approval." },
+      { title: "Importance of Thorough Preparation", description: "Applications that are successful must have precise goals, thorough project plans, correct data, adherence to regulations, and expert support." }
+    ],
+    keyTakeawayImages: [
+      "/lovable-uploads/ff64989c-dab9-4050-814e-d90bca79f42b.png",
+      "/lovable-uploads/15e6b360-d5dd-4d93-8dd8-86e3b6815a2c.png",
+      "/lovable-uploads/ff10cb0e-544a-4e37-b61b-8e4174ede681.png",
+      "/lovable-uploads/29d7a505-65ef-443d-bc30-78185338c79b.png",
+      "/lovable-uploads/7950ef2b-fec5-470f-8003-13b293af4b08.png"
+    ],
+    sections: [
+      { 
+        title: "Introduction", 
+        content: `<p>Companies are always looking for growth opportunities. One effective way to do that is by expanding into foreign markets. However, such moves often involve making huge investments and overcoming various challenges.</p>
+        <p class="mt-3">To support this cause, there are grants like the Market Readiness Assistance (MRA) Grant which can provide financial support for businesses planning to go global.</p>
+        <p class="mt-3">This comprehensive guide provides an explanation about the MRA Grant in Singapore, including what it involves, the benefits of using it, how one should apply for it, and the challenges in securing it.</p>`
+      },
+      { 
+        title: "What is an MRA Grant?", 
+        content: `<p>Market Readiness Assistance (MRA) Grant is a government initiative aimed at helping Singaporean SMEs enter international markets. The grant supports certain activities with financial aid designed to facilitate overseas expansion such as market set-up, market promotion as well as business development.</p>
+        
+        <p class="mt-3">The MRA Grant covers up to 70% of eligible costs with a maximum cap of S$100,000 per company per new market. It reduces the financial risk associated with exploring and entering new markets thus making it easier for local companies to expand their global presence.</p>
+        
+        <div class="my-6">
+          <img src="/lovable-uploads/bb637a74-6152-4665-943f-66054058edf0.png" alt="MRA Grant Components" class="w-full rounded-lg" />
+        </div>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-6">
+          <p class="font-semibold">Pro-tip:</p>
+          <p>Carefully categorise your project expenses under the specific MRA Grant components—such as market promotion, business development, and market set-up—to ensure you maximise the funding available for each category and avoid overspending on non-eligible activities.</p>
+        </div>
+        
+        <div class="bg-primary/10 text-primary p-4 rounded-lg mt-6">
+          <p>Collaborate with Growwth Partners to successfully manage your fundraising endeavours through custom tactics and knowledgeable direction. Talk to an expert!</p>
+        </div>
+        
+        <h4 class="text-lg font-semibold mt-6 mb-3">Benefits of the MRA Grant</h4>
+        <p>The MRA Grant offers numerous benefits to Singaporean SMEs, including:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Financial Support:</strong> It subsidises almost 70% of qualified expenses, relieving small and medium-sized enterprises from heavy financial burden.</li>
+          <li><strong>Market Expansion:</strong> This program enables firms to venture into new territories so they can have multiple sources of income.</li>
+          <li><strong>Access to Expertise:</strong> It links entrepreneurs with professionals who possess skills required for successful penetration in different markets.</li>
+          <li><strong>Risk Management:</strong> By giving out money under this scheme, risks connected with going abroad are minimised or eliminated completely.</li>
+          <li><strong>Competitive Edge:</strong> Businesses get ahead of competitors by utilising funds provided through MRAs to explore fresh ideas while still relevant within their industries.</li>
+        </ul>`
+      },
+      { 
+        title: "Activities Eligible for the MRA Grant", 
+        content: `<h4 class="text-lg font-semibold mt-2 mb-3">Overseas Market Promotion</h4>
+        <p><strong>Physical Trade Fairs</strong><br/>This includes hiring a space and building a booth that cannot be larger than 36 square metres in size.</p>
+        
+        <p class="mt-3"><strong>Virtual Trade Fairs</strong><br/>Setting up virtual exhibition halls and booths, creating marketing materials and arranging business meetings or matching sessions.</p>
+        
+        <p class="mt-3"><strong>Marketing Activities or Public Relations (PR)</strong><br/>Holding in-store promotions, roadshows, pop-up stores etc., which are part of an overall marketing campaign or PR effort.</p>
+        
+        <h4 class="text-lg font-semibold mt-6 mb-3">Overseas Market Set-up</h4>
+        <p><strong>Market Entry Support</strong><br/>This covers advisory, legal fees and expenses relating to intellectual property application; filing and registering sales representative offices / equity entities; import & export licences.</p>
+        
+        <p class="mt-3"><strong>FTA and Trade Compliance Consultancy</strong><br/>This includes legal or consultancy fees for getting guidance on customs compliance, exporting controls and sanctions issues, and product HS classification.</p>
+        
+        <div class="bg-primary/10 text-primary p-4 rounded-lg mt-6">
+          <p>With Growwth Partners' industry-best support, make the most of your funding opportunities by connecting with the right investors and securing the right valuation for your business. Start now!</p>
+        </div>
+        
+        <h4 class="text-lg font-semibold mt-6 mb-3">Overseas Business Development</h4>
+        <p><strong>Business Matching</strong><br/>Looking for potential partners who can act as licensees or franchisees, finding agents or distributors who would help sell products or services, identifying cross-border logistics partners, searching for joint venture partners, etc.,</p>
+        
+        <p class="mt-3"><strong>Overseas Marketing Presence</strong><br/>Sending employees based in the target market to carry out marketing activities there including attending trade shows, doing sales calls, and more.</p>
+        
+        <p class="mt-3"><strong>In-Market Business Development</strong><br/>Training BD personnel (in-market), reaching out to new business leads within specific markets where there may not have been previous contact made, carrying out market entry activity like a launch, reviewing existing market strategy if necessary.</p>
+        
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-6">
+          <p class="font-semibold">Pro-tip:</p>
+          <p>Take full advantage of virtual trade fairs as they offer a cost-effective alternative to physical fairs. These events provide significant exposure to international markets with lower costs for travel, accommodation, and booth construction, allowing you to stretch your budget further.</p>
+        </div>
+        
+        <h4 class="text-lg font-semibold mt-6 mb-3">Who Can Apply?</h4>
+        <p>The MRA Grant is open only to Singapore registered SMEs who wish to venture into new international markets. It would help most businesses that have strong products or services which they intend scaling globally.</p>
+        
+        <h4 class="text-lg font-semibold mt-6 mb-3">Eligibility for the Grant</h4>
+        <p>To be eligible for this grant, companies must meet these requirements:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Singapore-Registered Entity:</strong> The company has to be incorporated and registered under Singapore laws.</li>
+          <li><strong>Annual Sales Turnover:</strong> S$100 million is the maximum annual sales turnover allowed for any business seeking MRA Grant funding.</li>
+          <li><strong>Employment Size:</strong> The number of persons employed by an enterprise should not exceed 200 individuals at any given time during its financial year.</li>
+          <li><strong>Financial Health:</strong> A business must be financially sound based on established accounting standards & practices within the industry concerned.</li>
+        </ul>`
+      },
+      { 
+        title: "Process of MRA Grant Application", 
+        content: `<p>Applying for the MRA Grant involves several steps:</p>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Pre-Application</h4>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Self-Assessment:</strong> Ensure that your business is eligible for the grant.</li>
+          <li><strong>Gathering Documentation:</strong> Prepare all necessary documents such as company registration, financial statements and project proposals.</li>
+        </ul>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Application Submission</h4>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Online Submission:</strong> Submit your application through the Business Grants Portal.</li>
+          <li><strong>Supporting Documents:</strong> Attach all required documents and information to support your application.</li>
+        </ul>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Evaluation</h4>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Review Process:</strong> Enterprise Singapore will review the application and may request for more information or clarification if needed.</li>
+          <li><strong>Approval:</strong> If approved, you will receive a Letter of Offer which states the amount of grant awarded and its conditions.</li>
+        </ul>
+        
+        <h4 class="text-lg font-semibold mt-4 mb-3">Post-Approval</h4>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Project Implementation:</strong> Carry out the activities outlined in the approved project during application.</li>
+          <li><strong>Claims Submission:</strong> Submit claims for reimbursement of eligible expenses with supporting documents.</li>
+        </ul>
+        
+        <div class="my-6">
+          <img src="/lovable-uploads/5d5bd90c-0e55-4a34-8b9a-8d062dc7ee5b.png" alt="MRA Grant Calculation Example" class="w-full rounded-lg" />
+        </div>`
+      },
+      { 
+        title: "Common Mistakes Made During MRA Grant Application", 
+        content: `<p>MRA Grant provides a substantial amount of money to support and empower businesses looking to expand to the international market. However, these Grants are not easily provided to all SMEs and hence, an extremely well-presented and error-free application is crucial.</p>
+        
+        <p class="mt-3">Here are some predominantly made errors you should look to avoid while you apply for the MRA Grant:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-2">
+          <li><strong>Incomplete Documentation:</strong> Failing to provide all required documents may cause delay or rejection of application.</li>
+          <li><strong>Unclear Objectives:</strong> Your application could look weak when your business objectives are vague or poorly defined.</li>
+          <li><strong>Ignoring Eligibility Criteria:</strong> Applications that do not meet requirements get rejected outrightly.</li>
+          <li><strong>Budgeting Mistakes:</strong> Evaluation red flags are raised when the budget is incorrect or unrealistic.</li>
+          <li><strong>Lack of Follow-Up:</strong> A delayed response to additional information requests can lead to slowing down the process or rejection of the application.</li>
+        </ul>
+        
+        <div class="my-6">
+          <img src="/lovable-uploads/a77bed8c-75a1-42ee-a323-97d0cf993e4a.png" alt="Tips for a Successful MRA Grant Application" class="w-full rounded-lg" />
+        </div>
+        
+        <div class="bg-primary/10 text-primary p-4 rounded-lg mt-6">
+          <p>Simplify Your Fundraising Process: Growwth Partners can manage the intricate details of fundraising, freeing you up to concentrate on expanding your company. Find out more today!</p>
+        </div>`
+      },
+      { 
+        title: "Summary", 
+        content: `<p>The Market Readiness Assistance (MRA) Grant is an invaluable resource for Singaporean SMEs looking to expand into international markets. By providing financial support for market research, market entry, and market promotion activities, the MRA Grant reduces the risks and costs associated with overseas expansion.</p>
+        <p class="mt-3">For businesses seeking to leverage the MRA Grant, understanding the requirements and preparing a thorough application are crucial steps towards securing the funding needed for successful international expansion.</p>
+        <p class="mt-3">At Growwth Partners, we are committed to supporting your business growth and helping you navigate the complexities of the MRA Grant application process. Speak to our experts and get guidance to handle your complex and taxing fundraising journey.</p>`
+      },
+      {
+        title: "Book a Free Consultation",
+        content: `<div class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-lg">
+          <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+              <h3 class="text-3xl font-bold mb-6">
+                Book a free call with our expert to discuss your bookkeeping needs and save time and effort.
+              </h3>
+              
+              <p class="text-xl mb-8">
+                We are here to help you!
+              </p>
+              
+              <button class="bg-white text-blue-700 hover:bg-gray-100 font-semibold text-lg px-8 py-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                Book a Free Call
+              </button>
+            </div>
+          </div>
+        </div>`
+      }
+    ],
+    faqs: [
+      { question: "How does the MRA Grant benefit SMEs?", answer: "For SMEs looking to expand internationally, the MRA Grant helps in reducing financial constraint and risk of entering new markets by covering 70% of all eligible costs." },
+      { question: "What types of activities does the MRA Grant support?", answer: "Market set-up, market promotion, overseas business development, overseas marketing and PR activities among others are the types of expansion activities that can be funded through MRA Grant." },
+      { question: "How does the MRA Grant compare to other grants?", answer: "Unlike other programs such as the Global Company Partnership (GCP) Grant, which covers a wider scope of internationalisation activities, including innovation and capability development, the MRA grant is specifically designed for SMEs focusing on market entry and promotion activities." },
+      { question: "Can the MRA Grant be used for setting up overseas operations?", answer: "Yes, it can cater for sales or representative offices or equity entities established abroad." },
+      { question: "What makes the MRA Grant unique?", answer: "It offers targeted assistance during early stages of venturing into foreign markets like conducting market research or doing business developments outside the country of origin, while most other grant programs concentrate more on long-term growth and innovation within the global entrepreneurship community." },
+      { question: "Which types of businesses can apply for MRA Grant?", answer: "Only Singapore registered SMEs with annual sales turnover less than S$100m and employees fewer than 200 are eligible to apply for this grant." },
+      { question: "Can a startup apply for the MRA Grant?", answer: "Yes, a startup can apply for the MRA Grant in Singapore. However, it must meet Enterprise Singapore's eligibility criteria." },
+      { question: "Are there any industry restrictions for the MRA Grant?", answer: "No, the MRA grant is available to SMEs in all sectors as long as they want to expand globally." },
+      { question: "Is there a limit to how many times a company can apply for the MRA Grant?", answer: "A company may make multiple applications covering different countries; however each new market entry is subject to a maximum total funding cap set at S$100,000 per application round." },
+      { question: "What financial documents are required for the MRA Grant application?", answer: "To apply for the MRA Grant in Singapore, you would typically need the most recent financial statements showing annual sales turnover proof." },
+      { question: "How to apply for an MRA Grant in Singapore?", answer: "Start by checking if your business meets eligibility criteria and collecting necessary documentation." },
+      { question: "Where can I send my MRA Grant application?", answer: "The application for an MRA Grant must be submitted online via Business Grants Portal (BGP)." },
+      { question: "What happens after I submit my MRA Grant application?", answer: "Enterprise Singapore will evaluate your MRA Grant application and get back to you. Additional information might be required from you at this stage." },
+      { question: "How long does MRA Grant application evaluation take?", answer: "Depending on factors involved, evaluating an MRA Grant application usually takes a few weeks before applicants are informed." },
+      { question: "Can I change the details after submitting an MRA Grant application?", answer: "To make changes in your MRA Grant application, contact Enterprise Singapore directly to communicate the required updates." }
     ]
   }
 ];
