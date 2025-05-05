@@ -1,4 +1,3 @@
-
 export interface Guide {
   id: number;
   Title: string;
@@ -22,6 +21,20 @@ export interface Guide {
     answer: string;
   }>;
 }
+
+// Extract all unique categories from guides
+export const guideCategories = (): string[] => {
+  const categories = guides.map(guide => guide.Category);
+  return [...new Set(categories)];
+};
+
+// Function to filter guides by category
+export const getGuidesByCategory = (category?: string): Guide[] => {
+  if (!category) {
+    return guides;
+  }
+  return guides.filter(guide => guide.Category === category);
+};
 
 // Define guide content
 export const guides: Guide[] = [

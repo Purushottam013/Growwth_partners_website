@@ -12,6 +12,7 @@ export const useGuides = (category?: string) => {
   
   // Return all categories regardless of selected category
   const selectedCategory = category;
+  const categories = guideCategories();
 
   useEffect(() => {
     setLoading(true);
@@ -39,5 +40,5 @@ export const useGuides = (category?: string) => {
     }
   }, [category]);
 
-  return { guides, loading, error, categories: guideCategories, selectedCategory };
+  return { guides, loading, error, categories, selectedCategory };
 };
