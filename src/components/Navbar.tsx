@@ -130,12 +130,12 @@ export const Navbar = () => {
               role="button"
               aria-label="Go to home page"
             >
-              <img src={companyLogo} alt="Growwth Partners" className="h-11" />
+              <img src={companyLogo} alt="Growwth Partners" className="h-9" />
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-4">
+          <nav className="hidden lg:flex items-center space-x-2">
             {navItems.map((item) => (
               <div key={item.title} className="relative group">
                 {item.dropdown ? (
