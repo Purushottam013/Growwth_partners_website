@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -58,45 +57,33 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className={`mx-auto ${guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide" ? "w-[90%]" : "max-w-4xl"}`}>
-            {/* Title - Only showing title without hero section for specific guides */}
-            {(guide.slug === "bookkeeping-practices-guide" || guide.slug === "mra-grant-singapore") && (
-              <div className="mb-8 text-center">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">{guide.Title}</h1>
-                <div className="flex items-center justify-center mt-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                    {guide.Category}
-                  </span>
-                </div>
-              </div>
-            )}
-            
-            {/* Hero Section - Only for other guides */}
-            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
-              <section className="bg-gray-50 py-16 mb-12 rounded-lg">
-                <div className="container mx-auto px-4">
-                  <div className="max-w-4xl mx-auto">
-                    <div className="flex flex-col items-center text-center">
-                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
+            {/* Hero Section - For all guides */}
+            <section className="bg-gray-50 py-16 mb-12 rounded-lg">
+              <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto">
+                  <div className="flex flex-col items-center text-center">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
+                    {guide.Excerpt && (
                       <p className="text-lg text-gray-600 mb-8">{guide.Excerpt}</p>
-                      <div className="flex items-center space-x-4">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                          {guide.Category}
-                        </span>
-                        {guide.publishedAt && (
-                          <time className="text-gray-500 text-sm">
-                            Published on {new Date(guide.publishedAt).toLocaleDateString('en-US', { 
-                              year: 'numeric', 
-                              month: 'long', 
-                              day: 'numeric' 
-                            })}
-                          </time>
-                        )}
-                      </div>
+                    )}
+                    <div className="flex items-center space-x-4">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                        {guide.Category}
+                      </span>
+                      {guide.publishedAt && (
+                        <time className="text-gray-500 text-sm">
+                          Published on {new Date(guide.publishedAt).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        </time>
+                      )}
                     </div>
                   </div>
                 </div>
-              </section>
-            )}
+              </div>
+            </section>
             
             {/* Banner Image - Only for non-specific guides */}
             {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
