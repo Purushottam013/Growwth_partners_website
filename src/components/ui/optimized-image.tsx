@@ -21,12 +21,16 @@ export function OptimizedImage({
   const [error, setError] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(priority);
   const [imgSrc, setImgSrc] = useState(priority ? src : undefined);
+  const [elementId] = useState(`image-${Math.random().toString(36).substring(7)}`);
 
   // Use IntersectionObserver for better lazy loading
   useEffect(() => {
-    if (priority) return; // Skip observer for priority images
+    if (priority) {
+      setImgSrc(src);
+      return;
+    } // Skip observer for priority images
     
-    const element = document.getElementById(`image-${alt?.replace(/\s+/g, '-')}-${Math.random().toString(36).substring(7)}`);
+    const element = document.getElementById(elementId);
     if (!element) return;
 
     const observer = new IntersectionObserver((entries) => {
@@ -42,7 +46,7 @@ export function OptimizedImage({
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [src, priority, alt]);
+  }, [src, priority, elementId]);
 
   const handleLoad = () => {
     setIsLoading(false);
@@ -61,7 +65,7 @@ export function OptimizedImage({
 
   return (
     <div 
-      id={`image-${alt?.replace(/\s+/g, '-')}-${Math.random().toString(36).substring(7)}`}
+      id={elementId}
       className={`relative ${className}`}
     >
       {isLoading && (
