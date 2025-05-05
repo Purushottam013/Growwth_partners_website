@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-// Immediately invoke the mounting function
+// Use requestIdleCallback for non-critical initialization
 const mountApp = () => {
   const rootElement = document.getElementById("root");
   
@@ -14,10 +14,43 @@ const mountApp = () => {
   }
   
   try {
+    // Create root with concurrency
     const root = createRoot(rootElement);
     
-    // Render without StrictMode in production to avoid double-renders
-    root.render(<App />);
+    // Use production rendering without strict mode
+    root.render(
+      <App />
+    );
+    
+    // Register performance metrics for analytics
+    if ('performance' in window && 'measure' in performance) {
+      window.addEventListener('load', () => {
+        // Report performance entries after load
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            if ('PerformanceObserver' in window) {
+              // Report LCP
+              const lcpObserver = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                console.log('LCP:', lastEntry.startTime);
+              });
+              
+              lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+              
+              // Report FID
+              const fidObserver = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const firstEntry = entries[0];
+                console.log('FID:', firstEntry.processingStart - firstEntry.startTime);
+              });
+              
+              fidObserver.observe({ type: 'first-input', buffered: true });
+            }
+          }, 0);
+        });
+      });
+    }
     
   } catch (error) {
     console.error("Error rendering React application:", error);
@@ -34,9 +67,21 @@ const mountApp = () => {
   }
 };
 
-// Execute immediately if DOM is ready, otherwise wait for it
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", mountApp);
+// Execute using requestIdleCallback for better first paint
+if ('requestIdleCallback' in window) {
+  // Use requestIdleCallback for non-critical initialization
+  requestIdleCallback(() => {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mountApp);
+    } else {
+      mountApp();
+    }
+  }, { timeout: 1000 });  
 } else {
-  mountApp();
+  // Fallback for browsers without requestIdleCallback
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountApp);
+  } else {
+    mountApp();
+  }
 }

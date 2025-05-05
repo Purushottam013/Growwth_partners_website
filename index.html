@@ -8,12 +8,17 @@
     <meta name="description" content="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently." />
     <meta name="author" content="Growwth Partners" />
 
-    <!-- Preconnect to domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- DNS Prefetch and Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     
     <!-- Preload critical assets -->
-    <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" />
+    <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" fetchpriority="high" />
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/src/index.css" as="style" />
     
     <!-- Open Graph tags -->
     <meta property="og:title" content="Growwth Partners - Financial & Accounting Services" />
@@ -25,8 +30,24 @@
     <meta name="twitter:site" content="@growwthpartners" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <!-- Favicon -->
-    <link rel="icon" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" type="image/png">
+    <!-- Favicon with preload -->
+    <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" type="image/png" />
+    <link rel="icon" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" type="image/png" />
+    
+    <!-- Font display optimization -->
+    <style>
+      /* Font optimization for FCP */
+      @font-face {
+        font-family: 'System Font';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Arial');
+      }
+      body {
+        font-family: 'System Font', sans-serif;
+      }
+    </style>
   </head>
 
   <body>
