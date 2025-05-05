@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -91,15 +90,17 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               </section>
             )}
             
-            {/* Banner Image */}
-            <div className="mb-12 rounded-lg overflow-hidden">
-              <OptimizedImage 
-                src={guide.Image} 
-                alt={guide.Title} 
-                className="w-full h-auto" 
-                fallbackSrc="/placeholder.svg"
-              />
-            </div>
+            {/* Banner Image - Only for non-bookkeeping guides or conditionally display for bookkeeping guide */}
+            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && (
+              <div className="mb-12 rounded-lg overflow-hidden">
+                <OptimizedImage 
+                  src={guide.Image} 
+                  alt={guide.Title} 
+                  className="w-full h-auto" 
+                  fallbackSrc="/placeholder.svg"
+                />
+              </div>
+            )}
             
             {/* Key Takeaways Section - Custom layout for Bookkeeping guide */}
             {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
