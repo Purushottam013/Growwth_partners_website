@@ -1,4 +1,5 @@
 
+import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/payroll/HeroSection";
 import { IntroSection } from "@/components/payroll/IntroSection";
@@ -10,8 +11,20 @@ import { FaqSection } from "@/components/accounting/FaqSection";
 import { CaseStudySection } from "@/components/bookkeeping/CaseStudySection";
 import { ExpertBlogSection } from "@/components/accounting/ExpertBlogSection";
 import { motion } from "framer-motion";
+import { useCountry } from "@/contexts/CountryContext";
 
 const PayrollPage = () => {
+  const { country } = useCountry();
+  
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
+  
   return (
     <Layout>
       <motion.div
@@ -77,4 +90,3 @@ const PayrollPage = () => {
 };
 
 export default PayrollPage;
-

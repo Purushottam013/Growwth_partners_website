@@ -1,4 +1,5 @@
 
+import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/companyincorporation/HeroSection";
@@ -11,8 +12,20 @@ import { FaqSection } from "@/components/companyincorporation/FaqSection";
 import { CaseStudySection } from "@/components/companyincorporation/CaseStudySection";
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 import LaunchJourneySection from "@/components/companyincorporation/LaunchJourneySection";
+import { useCountry } from "@/contexts/CountryContext";
 
 const CompanyIncorporationPage = () => {
+  const { country } = useCountry();
+  
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
+  
   return (
     <Layout>
       <motion.div

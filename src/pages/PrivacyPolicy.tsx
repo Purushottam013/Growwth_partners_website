@@ -1,6 +1,20 @@
+
+import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
+import { useCountry } from "@/contexts/CountryContext";
 
 const PrivacyPolicyPage = () => {
+  const { country } = useCountry();
+  
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
+  
   return (
     <Layout>
       <div className="py-16 container-custom">

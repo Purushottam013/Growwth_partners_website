@@ -1,4 +1,5 @@
 
+import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/partTimeCFO/HeroSection";
@@ -10,8 +11,20 @@ import CaseStudySection from "@/components/partTimeCFO/CaseStudySection";
 import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 import CTASection from "@/components/partTimeCFO/CTASection";
 import FAQAccordion from "@/components/partTimeCFO/FAQAccordion";
+import { useCountry } from "@/contexts/CountryContext";
 
 const FractionalCFOPage = () => {
+  const { country } = useCountry();
+  
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
+  
   return (
     <Layout>
        <motion.div

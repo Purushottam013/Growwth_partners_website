@@ -1,4 +1,5 @@
 
+import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/accounting/HeroSection";
 import { EndToEndSection } from "@/components/accounting/EndToEndSection";
@@ -11,8 +12,20 @@ import { ExpertBlogSection } from "@/components/accounting/ExpertBlogSection";
 import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { motion } from "framer-motion";
+import { useCountry } from "@/contexts/CountryContext";
 
 const AccountingPage = () => {
+  const { country } = useCountry();
+  
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
+  
   return (
     <Layout>
       <motion.div
