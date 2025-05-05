@@ -1,3 +1,4 @@
+
 export interface Guide {
   id: number;
   Title: string;
@@ -22,10 +23,22 @@ export interface Guide {
   }>;
 }
 
-// Extract all unique categories from guides
+// Extract all unique categories from guides and add required categories
 export const guideCategories = (): string[] => {
-  const categories = guides.map(guide => guide.Category);
-  return [...new Set(categories)];
+  // Get categories from existing guides
+  const categoriesFromGuides = guides.map(guide => guide.Category);
+  
+  // Add required categories that might not be in any guide yet
+  const requiredCategories = [
+    "Corporate Secratory", 
+    "Fractional CFO", 
+    "HR & Payroll", 
+    "Taxation & Compliance"
+  ];
+  
+  // Combine and deduplicate
+  const allCategories = [...categoriesFromGuides, ...requiredCategories];
+  return [...new Set(allCategories)];
 };
 
 // Function to filter guides by category
