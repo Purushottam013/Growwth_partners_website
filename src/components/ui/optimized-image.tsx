@@ -87,7 +87,7 @@ export function OptimizedImage({
           className={`w-full h-full object-cover ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
-          fetchPriority={priority ? "high" : "auto"}
+          fetchpriority={priority ? "high" : "auto"}
           onLoad={handleLoad}
           onError={handleError}
           {...props}
