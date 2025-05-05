@@ -59,12 +59,12 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
         <div className="container mx-auto px-4">
           <div className={`mx-auto ${guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide" ? "w-[90%]" : "max-w-4xl"}`}>
             {/* Hero Section - For all guides with consistent styling */}
-            <section className="bg-gradient-to-b from-white to-[#F2FCE2]/30 py-16 mb-12 rounded-lg relative overflow-hidden">
+            <section className="bg-gradient-to-b from-blue-100 to-white py-16 mb-12 rounded-lg relative overflow-hidden">
               <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
               <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto">
                   <div className="flex flex-col items-center text-center">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">{guide.Title}</h1>
                     {guide.Excerpt && (
                       <p className="text-lg text-gray-600 mb-8">{guide.Excerpt}</p>
                     )}
