@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
@@ -57,44 +58,60 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className={`mx-auto ${guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide" ? "w-[90%]" : "max-w-4xl"}`}>
-            {/* Hero Section - For all guides now, removing the conditional check */}
-            <section className="bg-gray-50 py-16 mb-12 rounded-lg">
-              <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto">
-                  <div className="flex flex-col items-center text-center">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
-                    <p className="text-lg text-gray-600 mb-8">{guide.Excerpt}</p>
-                    <div className="flex items-center space-x-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
-                        {guide.Category}
-                      </span>
-                      {guide.publishedAt && (
-                        <time className="text-gray-500 text-sm">
-                          Published on {new Date(guide.publishedAt).toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric' 
-                          })}
-                        </time>
-                      )}
+            {/* Title - Only showing title without hero section for specific guides */}
+            {(guide.slug === "bookkeeping-practices-guide" || guide.slug === "mra-grant-singapore") && (
+              <div className="mb-8 text-center">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">{guide.Title}</h1>
+                <div className="flex items-center justify-center mt-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                    {guide.Category}
+                  </span>
+                </div>
+              </div>
+            )}
+            
+            {/* Hero Section - Only for other guides */}
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
+              <section className="bg-gray-50 py-16 mb-12 rounded-lg">
+                <div className="container mx-auto px-4">
+                  <div className="max-w-4xl mx-auto">
+                    <div className="flex flex-col items-center text-center">
+                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">{guide.Title}</h1>
+                      <p className="text-lg text-gray-600 mb-8">{guide.Excerpt}</p>
+                      <div className="flex items-center space-x-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+                          {guide.Category}
+                        </span>
+                        {guide.publishedAt && (
+                          <time className="text-gray-500 text-sm">
+                            Published on {new Date(guide.publishedAt).toLocaleDateString('en-US', { 
+                              year: 'numeric', 
+                              month: 'long', 
+                              day: 'numeric' 
+                            })}
+                          </time>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
             
-            {/* Banner Image - For all guides now */}
-            <div className="mb-12 rounded-lg overflow-hidden">
-              <OptimizedImage 
-                src={guide.Image} 
-                alt={guide.Title} 
-                className="w-full h-auto" 
-                fallbackSrc="/placeholder.svg"
-              />
-            </div>
+            {/* Banner Image - Only for non-specific guides */}
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
+              <div className="mb-12 rounded-lg overflow-hidden">
+                <OptimizedImage 
+                  src={guide.Image} 
+                  alt={guide.Title} 
+                  className="w-full h-auto" 
+                  fallbackSrc="/placeholder.svg"
+                />
+              </div>
+            )}
             
             {/* Key Takeaways Section - Custom layout for specific guides */}
-            {guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            {(guide.slug === "bookkeeping-practices-guide" || guide.slug === "mra-grant-singapore") && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="space-y-6">
@@ -117,24 +134,45 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   </div>
                   
                   {/* Second row - 2 items */}
-                  {guide.keyTakeaways.length > 3 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-w-2/3 mx-auto">
-                      {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
-                        <div key={index + 3} className="flex flex-col items-center text-center">
-                          <div className="w-24 h-24 mb-4">
-                            <OptimizedImage 
-                              src={guide.keyTakeawayImages?.[index + 3] || "/placeholder.svg"} 
-                              alt={takeaway.title} 
-                              className="w-full h-full" 
-                              fallbackSrc="/placeholder.svg"
-                            />
-                          </div>
-                          <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
-                          <p className="text-sm text-gray-600">{takeaway.description}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-w-2/3 mx-auto">
+                    {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
+                      <div key={index + 3} className="flex flex-col items-center text-center">
+                        <div className="w-24 h-24 mb-4">
+                          <OptimizedImage 
+                            src={guide.keyTakeawayImages?.[index + 3] || "/placeholder.svg"} 
+                            alt={takeaway.title} 
+                            className="w-full h-full" 
+                            fallbackSrc="/placeholder.svg"
+                          />
                         </div>
-                      ))}
+                        <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
+                        <p className="text-sm text-gray-600">{takeaway.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Key Takeaways Section - Default layout for other guides */}
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+              <div className="mb-16">
+                <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                  {guide.keyTakeaways.map((takeaway, index) => (
+                    <div key={index} className="flex flex-col items-center text-center">
+                      <div className="w-24 h-24 mb-4">
+                        <OptimizedImage 
+                          src={guide.keyTakeawayImages?.[index] || "/placeholder.svg"} 
+                          alt={takeaway.title} 
+                          className="w-full h-full" 
+                          fallbackSrc="/placeholder.svg"
+                        />
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
+                      <p className="text-sm text-gray-600">{takeaway.description}</p>
                     </div>
-                  )}
+                  ))}
                 </div>
               </div>
             )}
