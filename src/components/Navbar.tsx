@@ -130,7 +130,7 @@ export const Navbar = () => {
               role="button"
               aria-label="Go to home page"
             >
-              <img src={companyLogo} alt="Growwth Partners" className="h-9" />
+              <img src={companyLogo} alt="Growwth Partners" className="h-11" />
             </div>
           </div>
 
