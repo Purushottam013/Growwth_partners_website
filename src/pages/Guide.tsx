@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { useGuides } from "@/hooks/useGuides";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { useCountry } from "@/contexts/CountryContext";
 import { 
   Pagination, 
   PaginationContent, 
@@ -20,6 +21,17 @@ const GUIDES_PER_PAGE = 3;
 const GuidePage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState(1);
+  const { country } = useCountry();
+  
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
+  
   const {
     guides,
     categories,

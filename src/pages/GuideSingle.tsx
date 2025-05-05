@@ -1,46 +1,67 @@
 
-import { useParams, Navigate, useNavigate } from "react-router-dom";
-import { getGuideBySlug } from "@/data/guides";
-import GuideDetail from "./GuideDetail";
 import { useEffect } from "react";
+import { useParams, Navigate } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { useGuides } from "@/hooks/useGuides";
+import { useCountry } from "@/contexts/CountryContext";
+import GuideDetail from "./GuideDetail";
 
-const GuideSingle = () => {
-  const navigate = useNavigate();
+const GuideSinglePage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { guides, loading, error } = useGuides();
+  const guide = guides.find((g) => g.slug === slug);
+  const { country } = useCountry();
+
+  // Redirect non-Singapore users to their respective home pages
+  if (country === 'uae') {
+    return <Navigate to="/uae" replace />;
+  }
+  
+  if (country === 'australia') {
+    return <Navigate to="/australia" replace />;
+  }
   
   useEffect(() => {
-    // Scroll to top when the component mounts
     window.scrollTo(0, 0);
   }, []);
-  
-  // If no slug is provided, redirect to guide listing
-  if (!slug) {
-    return <Navigate to="/guide" replace />;
-  }
-  
-  const guide = getGuideBySlug(slug);
-  
-  // If guide does not exist, redirect to guide listing with error
-  if (!guide) {
-    console.error(`Guide not found for slug: ${slug}`);
-    return <Navigate to="/guide" replace />;
-  }
 
   const handleContactClick = () => {
-    // Navigate to contact page and scroll to consultation form
-    navigate("/contact");
-    
-    // Use setTimeout to ensure navigation completes before trying to scroll
-    setTimeout(() => {
-      const consultationForm = document.getElementById("consultation-form");
-      if (consultationForm) {
-        consultationForm.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+    window.location.href = "/contact";
   };
 
-  // Pass the guide data directly to GuideDetail
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="text-center py-20">
+          <h2 className="text-2xl font-bold text-red-500">Error</h2>
+          <p className="mt-4">{error}</p>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!guide) {
+    return (
+      <Layout>
+        <div className="text-center py-20">
+          <h2 className="text-2xl font-bold">Guide Not Found</h2>
+          <p className="mt-4">The guide you're looking for doesn't exist.</p>
+        </div>
+      </Layout>
+    );
+  }
+
   return <GuideDetail guide={guide} onContactClick={handleContactClick} />;
 };
 
-export default GuideSingle;
+export default GuideSinglePage;
