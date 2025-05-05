@@ -1,5 +1,4 @@
-
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Layout } from "@/components/Layout";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Button } from "@/components/ui/button";
@@ -52,12 +51,14 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
     );
   };
 
+  const isSpecialGuide = guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide";
+
   return (
     <Layout>
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className={`mx-auto ${guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide" ? "w-[90%]" : "max-w-4xl"}`}>
+          <div className={`mx-auto ${isSpecialGuide ? "w-[90%]" : "max-w-4xl"}`}>
             {/* Hero Section - For all guides with consistent styling */}
             <section className="bg-gradient-to-b from-blue-100 to-white py-16 mb-12 rounded-lg relative overflow-hidden">
               <div className="absolute inset-0 z-0 opacity-5 bg-grid-pattern"></div>
@@ -88,19 +89,20 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
             </section>
             
             {/* Banner Image - Only for non-specific guides */}
-            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
+            {!isSpecialGuide && guide.Image && (
               <div className="mb-12 rounded-lg overflow-hidden">
                 <OptimizedImage 
                   src={guide.Image} 
                   alt={guide.Title} 
                   className="w-full h-auto" 
                   fallbackSrc="/placeholder.svg"
+                  priority
                 />
               </div>
             )}
             
             {/* Key Takeaways Section - Custom layout for specific guides */}
-            {(guide.slug === "bookkeeping-practices-guide" || guide.slug === "mra-grant-singapore") && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            {isSpecialGuide && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="space-y-6">
@@ -123,28 +125,30 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   </div>
                   
                   {/* Second row - 2 items */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-w-2/3 mx-auto">
-                    {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
-                      <div key={index + 3} className="flex flex-col items-center text-center">
-                        <div className="w-24 h-24 mb-4">
-                          <OptimizedImage 
-                            src={guide.keyTakeawayImages?.[index + 3] || "/placeholder.svg"} 
-                            alt={takeaway.title} 
-                            className="w-full h-full" 
-                            fallbackSrc="/placeholder.svg"
-                          />
+                  {guide.keyTakeaways.length > 3 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-w-2/3 mx-auto">
+                      {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
+                        <div key={index + 3} className="flex flex-col items-center text-center">
+                          <div className="w-24 h-24 mb-4">
+                            <OptimizedImage 
+                              src={guide.keyTakeawayImages?.[index + 3] || "/placeholder.svg"} 
+                              alt={takeaway.title} 
+                              className="w-full h-full" 
+                              fallbackSrc="/placeholder.svg"
+                            />
+                          </div>
+                          <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
+                          <p className="text-sm text-gray-600">{takeaway.description}</p>
                         </div>
-                        <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
-                        <p className="text-sm text-gray-600">{takeaway.description}</p>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
             
             {/* Key Takeaways Section - Default layout for other guides */}
-            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            {!isSpecialGuide && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">

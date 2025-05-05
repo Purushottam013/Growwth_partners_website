@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-// Wait for DOM to be fully loaded before mounting React
+// Immediately invoke the mounting function
 const mountApp = () => {
   const rootElement = document.getElementById("root");
   
@@ -16,12 +16,9 @@ const mountApp = () => {
   try {
     const root = createRoot(rootElement);
     
-    root.render(
-      // Removed StrictMode as it can cause double-rendering and initialization issues
-      <App />
-    );
+    // Render without StrictMode in production to avoid double-renders
+    root.render(<App />);
     
-    console.log("React app successfully mounted");
   } catch (error) {
     console.error("Error rendering React application:", error);
     
@@ -37,10 +34,9 @@ const mountApp = () => {
   }
 };
 
-// Ensure DOM is ready before mounting
+// Execute immediately if DOM is ready, otherwise wait for it
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", mountApp);
 } else {
-  // Small timeout to ensure all scripts are properly loaded
-  setTimeout(mountApp, 50);
+  mountApp();
 }

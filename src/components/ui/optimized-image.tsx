@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
+  priority?: boolean;
 }
 
 export function OptimizedImage({
@@ -11,9 +12,10 @@ export function OptimizedImage({
   alt,
   className,
   fallbackSrc = "",
+  priority = false,
   ...props
 }: OptimizedImageProps) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!priority);
   const [error, setError] = useState(false);
 
   const handleLoad = () => {
@@ -37,10 +39,11 @@ export function OptimizedImage({
         src={imageSrc}
         alt={alt || ""}
         className={`w-full h-full object-cover ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
-        loading="eager" 
+        loading={priority ? "eager" : "lazy"}
         decoding="async"
         onLoad={handleLoad}
         onError={handleError}
+        fetchPriority={priority ? "high" : "auto"}
         {...props}
       />
     </div>
