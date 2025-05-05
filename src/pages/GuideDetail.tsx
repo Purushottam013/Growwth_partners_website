@@ -49,9 +49,9 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className={`mx-auto ${guide.Title === "A Comprehensive Guide to Bookkeeping Practices" ? "w-[90%]" : "max-w-4xl"}`}>
-            {/* Title - Only showing title without hero section for bookkeeping practices guide */}
-            {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" && (
+          <div className={`mx-auto ${guide.slug === "mra-grant-singapore" || guide.slug === "bookkeeping-practices-guide" ? "w-[90%]" : "max-w-4xl"}`}>
+            {/* Title - Only showing title without hero section for specific guides */}
+            {(guide.slug === "bookkeeping-practices-guide" || guide.slug === "mra-grant-singapore") && (
               <div className="mb-8 text-center">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">{guide.Title}</h1>
                 <div className="flex items-center justify-center mt-4">
@@ -63,7 +63,7 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
             )}
             
             {/* Hero Section - Only for other guides */}
-            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && (
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
               <section className="bg-gray-50 py-16 mb-12 rounded-lg">
                 <div className="container mx-auto px-4">
                   <div className="max-w-4xl mx-auto">
@@ -90,8 +90,8 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               </section>
             )}
             
-            {/* Banner Image - Only for non-bookkeeping guides or conditionally display for bookkeeping guide */}
-            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && (
+            {/* Banner Image - Only for non-specific guides */}
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
               <div className="mb-12 rounded-lg overflow-hidden">
                 <OptimizedImage 
                   src={guide.Image} 
@@ -102,8 +102,8 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               </div>
             )}
             
-            {/* Key Takeaways Section - Custom layout for Bookkeeping guide */}
-            {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            {/* Key Takeaways Section - Custom layout for specific guides */}
+            {(guide.slug === "bookkeeping-practices-guide" || guide.slug === "mra-grant-singapore") && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="space-y-6">
@@ -147,7 +147,7 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
             )}
             
             {/* Key Takeaways Section - Default layout for other guides */}
-            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && guide.keyTakeaways && guide.keyTakeaways.length > 0 && (
               <div className="mb-16">
                 <h2 className="text-2xl font-bold mb-8 text-center">Key Takeaways</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -170,7 +170,7 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
             )}
             
             {/* Content and FAQ Sections - Now interspersed as per content structure */}
-            {guide.Title === "A Comprehensive Guide to Bookkeeping Practices" ? (
+            {guide.slug === "bookkeeping-practices-guide" ? (
               <>
                 {/* Introduction Section */}
                 {guide.sections && guide.sections[0] && (
@@ -263,6 +263,118 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
                   </div>
                 )}
               </>
+            ) : guide.slug === "mra-grant-singapore" ? (
+              <>
+                {/* Introduction Section */}
+                {guide.sections && guide.sections[0] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[0].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[0].content }} />
+                  </div>
+                )}
+                
+                {/* What is MRA Grant Section */}
+                {guide.sections && guide.sections[1] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[1].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[1].content }} />
+                  </div>
+                )}
+                
+                {/* Activities Eligible for MRA Grant */}
+                {guide.sections && guide.sections[2] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[2].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[2].content }} />
+                  </div>
+                )}
+                
+                {/* First FAQ Section */}
+                {guide.faqs && guide.faqs.length > 0 && (
+                  <div className="mb-16">
+                    <Accordion type="single" collapsible className="w-full">
+                      {guide.faqs.slice(0, 5).map((faq, index) => (
+                        <AccordionItem key={`faq-${index}`} value={`faq-${index}`} className="border-b">
+                          <AccordionTrigger className="text-left font-medium py-4 flex justify-between">
+                            {faq.question}
+                            <ChevronDown className="h-5 w-5 shrink-0 text-gray-500 transition-transform duration-200" />
+                          </AccordionTrigger>
+                          <AccordionContent className="pb-4 pt-0">
+                            <p className="py-2 text-gray-600">{faq.answer}</p>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </div>
+                )}
+                
+                {/* Process of MRA Grant Application */}
+                {guide.sections && guide.sections[3] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[3].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[3].content }} />
+                  </div>
+                )}
+                
+                {/* Second FAQ Section */}
+                {guide.faqs && guide.faqs.length > 5 && (
+                  <div className="mb-16">
+                    <Accordion type="single" collapsible className="w-full">
+                      {guide.faqs.slice(5, 10).map((faq, index) => (
+                        <AccordionItem key={`faq-${index + 5}`} value={`faq-${index + 5}`} className="border-b">
+                          <AccordionTrigger className="text-left font-medium py-4 flex justify-between">
+                            {faq.question}
+                            <ChevronDown className="h-5 w-5 shrink-0 text-gray-500 transition-transform duration-200" />
+                          </AccordionTrigger>
+                          <AccordionContent className="pb-4 pt-0">
+                            <p className="py-2 text-gray-600">{faq.answer}</p>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </div>
+                )}
+                
+                {/* Common Mistakes Section */}
+                {guide.sections && guide.sections[4] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[4].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[4].content }} />
+                  </div>
+                )}
+                
+                {/* Summary Section */}
+                {guide.sections && guide.sections[5] && (
+                  <div className="mb-12 prose max-w-none">
+                    <h2 className="text-2xl font-bold mb-4">{guide.sections[5].title}</h2>
+                    <div dangerouslySetInnerHTML={{ __html: guide.sections[5].content }} />
+                  </div>
+                )}
+                
+                {/* Book a Free Call Section */}
+                <div className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white mb-12 rounded-lg">
+                  <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto text-center">
+                      <h3 className="text-3xl font-bold mb-6">
+                        Book a free call with our expert to discuss your bookkeeping needs and save time and effort.
+                      </h3>
+                      
+                      <p className="text-xl mb-8">
+                        We are here to help you!
+                      </p>
+                      
+                      <Button 
+                        onClick={onContactClick}
+                        size="lg" 
+                        className="bg-white text-blue-700 hover:bg-gray-100 font-semibold text-lg px-8 py-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+                      >
+                        Book a Free Call
+                        <ChevronRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 {/* Content Sections for other guides */}
@@ -299,8 +411,8 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
               </>
             )}
             
-            {/* CTA Section - except for Bookkeeping guide as it already has one */}
-            {guide.Title !== "A Comprehensive Guide to Bookkeeping Practices" && (
+            {/* CTA Section - except for specific guides as they already have one */}
+            {guide.slug !== "bookkeeping-practices-guide" && guide.slug !== "mra-grant-singapore" && (
               <div className="bg-gray-50 p-8 rounded-lg text-center">
                 <h2 className="text-2xl font-bold mb-4">Need Help With Your Business?</h2>
                 <p className="text-gray-600 mb-6">
