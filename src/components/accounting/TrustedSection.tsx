@@ -66,15 +66,15 @@ export const TrustedSection = () => {
               }
             }
           }}>
-              {[...logos, ...logos].map((logo, index) => <motion.div key={index} className="flex-shrink-0 mx-8">
-                  <OptimizedImage 
+              {[...logos, ...logos].map((logo, index) => (
+                <motion.div key={index} className="flex-shrink-0 mx-8">
+                  <img 
                     src={logo} 
                     alt="Partner logo" 
                     className="h-20 w-auto object-contain transition-all duration-300 hover:scale-110" 
-                    width={120}
-                    height={80}
                   />
-                </motion.div>)}
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
