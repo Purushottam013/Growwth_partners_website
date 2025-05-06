@@ -23,9 +23,9 @@ export const ComplianceSection = () => {
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <div className="flex items-center justify-center w-full max-w-md">
-              {/* Updated to use the new tax calculation image */}
-              <div className="p-3 bg-white rounded-2xl shadow-md overflow-hidden">
-                <div className="w-full h-[320px] rounded-xl overflow-hidden">
+              {/* Updated to make the image height match the content height */}
+              <div className="p-3 bg-white rounded-2xl shadow-md overflow-hidden h-full">
+                <div className="w-full h-full min-h-[420px] rounded-xl overflow-hidden">
                   <img 
                     src={taxComplianceImage} 
                     alt="Tax calculation with calculator, coins, and wooden tax blocks"
@@ -110,4 +110,3 @@ export const ComplianceSection = () => {
     </section>
   );
 };
-
