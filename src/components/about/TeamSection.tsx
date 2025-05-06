@@ -11,7 +11,7 @@ const teamMembers = [{
   name: "Preeti",
   role: "Head of Finance",
   image: "/lovable-uploads/f8c7677a-09c4-45c4-bda6-dc581b59d47f.png",
-  description: "A Chartered Accountant with over 20 years of experience in finance and tax. Formerly the Chief Editor at ClearTax, she has a deep understanding of economic and tax policy. She has also worked with PwC and American Express, bringing extensive expertise to Growth Partners."
+  description: "A Chartered Accountant with over 20 years of experience in finance and tax. Formerly the Chief Editor at ClearTax, she has a deep understanding of economic and tax policy. She has also worked with PwC and American Express, bringing extensive expertise to Growwth Partners."
 }, {
   name: "Hemavathy",
   role: "Financial Services Expert",
