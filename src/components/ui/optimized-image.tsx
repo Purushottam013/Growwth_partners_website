@@ -174,7 +174,7 @@ export const OptimizedImage = memo(({
           className={`w-full h-full object-cover ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
-          fetchPriority={priority ? "high" : "auto"}
+          // Remove fetchPriority which was causing the warning
           onLoad={handleLoad}
           onError={handleError}
           {...dimensions}

@@ -3,7 +3,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BookText, UserCheck, Percent, LineChart, BarChart3 } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import accountingChartLaptopImage from "/public/lovable-uploads/a13f7da4-7bc9-4766-a72f-647f69d4a085.png";
+
+// Import image directly without using /public prefix in the path
+import accountingChartLaptopImage from "/lovable-uploads/a13f7da4-7bc9-4766-a72f-647f69d4a085.png";
 
 export const ServicesSection = () => {
   const services = [{
@@ -90,6 +92,7 @@ export const ServicesSection = () => {
                 alt="Laptop showing financial charts with coffee cup on wooden table" 
                 className="w-full h-auto rounded-2xl shadow-xl"
                 fallbackSrc="/placeholder.svg"
+                priority={true}
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
