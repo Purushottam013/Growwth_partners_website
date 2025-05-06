@@ -57,11 +57,10 @@ export const HowWeWorkSection = () => {
             <div className="absolute -top-6 -left-6 w-48 h-48 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
               <div className="bg-white p-2 rounded-2xl shadow-2xl relative">
-                <OptimizedImage 
+                <img 
                   src={taxFormImage} 
                   alt="Tax form with calculator and sticky note saying 'Need help?'" 
                   className="w-full h-[400px] rounded-xl object-cover"
-                  fallbackSrc="/placeholder.svg"
                 />
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-orange/10 rounded-full"></div>
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-brand-blue/10 rounded-full"></div>
