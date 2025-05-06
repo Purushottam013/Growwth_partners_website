@@ -2,15 +2,10 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
-import { PartnersSection } from "@/components/home/PartnersSection";
 import { AnimatedElement } from "@/components/ui/animated-element";
+import { TrustedSection } from "@/components/accounting/TrustedSection";
 
 // More effective code splitting with smaller chunks
-const TrustedPartnerSection = lazy(() => 
-  import("@/components/home/TrustedPartnerSection")
-    .then(mod => ({ default: mod.TrustedPartnerSection }))
-);
-
 const ServicesSection = lazy(() => 
   import("@/components/home/ServicesSection")
     .then(mod => ({ default: mod.ServicesSection }))
@@ -46,7 +41,6 @@ const HomePage = () => {
       const idleCallback = window.requestIdleCallback(() => {
         // Silently preload the next critical components
         import("@/components/home/ServicesSection");
-        import("@/components/home/TrustedPartnerSection");
       }, { timeout: 2000 });
       
       return () => window.cancelIdleCallback(idleCallback);
@@ -62,13 +56,9 @@ const HomePage = () => {
       >
         {/* Critical path rendering - load immediately */}
         <HeroSection />
-        <PartnersSection />
+        <TrustedSection />
         
         {/* Lazily load non-critical sections with improved suspense boundary */}
-        <Suspense fallback={<SectionLoader />}>
-          <TrustedPartnerSection />
-        </Suspense>
-        
         <Suspense fallback={<SectionLoader />}>
           <ServicesSection />
         </Suspense>
