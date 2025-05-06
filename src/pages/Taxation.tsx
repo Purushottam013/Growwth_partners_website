@@ -5,7 +5,7 @@ import { HeroSection } from "@/components/taxation/HeroSection";
 import { ComplianceSection } from "@/components/taxation/ComplianceSection";
 import { ServiceStagesSection } from "@/components/taxation/ServiceStagesSection";
 import { ProcessSection } from "@/components/taxation/ProcessSection";
-import { TrustedSection } from "@/components/bookkeeping/TrustedSection";
+import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { CtaSection } from "@/components/accounting/CtaSection";
 import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 import { FaqSection } from "@/components/taxation/FaqSection";
