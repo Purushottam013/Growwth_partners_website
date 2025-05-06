@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, memo, useId } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getWebPUrl, generateSrcSet, getResponsiveSizes } from "@/utils/imageOptimization";
@@ -15,7 +14,7 @@ export const OptimizedImage = memo(({
   src,
   alt,
   className,
-  fallbackSrc = "",
+  fallbackSrc = "/placeholder.svg",
   priority = false,
   blurDataUrl,
   lazyBoundary = "200px",
@@ -101,16 +100,19 @@ export const OptimizedImage = memo(({
   const handleError = () => {
     setIsLoading(false);
     setError(true);
+    
+    // Always use fallback if provided, otherwise keep broken image for accessibility
     if (fallbackSrc) {
-      setImgSrc(getWebPUrl(fallbackSrc));
-      setImgSrcSet(generateSrcSet(fallbackSrc));
+      setImgSrc(fallbackSrc);
+      setImgSrcSet("");
     }
+    
     console.warn(`Failed to load image: ${src}`);
   };
   
   // Determine which source to use
-  const imageSrc = error && fallbackSrc ? getWebPUrl(fallbackSrc) : imgSrc;
-  const imageSrcSet = error && fallbackSrc ? generateSrcSet(fallbackSrc) : imgSrcSet;
+  const imageSrc = error && fallbackSrc ? fallbackSrc : imgSrc;
+  const imageSrcSet = error && fallbackSrc ? "" : imgSrcSet;
   
   // Generate correct image dimensions for width and height if provided
   const dimensions = {

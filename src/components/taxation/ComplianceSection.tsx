@@ -25,10 +25,12 @@ export const ComplianceSection = () => {
               {/* Added white frame with border radius */}
               <div className="p-3 bg-white rounded-2xl shadow-md">
                 <OptimizedImage 
-                  src="/lovable-uploads/9e1ac171-5c61-4717-9652-6498cdb9e30e.png" 
+                  src="/placeholder.svg" 
                   alt="Tax Compliance Form" 
                   className="w-full h-auto rounded-xl relative z-10" 
                   fallbackSrc="/placeholder.svg"
+                  width={500}
+                  height={375}
                 />
               </div>
             </div>

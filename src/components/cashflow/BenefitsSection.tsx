@@ -1,27 +1,22 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
-const icons = [
-  "/lovable-uploads/fd525582-932f-4a45-b8c5-521545b6f2e9.png", 
-  "/lovable-uploads/d942cd39-4dda-43fe-9313-26b982141568.png", 
-  "/lovable-uploads/6ffd55c9-4273-4af1-b6d8-03768d5ffc79.png", 
-];
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const BenefitsSection = () => {
   const benefits = [
     {
-      icon: icons[0],
+      icon: "/placeholder.svg",
       title: "Startups",
       description: "Secure funding with compelling financial projections and business plans."
     },
     {
-      icon: icons[1],
+      icon: "/placeholder.svg",
       title: "Small and Medium Businesses",
       description: "Optimise operations and budgeting with precise financial modeling."
     },
     {
-      icon: icons[2],
+      icon: "/placeholder.svg",
       title: "Corporate Entities",
       description: "Navigate mergers, acquisitions, and expansions with confidence through detailed financial analysis."
     }
@@ -54,7 +49,12 @@ export const BenefitsSection = () => {
               className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center"
             >
               <div className="mb-6 p-0 inline-block">
-                <img src={benefit.icon} alt={`${benefit.title} icon`} className="h-24 w-24 object-contain" />
+                <OptimizedImage 
+                  src={benefit.icon} 
+                  alt={`${benefit.title} icon`} 
+                  className="h-24 w-24 object-contain" 
+                  fallbackSrc="/placeholder.svg"
+                />
               </div>
               <h4 className="text-xl font-bold mb-3">{benefit.title}</h4>
               <p className="text-gray-700">{benefit.description}</p>
@@ -65,4 +65,3 @@ export const BenefitsSection = () => {
     </section>
   );
 };
-
