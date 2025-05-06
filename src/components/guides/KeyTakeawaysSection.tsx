@@ -1,5 +1,4 @@
 
-import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Guide } from "@/data/guides";
 
 interface KeyTakeawaysSectionProps {
@@ -22,11 +21,10 @@ export const KeyTakeawaysSection = ({ guide, isSpecialGuide }: KeyTakeawaysSecti
             {guide.keyTakeaways.slice(0, 3).map((takeaway, index) => (
               <div key={index} className="flex flex-col items-center text-center">
                 <div className="w-24 h-24 mb-4">
-                  <OptimizedImage
+                  <img
                     src={guide.keyTakeawayImages?.[index] || "/placeholder.svg"}
                     alt={takeaway.title}
                     className="w-full h-full"
-                    fallbackSrc="/placeholder.svg"
                   />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
@@ -41,11 +39,10 @@ export const KeyTakeawaysSection = ({ guide, isSpecialGuide }: KeyTakeawaysSecti
               {guide.keyTakeaways.slice(3, 5).map((takeaway, index) => (
                 <div key={index + 3} className="flex flex-col items-center text-center">
                   <div className="w-24 h-24 mb-4">
-                    <OptimizedImage
+                    <img
                       src={guide.keyTakeawayImages?.[index + 3] || "/placeholder.svg"}
                       alt={takeaway.title}
                       className="w-full h-full"
-                      fallbackSrc="/placeholder.svg"
                     />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
@@ -60,11 +57,10 @@ export const KeyTakeawaysSection = ({ guide, isSpecialGuide }: KeyTakeawaysSecti
           {guide.keyTakeaways.map((takeaway, index) => (
             <div key={index} className="flex flex-col items-center text-center">
               <div className="w-24 h-24 mb-4">
-                <OptimizedImage
+                <img
                   src={guide.keyTakeawayImages?.[index] || "/placeholder.svg"}
                   alt={takeaway.title}
                   className="w-full h-full"
-                  fallbackSrc="/placeholder.svg"
                 />
               </div>
               <h3 className="text-lg font-semibold mb-2">{takeaway.title}</h3>
