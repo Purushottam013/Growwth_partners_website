@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BookText, UserCheck, Percent, LineChart, BarChart3 } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import accountingServiceImage from "/lovable-uploads/15b8b892-3666-4632-833d-5ecceccf580c.png";
+import accountingChartLaptopImage from "/lovable-uploads/a13f7da4-7bc9-4766-a72f-647f69d4a085.png";
 
 export const ServicesSection = () => {
   const services = [{
@@ -86,8 +86,8 @@ export const ServicesSection = () => {
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
               <OptimizedImage 
-                src={accountingServiceImage} 
-                alt="Accounting Services" 
+                src={accountingChartLaptopImage} 
+                alt="Laptop showing financial charts with coffee cup on wooden table" 
                 className="w-full h-auto rounded-2xl shadow-xl"
                 fallbackSrc="/placeholder.svg"
               />
