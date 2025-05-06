@@ -1,5 +1,6 @@
 
 import { motion } from "framer-motion";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const logos = ["/lovable-uploads/282e3516-793c-4c30-bc6c-e7eb739c38c8.png",
 // Dataleap
@@ -64,7 +65,13 @@ export const TrustedSection = () => {
               }
             }}>
                 {[...logos, ...logos].map((logo, index) => <motion.div key={index} className="flex-shrink-0 mx-8">
-                    <img src={logo} alt="Partner logo" className="h-20 object-contain transition-all duration-300 hover:scale-110" />
+                    <OptimizedImage 
+                      src={logo} 
+                      alt="Partner logo" 
+                      className="h-20 w-auto object-contain transition-all duration-300 hover:scale-110" 
+                      width={120}
+                      height={80}
+                    />
                   </motion.div>)}
               </motion.div>
             </div>

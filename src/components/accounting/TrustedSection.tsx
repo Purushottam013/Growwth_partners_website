@@ -1,6 +1,8 @@
+
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { PartnersSection } from "@/components/home/PartnersSection";
+
 export const TrustedSection = () => {
   return <section className="bg-gray-50 py-[34px]">
       <div className="container-custom">

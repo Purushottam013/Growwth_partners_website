@@ -101,6 +101,7 @@ export const PartnersSection = () => {
                       loading="eager"
                       width={112} 
                       height={80}
+                      priority={index < 5}
                     />
                   </div>
                 </div>)}
