@@ -28,6 +28,7 @@ export const GuideSection = ({ section, className = "mb-12" }: GuideSectionProps
             fallbackSrc="/placeholder.svg"
             width={800}
             height={450}
+            lazyBoundary="200px"
           />
         </div>
       )}

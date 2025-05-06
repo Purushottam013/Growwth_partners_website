@@ -22,6 +22,7 @@ export const GuideBannerImage = ({ guide, isSpecialGuide }: GuideBannerImageProp
         priority
         width={1200}
         height={630}
+        lazyBoundary="300px"
       />
     </div>
   );

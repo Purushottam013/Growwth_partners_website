@@ -31,6 +31,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ title, excerpt, image,
           className="w-full h-full object-cover"
           width={400}
           height={200}
+          lazyBoundary="300px"
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">

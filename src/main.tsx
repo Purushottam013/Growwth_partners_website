@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-// Improved performance mounting
+// Improved performance mounting with better error handling
 const mountApp = () => {
   const rootElement = document.getElementById("root");
   
@@ -24,7 +24,7 @@ const mountApp = () => {
       </React.StrictMode>
     );
     
-    // Web Vitals reporting
+    // Web Vitals reporting - improved implementation
     if ('PerformanceObserver' in window) {
       // Create a performance observer for CLS
       const clsObserver = new PerformanceObserver((entryList) => {
@@ -48,17 +48,22 @@ const mountApp = () => {
       // Start observing layout shifts
       clsObserver.observe({ type: 'layout-shift', buffered: true });
       
-      // LCP observer
+      // LCP observer with improved data handling
       const lcpObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
         const lastEntry = entries[entries.length - 1];
         // Report LCP to console
         console.log('LCP:', lastEntry.startTime);
+        
+        // Send to analytics if needed
+        if (lastEntry.startTime > 2500) {
+          console.warn('Poor LCP detected:', lastEntry.startTime);
+        }
       });
       
       lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
       
-      // FID observer
+      // FID observer with better type assertion
       const fidObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
         entries.forEach(entry => {
@@ -67,11 +72,40 @@ const mountApp = () => {
           if (fidEntry.processingStart !== undefined) {
             const fid = fidEntry.processingStart - fidEntry.startTime;
             console.log('FID:', fid);
+            
+            // Report poor FID
+            if (fid > 100) {
+              console.warn('Poor FID detected:', fid);
+            }
           }
         });
       });
       
       fidObserver.observe({ type: 'first-input', buffered: true });
+      
+      // Add INP measurement
+      try {
+        const inpObserver = new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          entries.forEach(entry => {
+            // Type assertion for INP specific properties
+            const inpEntry = entry as PerformanceEntry & { 
+              interactionId?: number, 
+              target?: Node,
+              duration?: number 
+            };
+            
+            if (inpEntry.duration !== undefined && inpEntry.duration > 200) {
+              console.warn('High interaction latency detected:', inpEntry.duration);
+            }
+          });
+        });
+        
+        inpObserver.observe({ type: 'event', buffered: true, durationThreshold: 16 });
+      } catch (e) {
+        // INP measurement might not be supported in all browsers
+        console.info('INP measurement not supported');
+      }
     }
   } catch (error) {
     console.error("Error rendering React application:", error);
@@ -88,21 +122,32 @@ const mountApp = () => {
   }
 };
 
-// Optimize hydration by waiting for DOMContentLoaded
+// Use more performant approach for initial load
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    // Use requestIdleCallback for non-critical rendering
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(mountApp, { timeout: 2000 });
-    } else {
-      setTimeout(mountApp, 1);
-    }
+    // Prioritize critical path rendering
+    setTimeout(mountApp, 0);
   });
 } else {
-  // DOM already loaded, mount as soon as possible
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(mountApp, { timeout: 2000 });
-  } else {
-    setTimeout(mountApp, 1);
-  }
+  // DOM already loaded, mount immediately
+  setTimeout(mountApp, 0);
+}
+
+// Add resource hint optimization
+if (window.requestIdleCallback) {
+  window.requestIdleCallback(() => {
+    // Preconnect to likely required domains during idle time
+    const domains = [
+      'https://fonts.gstatic.com',
+      'https://fonts.googleapis.com'
+    ];
+    
+    domains.forEach(domain => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    });
+  }, { timeout: 5000 });
 }

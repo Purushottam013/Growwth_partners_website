@@ -9,23 +9,23 @@
     <meta name="author" content="Growwth Partners" />
 
     <!-- DNS Prefetch and Preconnect for critical resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <!-- Preload critical assets -->
     <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/src/index.css" as="style" />
     
     <!-- Preload critical fonts - reduce CLS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" />
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" as="style" />
     
-    <!-- Preload critical CSS -->
-    <link rel="preload" href="/src/index.css" as="style" />
+    <!-- Defer non-critical CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     
-    <!-- Load fonts with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous" media="print" onload="this.media='all'" />
-    
-    <!-- Open Graph tags -->
+    <!-- Optimized Open Graph tags -->
     <meta property="og:title" content="Growwth Partners - Financial & Accounting Services" />
     <meta property="og:description" content="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently." />
     <meta property="og:type" content="website" />
@@ -52,11 +52,38 @@
       body {
         font-family: 'System Font', sans-serif;
       }
+      
+      /* Critical CSS for initial render */
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #root {
+        height: 100%;
+      }
     </style>
+    
+    <!-- Preload main script -->
+    <link rel="modulepreload" href="/src/main.tsx" />
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Initial loading state to reduce CLS -->
+      <div style="display: flex; height: 100vh; width: 100%; justify-content: center; align-items: center; background-color: #f9fafb;">
+        <div style="text-align: center;">
+          <div style="width: 50px; height: 50px; border: 5px solid #e2e8f0; border-top-color: #3b82f6; border-radius: 50%; margin: 0 auto 1rem; animation: spin 1s linear infinite;"></div>
+          <p style="font-family: system-ui, -apple-system, sans-serif; color: #4b5563;">Loading Growwth Partners...</p>
+        </div>
+      </div>
+      <style>
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
@@ -68,5 +95,22 @@
         <p>Please enable JavaScript to view this website.</p>
       </div>
     </noscript>
+    
+    <!-- Preload key routes -->
+    <script type="module">
+      // Prefetch important routes when idle
+      document.addEventListener('DOMContentLoaded', () => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => {
+            ['/about', '/contact', '/services'].forEach(route => {
+              const link = document.createElement('link');
+              link.rel = 'prefetch';
+              link.href = route;
+              document.head.appendChild(link);
+            });
+          }, { timeout: 5000 });
+        }
+      });
+    </script>
   </body>
 </html>

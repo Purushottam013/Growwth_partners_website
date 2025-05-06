@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect, useRef, memo } from "react";
+import React, { useState, useEffect, useRef, memo, useId } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
   priority?: boolean;
   blurDataUrl?: string;
+  lazyBoundary?: string;
 }
 
 export const OptimizedImage = memo(({
@@ -15,6 +16,7 @@ export const OptimizedImage = memo(({
   fallbackSrc = "",
   priority = false,
   blurDataUrl,
+  lazyBoundary = "200px",
   ...props
 }: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(!priority);
@@ -23,6 +25,7 @@ export const OptimizedImage = memo(({
   const [imgSrc, setImgSrc] = useState(priority ? src : undefined);
   const elementRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const uniqueId = useId();
   
   // Set up intersection observer only once
   useEffect(() => {
@@ -37,15 +40,23 @@ export const OptimizedImage = memo(({
       observerRef.current.disconnect();
     }
     
-    // Create new observer
+    // Create new observer with better parameters
     observerRef.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setIsIntersecting(true);
         setImgSrc(src);
+        // Mark the image for preloading after detection
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src || '';
+        link.id = `preload-${uniqueId}`;
+        document.head.appendChild(link);
+        
         observerRef.current?.disconnect();
       }
     }, {
-      rootMargin: '200px', // Increased root margin for earlier loading
+      rootMargin: lazyBoundary, // Configurable root margin
       threshold: 0.01 // Lower threshold for quicker loading
     });
     
@@ -54,12 +65,16 @@ export const OptimizedImage = memo(({
       observerRef.current.observe(elementRef.current);
     }
     
-    // Clean up observer on unmount
+    // Clean up observer and preload link on unmount
     return () => {
       observerRef.current?.disconnect();
       observerRef.current = null;
+      const preloadLink = document.getElementById(`preload-${uniqueId}`);
+      if (preloadLink) {
+        document.head.removeChild(preloadLink);
+      }
     };
-  }, [src, priority]);
+  }, [src, priority, lazyBoundary, uniqueId]);
   
   // Handle image load complete
   const handleLoad = () => {
@@ -94,6 +109,7 @@ export const OptimizedImage = memo(({
           ? `${dimensions.width} / ${dimensions.height}` 
           : undefined
       }}
+      aria-label={alt || "Image"}
     >
       {isLoading && (
         <Skeleton className="absolute inset-0 w-full h-full rounded-[inherit] bg-gray-200 animate-pulse" />
