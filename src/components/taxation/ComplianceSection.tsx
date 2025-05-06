@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { FileTextIcon } from "lucide-react";
-import taxationImage from "/lovable-uploads/e34ebe43-bcd2-45d9-85b8-1bd0f1d82774.png";
+import taxComplianceImage from "/lovable-uploads/97c44c1b-e3e6-4290-b819-bd3a38a1de07.png";
 
 export const ComplianceSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -23,12 +23,12 @@ export const ComplianceSection = () => {
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <div className="flex items-center justify-center w-full max-w-md">
-              {/* Updated to use actual image with similar styling to Accounting page */}
+              {/* Updated to use the new tax calculation image */}
               <div className="p-3 bg-white rounded-2xl shadow-md overflow-hidden">
                 <div className="w-full h-[320px] rounded-xl overflow-hidden">
                   <img 
-                    src={taxationImage} 
-                    alt="Tax forms and documents with Tax Time note"
+                    src={taxComplianceImage} 
+                    alt="Tax calculation with calculator, coins, and wooden tax blocks"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -110,3 +110,4 @@ export const ComplianceSection = () => {
     </section>
   );
 };
+
