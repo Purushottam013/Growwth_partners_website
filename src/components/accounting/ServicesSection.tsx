@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BookText, UserCheck, Percent, LineChart, BarChart3 } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import accountingChartLaptopImage from "/lovable-uploads/a13f7da4-7bc9-4766-a72f-647f69d4a085.png";
+import accountingChartLaptopImage from "/public/lovable-uploads/a13f7da4-7bc9-4766-a72f-647f69d4a085.png";
 
 export const ServicesSection = () => {
   const services = [{
