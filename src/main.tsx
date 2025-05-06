@@ -101,7 +101,8 @@ const mountApp = () => {
           });
         });
         
-        inpObserver.observe({ type: 'event', buffered: true, durationThreshold: 16 });
+        // Fixed: Remove durationThreshold which is not supported in PerformanceObserverInit
+        inpObserver.observe({ type: 'event', buffered: true });
       } catch (e) {
         // INP measurement might not be supported in all browsers
         console.info('INP measurement not supported');
