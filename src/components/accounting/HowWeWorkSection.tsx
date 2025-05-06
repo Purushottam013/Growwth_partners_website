@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Users, BookOpen, FileCheck, Laptop } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import calculationImage from "/lovable-uploads/221e982a-6266-4524-962a-3f5d957224fb.png";
+import taxFormImage from "/lovable-uploads/83c78bd3-a8ef-4a28-9bb8-52bc41d9541a.png";
 
 export const HowWeWorkSection = () => {
   const workItems = [
@@ -58,8 +58,8 @@ export const HowWeWorkSection = () => {
             <div className="relative z-10">
               <div className="bg-white p-2 rounded-2xl shadow-2xl relative">
                 <OptimizedImage 
-                  src={calculationImage} 
-                  alt="Team Collaboration" 
+                  src={taxFormImage} 
+                  alt="Tax form with calculator and sticky note saying 'Need help?'" 
                   className="w-full h-[400px] rounded-xl object-cover"
                   fallbackSrc="/placeholder.svg"
                 />
