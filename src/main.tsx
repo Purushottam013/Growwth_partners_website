@@ -30,13 +30,17 @@ const mountApp = () => {
       const clsObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
         entries.forEach(entry => {
-          // Report CLS values to console for debugging
-          if (entry.hadRecentInput) return;
+          // Type assertion for layout-shift specific properties
+          const layoutShiftEntry = entry as PerformanceEntry & { hadRecentInput?: boolean, value?: number };
           
-          // @ts-ignore - layout-shift specific properties
-          const cls = entry.value;
-          if (cls > 0.1) {
-            console.warn('High CLS detected:', cls);
+          // Check if this is a valid layout shift entry with the properties we need
+          if (layoutShiftEntry.hadRecentInput !== undefined && layoutShiftEntry.value !== undefined) {
+            if (layoutShiftEntry.hadRecentInput) return;
+            
+            const cls = layoutShiftEntry.value;
+            if (cls > 0.1) {
+              console.warn('High CLS detected:', cls);
+            }
           }
         });
       });
@@ -58,9 +62,12 @@ const mountApp = () => {
       const fidObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
         entries.forEach(entry => {
-          // @ts-ignore - first-input specific properties
-          const fid = entry.processingStart - entry.startTime;
-          console.log('FID:', fid);
+          const fidEntry = entry as PerformanceEntry & { processingStart?: number, startTime: number };
+          // Check if we have the needed properties
+          if (fidEntry.processingStart !== undefined) {
+            const fid = fidEntry.processingStart - fidEntry.startTime;
+            console.log('FID:', fid);
+          }
         });
       });
       
