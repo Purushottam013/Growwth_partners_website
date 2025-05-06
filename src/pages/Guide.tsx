@@ -67,11 +67,10 @@ const GuidePage = () => {
   return <Layout>
       <section className="relative w-full flex justify-center">
         <div className="w-4/6 h-[250px] md:h-[300px] lg:h-[350px]">
-          <OptimizedImage 
+          <img 
             src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" 
             alt="Guides" 
-            className="w-full h-full py-8" 
-            fallbackSrc="/placeholder.svg"
+            className="w-full h-full py-8 object-contain" 
           />
         </div>
       </section>
@@ -132,11 +131,10 @@ const GuidePage = () => {
                     <Link to={`/guide/${guide.slug}`} key={guide.id}>
                       <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
                         <div className="aspect-video overflow-hidden bg-gray-100">
-                          <OptimizedImage 
+                          <img 
                             src={guide.Image} 
                             alt={guide.Title} 
                             className="w-full h-full object-cover" 
-                            fallbackSrc="/placeholder.svg"
                           />
                         </div>
                         <CardHeader>
