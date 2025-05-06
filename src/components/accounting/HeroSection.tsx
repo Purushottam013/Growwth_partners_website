@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, BadgePercent } from "lucide-react";
-import accountingHeroImage from "/lovable-uploads/a7cbeedf-132f-41c2-bd4f-159c8e1875dc.png";
+import taxFormImage from "/lovable-uploads/7f953e6f-6847-4912-a00c-46fb7bc53f01.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -23,7 +23,7 @@ export const HeroSection = () => {
             className="order-2 lg:order-1"
           >
             <h1 className="heading-lg mb-5 text-brand-dark leading-tight">
-              Most Trusted <span className="text-brand-orange relative">5-Star</span> Accounting Services In Singapore
+              Your Premier <span className="text-brand-orange relative">Accounting Services</span> In Singapore
             </h1>
             <p className="text-lg text-gray-700 mb-6">
               Are you tired of navigating the complexities of accounting and financial management for your business?
@@ -51,8 +51,8 @@ export const HeroSection = () => {
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
               <img 
-                src={accountingHeroImage} 
-                alt="Accounting and Tax Services" 
+                src={taxFormImage} 
+                alt="Tax form with calculator and sticky note saying 'Need help?'" 
                 className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
                 style={{ maxHeight: "360px", objectPosition: "center" }}
               />
