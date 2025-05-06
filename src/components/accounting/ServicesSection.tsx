@@ -87,13 +87,11 @@ export const ServicesSection = () => {
         }} className="order-1 lg:order-2 relative">
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
-              <OptimizedImage 
-                src={accountingChartLaptopImage} 
-                alt="Laptop showing financial charts with coffee cup on wooden table" 
-                className="w-full h-auto rounded-2xl shadow-xl"
-                fallbackSrc="/placeholder.svg"
-                priority={true}
-              />
+              <img 
+                  src={accountingChartLaptopImage} 
+                  alt="Person using pink calculator with financial documents and receipts" 
+                  className="w-full h-[400px] rounded-xl object-cover"
+                />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
           </motion.div>
