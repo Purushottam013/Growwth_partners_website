@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, TrendingUp, Clock, DollarSign } from "lucide-react";
-import { OptimizedImage } from "@/components/ui/optimized-image";
 import cashflowTeamImage from "/lovable-uploads/92bcd92f-7d31-445b-a8c2-cb1e3c5bdd97.png";
 
 export const HeroSection = () => {

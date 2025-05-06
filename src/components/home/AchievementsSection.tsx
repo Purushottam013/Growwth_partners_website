@@ -1,23 +1,21 @@
 
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { OptimizedImage } from "@/components/ui/optimized-image";
 import xeroPartnerLogo from "/lovable-uploads/3bf79a75-14fd-4e61-beb3-e2350895f138.png";
 import ryzupLogo from "/lovable-uploads/61d38fe8-d265-4d62-b0ab-1a5905dec2e9.png";
 import fractionalCFOAwardLogo from "/lovable-uploads/44b1e9d6-83f7-4167-b88a-7d470a5990e3.png";
 
 export const AchievementsSection = () => {
   const achievements = [{
-    icon: <OptimizedImage src={fractionalCFOAwardLogo} alt="Best Fractional CFO Award" className="h-16 w-16 object-contain" />,
+    icon: <img src={fractionalCFOAwardLogo} alt="Best Fractional CFO Award" className="h-16 w-16 object-contain" />,
     title: "Best Fractional CFO Award",
     description: 'The Golden Globe Tigers Awards for Excellence in Banking, Financial Services and Insurance (BFSI) held on 8th May, 2024 at Pullman Kuala Lumpur City Hotel & Residences, Malaysia declared Growwth Partners as the "Best Fractional CFO Services" provider in the APAC region.'
   }, {
-    icon: <OptimizedImage src={xeroPartnerLogo} alt="Xero Silver Champion Partner" className="h-16" />,
+    icon: <img src={xeroPartnerLogo} alt="Xero Silver Champion Partner" className="h-16" />,
     title: "Xero Certified Partner",
     description: "Growwth Partners is a Xero Silver champion partner after working on 500+ Xero accounts of clients and helping them streamline their books on the software and helping them scale financially."
   }, {
-    icon: <OptimizedImage src={ryzupLogo} alt="Ryzup.ai Launch" className="h-16 object-contain" />,
+    icon: <img src={ryzupLogo} alt="Ryzup.ai Launch" className="h-16 object-contain" />,
     title: "Launch of Ryzup.ai",
     description: "We launched our cutting-edge AI powered strategic finance and growth tool for start-ups, SMEs, growing companies by providing 24/7 access to an experienced AI CFO and growth catalyst at a fraction of cost."
   }];
