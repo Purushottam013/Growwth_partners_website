@@ -1,5 +1,6 @@
 
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { AnimatedElement } from "@/components/ui/animated-element";
 
 // Extended Section type with optional image property
 export interface Section {
@@ -15,7 +16,12 @@ interface GuideSectionProps {
 
 export const GuideSection = ({ section, className = "mb-12" }: GuideSectionProps) => {
   return (
-    <div className={`prose max-w-none ${className}`}>
+    <AnimatedElement 
+      animation="slide-up"
+      className={`prose max-w-none ${className}`} 
+      delay={0.2}
+      duration={0.5}
+    >
       <h2 className="text-2xl font-bold mb-4">{section.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: section.content }} />
       
@@ -29,9 +35,10 @@ export const GuideSection = ({ section, className = "mb-12" }: GuideSectionProps
             width={800}
             height={450}
             lazyBoundary="200px"
+            sizes="(max-width: 640px) 95vw, (max-width: 1024px) 81vw, 648px"
           />
         </div>
       )}
-    </div>
+    </AnimatedElement>
   );
 };

@@ -8,22 +8,62 @@
     <meta name="description" content="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently." />
     <meta name="author" content="Growwth Partners" />
 
-    <!-- DNS Prefetch and Preconnect for critical resources -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Preload critical assets -->
+    <!-- Critical CSS inlined for faster FCP -->
+    <style>
+      /* Critical CSS for initial render */
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      #root {
+        height: 100%;
+      }
+      /* Initial loading state with minimized CLS */
+      .initial-loader {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9fafb;
+        text-align: center;
+      }
+      .initial-loader__spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #e2e8f0;
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        animation: spinner 1s linear infinite;
+      }
+      @keyframes spinner {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+
+    <!-- Preload critical assets with optimized order -->
     <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" fetchpriority="high" />
     <link rel="preload" href="/src/index.css" as="style" />
     
-    <!-- Preload critical fonts - reduce CLS -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" as="style" />
+    <!-- Optimized font loading strategy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Defer non-critical CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <!-- Font display optimization - Critical fonts only -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+    
+    <!-- Defer non-critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Montserrat:wght@400;500;600&family=Nunito:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+    
+    <!-- Favicon with preload -->
+    <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" type="image/png" />
+    <link rel="icon" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" type="image/png" />
     
     <!-- Optimized Open Graph tags -->
     <meta property="og:title" content="Growwth Partners - Financial & Accounting Services" />
@@ -35,53 +75,19 @@
     <meta name="twitter:site" content="@growwthpartners" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <!-- Favicon with preload -->
-    <link rel="preload" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" as="image" type="image/png" />
-    <link rel="icon" href="/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" type="image/png" />
-    
-    <!-- Font display optimization -->
-    <style>
-      /* Font optimization for FCP */
-      @font-face {
-        font-family: 'System Font';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: local('Arial');
-      }
-      body {
-        font-family: 'System Font', sans-serif;
-      }
-      
-      /* Critical CSS for initial render */
-      body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-      }
-      #root {
-        height: 100%;
-      }
-    </style>
-    
-    <!-- Preload main script -->
+    <!-- Preload main script for faster execution -->
     <link rel="modulepreload" href="/src/main.tsx" />
   </head>
 
   <body>
     <div id="root">
-      <!-- Initial loading state to reduce CLS -->
-      <div style="display: flex; height: 100vh; width: 100%; justify-content: center; align-items: center; background-color: #f9fafb;">
-        <div style="text-align: center;">
-          <div style="width: 50px; height: 50px; border: 5px solid #e2e8f0; border-top-color: #3b82f6; border-radius: 50%; margin: 0 auto 1rem; animation: spin 1s linear infinite;"></div>
+      <!-- Initial loading state with minimal CLS -->
+      <div class="initial-loader">
+        <div>
+          <div class="initial-loader__spinner"></div>
           <p style="font-family: system-ui, -apple-system, sans-serif; color: #4b5563;">Loading Growwth Partners...</p>
         </div>
       </div>
-      <style>
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      </style>
     </div>
     
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
@@ -96,19 +102,51 @@
       </div>
     </noscript>
     
-    <!-- Preload key routes -->
+    <!-- More efficient prefetching strategy using Intersection Observer -->
     <script type="module">
-      // Prefetch important routes when idle
       document.addEventListener('DOMContentLoaded', () => {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(() => {
-            ['/about', '/contact', '/services'].forEach(route => {
-              const link = document.createElement('link');
-              link.rel = 'prefetch';
-              link.href = route;
-              document.head.appendChild(link);
+        // Only prefetch routes when user is likely to navigate
+        const prefetchImportantRoutes = () => {
+          if (!('IntersectionObserver' in window)) return;
+
+          const prefetchObserver = new IntersectionObserver((entries) => {
+            const visibleEntries = entries.filter(entry => entry.isIntersecting);
+            if (visibleEntries.length > 0) {
+              ['about', 'contact', 'services', 'bookkeeping', 'accounting'].forEach(route => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = `/${route}`;
+                document.head.appendChild(link);
+              });
+              prefetchObserver.disconnect();
+            }
+          }, { 
+            rootMargin: '200px',
+            threshold: 0.1
+          });
+
+          // Observe the footer as a trigger for prefetching
+          const footer = document.querySelector('footer');
+          if (footer) {
+            prefetchObserver.observe(footer);
+          } else {
+            // If footer not available yet, observe when it becomes available
+            const bodyObserver = new MutationObserver(() => {
+              const footer = document.querySelector('footer');
+              if (footer) {
+                prefetchObserver.observe(footer);
+                bodyObserver.disconnect();
+              }
             });
-          }, { timeout: 5000 });
+            bodyObserver.observe(document.body, { childList: true, subtree: true });
+          }
+        };
+        
+        // Use requestIdleCallback for non-critical operations
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(prefetchImportantRoutes, { timeout: 2000 });
+        } else {
+          setTimeout(prefetchImportantRoutes, 2000);
         }
       });
     </script>

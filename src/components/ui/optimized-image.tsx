@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect, useRef, memo, useId } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getWebPUrl, generateSrcSet, getResponsiveSizes } from "@/utils/imageOptimization";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
   priority?: boolean;
   blurDataUrl?: string;
   lazyBoundary?: string;
+  sizes?: string;
 }
 
 export const OptimizedImage = memo(({
@@ -17,21 +19,24 @@ export const OptimizedImage = memo(({
   priority = false,
   blurDataUrl,
   lazyBoundary = "200px",
+  sizes = "",
   ...props
 }: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(!priority);
   const [error, setError] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(priority);
-  const [imgSrc, setImgSrc] = useState(priority ? src : undefined);
+  const [imgSrc, setImgSrc] = useState(priority ? getWebPUrl(src as string) : undefined);
+  const [imgSrcSet, setImgSrcSet] = useState(priority ? generateSrcSet(src as string) : undefined);
   const elementRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const uniqueId = useId();
   
-  // Set up intersection observer only once
+  // Enhanced intersection observer with better performance
   useEffect(() => {
     // Skip observer setup for priority images
     if (priority) {
-      setImgSrc(src);
+      setImgSrc(getWebPUrl(src as string));
+      setImgSrcSet(generateSrcSet(src as string));
       return;
     }
     
@@ -41,24 +46,30 @@ export const OptimizedImage = memo(({
     }
     
     // Create new observer with better parameters
+    const options = {
+      rootMargin: lazyBoundary, 
+      threshold: 0.01
+    };
+    
     observerRef.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setIsIntersecting(true);
-        setImgSrc(src);
-        // Mark the image for preloading after detection
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src || '';
-        link.id = `preload-${uniqueId}`;
-        document.head.appendChild(link);
+        setImgSrc(getWebPUrl(src as string));
+        setImgSrcSet(generateSrcSet(src as string));
+        
+        // Preload the image once detected
+        if (src) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = getWebPUrl(src as string);
+          link.id = `preload-${uniqueId}`;
+          document.head.appendChild(link);
+        }
         
         observerRef.current?.disconnect();
       }
-    }, {
-      rootMargin: lazyBoundary, // Configurable root margin
-      threshold: 0.01 // Lower threshold for quicker loading
-    });
+    }, options);
     
     // Start observing if element exists
     if (elementRef.current) {
@@ -79,6 +90,11 @@ export const OptimizedImage = memo(({
   // Handle image load complete
   const handleLoad = () => {
     setIsLoading(false);
+    
+    // Log successful image load to performance monitoring
+    if (window.performance && window.performance.mark) {
+      window.performance.mark(`image-loaded-${uniqueId}`);
+    }
   };
   
   // Handle image load error
@@ -86,12 +102,15 @@ export const OptimizedImage = memo(({
     setIsLoading(false);
     setError(true);
     if (fallbackSrc) {
-      setImgSrc(fallbackSrc);
+      setImgSrc(getWebPUrl(fallbackSrc));
+      setImgSrcSet(generateSrcSet(fallbackSrc));
     }
+    console.warn(`Failed to load image: ${src}`);
   };
   
   // Determine which source to use
-  const imageSrc = error && fallbackSrc ? fallbackSrc : imgSrc;
+  const imageSrc = error && fallbackSrc ? getWebPUrl(fallbackSrc) : imgSrc;
+  const imageSrcSet = error && fallbackSrc ? generateSrcSet(fallbackSrc) : imgSrcSet;
   
   // Generate correct image dimensions for width and height if provided
   const dimensions = {
@@ -99,15 +118,18 @@ export const OptimizedImage = memo(({
     height: props.height || undefined
   };
 
+  // Calculate aspect ratio for preventing layout shift
+  const aspectRatio = dimensions.width && dimensions.height 
+    ? `${dimensions.width} / ${dimensions.height}` 
+    : undefined;
+
   return (
     <div 
       ref={elementRef}
       className={`relative ${className}`}
       style={{
-        // Prevent layout shift by maintaining aspect ratio if dimensions are available
-        aspectRatio: dimensions.width && dimensions.height 
-          ? `${dimensions.width} / ${dimensions.height}` 
-          : undefined
+        aspectRatio,
+        width: dimensions.width ? `${dimensions.width}px` : undefined
       }}
       aria-label={alt || "Image"}
     >
@@ -115,7 +137,7 @@ export const OptimizedImage = memo(({
         <Skeleton className="absolute inset-0 w-full h-full rounded-[inherit] bg-gray-200 animate-pulse" />
       )}
       
-      {/* Use blur placeholder for better user experience */}
+      {/* Blur placeholder for better user experience */}
       {blurDataUrl && isLoading && (
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
@@ -131,6 +153,8 @@ export const OptimizedImage = memo(({
       {(priority || isIntersecting) && (
         <img
           src={imageSrc}
+          srcSet={imageSrcSet}
+          sizes={sizes || getResponsiveSizes()}
           alt={alt || ""}
           className={`w-full h-full object-cover ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
           loading={priority ? "eager" : "lazy"}

@@ -1,6 +1,7 @@
 
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Guide } from "@/data/guides";
+import { AnimatedElement } from "@/components/ui/animated-element";
 
 interface GuideBannerImageProps {
   guide: Guide;
@@ -13,7 +14,11 @@ export const GuideBannerImage = ({ guide, isSpecialGuide }: GuideBannerImageProp
   }
 
   return (
-    <div className="mb-12 rounded-lg overflow-hidden">
+    <AnimatedElement 
+      animation="fade-in" 
+      className="mb-12 rounded-lg overflow-hidden"
+      duration={0.8}
+    >
       <OptimizedImage
         src={guide.Image}
         alt={guide.Title}
@@ -23,7 +28,8 @@ export const GuideBannerImage = ({ guide, isSpecialGuide }: GuideBannerImageProp
         width={1200}
         height={630}
         lazyBoundary="300px"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 95vw, 1200px"
       />
-    </div>
+    </AnimatedElement>
   );
 };
