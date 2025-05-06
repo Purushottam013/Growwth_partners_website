@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, BadgePercent } from "lucide-react";
-import taxFormImage from "/lovable-uploads/7f953e6f-6847-4912-a00c-46fb7bc53f01.png";
+import laptopChartImage from "/lovable-uploads/5c9d4453-accc-4772-88d0-0fc079f2f830.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -51,8 +51,8 @@ export const HeroSection = () => {
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
               <img 
-                src={taxFormImage} 
-                alt="Tax form with calculator and sticky note saying 'Need help?'" 
+                src={laptopChartImage} 
+                alt="Laptop showing financial charts with coffee cup on wooden table" 
                 className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
                 style={{ maxHeight: "360px", objectPosition: "center" }}
               />
