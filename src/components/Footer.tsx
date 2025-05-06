@@ -26,6 +26,9 @@ export const Footer = () => {
   const navigate = useNavigate();
 
   const formatCountryName = (countryCode: string) => {
+    if (countryCode === 'uae') {
+      return 'UAE';
+    }
     return countryCode.charAt(0).toUpperCase() + countryCode.slice(1);
   };
 
