@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BookText, UserCheck, Percent, LineChart, BarChart3 } from "lucide-react";
-import { OptimizedImage } from "@/components/ui/optimized-image";
 
 // Import image directly without using /public prefix in the path
 import accountingChartLaptopImage from "/lovable-uploads/a13f7da4-7bc9-4766-a72f-647f69d4a085.png";
@@ -87,12 +86,10 @@ export const ServicesSection = () => {
         }} className="order-1 lg:order-2 relative">
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#E5DEFF]/30 rounded-full filter blur-3xl"></div>
             <div className="relative z-10">
-              <OptimizedImage 
+              <img 
                 src={accountingChartLaptopImage} 
                 alt="Person using pink calculator with financial documents and receipts" 
                 className="w-full h-[400px] rounded-xl object-cover"
-                width={600}
-                height={400}
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FDE1D3]/30 rounded-full filter blur-3xl"></div>
