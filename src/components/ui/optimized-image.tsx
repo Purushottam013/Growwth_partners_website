@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect, useRef, memo, useId } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getWebPUrl, generateSrcSet, getResponsiveSizes } from "@/utils/imageOptimization";
+import { ImageIcon } from "lucide-react";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
@@ -29,6 +31,7 @@ export const OptimizedImage = memo(({
   const elementRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const uniqueId = useId();
+  const hasTriedFallback = useRef(false);
   
   // Enhanced intersection observer with better performance
   useEffect(() => {
@@ -98,21 +101,24 @@ export const OptimizedImage = memo(({
   
   // Handle image load error
   const handleError = () => {
-    setIsLoading(false);
-    setError(true);
-    
-    // Always use fallback if provided, otherwise keep broken image for accessibility
-    if (fallbackSrc) {
+    // If we haven't tried the fallback yet and there is a fallbackSrc, use it
+    if (!hasTriedFallback.current && fallbackSrc) {
+      hasTriedFallback.current = true;
       setImgSrc(fallbackSrc);
       setImgSrcSet("");
+      return;
     }
+    
+    // If we've already tried the fallback or there isn't one, show the error state
+    setIsLoading(false);
+    setError(true);
     
     console.warn(`Failed to load image: ${src}`);
   };
   
   // Determine which source to use
-  const imageSrc = error && fallbackSrc ? fallbackSrc : imgSrc;
-  const imageSrcSet = error && fallbackSrc ? "" : imgSrcSet;
+  const imageSrc = error || !imgSrc ? fallbackSrc : imgSrc;
+  const imageSrcSet = error ? "" : imgSrcSet;
   
   // Generate correct image dimensions for width and height if provided
   const dimensions = {
@@ -152,7 +158,14 @@ export const OptimizedImage = memo(({
         />
       )}
 
-      {(priority || isIntersecting) && (
+      {/* Fallback icon for truly broken images */}
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-[inherit]">
+          <ImageIcon className="w-10 h-10 text-gray-300" />
+        </div>
+      )}
+
+      {(priority || isIntersecting) && !error && (
         <img
           src={imageSrc}
           srcSet={imageSrcSet}

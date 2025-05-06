@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
-import { OptimizedImage } from "@/components/ui/optimized-image";
+import { FileTextIcon } from "lucide-react";
 
 export const ComplianceSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -24,14 +24,9 @@ export const ComplianceSection = () => {
             <div className="flex items-center justify-center w-full max-w-md">
               {/* Added white frame with border radius */}
               <div className="p-3 bg-white rounded-2xl shadow-md">
-                <OptimizedImage 
-                  src="/placeholder.svg" 
-                  alt="Tax Compliance Form" 
-                  className="w-full h-auto rounded-xl relative z-10" 
-                  fallbackSrc="/placeholder.svg"
-                  width={500}
-                  height={375}
-                />
+                <div className="w-full h-[320px] rounded-xl bg-gray-100 flex items-center justify-center">
+                  <FileTextIcon className="w-16 h-16 text-gray-400" />
+                </div>
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FEF7CD]/30 rounded-full filter blur-3xl"></div>

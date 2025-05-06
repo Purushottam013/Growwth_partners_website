@@ -45,7 +45,7 @@
   }
 }
 
-/* Animation keyframes */
+/* Animation keyframes - moved to critical CSS for immediate availability */
 @keyframes spinner {
   to { transform: rotate(360deg); }
 }
@@ -74,7 +74,7 @@
   }
 }
 
-/* Animation classes */
+/* Animation classes - moved to critical CSS to prevent FOUC */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -90,4 +90,17 @@
   border-radius: 50%;
   border-top-color: #3b82f6;
   animation: spinner 0.8s linear infinite;
+}
+
+/* Placeholder styles for faster rendering */
+.image-placeholder {
+  @apply bg-gray-200 rounded animate-pulse;
+}
+
+/* Fix for blurry images on safari */
+img {
+  -webkit-backface-visibility: hidden;
+  -ms-transform: translateZ(0); /* IE 9 */
+  -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+  transform: translateZ(0);
 }

@@ -2,21 +2,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { LightbulbIcon, BarChart3Icon, BuildingIcon } from "lucide-react";
 
 export const BenefitsSection = () => {
   const benefits = [
     {
-      icon: "/placeholder.svg",
+      icon: <LightbulbIcon className="h-10 w-10 text-[#F87315]" />,
       title: "Startups",
       description: "Secure funding with compelling financial projections and business plans."
     },
     {
-      icon: "/placeholder.svg",
+      icon: <BarChart3Icon className="h-10 w-10 text-[#F87315]" />,
       title: "Small and Medium Businesses",
       description: "Optimise operations and budgeting with precise financial modeling."
     },
     {
-      icon: "/placeholder.svg",
+      icon: <BuildingIcon className="h-10 w-10 text-[#F87315]" />,
       title: "Corporate Entities",
       description: "Navigate mergers, acquisitions, and expansions with confidence through detailed financial analysis."
     }
@@ -48,13 +49,8 @@ export const BenefitsSection = () => {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center"
             >
-              <div className="mb-6 p-0 inline-block">
-                <OptimizedImage 
-                  src={benefit.icon} 
-                  alt={`${benefit.title} icon`} 
-                  className="h-24 w-24 object-contain" 
-                  fallbackSrc="/placeholder.svg"
-                />
+              <div className="mb-6 p-3 bg-gray-50 rounded-full inline-block">
+                {benefit.icon}
               </div>
               <h4 className="text-xl font-bold mb-3">{benefit.title}</h4>
               <p className="text-gray-700">{benefit.description}</p>
