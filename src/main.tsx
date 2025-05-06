@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-// Use requestIdleCallback for non-critical initialization
+// Improved performance mounting
 const mountApp = () => {
   const rootElement = document.getElementById("root");
   
@@ -17,41 +17,55 @@ const mountApp = () => {
     // Create root with concurrency
     const root = createRoot(rootElement);
     
-    // Use production rendering without strict mode
+    // Render with optimized settings
     root.render(
-      <App />
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     );
     
-    // Register performance metrics for analytics
-    if ('performance' in window && 'measure' in performance) {
-      window.addEventListener('load', () => {
-        // Report performance entries after load
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            if ('PerformanceObserver' in window) {
-              // Report LCP
-              const lcpObserver = new PerformanceObserver((entryList) => {
-                const entries = entryList.getEntries();
-                const lastEntry = entries[entries.length - 1];
-                console.log('LCP:', lastEntry.startTime);
-              });
-              
-              lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
-              
-              // Report FID
-              const fidObserver = new PerformanceObserver((entryList) => {
-                const entries = entryList.getEntries();
-                const firstEntry = entries[0] as PerformanceEventTiming;
-                console.log('FID:', firstEntry.processingStart - firstEntry.startTime);
-              });
-              
-              fidObserver.observe({ type: 'first-input', buffered: true });
-            }
-          }, 0);
+    // Web Vitals reporting
+    if ('PerformanceObserver' in window) {
+      // Create a performance observer for CLS
+      const clsObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        entries.forEach(entry => {
+          // Report CLS values to console for debugging
+          if (entry.hadRecentInput) return;
+          
+          // @ts-ignore - layout-shift specific properties
+          const cls = entry.value;
+          if (cls > 0.1) {
+            console.warn('High CLS detected:', cls);
+          }
         });
       });
+      
+      // Start observing layout shifts
+      clsObserver.observe({ type: 'layout-shift', buffered: true });
+      
+      // LCP observer
+      const lcpObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        // Report LCP to console
+        console.log('LCP:', lastEntry.startTime);
+      });
+      
+      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+      
+      // FID observer
+      const fidObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        entries.forEach(entry => {
+          // @ts-ignore - first-input specific properties
+          const fid = entry.processingStart - entry.startTime;
+          console.log('FID:', fid);
+        });
+      });
+      
+      fidObserver.observe({ type: 'first-input', buffered: true });
     }
-    
   } catch (error) {
     console.error("Error rendering React application:", error);
     
@@ -67,21 +81,21 @@ const mountApp = () => {
   }
 };
 
-// Execute using requestIdleCallback for better first paint
-if ('requestIdleCallback' in window) {
-  // Use requestIdleCallback for non-critical initialization
-  requestIdleCallback(() => {
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", mountApp);
+// Optimize hydration by waiting for DOMContentLoaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Use requestIdleCallback for non-critical rendering
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(mountApp, { timeout: 2000 });
     } else {
-      mountApp();
+      setTimeout(mountApp, 1);
     }
-  }, { timeout: 1000 });  
+  });
 } else {
-  // Fallback for browsers without requestIdleCallback
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountApp);
+  // DOM already loaded, mount as soon as possible
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(mountApp, { timeout: 2000 });
   } else {
-    mountApp();
+    setTimeout(mountApp, 1);
   }
 }

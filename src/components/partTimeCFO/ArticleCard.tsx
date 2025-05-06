@@ -29,6 +29,8 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ title, excerpt, image,
           alt={title}
           fallbackSrc={fallbackImage}
           className="w-full h-full object-cover"
+          width={400}
+          height={200}
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">

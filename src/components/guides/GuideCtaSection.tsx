@@ -24,7 +24,7 @@ export const GuideCtaSection = ({
           <Button
             onClick={onContactClick}
             size="lg"
-            className="bg-white text-blue-700 hover:bg-gray-100 font-semibold text-lg px-8 py-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+            className="bg-white text-blue-700 hover:bg-gray-100 font-semibold text-lg px-8 py-6 rounded-lg shadow-lg transform transition-transform hover:scale-105"
           >
             {buttonText}
             <ChevronRight className="ml-2 h-5 w-5" />

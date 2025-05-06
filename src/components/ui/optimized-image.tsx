@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -8,7 +8,7 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   blurDataUrl?: string;
 }
 
-export function OptimizedImage({
+export const OptimizedImage = memo(({
   src,
   alt,
   className,
@@ -16,42 +16,57 @@ export function OptimizedImage({
   priority = false,
   blurDataUrl,
   ...props
-}: OptimizedImageProps) {
+}: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(!priority);
   const [error, setError] = useState(false);
   const [isIntersecting, setIsIntersecting] = useState(priority);
   const [imgSrc, setImgSrc] = useState(priority ? src : undefined);
-  const [elementId] = useState(`image-${Math.random().toString(36).substring(7)}`);
-
-  // Use IntersectionObserver for better lazy loading
+  const elementRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  
+  // Set up intersection observer only once
   useEffect(() => {
+    // Skip observer setup for priority images
     if (priority) {
       setImgSrc(src);
       return;
-    } // Skip observer for priority images
+    }
     
-    const element = document.getElementById(elementId);
-    if (!element) return;
-
-    const observer = new IntersectionObserver((entries) => {
+    // Clean up previous observer if it exists
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+    
+    // Create new observer
+    observerRef.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         setIsIntersecting(true);
         setImgSrc(src);
-        observer.disconnect();
+        observerRef.current?.disconnect();
       }
     }, {
-      rootMargin: '200px', // Start loading when image is 200px from viewport
-      threshold: 0.1
+      rootMargin: '200px', // Increased root margin for earlier loading
+      threshold: 0.01 // Lower threshold for quicker loading
     });
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [src, priority, elementId]);
-
+    
+    // Start observing if element exists
+    if (elementRef.current) {
+      observerRef.current.observe(elementRef.current);
+    }
+    
+    // Clean up observer on unmount
+    return () => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
+    };
+  }, [src, priority]);
+  
+  // Handle image load complete
   const handleLoad = () => {
     setIsLoading(false);
   };
-
+  
+  // Handle image load error
   const handleError = () => {
     setIsLoading(false);
     setError(true);
@@ -59,20 +74,32 @@ export function OptimizedImage({
       setImgSrc(fallbackSrc);
     }
   };
-
+  
   // Determine which source to use
   const imageSrc = error && fallbackSrc ? fallbackSrc : imgSrc;
+  
+  // Generate correct image dimensions for width and height if provided
+  const dimensions = {
+    width: props.width || undefined,
+    height: props.height || undefined
+  };
 
   return (
     <div 
-      id={elementId}
+      ref={elementRef}
       className={`relative ${className}`}
+      style={{
+        // Prevent layout shift by maintaining aspect ratio if dimensions are available
+        aspectRatio: dimensions.width && dimensions.height 
+          ? `${dimensions.width} / ${dimensions.height}` 
+          : undefined
+      }}
     >
       {isLoading && (
         <Skeleton className="absolute inset-0 w-full h-full rounded-[inherit] bg-gray-200 animate-pulse" />
       )}
       
-      {/* Use blur placeholder for LCP optimization */}
+      {/* Use blur placeholder for better user experience */}
       {blurDataUrl && isLoading && (
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
@@ -81,6 +108,7 @@ export function OptimizedImage({
             filter: 'blur(10px)',
             transform: 'scale(1.1)'
           }}
+          aria-hidden="true"
         />
       )}
 
@@ -94,9 +122,12 @@ export function OptimizedImage({
           fetchPriority={priority ? "high" : "auto"}
           onLoad={handleLoad}
           onError={handleError}
+          {...dimensions}
           {...props}
         />
       )}
     </div>
   );
-}
+});
+
+OptimizedImage.displayName = "OptimizedImage";

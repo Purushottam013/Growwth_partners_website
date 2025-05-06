@@ -26,6 +26,8 @@ export const GuideSection = ({ section, className = "mb-12" }: GuideSectionProps
             alt={section.title || "Section image"}
             className="w-[81%] h-auto rounded-lg shadow-lg"
             fallbackSrc="/placeholder.svg"
+            width={800}
+            height={450}
           />
         </div>
       )}

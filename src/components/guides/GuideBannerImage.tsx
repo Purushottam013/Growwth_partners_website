@@ -20,6 +20,8 @@ export const GuideBannerImage = ({ guide, isSpecialGuide }: GuideBannerImageProp
         className="w-full h-auto"
         fallbackSrc="/placeholder.svg"
         priority
+        width={1200}
+        height={630}
       />
     </div>
   );
