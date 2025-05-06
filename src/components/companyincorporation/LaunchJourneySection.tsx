@@ -11,7 +11,7 @@ export const LaunchJourneySection = () => {
     <section className="bg-gradient-to-r from-brand-green/90 to-brand-blue/80 py-16 px-4 md:px-0">
       <div className="container-custom flex flex-col items-center justify-center text-center animate-fade-in">
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Launch Your Entrepreneurial Journey With Growth Partners!
+          Launch Your Entrepreneurial Journey With Growwth Partners!
         </h2>
         <p className="text-lg text-white/90 mb-6">
           We are here to help you!

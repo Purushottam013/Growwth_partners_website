@@ -10,7 +10,7 @@ export const TestimonialsSection = () => {
   const values = [{
     icon: <Shield className="h-12 w-12 text-brand-orange" />,
     title: "Trust Value",
-    description: "With Growth Partners, you'll always know who you're talking to. We assign dedicated team members to each client, fostering strong, trust-based relationships."
+    description: "With Growwth Partners, you'll always know who you're talking to. We assign dedicated team members to each client, fostering strong, trust-based relationships."
   }, {
     icon: <Heart className="h-12 w-12 text-brand-orange" />,
     title: "Professionalism Value",
@@ -22,7 +22,7 @@ export const TestimonialsSection = () => {
   }, {
     icon: <DollarSign className="h-12 w-12 text-brand-orange" />,
     title: "Affordability Value",
-    description: "Growth Partners offers high-quality financial services at competitive rates. Our customized approach ensures you only pay for the services you need, making our solutions both effective and affordable."
+    description: "Growwth Partners offers high-quality financial services at competitive rates. Our customized approach ensures you only pay for the services you need, making our solutions both effective and affordable."
   }];
   const testimonialVideos = [{
     id: "uylxy3pjgl",
