@@ -23,7 +23,7 @@ export const HeroSection = () => {
             className="order-2 lg:order-1"
           >
             <h1 className="heading-lg mb-5 text-brand-dark leading-tight">
-              Your Premier <span className="text-brand-orange relative">Accounting Services</span> In Singapore
+              Most Trusted <span className="text-brand-orange relative">5-Star</span> Accounting Services In Singapore
             </h1>
             <p className="text-lg text-gray-700 mb-6">
               Are you tired of navigating the complexities of accounting and financial management for your business?
