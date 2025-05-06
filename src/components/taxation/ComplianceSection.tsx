@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { FileTextIcon } from "lucide-react";
+import taxationImage from "/lovable-uploads/e34ebe43-bcd2-45d9-85b8-1bd0f1d82774.png";
 
 export const ComplianceSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -22,10 +23,14 @@ export const ComplianceSection = () => {
           >
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#D3E4FD]/30 rounded-full filter blur-3xl"></div>
             <div className="flex items-center justify-center w-full max-w-md">
-              {/* Added white frame with border radius */}
-              <div className="p-3 bg-white rounded-2xl shadow-md">
-                <div className="w-full h-[320px] rounded-xl bg-gray-100 flex items-center justify-center">
-                  <FileTextIcon className="w-16 h-16 text-gray-400" />
+              {/* Updated to use actual image with similar styling to Accounting page */}
+              <div className="p-3 bg-white rounded-2xl shadow-md overflow-hidden">
+                <div className="w-full h-[320px] rounded-xl overflow-hidden">
+                  <img 
+                    src={taxationImage} 
+                    alt="Tax forms and documents with Tax Time note"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>

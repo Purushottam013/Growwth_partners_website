@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import taxationImage from "/lovable-uploads/e34ebe43-bcd2-45d9-85b8-1bd0f1d82774.png";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -49,7 +50,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden lg:block relative max-w-md mx-auto"
+            className="hidden lg:block relative"
           >
             {/* First floating badge - added animate-float class */}
             <motion.div 
@@ -77,15 +78,15 @@ export const HeroSection = () => {
               </p>
             </motion.div>
             
-            {/* Image with white frame and rounded corners */}
-            <div className="p-3 bg-white rounded-2xl shadow-md">
-              <div className="w-full h-[300px] rounded-xl bg-gray-100 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-                  <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-                  <circle cx="9" cy="9" r="2"></circle>
-                  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
-                </svg>
-              </div>
+            {/* Image with white frame and rounded corners - Updated to match Accounting page style */}
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto h-[360px]">
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
+              <img 
+                src={taxationImage} 
+                alt="Tax forms and documents with a sticky note saying Tax Time" 
+                className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
+                style={{ maxHeight: "360px", objectPosition: "center" }}
+              />
             </div>
           </motion.div>
         </div>
