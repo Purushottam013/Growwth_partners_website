@@ -1,11 +1,30 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useCountry } from "@/contexts/CountryContext";
 import { BookOpen, Building, TrendingUp, FileCheck, BriefcaseBusiness, DollarSign, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export const ServicesSection = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const navigate = useNavigate();
+  const { getCountryUrl } = useCountry();
+  
+  // Navigation handler function similar to the one in Navbar component
+  const handleNavigation = (path: string) => {
+    // Get the country-aware URL
+    const url = getCountryUrl(path);
+    // Navigate using React Router (prevents full page reload)
+    navigate(url);
+    // Scroll to top after navigation for better UX
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+  
   const services = [{
     icon: <BookOpen className="h-12 w-12 text-brand-orange" />,
     title: "Accounting & Bookkeeping",
@@ -132,12 +151,10 @@ export const ServicesSection = () => {
                     <p className="text-gray-600 mb-6">{service.description}</p>
                     <Button 
                       variant="link" 
-                      className="p-0 h-auto flex items-center text-brand-orange font-medium hover:text-brand-orange/80 justify-start" 
-                      asChild
+                      className="p-0 h-auto flex items-center text-brand-orange font-medium hover:text-brand-orange/80 justify-start cursor-pointer" 
+                      onClick={() => handleNavigation(service.link)}
                     >
-                      <a href={service.link}>
-                        Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </a>
+                      Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>
                 </CardContent>
