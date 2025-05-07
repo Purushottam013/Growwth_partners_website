@@ -53,7 +53,7 @@ export const ServicesSection = () => {
     icon: <BriefcaseBusiness className="h-12 w-12 text-brand-orange" />,
     title: "Fractional CFO",
     description: "Experienced, part-time financial leader providing strategic CFO-level expertise cost-effectively.",
-    link: "/contact",
+    link: "/fractional-cfo",
     image: "/lovable-uploads/ed0aceb6-fbf6-4386-96fd-dd7675e87616.png"
   }, {
     icon: <DollarSign className="h-12 w-12 text-brand-orange" />,
