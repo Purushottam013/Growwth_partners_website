@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ContactForm } from "@/components/ContactForm";
 import { BadgeCheck, TrendingUp, Clock, DollarSign } from "lucide-react";
 import cashflowTeamImage from "/lovable-uploads/92bcd92f-7d31-445b-a8c2-cb1e3c5bdd97.png";
+import { OptimizedImage } from "../ui/optimized-image";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -75,7 +76,7 @@ export const HeroSection = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[320px] lg:h-[380px] border-4 border-white p-1">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/20 to-[#F87315]/20 mix-blend-overlay rounded-2xl"></div>
-              <img 
+              <OptimizedImage 
                 src={cashflowTeamImage} 
                 alt="Team collaborating on financial modeling with charts and data" 
                 className="w-full h-full object-cover rounded-xl"

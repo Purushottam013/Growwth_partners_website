@@ -66,11 +66,12 @@ const GuidePage = () => {
   
   return <Layout>
       <section className="relative w-full flex justify-center">
-        <div className="w-4/6 h-[250px] md:h-[300px] lg:h-[350px]">
-          <img 
+        <div className="w-3/4 h-[250px] md:h-[300px] lg:h-[350px]">
+          <OptimizedImage 
             src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" 
             alt="Guides" 
             className="w-full h-full py-8 object-contain" 
+            style={{ maxHeight: "380px",   }}
           />
         </div>
       </section>
