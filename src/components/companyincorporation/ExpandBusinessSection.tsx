@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ContactForm } from "@/components/ContactForm";
 import { Globe, TrendingUp } from "lucide-react";
 import businessImage from "/lovable-uploads/ef68f631-a956-4ecf-97fb-9ada6c055e8c.png";
+import { OptimizedImage } from "../ui/optimized-image";
 export const ExpandBusinessSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   return <section className="py-16 bg-gray-50">
@@ -24,7 +25,7 @@ export const ExpandBusinessSection = () => {
         }} className="relative">
             <div className="relative overflow-hidden rounded-2xl shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent z-10"></div>
-              <img src={businessImage} alt="Business Expansion" className="w-full h-auto object-cover transform hover:scale-105 transition-all duration-700" style={{
+              <OptimizedImage src={businessImage} alt="Business Expansion" className="w-full h-auto object-cover transform hover:scale-105 transition-all duration-700" style={{
               maxHeight: "450px"
             }} />
               <div className="absolute top-6 left-6 z-20 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calculator, FileCheck, Settings } from "lucide-react";
+import { OptimizedImage } from "../ui/optimized-image";
 
 export const ServicesSection = () => {
   const services = [
@@ -87,11 +88,11 @@ export const ServicesSection = () => {
               viewport={{ once: true }}
               className="rounded-xl overflow-hidden shadow-lg"
             >
-              <img 
+              <OptimizedImage 
                 src="/lovable-uploads/5775afbb-6129-45f8-a8d4-53076a8462dd.png" 
                 alt="Payroll Process Flow" 
                 className="object-cover w-full"
-                style={{ maxWidth: "600px", maxHeight: "700px" }}
+                style={{ maxWidth: "600px", maxHeight: "670px" }}
               />
             </motion.div>
           </div>

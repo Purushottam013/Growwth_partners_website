@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import { motion } from "framer-motion";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Badge } from "@/components/ui/badge";
 import financeImage from "/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png";
 export const HeroSection = () => {
@@ -142,8 +143,11 @@ export const HeroSection = () => {
             }} transition={{
               duration: 0.6
             }} className="relative rounded-lg overflow-hidden shadow-2xl">
-                <img src={financeImage} alt="Financial Growth" className="rounded-lg object-cover mx-auto w-full" />
-                
+                <OptimizedImage
+                src={financeImage}
+                alt="Financial Growth"
+                className="rounded-lg object-cover mx-auto w-full"
+                    />
                 {factBadges.map((badge, index) => <motion.div key={index} className={`absolute ${badge.position} hidden sm:block`} initial={{
                 opacity: 0,
                 scale: 0.8

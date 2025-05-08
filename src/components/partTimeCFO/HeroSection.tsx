@@ -13,6 +13,7 @@ import {
 import ExpertForm from './ExpertForm';
 import { ChevronRight, Award, ShieldCheck, TrendingUp, BarChart3 } from 'lucide-react';
 import heroImage from '/lovable-uploads/54b8e38f-0d15-438c-b9ac-a121ec19b560.png';
+import { OptimizedImage } from '../ui/optimized-image';
 
 export const HeroSection: React.FC = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -151,7 +152,7 @@ export const HeroSection: React.FC = () => {
 
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-purple-100/30 rounded-3xl rotate-3" />
             <div className="relative overflow-hidden rounded-2xl shadow-2xl z-20">
-              <img
+              <OptimizedImage
                 src={heroImage}
                 alt="Financial analysis with charts"
                 className="w-full h-auto max-h-[345px] object-cover"

@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ContactForm } from "@/components/ContactForm";
 import { FileTextIcon } from "lucide-react";
 import taxComplianceImage from "/lovable-uploads/97c44c1b-e3e6-4290-b819-bd3a38a1de07.png";
+import { OptimizedImage } from "../ui/optimized-image";
 
 export const ComplianceSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -26,7 +27,7 @@ export const ComplianceSection = () => {
               {/* Updated to make the image height match the content height */}
               <div className="p-3 bg-white rounded-2xl shadow-md overflow-hidden h-full">
                 <div className="w-full h-full min-h-[420px] rounded-xl overflow-hidden">
-                  <img 
+                  <OptimizedImage 
                     src={taxComplianceImage} 
                     alt="Tax calculation with calculator, coins, and wooden tax blocks"
                     className="w-full h-full object-cover"

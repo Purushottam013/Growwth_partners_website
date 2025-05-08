@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { LineChart, PieChart, Landmark, Brain, Cpu } from "lucide-react";
+import { OptimizedImage } from "../ui/optimized-image";
 
 const whyImage = "/lovable-uploads/33d6747a-53fc-4629-b07b-b1f3534c1847.png";
 
@@ -76,7 +77,7 @@ export const WhyChooseSection = () => {
             transition={{ duration: 0.6 }}
             className="flex justify-center"
           >
-            <img
+            <OptimizedImage
               src={whyImage}
               alt="Why Choose Us Visual"
               className="rounded-2xl shadow-md w-full max-w-md object-contain"

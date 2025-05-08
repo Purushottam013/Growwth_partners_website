@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ContactForm } from "@/components/ContactForm";
 import heroImage from "/lovable-uploads/d0450744-eb7e-431c-88ea-ad8c68758857.png";
+import { OptimizedImage } from "../ui/optimized-image";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -50,13 +51,13 @@ export const HeroSection = () => {
         </div>
         {/* Right */}
         <div className="flex-1 flex justify-center relative w-full h-[326px] md:h-[374px] lg:h-[403px]">
-          <div className="relative w-[357px] md:w-[410px] lg:w-[441px] h-full">
+          <div className="relative w-[457px] md:w-[410px] lg:w-[441px] h-full">
             <div className="absolute inset-0 bg-white rounded-3xl p-3">
-              <img
+              <OptimizedImage
                 src={heroImage}
                 alt="Singapore Business"
                 className="rounded-2xl object-cover w-full h-full"
-                style={{ objectPosition: "center" }}
+                style={{ minHeight:"378px" ,objectPosition: "center" }}
               />
             </div>
             {/* Overlays - Adjusted for better floating effect */}

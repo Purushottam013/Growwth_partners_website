@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BadgeCheck, CircleDollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 import payrollHeroImage from "/lovable-uploads/a98ed889-8aa1-431a-aa5c-2883e1d8f642.png";
+import { OptimizedImage } from "../ui/optimized-image";
 
 export const HeroSection = () => {
   return (
@@ -49,7 +50,7 @@ export const HeroSection = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
-              <img 
+              <OptimizedImage 
                 src={payrollHeroImage} 
                 alt="Payroll Services" 
                 className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"

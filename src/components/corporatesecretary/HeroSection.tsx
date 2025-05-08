@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ContactForm } from "@/components/ContactForm";
 import { Badge } from "@/components/ui/badge";
 import handshakeImage from "/lovable-uploads/658d652b-f5d2-4603-af7b-ad64c5e2d4ec.png";
+import { OptimizedImage } from "../ui/optimized-image";
 
 // Custom floating badge component for hero image
 const HeroFloatingBadge = ({
@@ -80,7 +81,7 @@ export const HeroSection = () => {
             <div className="relative w-full max-w-lg">
               <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-[#F87315] to-purple-600 opacity-75 blur"></div>
               <div className="relative overflow-hidden rounded-2xl">
-                <img 
+                <OptimizedImage 
                   src={handshakeImage} 
                   alt="Corporate Secretary Service" 
                   className="w-full h-auto rounded-2xl object-cover"

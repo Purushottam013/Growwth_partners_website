@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { OptimizedImage } from "../ui/optimized-image";
 const whyImage = "/lovable-uploads/47bf1b36-0034-4da2-8f26-d79eb6ff205a.png";
 const features = [{
   title: "Expert Leadership",
@@ -29,10 +30,11 @@ export const WhyChooseUs = () => {
         }} transition={{
           duration: 0.7
         }}>
-            <div className="h-full flex items-center mt-8">
-              <img src={whyImage} alt="Why Choose Us Visual" style={{
+            <div className="h-full flex items-center mt-12">
+              <OptimizedImage src={whyImage} alt="Why Choose Us Visual" style={{
               background: "#fff",
-              maxHeight: "100%"
+              maxHeight: "100%",
+              objectPosition: "center"
             }} className="rounded-2xl shadow-md w-full max-w-[100%] object-contain mx-auto" />
             </div>
           </motion.div>

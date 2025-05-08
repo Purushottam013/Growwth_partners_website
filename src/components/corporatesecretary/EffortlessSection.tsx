@@ -1,6 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { OptimizedImage } from "../ui/optimized-image";
 
 export const EffortlessSection = () => {
   return (
@@ -15,7 +16,7 @@ export const EffortlessSection = () => {
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-[#D3E4FD]/40 to-[#F1F0FB]/40 rounded-2xl blur-lg"></div>
-              <img
+              <OptimizedImage
                 src="/lovable-uploads/70b46f47-e5be-4d91-bdfb-9d06b07fc608.png"
                 alt="Corporate Governance"
                 className="relative rounded-xl shadow-lg w-full"

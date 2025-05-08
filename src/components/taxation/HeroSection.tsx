@@ -79,13 +79,13 @@ export const HeroSection = () => {
             </motion.div>
             
             {/* Image with white frame and rounded corners - Updated to match Accounting page style */}
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto h-[360px]">
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
-              <img 
+            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
+            <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
+              <OptimizedImage 
                 src={taxationImage} 
                 alt="Tax forms and documents with a sticky note saying Tax Time" 
                 className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
-                style={{ maxHeight: "360px", objectPosition: "center" }}
+                style={{ maxHeight: "500px", maxWidth:"642px" }}
               />
             </div>
           </motion.div>
