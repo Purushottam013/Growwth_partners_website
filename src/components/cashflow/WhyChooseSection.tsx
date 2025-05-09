@@ -40,14 +40,22 @@ export const WhyChooseSection = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side features/cards */}
-          <div className="opacity-0 animate-fadeIn">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h3 className="heading-md mb-6">Why Choose <span className="text-[#F87315]">Us</span>?</h3>
             <div className="space-y-6">
               {features.map((feature, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="flex items-start gap-4 opacity-0 animate-fadeIn"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-4"
                 >
                   <div className="p-3 bg-gray-50 rounded-lg shadow-sm">
                     {feature.icon}
@@ -56,24 +64,29 @@ export const WhyChooseSection = () => {
                     <h4 className="font-semibold text-lg mb-1">{feature.title}</h4>
                     <p className="text-gray-600">{feature.description}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right side image */}
-          <div className="flex justify-center opacity-0 animate-fadeIn">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center"
+          >
             <OptimizedImage
               src={whyImage}
               alt="Why Choose Us Visual"
               className="rounded-2xl shadow-md w-full max-w-md object-contain"
-              height={400}
-              width={500}
               style={{ background: "#fff" }}
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
