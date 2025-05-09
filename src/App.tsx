@@ -39,10 +39,11 @@ import FoodTechCaseStudy from "./pages/case-studies/FoodTechCaseStudy";
 import OnlineConsumerGoodsCaseStudy from "./pages/case-studies/OnlineConsumerGoodsCaseStudy";
 import DataDrivenSuccessCaseStudy from "./pages/case-studies/DataDrivenSuccessCaseStudy";
 import GamingIndustryCaseStudy from "./pages/case-studies/GamingIndustryCaseStudy";
+import { ErrorBoundary } from "./components/ui/error-boundary";
 
 function App() {
-  try {
-    return (
+  return (
+    <ErrorBoundary>
       <Router>
         <CountryProvider>
           <Routes>
@@ -138,24 +139,8 @@ function App() {
           <Toaster />
         </CountryProvider>
       </Router>
-    );
-  } catch (error) {
-    console.error("Error in App component:", error);
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center p-8">
-          <h1 className="text-3xl font-bold text-red-600 mb-4">Something went wrong</h1>
-          <p className="text-lg text-gray-700 mb-6">We're having trouble loading the application.</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Refresh the page
-          </button>
-        </div>
-      </div>
-    );
-  }
+    </ErrorBoundary>
+  );
 }
 
 export default App;

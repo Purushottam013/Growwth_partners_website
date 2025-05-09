@@ -34,16 +34,24 @@ const SectionLoader = () => (
 );
 
 const HomePage = () => {
-  // Preload components for smoother user experience
+  // Preload critical components
   useEffect(() => {
-    // Preload components after initial render during idle time
+    const preloadComponents = async () => {
+      try {
+        // Silently preload key components
+        await import("@/components/home/ServicesSection");
+        await import("@/components/home/AchievementsSection");
+      } catch (error) {
+        console.error("Error preloading components:", error);
+      }
+    };
+
+    // Use requestIdleCallback for non-blocking preloading
     if ('requestIdleCallback' in window) {
-      const idleCallback = window.requestIdleCallback(() => {
-        // Silently preload the next critical components
-        import("@/components/home/ServicesSection");
-      }, { timeout: 2000 });
-      
-      return () => window.cancelIdleCallback(idleCallback);
+      window.requestIdleCallback(preloadComponents, { timeout: 2000 });
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      setTimeout(preloadComponents, 1000);
     }
   }, []);
 
@@ -58,25 +66,59 @@ const HomePage = () => {
         <HeroSection />
         <TrustedSection />
         
-        {/* Lazily load non-critical sections with improved suspense boundary */}
-        <Suspense fallback={<SectionLoader />}>
-          <ServicesSection />
-        </Suspense>
+        {/* Lazily load non-critical sections with error handling */}
+        <ErrorBoundaryLight>
+          <Suspense fallback={<SectionLoader />}>
+            <ServicesSection />
+          </Suspense>
+        </ErrorBoundaryLight>
         
-        <Suspense fallback={<SectionLoader />}>
-          <AchievementsSection />
-        </Suspense>
+        <ErrorBoundaryLight>
+          <Suspense fallback={<SectionLoader />}>
+            <AchievementsSection />
+          </Suspense>
+        </ErrorBoundaryLight>
         
-        <Suspense fallback={<SectionLoader />}>
-          <TestimonialsSection />
-        </Suspense>
+        <ErrorBoundaryLight>
+          <Suspense fallback={<SectionLoader />}>
+            <TestimonialsSection />
+          </Suspense>
+        </ErrorBoundaryLight>
         
-        <Suspense fallback={<SectionLoader />}>
-          <CtaSection />
-        </Suspense>
+        <ErrorBoundaryLight>
+          <Suspense fallback={<SectionLoader />}>
+            <CtaSection />
+          </Suspense>
+        </ErrorBoundaryLight>
       </AnimatedElement>
     </Layout>
   );
+};
+
+// Lightweight error boundary for individual sections
+const ErrorBoundaryLight = ({ children }) => {
+  const [hasError, setHasError] = React.useState(false);
+
+  React.useEffect(() => {
+    const errorHandler = (event) => {
+      event.preventDefault();
+      setHasError(true);
+      console.error('Error caught by ErrorBoundaryLight:', event.error);
+    };
+
+    window.addEventListener('error', errorHandler);
+    return () => window.removeEventListener('error', errorHandler);
+  }, []);
+
+  if (hasError) {
+    return (
+      <div className="py-10 text-center">
+        <p className="text-gray-500">This section couldn't be loaded</p>
+      </div>
+    );
+  }
+
+  return children;
 };
 
 export default HomePage;
