@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { CountryProvider } from "./contexts/CountryContext";
 
@@ -39,12 +38,14 @@ import FoodTechCaseStudy from "./pages/case-studies/FoodTechCaseStudy";
 import OnlineConsumerGoodsCaseStudy from "./pages/case-studies/OnlineConsumerGoodsCaseStudy";
 import DataDrivenSuccessCaseStudy from "./pages/case-studies/DataDrivenSuccessCaseStudy";
 import GamingIndustryCaseStudy from "./pages/case-studies/GamingIndustryCaseStudy";
+import { CanonicalUpdater } from "@/components/CanonicalUpdater";
 
 function App() {
   try {
     return (
       <Router>
         <CountryProvider>
+          <CanonicalUpdater />
           <Routes>
             {/* Singapore Routes (Default) */}
             <Route path="/" element={<Home />} />
