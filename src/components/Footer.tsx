@@ -225,7 +225,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("/accounting")} 
+                  onClick={() => handleNavigation("/accounting-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Accounting
@@ -233,7 +233,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("/bookkeeping")} 
+                  onClick={() => handleNavigation("/bookkeeping-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Bookkeeping
@@ -241,7 +241,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("/payroll")} 
+                  onClick={() => handleNavigation("/payroll-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Payroll
@@ -249,7 +249,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("/corporate-secretary")} 
+                  onClick={() => handleNavigation("/corporate-secretary-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Corporate Secretary
@@ -257,7 +257,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("/company-incorporation")} 
+                  onClick={() => handleNavigation("/company-incorporation-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Company Incorporation
@@ -265,7 +265,7 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => handleNavigation("/cash-flow")} 
+                  onClick={() => handleNavigation("/cash-flow-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Cash Flow Modelling

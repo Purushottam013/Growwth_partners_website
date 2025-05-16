@@ -24,12 +24,12 @@ const navItems = [
   },
   {
     title: "Accounting",
-    path: "/accounting",
+    path: "/accounting-services-in-singapore",
     dropdown: true,
     items: [
-      { title: "Accounting Services", path: "/accounting" },
-      { title: "Bookkeeping", path: "/bookkeeping" },
-      { title: "Payroll", path: "/payroll" },
+      { title: "Accounting Services", path: "/accounting-services-in-singapore" },
+      { title: "Bookkeeping", path: "/bookkeeping-services-in-singapore" },
+      { title: "Payroll", path: "/payroll-services-in-singapore" },
       { title: "Taxation & Compliance", path: "/taxation" }
     ]
   },
@@ -39,7 +39,7 @@ const navItems = [
     dropdown: true,
     items: [
       { title: "Fractional CFO", path: "/fractional-cfo" },
-      { title: "Cash Flow Modelling", path: "/cash-flow" }
+      { title: "Cash Flow Modelling", path: "/cash-flow-services-in-singapore" }
     ]
   },
   {
