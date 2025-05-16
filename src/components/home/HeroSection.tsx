@@ -71,7 +71,7 @@ export const HeroSection = () => {
                 <span className="bg-gradient-to-r from-brand-orange to-yellow-500 p-1.5 rounded-full flex items-center justify-center">
                   <Award className="h-5 w-5 text-white" />
                 </span>
-                <span className="font-medium">Singapore's Leading Financial Services</span>
+                <span className="font-medium">Asia's Leading Finance Services Provider</span>
               </Badge>
             </motion.div>
 
