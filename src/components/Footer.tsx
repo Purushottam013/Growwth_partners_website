@@ -216,7 +216,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
                 <button 
-                  onClick={() => handleNavigation("/fractional-cfo-services-in-singapore")} 
+                  onClick={() => handleNavigation("/part-time-cfo")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Part Time CFO

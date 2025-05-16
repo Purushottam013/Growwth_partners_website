@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
@@ -34,11 +33,11 @@ const navItems = [
     ]
   },
   {
-    title: "Fractional CFO",
-    path: "/fractional-cfo-services-in-singapore",
+    title: "Part Time CFO",
+    path: "/part-time-cfo",
     dropdown: true,
     items: [
-      { title: "Fractional CFO", path: "/fractional-cfo-services-in-singapore" },
+      { title: "Part Time CFO", path: "/part-time-cfo" },
       { title: "Cash Flow Modelling", path: "/cash-flow-services-in-singapore" }
     ]
   },

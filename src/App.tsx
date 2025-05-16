@@ -61,7 +61,7 @@ function App() {
             <Route path="/cash-flow-services-in-singapore" element={<CashFlow />} />
             <Route path="/company-incorporation-services-in-singapore" element={<CompanyIncorporation />} />
             <Route path="/corporate-secretary-services-in-singapore" element={<CorporateSecretary />} />
-            <Route path="/fractional-cfo-services-in-singapore" element={<FractionalCFO />} />
+            <Route path="/part-time-cfo" element={<FractionalCFO />} />
 
             {/* Redirect old URLs to new SEO-friendly URLs (Singapore) */}
             <Route path="/accounting" element={<Navigate to="/accounting-services-in-singapore" replace />} />
@@ -70,7 +70,9 @@ function App() {
             <Route path="/cash-flow" element={<Navigate to="/cash-flow-services-in-singapore" replace />} />
             <Route path="/company-incorporation" element={<Navigate to="/company-incorporation-services-in-singapore" replace />} />
             <Route path="/corporate-secretary" element={<Navigate to="/corporate-secretary-services-in-singapore" replace />} />
-            <Route path="/fractional-cfo" element={<Navigate to="/fractional-cfo-services-in-singapore" replace />} />
+            {/* Redirect both old `/fractional-cfo` and previous SEO URL */}
+            <Route path="/fractional-cfo" element={<Navigate to="/part-time-cfo" replace />} />
+            <Route path="/fractional-cfo-services-in-singapore" element={<Navigate to="/part-time-cfo" replace />} />
 
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
@@ -101,7 +103,7 @@ function App() {
             <Route path="/uae/cash-flow-services-in-singapore" element={<CashFlow />} />
             <Route path="/uae/company-incorporation-services-in-singapore" element={<CompanyIncorporation />} />
             <Route path="/uae/corporate-secretary-services-in-singapore" element={<CorporateSecretary />} />
-            <Route path="/uae/fractional-cfo-services-in-singapore" element={<FractionalCFO />} />
+            <Route path="/uae/part-time-cfo" element={<FractionalCFO />} />
 
             {/* Redirect old URLs to new SEO-friendly URLs (UAE) */}
             <Route path="/uae/accounting" element={<Navigate to="/uae/accounting-services-in-singapore" replace />} />
@@ -110,7 +112,8 @@ function App() {
             <Route path="/uae/cash-flow" element={<Navigate to="/uae/cash-flow-services-in-singapore" replace />} />
             <Route path="/uae/company-incorporation" element={<Navigate to="/uae/company-incorporation-services-in-singapore" replace />} />
             <Route path="/uae/corporate-secretary" element={<Navigate to="/uae/corporate-secretary-services-in-singapore" replace />} />
-            <Route path="/uae/fractional-cfo" element={<Navigate to="/uae/fractional-cfo-services-in-singapore" replace />} />
+            <Route path="/uae/fractional-cfo" element={<Navigate to="/uae/part-time-cfo" replace />} />
+            <Route path="/uae/fractional-cfo-services-in-singapore" element={<Navigate to="/uae/part-time-cfo" replace />} />
 
             <Route path="/uae/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/uae/terms" element={<Terms />} />
@@ -137,7 +140,7 @@ function App() {
             <Route path="/australia/cash-flow-services-in-singapore" element={<CashFlow />} />
             <Route path="/australia/company-incorporation-services-in-singapore" element={<CompanyIncorporation />} />
             <Route path="/australia/corporate-secretary-services-in-singapore" element={<CorporateSecretary />} />
-            <Route path="/australia/fractional-cfo-services-in-singapore" element={<FractionalCFO />} />
+            <Route path="/australia/part-time-cfo" element={<FractionalCFO />} />
 
             {/* Redirect old URLs to new SEO-friendly URLs (Australia) */}
             <Route path="/australia/accounting" element={<Navigate to="/australia/accounting-services-in-singapore" replace />} />
@@ -146,7 +149,8 @@ function App() {
             <Route path="/australia/cash-flow" element={<Navigate to="/australia/cash-flow-services-in-singapore" replace />} />
             <Route path="/australia/company-incorporation" element={<Navigate to="/australia/company-incorporation-services-in-singapore" replace />} />
             <Route path="/australia/corporate-secretary" element={<Navigate to="/australia/corporate-secretary-services-in-singapore" replace />} />
-            <Route path="/australia/fractional-cfo" element={<Navigate to="/australia/fractional-cfo-services-in-singapore" replace />} />
+            <Route path="/australia/fractional-cfo" element={<Navigate to="/australia/part-time-cfo" replace />} />
+            <Route path="/australia/fractional-cfo-services-in-singapore" element={<Navigate to="/australia/part-time-cfo" replace />} />
 
             <Route path="/australia/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/australia/terms" element={<Terms />} />
