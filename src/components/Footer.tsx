@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
@@ -217,7 +216,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
                 <button 
-                  onClick={() => handleNavigation("/fractional-cfo")} 
+                  onClick={() => handleNavigation("/fractional-cfo-services-in-singapore")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Part Time CFO

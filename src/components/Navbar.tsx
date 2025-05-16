@@ -35,10 +35,10 @@ const navItems = [
   },
   {
     title: "Fractional CFO",
-    path: "/fractional-cfo",
+    path: "/fractional-cfo-services-in-singapore",
     dropdown: true,
     items: [
-      { title: "Fractional CFO", path: "/fractional-cfo" },
+      { title: "Fractional CFO", path: "/fractional-cfo-services-in-singapore" },
       { title: "Cash Flow Modelling", path: "/cash-flow-services-in-singapore" }
     ]
   },
