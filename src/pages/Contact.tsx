@@ -33,8 +33,8 @@ const ContactPage = () => {
         transition={{ duration: 0.5 }}
         className="overflow-hidden"
       >
-        <ContactHero />
         <ContactFormSection />
+        <ContactHero />
         <ContactTestimonials />
         <LocationsSection />
       </motion.div>
