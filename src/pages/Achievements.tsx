@@ -5,21 +5,26 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
+import { Seo } from "@/components/Seo";
 
 const AchievementsPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
+      <Seo 
+        title="Achievements & Awards | Growwth Partners"
+        description="Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation."
+      />
       <PlaceholderContent 
         title="Achievements & Awards" 
         description="Discover our track record of excellence and recognition in financial services, highlighting our commitment to delivering outstanding solutions and maintaining the highest standards of service quality."
@@ -39,7 +44,7 @@ const AchievementsPage = () => {
           }
         ]}
       />
-      
+
       <div className="container-custom mb-16">
         <Alert className="bg-amber-50 border-amber-200">
           <Construction className="h-5 w-5 text-amber-500" />

@@ -13,21 +13,26 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const AccountingPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
+      <Seo
+        title="Accounting Services in Singapore | Growwth Partners"
+        description="Discover top-tier accounting solutions with Growwth Partners in Singapore. We provide accurate, efficient, and scalable financial services tailored to your business."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

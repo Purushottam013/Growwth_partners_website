@@ -12,21 +12,26 @@ import { CaseStudySection } from "@/components/bookkeeping/CaseStudySection";
 import { ExpertBlogSection } from "@/components/bookkeeping/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const BookkeepingPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
+      <Seo
+        title="Bookkeeping Services in Singapore | Growwth Partners"
+        description="Professional bookkeeping services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

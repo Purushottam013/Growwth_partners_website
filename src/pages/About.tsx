@@ -12,21 +12,26 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { ExpertInsights } from "@/components/about/ExpertInsights";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const AboutPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
+      <Seo 
+        title="About Growwth Partners | Experienced Financial Experts in Singapore"
+        description="Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

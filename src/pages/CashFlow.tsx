@@ -13,21 +13,26 @@ import { CaseStudySection } from "@/components/cashflow/CaseStudySection";
 import { ExpertBlogSection } from "@/components/cashflow/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const CashFlowPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
+      <Seo
+        title="Cash Flow Modelling Services in Singapore | Growwth Partners"
+        description="Take control of your cash flow and future-proof your business with flexible modelling services tailored for Singaporean SMEs & startups."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

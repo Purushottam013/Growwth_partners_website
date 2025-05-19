@@ -12,21 +12,26 @@ import { FaqSection } from "@/components/corporatesecretary/FaqSection";
 import { CaseStudySection } from "@/components/corporatesecretary/CaseStudySection";
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const CorporateSecretaryPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
+      <Seo
+        title="Corporate Secretary Services in Singapore | Growwth Partners"
+        description="Outsource your company secretarial functions to Singapore’s trusted experts. Growwth Partners offers full compliance, filing, and advisory services."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
