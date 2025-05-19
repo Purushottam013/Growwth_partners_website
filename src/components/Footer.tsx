@@ -177,8 +177,9 @@ export const Footer = () => {
                 </button>
               </li>
               <li>
+                {/* CHANGE: Contact Us url */}
                 <button 
-                  onClick={() => handleNavigation("/contact")} 
+                  onClick={() => handleNavigation("/contact-us")} 
                   className="hover:text-brand-orange transition-colors cursor-pointer text-left"
                 >
                   Contact Us

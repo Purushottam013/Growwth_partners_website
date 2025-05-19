@@ -54,7 +54,10 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/contact" element={<Contact />} />
+              {/* CHANGED: Contact route */}
+              <Route path="/contact-us" element={<Contact />} />
+              {/* Redirect old contact */}
+              <Route path="/contact" element={<Navigate to="/contact-us" replace />} />
 
               {/* New SEO-friendly URLs */}
               <Route path="/accounting-services-in-singapore" element={<Accounting />} />
@@ -96,7 +99,10 @@ function App() {
               <Route path="/uae/about" element={<About />} />
               <Route path="/uae/blog" element={<Blog />} />
               <Route path="/uae/blog/:slug" element={<BlogPost />} />
-              <Route path="/uae/contact" element={<Contact />} />
+              {/* CHANGED: UAE Contact route */}
+              <Route path="/uae/contact-us" element={<Contact />} />
+              {/* Redirect old uae contact */}
+              <Route path="/uae/contact" element={<Navigate to="/uae/contact-us" replace />} />
 
               {/* New SEO-friendly URLs (UAE) */}
               <Route path="/uae/accounting-services-in-singapore" element={<Accounting />} />
@@ -133,7 +139,10 @@ function App() {
               <Route path="/australia/about" element={<About />} />
               <Route path="/australia/blog" element={<Blog />} />
               <Route path="/australia/blog/:slug" element={<BlogPost />} />
-              <Route path="/australia/contact" element={<Contact />} />
+              {/* CHANGED: Australia Contact route */}
+              <Route path="/australia/contact-us" element={<Contact />} />
+              {/* Redirect old australia contact */}
+              <Route path="/australia/contact" element={<Navigate to="/australia/contact-us" replace />} />
 
               {/* New SEO-friendly URLs (Australia) */}
               <Route path="/australia/accounting-services-in-singapore" element={<Accounting />} />

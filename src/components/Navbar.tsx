@@ -43,7 +43,7 @@ const navItems = [
   },
   {
     title: "Contact Us",
-    path: "/contact",
+    path: "/contact-us",
     dropdown: false
   },
   {
