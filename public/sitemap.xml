@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Singapore pages -->
   <url><loc>https://growwthpartners.com/</loc></url>
   <url><loc>https://growwthpartners.com/about</loc></url>
@@ -19,6 +17,7 @@
   <url><loc>https://growwthpartners.com/achievements</loc></url>
   <url><loc>https://growwthpartners.com/guide</loc></url>
   <url><loc>https://growwthpartners.com/news</loc></url>
+
   <!-- UAE pages -->
   <url><loc>https://growwthpartners.com/uae</loc></url>
   <url><loc>https://growwthpartners.com/uae/about</loc></url>
@@ -36,6 +35,7 @@
   <url><loc>https://growwthpartners.com/uae/achievements</loc></url>
   <url><loc>https://growwthpartners.com/uae/guide</loc></url>
   <url><loc>https://growwthpartners.com/uae/news</loc></url>
+
   <!-- Australia pages -->
   <url><loc>https://growwthpartners.com/australia</loc></url>
   <url><loc>https://growwthpartners.com/australia/about</loc></url>
