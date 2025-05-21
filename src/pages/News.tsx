@@ -5,6 +5,7 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
+import { Seo } from "@/components/Seo";
 
 const NewsPage = () => {
   const { country } = useCountry();
@@ -20,6 +21,10 @@ const NewsPage = () => {
   
   return (
     <Layout>
+      <Seo
+  title="News & Updates | Growwth Partners"
+  description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
+/>
       <PlaceholderContent 
         title="In The News" 
         description="Stay updated with Growwth's latest developments, media coverage, and industry insights that showcase our impact in the financial services sector."

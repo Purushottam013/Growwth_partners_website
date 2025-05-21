@@ -12,6 +12,7 @@ import { FaqSection } from "@/components/taxation/FaqSection";
 import { ExpertBlogSection } from "@/components/taxation/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const TaxationPage = () => {
   const { country } = useCountry();
@@ -27,6 +28,11 @@ const TaxationPage = () => {
   
   return (
     <Layout>
+         <Seo
+              title="Taxation & Compliance Services in Singapore | Growwth Partners"
+              description="Professional bookkeeping services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
+      />  
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

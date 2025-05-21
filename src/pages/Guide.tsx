@@ -15,6 +15,8 @@ import {
   PaginationNext, 
   PaginationPrevious 
 } from "@/components/ui/pagination";
+import { Seo } from "@/components/Seo";
+
 
 const GUIDES_PER_PAGE = 3;
 
@@ -65,6 +67,11 @@ const GuidePage = () => {
   };
   
   return <Layout>
+        <Seo
+        title="Guides & Resources | Growwth Partners"
+        description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners’ expertise."
+      />
+
       <section className="relative w-full flex justify-center">
         <div className="w-3/4 h-[250px] md:h-[300px] lg:h-[350px]">
           <OptimizedImage 

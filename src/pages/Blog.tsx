@@ -9,6 +9,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { Calendar, ArrowRight } from "lucide-react";
+import { Seo } from "@/components/Seo";
+
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -64,6 +66,12 @@ const BlogPage = () => {
   if (loading) {
     return (
       <Layout>
+        <Seo
+  title="Blog | Growwth Partners"
+  description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
+/>
+
+
         <div className="container mx-auto px-4 py-12">
           <div className="animate-pulse space-y-8">
             <div className="h-64 bg-gray-200 rounded-xl mb-10"></div>

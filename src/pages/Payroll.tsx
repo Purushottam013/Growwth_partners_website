@@ -12,6 +12,7 @@ import { CaseStudySection } from "@/components/bookkeeping/CaseStudySection";
 import { ExpertBlogSection } from "@/components/accounting/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const PayrollPage = () => {
   const { country } = useCountry();
@@ -27,6 +28,11 @@ const PayrollPage = () => {
   
   return (
     <Layout>
+       <Seo
+            title="Payroll Services in Singapore | Growwth Partners"
+             description="Professional payroll services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
+            /> 
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
