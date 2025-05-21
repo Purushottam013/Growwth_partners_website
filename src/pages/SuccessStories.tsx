@@ -5,6 +5,7 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
+import { Seo } from "@/components/Seo";
 
 const SuccessStoriesPage = () => {
   const { country } = useCountry();
@@ -20,6 +21,12 @@ const SuccessStoriesPage = () => {
   
   return (
     <Layout>
+      <Seo
+        title="Success Stories | Growwth Partners"
+  description="See how startups and SMEs have transformed their payroll and financial operations with Growwth Partners in our client success stories."
+      />
+
+
       <PlaceholderContent 
         title="Success Stories" 
         description="Discover how we've helped businesses overcome financial challenges and achieve sustainable growth."
