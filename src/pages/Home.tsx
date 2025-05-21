@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
 import { AnimatedElement } from "@/components/ui/animated-element";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
+import { Seo } from "@/components/Seo";
 
 // More effective code splitting with smaller chunks
 const ServicesSection = lazy(() => 
@@ -49,6 +50,11 @@ const HomePage = () => {
 
   return (
     <Layout>
+     <Seo 
+        title="Growwth Partners - Financial & Accounting Services"
+        description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
+      />
+      
       <AnimatedElement
         animation="fade-in"
         duration={0.5}
