@@ -8,6 +8,7 @@ import { LocationsSection } from "@/components/contact/LocationsSection";
 import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 import { useCountry } from "@/contexts/CountryContext";
 import { Seo } from "@/components/Seo";
+import { organizationSchema } from "@/data/schemas";
 
 const ContactPage = () => {
   const { country } = useCountry();
@@ -26,6 +27,7 @@ const ContactPage = () => {
       <Seo
         title="Contact Growwth Partners | Speak to a Financial Expert"
         description="Contact Growwth Partners to get personalised finance, accounting, and business growth advice. Our experts in Singapore are ready to help your business succeed."
+        schema={organizationSchema}
       />
       <motion.div
         initial={{ opacity: 0 }}
