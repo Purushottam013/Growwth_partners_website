@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
@@ -33,6 +32,7 @@ const CompanyIncorporationPage = () => {
         title="Company Incorporation in Singapore | Growwth Partners"
         description="Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results."
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

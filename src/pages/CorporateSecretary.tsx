@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
@@ -32,6 +31,7 @@ const CorporateSecretaryPage = () => {
         title="Corporate Secretary Services in Singapore | Growwth Partners"
         description="Outsource your company secretarial functions to Singapore’s trusted experts. Growwth Partners offers full compliance, filing, and advisory services."
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

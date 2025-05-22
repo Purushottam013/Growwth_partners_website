@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { AboutHero } from "@/components/about/AboutHero";
@@ -32,6 +31,7 @@ const AboutPage = () => {
         title="About Growwth Partners | Experienced Financial Experts in Singapore"
         description="Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond."
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

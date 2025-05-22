@@ -1,10 +1,16 @@
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { Seo } from "@/components/Seo";
 
 const Index = () => {
-  // Redirect to the Home page which contains the proper content
-  return <Navigate to="/" replace />;
+  return (
+    <>
+      <Seo title="Growwth Partners | Financial & Accounting Experts Singapore" description="Expert accounting, CFO, and financial services for SMEs and startups in Singapore. Unlock growth with award-winning advisors at Growwth Partners." />
+      {/* Redirect to the Home page which contains the proper content */}
+      <Navigate to="/" replace />
+    </>
+  );
 };
 
 export default Index;

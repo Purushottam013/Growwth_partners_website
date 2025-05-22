@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/cashflow/HeroSection";
@@ -33,6 +32,7 @@ const CashFlowPage = () => {
         title="Cash Flow Modelling Services in Singapore | Growwth Partners"
         description="Take control of your cash flow and future-proof your business with flexible modelling services tailored for Singaporean SMEs & startups."
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

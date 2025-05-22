@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/accounting/HeroSection";
@@ -33,6 +32,7 @@ const AccountingPage = () => {
         title="Accounting Services in Singapore | Growwth Partners"
         description="Discover top-tier accounting solutions with Growwth Partners in Singapore. We provide accurate, efficient, and scalable financial services tailored to your business."
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

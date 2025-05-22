@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/bookkeeping/HeroSection";
@@ -32,6 +31,7 @@ const BookkeepingPage = () => {
         title="Bookkeeping Services in Singapore | Growwth Partners"
         description="Professional bookkeeping services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
