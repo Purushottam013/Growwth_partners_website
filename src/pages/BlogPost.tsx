@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -162,12 +161,30 @@ const BlogPostPage = () => {
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             {/* Hero Image */}
             {post.heroImage && (
-              <div className="relative w-full h-[300px] md:h-[400px] bg-gray-100 border-b border-gray-200">
-                <OptimizedImage 
-                  src={post.heroImage} 
+              <div
+                className="
+                  relative w-full
+                  h-[220px] sm:h-[260px] md:h-[320px] lg:h-[400px] bg-gray-100 border-b border-gray-200
+                  flex items-center justify-center
+                "
+                style={{ minHeight: "180px" }}
+              >
+                <OptimizedImage
+                  src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-full"
+                  className="
+                    w-full h-full object-cover
+                    rounded-none
+                    max-h-[400px]
+                  "
                   fallbackSrc="/placeholder.svg"
+                  priority
+                  style={{
+                    maxHeight: "400px",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
                 />
               </div>
             )}
