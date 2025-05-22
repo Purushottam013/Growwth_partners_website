@@ -59,7 +59,7 @@ export const HeroSection = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               Corporate{" "}
               <span className="text-[#f87315]">Secretarial Services</span>{" "}
-              In Singapore – Simplify Compliance with Us
+              In Singapore - Simplify Compliance with Us
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8">
               Struggling with corporate compliance and governance? Our Corporate Secretarial Services in Singapore streamline every aspect, keeping your business compliant and growth-focused.
