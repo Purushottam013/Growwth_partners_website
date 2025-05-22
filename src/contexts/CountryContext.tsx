@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -18,7 +17,6 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Initialize country based on URL path
   useEffect(() => {
     const path = location.pathname;
     if (path.startsWith('/uae')) {
@@ -30,7 +28,6 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     }
   }, [location.pathname]);
 
-  // Get URL prefix based on country
   const getCountryPrefix = (): string => {
     switch (country) {
       case 'uae':
@@ -42,17 +39,31 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     }
   };
 
-  // Get full URL with country prefix
-  const getCountryUrl = (path: string): string => {
-    const countryPrefix = getCountryPrefix();
-    if (path.startsWith(countryPrefix)) {
-      return path;
-    }
-    const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-    return countryPrefix ? `${countryPrefix}/${cleanPath}` : `/${cleanPath}`;
+  const getCountryServiceSlug = (base: string) => {
+    if (country === "uae") return `${base}-services-in-uae`;
+    if (country === "australia") return `${base}-services-in-australia`;
+    return `${base}-services-in-singapore`;
   };
 
-  // Change country and always navigate to home page of that country
+  const getCountryUrl = (path: string): string => {
+    if (path.startsWith("/accounting")) return `/${getCountryServiceSlug("accounting")}`;
+    if (path.startsWith("/bookkeeping")) return `/${getCountryServiceSlug("bookkeeping")}`;
+    if (path.startsWith("/payroll")) return `/${getCountryServiceSlug("payroll")}`;
+    if (path.startsWith("/cash-flow")) return `/${getCountryServiceSlug("cash-flow")}`;
+    if (path.startsWith("/company-incorporation")) return `/${getCountryServiceSlug("company-incorporation")}`;
+    if (path.startsWith("/corporate-secretary")) return `/${getCountryServiceSlug("corporate-secretary")}`;
+    if (path.startsWith("/part-time-cfo")) {
+      if (country === "uae") return `/part-time-cfo-uae`;
+      if (country === "australia") return `/part-time-cfo-australia`;
+      return `/part-time-cfo`;
+    }
+    if (["/about", "/blog", "/contact-us", "/success-stories", "/taxation", "/achievements", "/guide", "/news", "/privacy-policy", "/terms"].includes(path)) {
+      if (country === "singapore") return path;
+      return `/${country}${path}`;
+    }
+    return path;
+  };
+
   const handleSetCountry = (newCountry: Country) => {
     if (newCountry === country) return;
 

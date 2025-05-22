@@ -9,7 +9,7 @@ import { ContactForm } from "@/components/ContactForm";
 // Import the company logo
 import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png";
 
-// Navigation dropdown data
+// Navigation dropdown data, update for country-specific slugs:
 const navItems = [
   {
     title: "Home",
@@ -23,22 +23,22 @@ const navItems = [
   },
   {
     title: "Accounting",
-    path: "/accounting-services-in-singapore",
+    path: "/accounting", // will become '/accounting-services-in-uae' etc. via getCountryUrl
     dropdown: true,
     items: [
-      { title: "Accounting Services", path: "/accounting-services-in-singapore" },
-      { title: "Bookkeeping", path: "/bookkeeping-services-in-singapore" },
-      { title: "Payroll", path: "/payroll-services-in-singapore" },
+      { title: "Accounting Services", path: "/accounting" },
+      { title: "Bookkeeping", path: "/bookkeeping" },
+      { title: "Payroll", path: "/payroll" },
       { title: "Taxation & Compliance", path: "/taxation" }
     ]
   },
   {
     title: "Part Time CFO",
-    path: "/part-time-cfo",
+    path: "/part-time-cfo", // will become '/part-time-cfo-uae' etc.
     dropdown: true,
     items: [
       { title: "Part Time CFO", path: "/part-time-cfo" },
-      { title: "Cash Flow Modelling", path: "/cash-flow-services-in-singapore" }
+      { title: "Cash Flow Modelling", path: "/cash-flow" }
     ]
   },
   {
