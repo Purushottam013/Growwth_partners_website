@@ -8,12 +8,14 @@ interface SeoProps {
   description: string;
   /** Optional override if you ever need a custom canonical */
   canonical?: string;
+  schema?: object | object[];
 }
 
 export const Seo: React.FC<SeoProps> = ({
   title,
   description,
   canonical,
+  schema,
 }) => {
   const { pathname } = useLocation();
   const href = canonical ?? `${window.location.origin}${pathname}`;
@@ -23,6 +25,11 @@ export const Seo: React.FC<SeoProps> = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={href} />
+       {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(Array.isArray(schema) ? schema : [schema])}
+        </script>
+      )}
     </Helmet>
   );
 };
