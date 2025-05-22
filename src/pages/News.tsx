@@ -9,22 +9,22 @@ import { Seo } from "@/components/Seo";
 
 const NewsPage = () => {
   const { country } = useCountry();
-  
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return <Navigate to="/uae" replace />;
   }
-  
+
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-  
+
   return (
     <Layout>
       <Seo
-  title="News & Updates | Growwth Partners"
-  description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
-/>
+        title="News & Updates | Growwth Partners"
+        description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
+      />
       <PlaceholderContent 
         title="In The News" 
         description="Stay updated with Growwth's latest developments, media coverage, and industry insights that showcase our impact in the financial services sector."
@@ -44,7 +44,6 @@ const NewsPage = () => {
           }
         ]}
       />
-      
       <div className="container-custom mb-16">
         <Alert className="bg-amber-50 border-amber-200">
           <Construction className="h-5 w-5 text-amber-500" />

@@ -5,6 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ChevronRight } from "lucide-react";
+import { Seo } from "@/components/Seo";
 
 const FinancialReportingGuide = () => {
   const navigate = useNavigate();
@@ -33,6 +34,10 @@ const FinancialReportingGuide = () => {
 
   return (
     <Layout>
+      <Seo
+        title="Singapore Small Entities Financial Reporting Guide | Growwth Partners"
+        description="A practical handbook for SFRS for Small Entities in Singapore. Learn about compliance, eligibility, and best practices for simplified financial reporting."
+      />
       {/* Hero Section with Title - Now with background gradient */}
       <section className="relative py-16 bg-gradient-to-b from-blue-100 to-white">
         <div className="container mx-auto px-4 w-[90%]">

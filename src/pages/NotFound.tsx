@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCountry } from "@/contexts/CountryContext";
 import { Layout } from "@/components/Layout";
 import { AlertTriangle } from "lucide-react";
+import { Seo } from "@/components/Seo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -24,6 +25,10 @@ const NotFound = () => {
 
   return (
     <Layout>
+      <Seo
+        title="404 Not Found | Growwth Partners"
+        description="The page you are looking for cannot be found on Growwth Partners. Go back to our homepage or explore our financial & accounting services."
+      />
       <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md mx-auto p-8">
           <div className="flex justify-center mb-4">

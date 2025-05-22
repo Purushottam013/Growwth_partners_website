@@ -1,10 +1,10 @@
-
 import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { useGuides } from "@/hooks/useGuides";
 import { useCountry } from "@/contexts/CountryContext";
 import GuideDetail from "./GuideDetail";
+import { Seo } from "@/components/Seo";
 
 const GuideSinglePage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -53,6 +53,10 @@ const GuideSinglePage = () => {
   if (!guide) {
     return (
       <Layout>
+        <Seo
+          title="Guide Not Found | Growwth Partners"
+          description="Sorry, the requested guide could not be found. Please browse our other expert guides and business resources."
+        />
         <div className="text-center py-20">
           <h2 className="text-2xl font-bold">Guide Not Found</h2>
           <p className="mt-4">The guide you're looking for doesn't exist.</p>
@@ -61,7 +65,15 @@ const GuideSinglePage = () => {
     );
   }
 
-  return <GuideDetail guide={guide} onContactClick={handleContactClick} />;
+  return (
+    <>
+      <Seo
+        title={`${guide.Title} | Growwth Partners`}
+        description={guide.Excerpt || "Expert advice and resources from Growwth Partners."}
+      />
+      <GuideDetail guide={guide} onContactClick={handleContactClick} />
+    </>
+  );
 };
 
 export default GuideSinglePage;

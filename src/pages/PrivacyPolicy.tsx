@@ -1,11 +1,16 @@
 import { Layout } from "@/components/Layout";
 import { useCountry } from "@/contexts/CountryContext";
+import { Seo } from "@/components/Seo";
 
 const PrivacyPolicyPage = () => {
   const { country } = useCountry();
   
   return (
     <Layout>
+      <Seo
+        title="Privacy Policy | Growwth Partners"
+        description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
+      />
       <div className="py-16 container-custom">
         <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
         
