@@ -89,7 +89,6 @@ function App() {
               <Route path="/uae/blog" element={<Blog />} />
               <Route path="/uae/blog/:slug" element={<BlogPost />} />
               <Route path="/uae/contact-us" element={<Contact />} />
-
               <Route path="/accounting-services-in-uae" element={<Accounting />} />
               <Route path="/bookkeeping-services-in-uae" element={<Bookkeeping />} />
               <Route path="/payroll-services-in-uae" element={<Payroll />} />
@@ -104,7 +103,6 @@ function App() {
               <Route path="/australia/blog" element={<Blog />} />
               <Route path="/australia/blog/:slug" element={<BlogPost />} />
               <Route path="/australia/contact-us" element={<Contact />} />
-
               <Route path="/accounting-services-in-australia" element={<Accounting />} />
               <Route path="/bookkeeping-services-in-australia" element={<Bookkeeping />} />
               <Route path="/payroll-services-in-australia" element={<Payroll />} />
@@ -113,8 +111,7 @@ function App() {
               <Route path="/corporate-secretary-services-in-australia" element={<CorporateSecretary />} />
               <Route path="/part-time-cfo-australia" element={<FractionalCFO />} />
 
-              {/* --- PERMANENT REDIRECTS for LEGACY COUNTRY-ROUTES (for SEO; router-level only) --- */}
-              {/* Redirect old nested routes to canonical ones; this blocks duplicate crawling */}
+              {/* --- PERMANENT REDIRECTS for LEGACY COUNTRY-ROUTES (SEO: redirect old duplicates to canonical) --- */}
               <Route path="/uae/accounting-services-in-singapore" element={<Navigate to="/accounting-services-in-uae" replace />} />
               <Route path="/uae/bookkeeping-services-in-singapore" element={<Navigate to="/bookkeeping-services-in-uae" replace />} />
               <Route path="/uae/payroll-services-in-singapore" element={<Navigate to="/payroll-services-in-uae" replace />} />

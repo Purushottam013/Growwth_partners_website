@@ -1,14 +1,18 @@
-
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Seo from "@/components/Seo";
 
 const HomeAustralia = () => {
   const navigate = useNavigate();
 
   return (
     <Layout>
+      <Seo
+        title="Growwth Partners Australia | Accounting & Financial Experts"
+        description="Expert accounting and financial services for Australian SMEs from Growwth Partners. Learn more and register your interest in our local offerings."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

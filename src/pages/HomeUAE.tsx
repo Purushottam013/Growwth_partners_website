@@ -1,14 +1,18 @@
-
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Seo from "@/components/Seo";
 
 const HomeUAE = () => {
   const navigate = useNavigate();
 
   return (
     <Layout>
+      <Seo
+        title="Growwth Partners UAE | Trusted Financial & Accounting Advisors"
+        description="Discover accounting, bookkeeping, and CFO solutions for UAE businesses. Growwth Partners provides reliable, expert financial guidance for your success."
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
