@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import Seo from "@/components/Seo";
+import { Seo } from "@/components/Seo";
 
 const HomeAustralia = () => {
   const navigate = useNavigate();
