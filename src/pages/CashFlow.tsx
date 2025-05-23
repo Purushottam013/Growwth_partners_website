@@ -26,11 +26,39 @@ const CashFlowPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What exactly is financial modeling?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Financial modeling is the process of creating a summary of a company's costs and income in the form of a spreadsheet that can be used to calculate the impact of future events or decisions."
+    }
+  },{
+    "@type": "Question",
+    "name": "How much does your financial modeling service cost?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Our financial modeling services are customized to each client's specific needs and business complexity. We offer tailored pricing based on the scope, depth, and timeframe of your project. Contact us for a personalized quote."
+    }
+  },{
+    "@type": "Question",
+    "name": "Can you customize financial models for specific industries?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Absolutely. We specialize in creating industry-specific financial models that reflect the unique dynamics, metrics, and KPIs relevant to your sector. Our team has experience across multiple industries including tech, healthcare, retail, manufacturing, and more."
+    }
+  }]
+}
+
   return (
     <Layout>
       <Seo
         title="Cash Flow Modelling Services in Singapore | Growwth Partners"
         description="Take control of your cash flow and future-proof your business with flexible modelling services tailored for Singaporean SMEs & startups."
+        schema={organizationSchema}
       />
       
       <motion.div

@@ -13,7 +13,7 @@ import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
 import { Seo } from "@/components/Seo";
-import { organizationSchema } from "@/data/schemas";
+
 
 const AccountingPage = () => {
   const { country } = useCountry();
@@ -26,6 +26,33 @@ const AccountingPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
+
+  const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How can outsourcing accounting benefit my business?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Outsourcing accounting saves you time, ensures accuracy, and provides valuable financial insights to make informed decisions."
+    }
+  },{
+    "@type": "Question",
+    "name": "How can I get started with your accounting services?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Reach out to us via our contact page to discuss your business needs and find the right services for you."
+    }
+  },{
+    "@type": "Question",
+    "name": "What is the benefit of having regular financial reports?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Regular financial reports offer insights into your business's financial health, expenses, trends, and aid in decision-making."
+    }
+  }]
+}
 
   return (
     <Layout>
