@@ -26,11 +26,40 @@ const FractionalCFOPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+
+  const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What's the difference between a part-time CFO and a full-time CFO?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A part-time or fractional CFO offers strategic financial expertise without the cost of a full-time hire. You only pay for the support you need—making it ideal for startups and SMEs."
+    }
+  },{
+    "@type": "Question",
+    "name": "Is a CFO necessary if I already have an accountant?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Accountants handle compliance and historical data. CFOs look forward—helping with planning, strategy, investor relations, and growth decisions."
+    }
+  },{
+    "@type": "Question",
+    "name": "Are your virtual CFOs based in Singapore?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, our CFOs have deep local expertise and work with companies across Singapore and Southeast Asia."
+    }
+  }]
+}
+
   return (
     <Layout>
       <Seo
         title="Part Time CFO Services in Singapore | Growwth Partners"
         description="Get strategic guidance and real results with part-time CFO, finance strategy, and fractional leadership services for Singapore's high-growth companies."
+        schema={organizationSchema}
       />
        <motion.div
         initial={{ opacity: 0 }}
