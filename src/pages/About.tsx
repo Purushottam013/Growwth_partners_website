@@ -12,7 +12,7 @@ import { ExpertInsights } from "@/components/about/ExpertInsights";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
 import { Seo } from "@/components/Seo";
-import { organizationSchema } from "@/data/schemas";
+
 
 const AboutPage = () => {
   const { country } = useCountry();
@@ -31,7 +31,6 @@ const AboutPage = () => {
       <Seo 
         title="About Growwth Partners | Experienced Financial Experts in Singapore"
         description="Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond."
-        schema={organizationSchema}
       />
       
       <motion.div
