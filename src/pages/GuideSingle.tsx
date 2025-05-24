@@ -67,10 +67,7 @@ const GuideSinglePage = () => {
 
   return (
     <>
-      <Seo
-        title={`${guide.Title} | Growwth Partners`}
-        description={guide.Excerpt || "Expert advice and resources from Growwth Partners."}
-      />
+      {/* Seo now in GuideDetail */}
       <GuideDetail guide={guide} onContactClick={handleContactClick} />
     </>
   );
