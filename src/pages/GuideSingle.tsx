@@ -14,11 +14,29 @@ const GuideSinglePage = () => {
 
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
-    return <Navigate to="/uae" replace />;
+    return (
+      <>
+        <Seo
+          title="Guide Not Available in UAE | Growwth Partners"
+          description="Guides are not available for UAE visitors. Redirecting to UAE homepage."
+          canonical={`${window.location.origin}/uae`}
+        />
+        <Navigate to="/uae" replace />
+      </>
+    );
   }
   
   if (country === 'australia') {
-    return <Navigate to="/australia" replace />;
+    return (
+      <>
+        <Seo
+          title="Guide Not Available in Australia | Growwth Partners"
+          description="Guides are not available for Australian visitors. Redirecting to Australia homepage."
+          canonical={`${window.location.origin}/australia`}
+        />
+        <Navigate to="/australia" replace />
+      </>
+    );
   }
   
   useEffect(() => {
@@ -32,6 +50,10 @@ const GuideSinglePage = () => {
   if (loading) {
     return (
       <Layout>
+        <Seo
+          title="Guides Loading | Growwth Partners"
+          description="Loading expert financial, compliance, and business guides from Growwth Partners."
+        />
         <div className="flex justify-center items-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
         </div>
@@ -42,6 +64,10 @@ const GuideSinglePage = () => {
   if (error) {
     return (
       <Layout>
+        <Seo
+          title="Error loading Guide | Growwth Partners"
+          description={error}
+        />
         <div className="text-center py-20">
           <h2 className="text-2xl font-bold text-red-500">Error</h2>
           <p className="mt-4">{error}</p>
@@ -56,6 +82,7 @@ const GuideSinglePage = () => {
         <Seo
           title="Guide Not Found | Growwth Partners"
           description="Sorry, the requested guide could not be found. Please browse our other expert guides and business resources."
+          canonical={`${window.location.origin}/guide`}
         />
         <div className="text-center py-20">
           <h2 className="text-2xl font-bold">Guide Not Found</h2>

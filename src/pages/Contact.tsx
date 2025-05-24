@@ -20,7 +20,7 @@ const ContactPage = () => {
       <>
         <Seo
           title="Contact Experts in the UAE | Growwth Partners"
-          description="Growwth Partners serves UAE-based businesses. Please visit our UAE site for localized contact support and financial expertise."
+          description="Get UAE-specific support! Reach out to Growwth Partners for expert local UAE financial and accounting advice. Contact our Emirates-based specialists for customized business solutions."
           canonical={`${window.location.origin}/uae/contact-us`}
         />
         <Navigate to="/uae" replace />
@@ -33,7 +33,7 @@ const ContactPage = () => {
       <>
         <Seo
           title="Australia Enquiry | Growwth Partners"
-          description="Growwth Partners operates in Australia! Please visit our Australia page for the latest advisory contact information and service support."
+          description="Connecting Australian businesses with the right financial, compliance, and startup support. Use our local Australia experts for compliant and growth-oriented business solutions."
           canonical={`${window.location.origin}/australia/contact-us`}
         />
         <Navigate to="/australia" replace />
@@ -44,8 +44,9 @@ const ContactPage = () => {
   return (
     <Layout>
       <Seo
-        title="Contact Growwth Partners | Speak to a Financial Expert"
-        description="Contact Growwth Partners to get personalised finance, accounting, and business growth advice. Our experts in Singapore are ready to help your business succeed."
+        title="Contact Growwth Partners Singapore | Speak to a Financial Expert"
+        description="Request custom advice or support from our award-winning Singapore accounting and finance team. We're ready to help your SME or startup grow!"
+        canonical={`${window.location.origin}/contact-us`}
       />
       <motion.div
         initial={{ opacity: 0 }}

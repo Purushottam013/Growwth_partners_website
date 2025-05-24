@@ -11,7 +11,8 @@ const HomeAustralia = () => {
     <Layout>
       <Seo
         title="Growwth Partners Australia | Accounting & Financial Experts"
-        description="Growwth Partners Australia provides accounting, bookkeeping, payroll, CFO, and company incorporation solutions tailored to the needs of Australian SMEs and local startups. Discover expert financial service delivery, local guidance, and scalable support for your business in Australia."
+        description="We enable Australian SMEs, startups, and local founders to scale nationwide—our on-the-ground Sydney/Melbourne-based team brings the best in bookkeeping, compliance, and strategic advisory for the Australian business ecosystem."
+        canonical={`${window.location.origin}/australia`}
       />
       <motion.div
         initial={{ opacity: 0 }}
@@ -35,16 +36,20 @@ const HomeAustralia = () => {
               Australia Services
             </motion.div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-brand-orange">Welcome to Growwth Australia</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-brand-orange">
+              Growwth Australia: Finance Solutions For Aussie Businesses
+            </h1>
             <p className="text-lg text-gray-600 mb-8">
-              Expert accounting and financial services for Australian businesses.
+              From Melbourne to Sydney, Growwth's team specializes in Australian accounting, payroll, and incorporation. We help local businesses stay compliant and profitable as they grow throughout the country.
             </p>
             
             <div className="relative py-10 px-8 rounded-xl border-2 border-dashed border-blue-300 bg-blue-50/50 mb-10">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-4">
                 <span className="text-brand-blue font-semibold">Coming Soon</span>
               </div>
-              <p className="text-gray-600">We're currently building our Australian service offerings. Stay tuned for comprehensive financial solutions tailored specifically for the Australian market.</p>
+              <p className="text-gray-600">
+                Our Australia-only service desk opens soon. Curious about early access? Register your interest now and help shape our offerings for your business needs.
+              </p>
             </div>
             
             <Button 

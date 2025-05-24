@@ -27,7 +27,8 @@ const NotFound = () => {
     <Layout>
       <Seo
         title="404 Not Found | Growwth Partners"
-        description="The page you are looking for cannot be found on Growwth Partners. Go back to our homepage or explore our financial & accounting services."
+        description={`No content found for ${location.pathname}. Go back to our homepage or explore our country-specific offerings for Singapore, UAE, or Australia.`}
+        canonical={`${window.location.origin}${location.pathname}`}
       />
       <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md mx-auto p-8">

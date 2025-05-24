@@ -11,7 +11,8 @@ const HomeUAE = () => {
     <Layout>
       <Seo
         title="Growwth Partners UAE | Expert Accounting & Financial Advisors"
-        description="Growwth Partners UAE specializes in accounting, bookkeeping, fractional CFO, and business incorporation services for local UAE businesses and international companies entering the Emirates. Partner with our UAE-based team for reliable expertise—tailored to the region's needs."
+        description="Our UAE headquarters provides exclusive support for startup and established businesses entering or growing in the Emirates. Access local VAT, incorporation, and advisory expertise from a trusted UAE-based team."
+        canonical={`${window.location.origin}/uae`}
       />
       <motion.div
         initial={{ opacity: 0 }}
@@ -35,23 +36,27 @@ const HomeUAE = () => {
               UAE Services
             </motion.div>
             
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-brand-orange">Welcome to Growwth UAE</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-brand-orange">
+              Growwth UAE: Tailored Finance for Emirati Businesses
+            </h1>
             <p className="text-lg text-gray-600 mb-8">
-              Experience specialized accounting and financial services tailored for businesses in the United Arab Emirates.
+              We bring deep local UAE accounting experience, from VAT to company incorporations, for scaling local companies and foreign investors alike. <strong>Your trusted financial base for business growth in Dubai, Abu Dhabi, and beyond.</strong>
             </p>
             
             <div className="relative py-10 px-8 rounded-xl border-2 border-dashed border-orange-300 bg-orange-50/50 mb-10">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-4">
                 <span className="text-brand-orange font-semibold">Coming Soon</span>
               </div>
-              <p className="text-gray-600">We're currently expanding our UAE services. Check back soon for comprehensive financial solutions tailored for UAE businesses.</p>
+              <p className="text-gray-600">
+                Our UAE-exclusive services launch shortly! Register your interest to get early access and be the first to benefit from local UAE financial innovation.
+              </p>
             </div>
             
             <Button 
               onClick={() => navigate("/contact")}
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-medium px-6 py-3"
             >
-              Contact Us for Early Access
+              Contact UAE Advisors
             </Button>
           </div>
         </div>
