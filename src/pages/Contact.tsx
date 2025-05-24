@@ -1,4 +1,5 @@
 
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
@@ -15,14 +16,30 @@ const ContactPage = () => {
 
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
-    return <Navigate to="/uae" replace />;
+    return (
+      <>
+        <Seo
+          title="Contact Experts in the UAE | Growwth Partners"
+          description="Growwth Partners serves UAE-based businesses. Please visit our UAE site for localized contact support and financial expertise."
+          canonical={`${window.location.origin}/uae/contact-us`}
+        />
+        <Navigate to="/uae" replace />
+      </>
+    );
   }
 
   if (country === 'australia') {
-    return <Navigate to="/australia" replace />;
+    return (
+      <>
+        <Seo
+          title="Australia Enquiry | Growwth Partners"
+          description="Growwth Partners operates in Australia! Please visit our Australia page for the latest advisory contact information and service support."
+          canonical={`${window.location.origin}/australia/contact-us`}
+        />
+        <Navigate to="/australia" replace />
+      </>
+    );
   }
-
-  
 
   return (
     <Layout>

@@ -11,7 +11,7 @@ const HomeAustralia = () => {
     <Layout>
       <Seo
         title="Growwth Partners Australia | Accounting & Financial Experts"
-        description="Expert accounting and financial services for Australian SMEs from Growwth Partners. Learn more and register your interest in our local offerings."
+        description="Growwth Partners Australia provides accounting, bookkeeping, payroll, CFO, and company incorporation solutions tailored to the needs of Australian SMEs and local startups. Discover expert financial service delivery, local guidance, and scalable support for your business in Australia."
       />
       <motion.div
         initial={{ opacity: 0 }}

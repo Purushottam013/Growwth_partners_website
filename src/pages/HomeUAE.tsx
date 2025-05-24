@@ -10,8 +10,8 @@ const HomeUAE = () => {
   return (
     <Layout>
       <Seo
-        title="Growwth Partners UAE | Trusted Financial & Accounting Advisors"
-        description="Discover accounting, bookkeeping, and CFO solutions for UAE businesses. Growwth Partners provides reliable, expert financial guidance for your success."
+        title="Growwth Partners UAE | Expert Accounting & Financial Advisors"
+        description="Growwth Partners UAE specializes in accounting, bookkeeping, fractional CFO, and business incorporation services for local UAE businesses and international companies entering the Emirates. Partner with our UAE-based team for reliable expertise—tailored to the region's needs."
       />
       <motion.div
         initial={{ opacity: 0 }}
