@@ -27,7 +27,7 @@ const contactDetails = [
   {
     icon: <PhoneIcon className="h-6 w-6 text-brand-orange" />,
     title: "Call Us",
-    details: ["+65 8893 0720"],
+    details: ["+65 9861 5600"],
     subheading: "Mon-fri from 8am to 5pm."
   }
 ];
