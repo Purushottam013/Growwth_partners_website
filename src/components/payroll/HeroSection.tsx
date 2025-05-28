@@ -35,7 +35,7 @@ export const HeroSection = () => {
                 asChild
                 className="bg-brand-orange hover:bg-brand-orange/90 text-white px-7 py-5 text-lg font-medium rounded-full"
               >
-                <Link to="/contact#consultation-form">
+                <Link to="/contact-us#consultation-form">
                   Contact Us
                 </Link>
               </Button>
