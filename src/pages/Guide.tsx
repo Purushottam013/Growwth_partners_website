@@ -1,199 +1,162 @@
-import { useState, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+
+import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
-import { useGuides } from "@/hooks/useGuides";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { OptimizedImage } from "@/components/ui/optimized-image";
+import { GuideHero } from "@/components/guides/GuideHero";
 import { useCountry } from "@/contexts/CountryContext";
-import { 
-  Pagination, 
-  PaginationContent, 
-  PaginationItem, 
-  PaginationLink, 
-  PaginationNext, 
-  PaginationPrevious 
-} from "@/components/ui/pagination";
+import { useGuides } from "@/hooks/useGuides";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, FileText, TrendingUp, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
 
-const GUIDES_PER_PAGE = 3;
-
 const GuidePage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
-  const [currentPage, setCurrentPage] = useState(1);
   const { country } = useCountry();
-  
+  const { guides, loading, error } = useGuides();
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
-    return <Navigate to="/uae" replace />;
+    return (
+      <>
+        <Seo
+          title="Business Guides UAE | Growwth Partners"
+          description="Comprehensive business guides and resources for UAE entrepreneurs. Get expert advice on company formation, VAT compliance, and business growth in the Emirates."
+          canonical={`${window.location.origin}/uae/guide`}
+        />
+        <Navigate to="/uae" replace />
+      </>
+    );
   }
-  
+
   if (country === 'australia') {
-    return <Navigate to="/australia" replace />;
+    return (
+      <>
+        <Seo
+          title="Australian Business Guides | Growwth Partners"
+          description="Essential business guides for Australian companies. Learn about compliance, taxation, and growth strategies specifically for the Australian market."
+          canonical={`${window.location.origin}/australia/guide`}
+        />
+        <Navigate to="/australia" replace />
+      </>
+    );
   }
-  
-  const {
-    guides,
-    categories,
-    loading,
-    error
-  } = useGuides(selectedCategory);
 
-  // Reset pagination when category changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory]);
-  
-  useEffect(() => {
-    // Scroll to top when the component mounts or category changes
-    window.scrollTo(0, 0);
-  }, [selectedCategory]);
+  if (loading) {
+    return (
+      <Layout>
+        <Seo
+          title="Loading Business Guides | Growwth Partners"
+          description="Loading comprehensive business guides and resources from Singapore's leading financial experts."
+        />
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      </Layout>
+    );
+  }
 
-  // Calculate pagination
-  const totalPages = Math.ceil(guides.length / GUIDES_PER_PAGE);
-  const startIndex = (currentPage - 1) * GUIDES_PER_PAGE;
-  const endIndex = startIndex + GUIDES_PER_PAGE;
-  const currentGuides = guides.slice(startIndex, endIndex);
+  if (error) {
+    return (
+      <Layout>
+        <Seo
+          title="Business Guides Error | Growwth Partners"
+          description="Error loading business guides. Please try again later or contact our support team."
+        />
+        <div className="text-center py-20">
+          <h2 className="text-2xl font-bold text-red-500">Error Loading Guides</h2>
+          <p className="mt-4">{error}</p>
+        </div>
+      </Layout>
+    );
+  }
 
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Business Guides Singapore",
+    "description": "Comprehensive business guides covering accounting, compliance, and growth strategies for Singapore businesses",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Growwth Partners"
+    }
   };
-  
-  return <Layout>
+
+  return (
+    <Layout>
       <Seo
-        title="Guides & Resources | Growwth Partners"
-        description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners’ expertise."
+        title="Essential Business Guides Singapore | Expert Financial Resources | Growwth Partners"
+        description="Access comprehensive business guides covering accounting best practices, compliance requirements, and growth strategies for Singapore SMEs and startups. Written by award-winning financial experts."
+        schema={organizationSchema}
       />
-
-      <section className="relative w-full flex justify-center">
-        <div className="w-3/4 h-[250px] md:h-[300px] lg:h-[350px]">
-          <OptimizedImage 
-            src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" 
-            alt="Guides" 
-            className="w-full h-full py-8 object-contain" 
-            style={{ maxHeight: "380px",   }}
-          />
-        </div>
-      </section>
-
-      <section className="py-8">
+      <GuideHero />
+      
+      {/* Featured Stats Section */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Tabs defaultValue={selectedCategory || "all"} className="w-full">
-              <TabsList className="w-full flex justify-center mb-6 p-1">
-                <TabsTrigger 
-                  value="all" 
-                  className="px-4 py-2 mx-2" 
-                  onClick={() => setSelectedCategory(undefined)}
-                >
-                  All
-                </TabsTrigger>
-                
-                {categories.map(category => (
-                  <TabsTrigger 
-                    key={category} 
-                    value={category} 
-                    className="px-4 py-2 mx-2 whitespace-nowrap" 
-                    onClick={() => setSelectedCategory(category)}
-                  >
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
-          </div>
-
-          {/* Guides Grid */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Available Guides</h2>
-            
-            {loading && (
-              <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <FileText className="w-12 h-12 text-brand-orange" />
               </div>
-            )}
-            
-            {error && (
-              <div className="text-center text-red-500 py-8">
-                {error}
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">{guides.length}+ Guides</h3>
+              <p className="text-gray-600">Comprehensive business resources</p>
+            </div>
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <Users className="w-12 h-12 text-brand-orange" />
               </div>
-            )}
-            
-            {!loading && guides.length === 0 && (
-              <div className="text-center py-8">
-                <p>No guides available in this category.</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">10,000+</h3>
+              <p className="text-gray-600">Businesses helped</p>
+            </div>
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <TrendingUp className="w-12 h-12 text-brand-orange" />
               </div>
-            )}
-            
-            {!loading && guides.length > 0 && (
-              <>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {currentGuides.map((guide) => (
-                    <Link to={`/guide/${guide.slug}`} key={guide.id}>
-                      <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
-                        <div className="aspect-video overflow-hidden bg-gray-100">
-                          <img 
-                            src={guide.Image} 
-                            alt={guide.Title} 
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
-                        <CardHeader>
-                          <p className="text-sm text-primary mb-1">{guide.Category}</p>
-                          <CardTitle className="text-lg font-semibold line-clamp-2">{guide.Title}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-gray-600 line-clamp-3">{guide.Excerpt}</p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-                
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <Pagination className="mt-12">
-                    <PaginationContent>
-                      {currentPage > 1 && (
-                        <PaginationItem>
-                          <PaginationPrevious 
-                            onClick={() => handlePageChange(currentPage - 1)} 
-                          />
-                        </PaginationItem>
-                      )}
-                      
-                      {[...Array(totalPages)].map((_, i) => (
-                        <PaginationItem key={i}>
-                          <PaginationLink 
-                            onClick={() => handlePageChange(i + 1)}
-                            isActive={currentPage === i + 1}
-                          >
-                            {i + 1}
-                          </PaginationLink>
-                        </PaginationItem>
-                      ))}
-                      
-                      {currentPage < totalPages && (
-                        <PaginationItem>
-                          <PaginationNext 
-                            onClick={() => handlePageChange(currentPage + 1)} 
-                          />
-                        </PaginationItem>
-                      )}
-                    </PaginationContent>
-                  </Pagination>
-                )}
-              </>
-            )}
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Award-Winning</h3>
+              <p className="text-gray-600">Expert team</p>
+            </div>
           </div>
         </div>
       </section>
-    </Layout>;
+
+      {/* Guides Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Expert Business Guides</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Get actionable insights from Singapore's leading financial experts to grow your business efficiently and compliantly.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {guides.map((guide) => (
+              <Card key={guide.id} className="h-full hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-gray-900">{guide.Title}</CardTitle>
+                  <CardDescription className="text-gray-600">
+                    {guide.Excerpt || "Expert insights and practical advice for your business"}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500">
+                      {guide.ReadTime || "5 min read"}
+                    </span>
+                    <Link to={`/guide/${guide.slug}`}>
+                      <Button variant="ghost" size="sm" className="text-brand-orange hover:text-brand-orange/80">
+                        Read Guide <ArrowRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
 };
 
 export default GuidePage;
