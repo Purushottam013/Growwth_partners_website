@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   const factBadges = [{
     icon: <DollarSign className="h-5 w-5 text-white" />,
@@ -138,25 +139,32 @@ export const HeroSection = () => {
           </div>
           
           <div className="order-1 lg:order-2 relative">
-            <div className="relative z-10 w-[600px] h-[400px] mx-auto">
+            <div className="relative z-10 w-full max-w-[600px] mx-auto aspect-[3/2]">
+              {!imageLoaded && (
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg animate-pulse flex items-center justify-center">
+                  <div className="w-12 h-12 border-4 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
               <motion.div initial={{
                 opacity: 0,
                 scale: 0.9
               }} animate={{
-                opacity: 1,
-                scale: 1
+                opacity: imageLoaded ? 1 : 0,
+                scale: imageLoaded ? 1 : 0.9
               }} transition={{
                 duration: 0.6
               }} className="relative rounded-lg overflow-hidden shadow-2xl w-full h-full">
                 <OptimizedImage
                   src="/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png"
                   alt="Financial Growth"
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-cover w-full h-full"
                   priority={true}
                   width={600}
                   height={400}
+                  onLoad={() => setImageLoaded(true)}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                 />
-                {factBadges.map((badge, index) => (
+                {imageLoaded && factBadges.map((badge, index) => (
                   <motion.div key={index} className={`absolute ${badge.position} hidden sm:block`} initial={{
                     opacity: 0,
                     scale: 0.8
@@ -178,7 +186,9 @@ export const HeroSection = () => {
                   </motion.div>
                 ))}
               </motion.div>
-              <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4 w-full h-full"></div>
+              {imageLoaded && (
+                <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4 w-full h-full"></div>
+              )}
             </div>
           </div>
         </div>

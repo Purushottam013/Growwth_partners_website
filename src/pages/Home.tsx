@@ -29,22 +29,35 @@ const CtaSection = lazy(() =>
 
 // Improved fallback component for suspense
 const SectionLoader = () => (
-  <div className="py-12 flex justify-center items-center">
-    <div className="animate-pulse bg-gray-200 h-48 w-full max-w-4xl rounded-lg"></div>
+  <div className="py-8 flex justify-center items-center">
+    <div className="w-8 h-8 border-4 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
 
 const HomePage = () => {
-  // Preload components for smoother user experience
+  // Preload critical images and components for faster navigation
   useEffect(() => {
+    // Preload hero image immediately
+    const heroImage = new Image();
+    heroImage.src = "/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png";
+    
     // Preload components after initial render during idle time
     if ('requestIdleCallback' in window) {
       const idleCallback = window.requestIdleCallback(() => {
         // Silently preload the next critical components
         import("@/components/home/ServicesSection");
-      }, { timeout: 2000 });
+        import("@/components/home/AchievementsSection");
+      }, { timeout: 1000 });
       
       return () => window.cancelIdleCallback(idleCallback);
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      const timeout = setTimeout(() => {
+        import("@/components/home/ServicesSection");
+        import("@/components/home/AchievementsSection");
+      }, 100);
+      
+      return () => clearTimeout(timeout);
     }
   }, []);
 
@@ -60,8 +73,6 @@ const HomePage = () => {
   ],
 };
 
-
-
   return (
     <Layout>
      <Seo 
@@ -72,7 +83,7 @@ const HomePage = () => {
       
       <AnimatedElement
         animation="fade-in"
-        duration={0.5}
+        duration={0.3}
         className="overflow-hidden"
       >
         {/* Critical path rendering - load immediately */}
