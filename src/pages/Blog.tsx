@@ -11,7 +11,6 @@ import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Seo } from "@/components/Seo";
 
-
 const BlogPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,10 +66,10 @@ const BlogPage = () => {
     return (
       <Layout>
         <Seo
-  title="Blog | Growwth Partners"
-  description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
-/>
-
+          title="Blog | Growwth Partners"
+          description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
+          canonical={`${window.location.origin}/blog`}
+        />
 
         <div className="container mx-auto px-4 py-12">
           <div className="animate-pulse space-y-8">
@@ -89,6 +88,12 @@ const BlogPage = () => {
 
   return (
     <Layout>
+      <Seo
+        title="Blog | Growwth Partners"
+        description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
+        canonical={`${window.location.origin}/blog`}
+      />
+      
       <div className="container mx-auto px-4 py-12">
         <div
           className="relative mb-10 rounded-xl overflow-hidden shadow-lg"

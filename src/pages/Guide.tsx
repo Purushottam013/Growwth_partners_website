@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -67,7 +68,8 @@ const GuidePage = () => {
   return <Layout>
       <Seo
         title="Guides & Resources | Growwth Partners"
-        description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners’ expertise."
+        description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners' expertise."
+        canonical={`${window.location.origin}/guide`}
       />
 
       <section className="relative w-full flex justify-center">

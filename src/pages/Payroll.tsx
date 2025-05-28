@@ -27,39 +27,40 @@ const PayrollPage = () => {
   }
 
   const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "What services are included in your payroll solutions?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Our services include accurate salary calculations, tax deductions and filings, compliance assurance, custom payroll solutions, employee self-service portals, and dedicated support."
-    }
-  },{
-    "@type": "Question",
-    "name": "What type of businesses can benefit from your payroll services?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Our payroll services are scalable and can be adapted to suit startups, SMEs, and multinational corporations, ensuring that businesses of all sizes benefit from our expertise"
-    }
-  },{
-    "@type": "Question",
-    "name": "How can I get started with your payroll services?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "You can get started by booking a free call with one of our payroll experts to discuss your business needs. We will guide you through the entire process, from consultation and planning to implementation and continuous support."
-    }
-  }]
-}
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "What services are included in your payroll solutions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our services include accurate salary calculations, tax deductions and filings, compliance assurance, custom payroll solutions, employee self-service portals, and dedicated support."
+      }
+    },{
+      "@type": "Question",
+      "name": "What type of businesses can benefit from your payroll services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our payroll services are scalable and can be adapted to suit startups, SMEs, and multinational corporations, ensuring that businesses of all sizes benefit from our expertise"
+      }
+    },{
+      "@type": "Question",
+      "name": "How can I get started with your payroll services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can get started by booking a free call with one of our payroll experts to discuss your business needs. We will guide you through the entire process, from consultation and planning to implementation and continuous support."
+      }
+    }]
+  }
   
   return (
     <Layout>
        <Seo
             title="Payroll Services in Singapore | Growwth Partners"
-             description="Professional payroll services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
+            description="Professional payroll services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
             schema={organizationSchema}
-            /> 
+            canonical={`${window.location.origin}/payroll`}
+        /> 
 
       <motion.div
         initial={{ opacity: 0 }}
