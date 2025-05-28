@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactModal } from "@/components/ui/contact-modal";
 import { Badge } from "@/components/ui/badge";
 import handshakeImage from "/lovable-uploads/658d652b-f5d2-4603-af7b-ad64c5e2d4ec.png";
 import { OptimizedImage } from "../ui/optimized-image";
@@ -108,18 +107,10 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Book a Free Call</DialogTitle>
-            <DialogDescription className="text-center">
-              Speak with our experts to learn how we can help your business stay compliant
-            </DialogDescription>
-          </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
-        </DialogContent>
-      </Dialog>
+      <ContactModal 
+        open={contactModalOpen} 
+        onOpenChange={setContactModalOpen} 
+      />
     </section>
   );
 };
-

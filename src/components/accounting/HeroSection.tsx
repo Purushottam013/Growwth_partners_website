@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactModal } from "@/components/ui/contact-modal";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { BadgeCheck, BadgePercent } from "lucide-react";
 import taxFormImage from "/lovable-uploads/7f953e6f-6847-4912-a00c-46fb7bc53f01.png";
@@ -51,20 +50,12 @@ export const HeroSection = () => {
           >
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-full">
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-brand-blue/20 mix-blend-overlay rounded-2xl"></div>
-              {/* <img 
-                src={taxFormImage} 
-                alt="Tax form with calculator and sticky note saying 'Need help?'" 
+              <OptimizedImage
+                src={taxFormImage}
+                alt="Tax form with calculator and sticky note saying 'Need help?'"
                 className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
                 style={{ maxHeight: "360px", objectPosition: "center" }}
-              /> */}
-
-<OptimizedImage
-  src={taxFormImage}
-  alt="Tax form with calculator and sticky note saying 'Need help?'"
-  className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-700"
-  style={{ maxHeight: "360px", objectPosition: "center" }}
-/>
-
+              />
             </div>
             
             <motion.div
@@ -106,17 +97,10 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
-            <DialogDescription className="text-center">
-              Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
-            </DialogDescription>
-          </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
-        </DialogContent>
-      </Dialog>
+      <ContactModal 
+        open={contactModalOpen} 
+        onOpenChange={setContactModalOpen} 
+      />
     </section>
   );
 };

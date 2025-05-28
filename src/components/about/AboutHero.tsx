@@ -1,8 +1,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactModal } from "@/components/ui/contact-modal";
 import { useState } from "react";
 
 export const AboutHero = () => {
@@ -43,17 +42,10 @@ export const AboutHero = () => {
         </motion.div>
       </div>
 
-      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Book a Free Call</DialogTitle>
-            <DialogDescription className="text-center">
-              Schedule a consultation with our experts to discuss your business needs
-            </DialogDescription>
-          </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
-        </DialogContent>
-      </Dialog>
+      <ContactModal 
+        open={contactModalOpen} 
+        onOpenChange={setContactModalOpen} 
+      />
     </section>
   );
 };

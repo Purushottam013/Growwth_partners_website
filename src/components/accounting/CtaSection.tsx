@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactModal } from "@/components/ui/contact-modal";
 
 export const CtaSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -51,17 +50,10 @@ export const CtaSection = () => {
         </div>
       </div>
 
-      <Dialog open={contactModalOpen} onOpenChange={setContactModalOpen}>
-        <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Speak To An Expert</DialogTitle>
-            <DialogDescription className="text-center">
-              Every Business Is Unique. Let Us Tailor A Plan For You! Fill In Your Details And An Expert Will Touch Base With You
-            </DialogDescription>
-          </DialogHeader>
-          <ContactForm onSuccess={() => setContactModalOpen(false)} />
-        </DialogContent>
-      </Dialog>
+      <ContactModal 
+        open={contactModalOpen} 
+        onOpenChange={setContactModalOpen} 
+      />
     </section>
   );
 };
