@@ -65,7 +65,8 @@ const GuidePage = () => {
     });
   };
   
-  return <Layout>
+  return (
+    <Layout>
       <Seo
         title="Guides & Resources | Growwth Partners"
         description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners' expertise."
@@ -78,7 +79,8 @@ const GuidePage = () => {
             src="/lovable-uploads/e724df8b-078f-4892-9a47-ab21bdd069b1.png" 
             alt="Guides" 
             className="w-full h-full py-8 object-contain" 
-            style={{ maxHeight: "380px",   }}
+            style={{ maxHeight: "380px" }}
+            priority={true}
           />
         </div>
       </section>
@@ -139,7 +141,7 @@ const GuidePage = () => {
                     <Link to={`/guide/${guide.slug}`} key={guide.id}>
                       <Card className="overflow-hidden border hover:shadow-lg transition-all duration-300 h-full cursor-pointer">
                         <div className="aspect-video overflow-hidden bg-gray-100">
-                          <img 
+                          <OptimizedImage 
                             src={guide.Image} 
                             alt={guide.Title} 
                             className="w-full h-full object-cover" 
@@ -195,7 +197,8 @@ const GuidePage = () => {
           </div>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
 
 export default GuidePage;

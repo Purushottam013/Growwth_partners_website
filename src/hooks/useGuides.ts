@@ -19,24 +19,15 @@ export const useGuides = (category?: string) => {
     setError(null);
     
     try {
-      // Simulate async loading for better UX
-      setTimeout(() => {
-        try {
-          // Get guides by category
-          const filteredGuides = getGuidesByCategory(category);
-          setGuides(filteredGuides);
-          setError(null);
-          setLoading(false);
-        } catch (err) {
-          console.error("Error fetching guides:", err);
-          setError("Failed to fetch guides");
-          setLoading(false);
-        }
-      }, 300); // Small delay for better UX
+      // Remove artificial delay for better performance
+      const filteredGuides = getGuidesByCategory(category);
+      setGuides(filteredGuides);
+      setError(null);
+      setLoading(false);
     } catch (err) {
+      console.error("Error fetching guides:", err);
       setError("Failed to fetch guides");
       setLoading(false);
-      console.error(err);
     }
   }, [category]);
 
