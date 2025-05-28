@@ -27,55 +27,41 @@ const CtaSection = lazy(() =>
     .then(mod => ({ default: mod.CtaSection }))
 );
 
-// Improved fallback component for suspense
+// Minimal fallback for better mobile experience
 const SectionLoader = () => (
-  <div className="py-8 flex justify-center items-center">
-    <div className="w-8 h-8 border-4 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
+  <div className="py-4 flex justify-center items-center">
+    <div className="w-6 h-6 border-2 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
 
 const HomePage = () => {
-  // Preload critical images and components for faster navigation
+  // Aggressive preloading for mobile performance
   useEffect(() => {
-    // Preload hero image immediately
-    const heroImage = new Image();
-    heroImage.src = "/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png";
+    // Start preloading immediately on mobile
+    const preloadComponents = () => {
+      import("@/components/home/ServicesSection");
+      import("@/components/home/AchievementsSection");
+    };
     
-    // Preload components after initial render during idle time
-    if ('requestIdleCallback' in window) {
-      const idleCallback = window.requestIdleCallback(() => {
-        // Silently preload the next critical components
-        import("@/components/home/ServicesSection");
-        import("@/components/home/AchievementsSection");
-      }, { timeout: 1000 });
-      
-      return () => window.cancelIdleCallback(idleCallback);
-    } else {
-      // Fallback for browsers without requestIdleCallback
-      const timeout = setTimeout(() => {
-        import("@/components/home/ServicesSection");
-        import("@/components/home/AchievementsSection");
-      }, 100);
-      
-      return () => clearTimeout(timeout);
-    }
+    // Immediate preload for better mobile experience
+    preloadComponents();
   }, []);
 
   const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Growwth Partners",
-  url: "https://growwthpartners.com",
-  logo: "https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png",
-  sameAs: [
-    "https://www.linkedin.com/company/growwth-partners/",
-    "https://www.youtube.com/@GrowwthPartners",
-  ],
-};
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Growwth Partners",
+    url: "https://growwthpartners.com",
+    logo: "https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png",
+    sameAs: [
+      "https://www.linkedin.com/company/growwth-partners/",
+      "https://www.youtube.com/@GrowwthPartners",
+    ],
+  };
 
   return (
     <Layout>
-     <Seo 
+      <Seo 
         title="Growwth Partners - Financial & Accounting Services"
         description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
         schema={organizationSchema}
@@ -83,14 +69,14 @@ const HomePage = () => {
       
       <AnimatedElement
         animation="fade-in"
-        duration={0.3}
+        duration={0.2}
         className="overflow-hidden"
       >
-        {/* Critical path rendering - load immediately */}
+        {/* Critical content - loads immediately */}
         <HeroSection />
         <TrustedSection />
         
-        {/* Lazily load non-critical sections with improved suspense boundary */}
+        {/* Lazy loaded sections with minimal loading indicators */}
         <Suspense fallback={<SectionLoader />}>
           <ServicesSection />
         </Suspense>

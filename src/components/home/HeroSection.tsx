@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, ArrowDown, DollarSign, Trophy, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -11,6 +11,12 @@ import { Badge } from "@/components/ui/badge";
 export const HeroSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  
+  // Show content immediately, don't wait for image
+  useEffect(() => {
+    setShowContent(true);
+  }, []);
   
   const factBadges = [{
     icon: <DollarSign className="h-5 w-5 text-white" />,
@@ -49,8 +55,10 @@ export const HeroSection = () => {
   
   return (
     <section className="relative overflow-hidden py-12 lg:py-24">
+      {/* Background gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-green-50 to-blue-50 -z-10"></div>
       
+      {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-brand-orange/10 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#21C55D]/10 rounded-full filter blur-3xl"></div>
@@ -60,16 +68,14 @@ export const HeroSection = () => {
       
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="order-2 lg:order-1 pt-8 lg:pt-0">
-            <motion.div className="mb-6" initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.4
-            }}>
+          {/* Text content - always visible */}
+          <motion.div 
+            className="order-2 lg:order-1 pt-8 lg:pt-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="mb-6">
               <Badge variant="soft" className="py-2 px-4 text-base flex items-center gap-2 mb-3 w-fit" style={{
                 backgroundColor: '#F6E8E2',
                 color: '#333'
@@ -79,40 +85,18 @@ export const HeroSection = () => {
                 </span>
                 <span className="font-medium">Asia's Leading Finance Services Provider</span>
               </Badge>
-            </motion.div>
+            </div>
 
-            <motion.h1 className="heading-xl text-brand-dark mb-5 animate-slide-up" initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.5
-            }}>
+            <h1 className="heading-xl text-brand-dark mb-5">
               Fueling Business Growth With 
               <span className="text-brand-orange"> Expert Accounting</span> & Financial Services!
-            </motion.h1>
-            <motion.p className="text-lg text-gray-700 mb-8" initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.5,
-              delay: 0.2
-            }}>At Growwth Partners, we provide more than just accounting and bookkeeping services. Our customized financial solutions ensure that each client receives personalized attention and expert advice tailored to their unique business needs.</motion.p>
-            <motion.div initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.5,
-              delay: 0.3
-            }} className="flex flex-col sm:flex-row gap-4">
+            </h1>
+            
+            <p className="text-lg text-gray-700 mb-8">
+              At Growwth Partners, we provide more than just accounting and bookkeeping services. Our customized financial solutions ensure that each client receives personalized attention and expert advice tailored to their unique business needs.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button onClick={() => setContactModalOpen(true)} className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full px-8 py-6 text-lg font-medium group">
                 Speak To An Expert
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -121,39 +105,30 @@ export const HeroSection = () => {
               <Button variant="outline" onClick={scrollToServices} className="border-brand-orange text-brand-orange hover:bg-brand-orange/10 rounded-full px-8 py-6 text-lg font-medium">
                 Our Services
               </Button>
-            </motion.div>
+            </div>
             
-            <motion.div className="mt-12 hidden md:block" initial={{
-              opacity: 0
-            }} animate={{
-              opacity: 1
-            }} transition={{
-              duration: 0.5,
-              delay: 0.4
-            }}>
+            <div className="mt-12 hidden md:block">
               <a href="#industry-experience" className="inline-flex items-center text-brand-orange hover:text-brand-orange/80 transition-colors">
                 <span className="mr-2">Scroll to discover more</span>
                 <ArrowDown className="h-4 w-4 animate-bounce" />
               </a>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
           
-          <div className="order-1 lg:order-2 relative">
+          {/* Image section */}
+          <motion.div 
+            className="order-1 lg:order-2 relative"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: showContent ? 1 : 0, scale: showContent ? 1 : 0.95 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <div className="relative z-10 w-full max-w-[600px] mx-auto aspect-[3/2]">
+              {/* Skeleton loader - only show briefly while image loads */}
               {!imageLoaded && (
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg animate-pulse flex items-center justify-center">
-                  <div className="w-12 h-12 border-4 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg animate-pulse"></div>
               )}
-              <motion.div initial={{
-                opacity: 0,
-                scale: 0.9
-              }} animate={{
-                opacity: imageLoaded ? 1 : 0,
-                scale: imageLoaded ? 1 : 0.9
-              }} transition={{
-                duration: 0.6
-              }} className="relative rounded-lg overflow-hidden shadow-2xl w-full h-full">
+              
+              <div className="relative rounded-lg overflow-hidden shadow-2xl w-full h-full">
                 <OptimizedImage
                   src="/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png"
                   alt="Financial Growth"
@@ -164,6 +139,8 @@ export const HeroSection = () => {
                   onLoad={() => setImageLoaded(true)}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                 />
+                
+                {/* Floating badges - show after image loads */}
                 {imageLoaded && factBadges.map((badge, index) => (
                   <motion.div key={index} className={`absolute ${badge.position} hidden sm:block`} initial={{
                     opacity: 0,
@@ -185,12 +162,14 @@ export const HeroSection = () => {
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
+              
+              {/* Shadow background - show after image loads */}
               {imageLoaded && (
                 <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4 w-full h-full"></div>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
