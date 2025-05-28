@@ -7,7 +7,7 @@ const contactDetails = [
   {
     icon: <Mail className="h-6 w-6 text-brand-orange" />,
     title: "Mail Us",
-    details: ["jatin@growwthpartners.com"],
+    details: ["jd@growwthpartners.com"],
     subheading: "Let Us Assist You"
   },
   {
