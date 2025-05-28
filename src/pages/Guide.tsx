@@ -141,7 +141,7 @@ const GuidePage = () => {
                 <CardContent>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-500">
-                      {guide.ReadTime || "5 min read"}
+                      5 min read
                     </span>
                     <Link to={`/guide/${guide.slug}`}>
                       <Button variant="ghost" size="sm" className="text-brand-orange hover:text-brand-orange/80">
