@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, ArrowDown, DollarSign, Trophy, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -151,7 +150,7 @@ export const HeroSection = () => {
                 <OptimizedImage
                   src="/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png"
                   alt="Financial Growth"
-                  className="rounded-lg object-cover mx-auto w-full"
+                  className="rounded-lg object-cover mx-auto"
                   priority={true}
                   width={600}
                   height={400}
