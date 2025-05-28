@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ArrowRight, ArrowDown, DollarSign, Trophy, Users, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -137,7 +138,7 @@ export const HeroSection = () => {
           </div>
           
           <div className="order-1 lg:order-2 relative">
-            <div className="relative z-10">
+            <div className="relative z-10 w-[600px] h-[400px] mx-auto">
               <motion.div initial={{
                 opacity: 0,
                 scale: 0.9
@@ -146,11 +147,11 @@ export const HeroSection = () => {
                 scale: 1
               }} transition={{
                 duration: 0.6
-              }} className="relative rounded-lg overflow-hidden shadow-2xl">
+              }} className="relative rounded-lg overflow-hidden shadow-2xl w-full h-full">
                 <OptimizedImage
                   src="/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png"
                   alt="Financial Growth"
-                  className="rounded-lg object-cover mx-auto"
+                  className="rounded-lg object-cover"
                   priority={true}
                   width={600}
                   height={400}
@@ -177,8 +178,8 @@ export const HeroSection = () => {
                   </motion.div>
                 ))}
               </motion.div>
+              <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4 w-full h-full"></div>
             </div>
-            <div className="absolute inset-0 bg-[#21C55D]/10 rounded-lg filter blur-xl -z-10 transform translate-x-4 translate-y-4"></div>
           </div>
         </div>
       </div>
