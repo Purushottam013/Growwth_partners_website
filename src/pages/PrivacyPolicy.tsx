@@ -1,143 +1,78 @@
-
 import { Layout } from "@/components/Layout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useCountry } from "@/contexts/CountryContext";
 import { Seo } from "@/components/Seo";
 
 const PrivacyPolicyPage = () => {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Privacy Policy - Growwth Partners",
-    "description": "Growwth Partners' privacy policy outlining how we collect, use, and protect your personal information",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Growwth Partners"
-    }
-  };
-
+  const { country } = useCountry();
+  
   return (
     <Layout>
       <Seo
-        title="Privacy Policy | Data Protection & Security | Growwth Partners Singapore"
-        description="Read Growwth Partners' comprehensive privacy policy. Learn how we protect your personal and business data with industry-leading security measures and compliance standards."
-        schema={organizationSchema}
+        title="Privacy Policy | Growwth Partners"
+        description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
       />
-      
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
-          <p className="text-lg text-gray-600">
-            Your privacy and data security are our top priorities. Learn how we protect your information.
-          </p>
-          <p className="text-sm text-gray-500 mt-2">Last updated: January 2024</p>
-        </div>
-
-        <div className="space-y-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">Information We Collect</CardTitle>
-            </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
-              <h3 className="text-lg font-semibold mb-3">Personal Information</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Contact information (name, email, phone number, business address)</li>
-                <li>Business details (company name, industry, size)</li>
-                <li>Financial information necessary for our services</li>
-                <li>Communication preferences and service requirements</li>
-              </ul>
-
-              <h3 className="text-lg font-semibold mb-3 mt-6">Automatically Collected Information</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Website usage data and analytics</li>
-                <li>IP address and browser information</li>
-                <li>Cookies and similar tracking technologies</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">How We Use Your Information</CardTitle>
-            </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Provide accounting, CFO, and financial advisory services</li>
-                <li>Communicate about our services and respond to inquiries</li>
-                <li>Process payments and manage client relationships</li>
-                <li>Comply with legal and regulatory requirements</li>
-                <li>Improve our services and website functionality</li>
-                <li>Send relevant business insights and updates (with your consent)</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">Data Security & Protection</CardTitle>
-            </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
-              <h3 className="text-lg font-semibold mb-3">Security Measures</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Industry-standard encryption for data transmission and storage</li>
-                <li>Multi-factor authentication for sensitive systems</li>
-                <li>Regular security audits and vulnerability assessments</li>
-                <li>Restricted access to personal information on a need-to-know basis</li>
-                <li>Secure cloud infrastructure with backup and disaster recovery</li>
-              </ul>
-
-              <h3 className="text-lg font-semibold mb-3 mt-6">Compliance Standards</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Singapore Personal Data Protection Act (PDPA) compliance</li>
-                <li>International data protection best practices</li>
-                <li>Regular staff training on data privacy and security</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">Information Sharing</CardTitle>
-            </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
-              <p className="mb-4">We do not sell, trade, or rent your personal information. We may share information only in these limited circumstances:</p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>With trusted service providers who assist in delivering our services</li>
-                <li>When required by law or legal process</li>
-                <li>To protect our rights, property, or safety</li>
-                <li>With your explicit consent</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">Your Rights</CardTitle>
-            </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
-              <p className="mb-4">Under Singapore's PDPA and international standards, you have the right to:</p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Access your personal information we hold</li>
-                <li>Request correction of inaccurate information</li>
-                <li>Withdraw consent for marketing communications</li>
-                <li>Request deletion of your data (subject to legal requirements)</li>
-                <li>File a complaint with relevant authorities</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900">Contact Us</CardTitle>
-            </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
-              <p>For privacy-related questions or to exercise your rights, contact us:</p>
-              <div className="mt-4 space-y-2">
-                <p><strong>Email:</strong> privacy@growwthpartners.com</p>
-                <p><strong>Phone:</strong> +65 6123 4567</p>
-                <p><strong>Address:</strong> Singapore Business Hub, 123 Finance Street, Singapore 123456</p>
-              </div>
-            </CardContent>
-          </Card>
+      <div className="py-16 container-custom">
+        <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
+        
+        <div className="prose max-w-none space-y-8">
+          <p className="text-gray-600">Last updated: April 26, 2025</p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
+            <p>Our website address is: https://growwthpartners.com.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Comments</h2>
+            <p>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor's IP address and browser user agent string to help spam detection.</p>
+            <p>An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available at automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Media</h2>
+            <p>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Cookies</h2>
+            <div className="space-y-4">
+              <p>If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.</p>
+              <p>If you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.</p>
+              <p>When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select "Remember Me", your login will persist for two weeks. If you log out of your account, the login cookies will be removed.</p>
+              <p>If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.</p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Embedded Content from Other Websites</h2>
+            <div className="space-y-4">
+              <p>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.</p>
+              <p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Who We Share Your Data With</h2>
+            <p>If you request a password reset, your IP address will be included in the reset email.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">How Long We Retain Your Data</h2>
+            <div className="space-y-4">
+              <p>If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.</p>
+              <p>For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.</p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">What Rights You Have Over Your Data</h2>
+            <p>If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Where Your Data is Sent</h2>
+            <p>Visitor comments may be checked through an automated spam detection service.</p>
+          </section>
         </div>
       </div>
     </Layout>
