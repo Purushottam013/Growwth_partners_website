@@ -2,6 +2,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
+import { StaticContentInjector } from "./StaticContentInjector";
 
 interface SeoOptimizerProps {
   title?: string;
@@ -11,11 +12,16 @@ interface SeoOptimizerProps {
   canonical?: string;
   schema?: object | object[];
   autoGenerate?: boolean;
+  staticContent?: {
+    heading: string;
+    features?: string[];
+    additionalContent?: string;
+  };
 }
 
 /**
  * Enhanced SEO component that automatically generates optimized metadata
- * following SEO best practices when autoGenerate is enabled
+ * and ensures content is visible in page source for better SEO
  */
 export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
   title,
@@ -25,6 +31,7 @@ export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
   canonical,
   schema,
   autoGenerate = false,
+  staticContent,
 }) => {
   const { pathname } = useLocation();
   
@@ -86,46 +93,62 @@ export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
   
   // For legacy duplicate country routes, force canonical to preferred one
   if (pathname.includes("/uae/accounting-services-in-singapore")) {
-    href = `${window.location.origin}/accounting-services-in-uae`;
+    href = `${window.location.origin}/accounting-services-in-uae/`;
   }
   if (pathname.includes("/uae/bookkeeping-services-in-singapore")) {
-    href = `${window.location.origin}/bookkeeping-services-in-uae`;
+    href = `${window.location.origin}/bookkeeping-services-in-uae/`;
   }
   if (pathname.includes("/uae/payroll-services-in-singapore")) {
-    href = `${window.location.origin}/payroll-services-in-uae`;
+    href = `${window.location.origin}/payroll-services-in-uae/`;
   }
   if (pathname.includes("/uae/cash-flow-services-in-singapore")) {
-    href = `${window.location.origin}/cash-flow-services-in-uae`;
+    href = `${window.location.origin}/cash-flow-services-in-uae/`;
   }
   if (pathname.includes("/uae/company-incorporation-services-in-singapore")) {
-    href = `${window.location.origin}/company-incorporation-services-in-uae`;
+    href = `${window.location.origin}/company-incorporation-services-in-uae/`;
   }
   if (pathname.includes("/uae/corporate-secretary-services-in-singapore")) {
-    href = `${window.location.origin}/corporate-secretary-services-in-uae`;
+    href = `${window.location.origin}/corporate-secretary-services-in-uae/`;
   }
   if (pathname.includes("/uae/part-time-cfo")) {
-    href = `${window.location.origin}/part-time-cfo-uae`;
+    href = `${window.location.origin}/part-time-cfo-uae/`;
   }
   if (pathname.includes("/australia/accounting-services-in-singapore")) {
-    href = `${window.location.origin}/accounting-services-in-australia`;
+    href = `${window.location.origin}/accounting-services-in-australia/`;
   }
   if (pathname.includes("/australia/bookkeeping-services-in-singapore")) {
-    href = `${window.location.origin}/bookkeeping-services-in-australia`;
+    href = `${window.location.origin}/bookkeeping-services-in-australia/`;
   }
   if (pathname.includes("/australia/payroll-services-in-singapore")) {
-    href = `${window.location.origin}/payroll-services-in-australia`;
+    href = `${window.location.origin}/payroll-services-in-australia/`;
   }
   if (pathname.includes("/australia/cash-flow-services-in-singapore")) {
-    href = `${window.location.origin}/cash-flow-services-in-australia`;
+    href = `${window.location.origin}/cash-flow-services-in-australia/`;
   }
   if (pathname.includes("/australia/company-incorporation-services-in-singapore")) {
-    href = `${window.location.origin}/company-incorporation-services-in-australia`;
+    href = `${window.location.origin}/company-incorporation-services-in-australia/`;
   }
   if (pathname.includes("/australia/corporate-secretary-services-in-singapore")) {
-    href = `${window.location.origin}/corporate-secretary-services-in-australia`;
+    href = `${window.location.origin}/corporate-secretary-services-in-australia/`;
   }
   if (pathname.includes("/australia/part-time-cfo")) {
-    href = `${window.location.origin}/part-time-cfo-australia`;
+    href = `${window.location.origin}/part-time-cfo-australia/`;
+  }
+
+  // If static content is provided, use StaticContentInjector
+  if (staticContent) {
+    return (
+      <StaticContentInjector
+        title={seoData.title || 'Growwth Partners'}
+        description={seoData.description || 'Expert financial services'}
+        keywords={seoData.keywords}
+        heading={staticContent.heading}
+        content={content || seoData.description || ''}
+        features={staticContent.features}
+        schema={Array.isArray(schema) ? schema[0] : schema}
+        url={href}
+      />
+    );
   }
 
   return (
