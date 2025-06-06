@@ -24,7 +24,11 @@ export const StaticContentInjector: React.FC<StaticContentInjectorProps> = ({
   url = window.location.href
 }) => {
   useEffect(() => {
-    // Ensure content is available for crawlers immediately
+    // Remove any existing static content to prevent duplicates
+    const existingContent = document.querySelectorAll('.seo-static-content');
+    existingContent.forEach(el => el.remove());
+    
+    // Create unique content container
     const staticContent = document.createElement('div');
     staticContent.style.position = 'absolute';
     staticContent.style.left = '-9999px';
@@ -32,37 +36,45 @@ export const StaticContentInjector: React.FC<StaticContentInjectorProps> = ({
     staticContent.style.visibility = 'hidden';
     staticContent.setAttribute('aria-hidden', 'true');
     staticContent.className = 'seo-static-content';
+    staticContent.setAttribute('data-page', url);
     
-    staticContent.innerHTML = `
-      <h1>${heading}</h1>
-      <p>${description}</p>
-      ${features.map(feature => `<p>${feature}</p>`).join('')}
-      <div>${content}</div>
+    // Create structured content for better SEO
+    const structuredContent = `
+      <div itemScope itemType="https://schema.org/WebPage">
+        <h1 itemprop="name">${heading}</h1>
+        <meta itemprop="description" content="${description}" />
+        <div itemprop="mainContentOfPage">
+          <p>${description}</p>
+          ${features.map((feature, index) => `
+            <div itemprop="text">
+              <h3>Feature ${index + 1}</h3>
+              <p>${feature}</p>
+            </div>
+          `).join('')}
+          <div itemprop="text">${content}</div>
+        </div>
+      </div>
     `;
     
-    // Remove existing static content
-    const existing = document.querySelector('.seo-static-content');
-    if (existing) {
-      existing.remove();
-    }
-    
+    staticContent.innerHTML = structuredContent;
     document.body.appendChild(staticContent);
     
     return () => {
-      const element = document.querySelector('.seo-static-content');
-      if (element) {
-        element.remove();
-      }
+      const elements = document.querySelectorAll('.seo-static-content');
+      elements.forEach(el => el.remove());
     };
-  }, [heading, description, content, features]);
+  }, [heading, description, content, features, url]);
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords.join(', ')} />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
       <link rel="canonical" href={url} />
+      
+      {/* Prevent duplicate indexing */}
+      <meta name="google" content="notranslate" />
       
       {/* Open Graph tags */}
       <meta property="og:title" content={title} />
@@ -76,10 +88,18 @@ export const StaticContentInjector: React.FC<StaticContentInjectorProps> = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       
-      {/* Schema.org structured data */}
+      {/* Enhanced schema markup */}
       {schema && (
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {JSON.stringify({
+            ...schema,
+            "@context": "https://schema.org",
+            "url": url,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": url
+            }
+          })}
         </script>
       )}
     </Helmet>

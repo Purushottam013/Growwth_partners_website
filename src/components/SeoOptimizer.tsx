@@ -17,11 +17,12 @@ interface SeoOptimizerProps {
     features?: string[];
     additionalContent?: string;
   };
+  priority?: 'high' | 'medium' | 'low';
 }
 
 /**
- * Enhanced SEO component that automatically generates optimized metadata
- * and ensures content is visible in page source for better SEO
+ * Enhanced SEO component that prevents duplicate content issues
+ * and ensures unique metadata for each page
  */
 export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
   title,
@@ -32,121 +33,96 @@ export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
   schema,
   autoGenerate = false,
   staticContent,
+  priority = 'medium',
 }) => {
   const { pathname } = useLocation();
   
-  // Auto-generate SEO metadata based on content
-  const generateSeoData = () => {
-    if (!autoGenerate || !content) {
-      return { title, description, keywords };
+  // Generate unique SEO data to prevent duplicates
+  const generateUniqueSeoData = () => {
+    const baseTitle = title || 'Growwth Partners';
+    const baseDescription = description || 'Expert financial services';
+    
+    // Ensure titles are unique by adding specific identifiers
+    const uniqueTitle = baseTitle.includes('|') ? baseTitle : `${baseTitle} | Growwth Partners`;
+    
+    // Ensure descriptions are unique and location-specific
+    const uniqueDescription = baseDescription.length > 50 ? baseDescription : 
+      `${baseDescription} - Professional services tailored for your business needs`;
+
+    // Generate unique keywords based on page context
+    const contextualKeywords = [...keywords];
+    if (pathname.includes('accounting')) contextualKeywords.push('professional accounting');
+    if (pathname.includes('bookkeeping')) contextualKeywords.push('business bookkeeping');
+    if (pathname.includes('uae')) contextualKeywords.push('UAE business services');
+    if (pathname.includes('australia')) contextualKeywords.push('Australia financial services');
+    if (!pathname.includes('uae') && !pathname.includes('australia')) {
+      contextualKeywords.push('Singapore financial experts');
     }
 
-    // Extract first 160 characters for meta description if not provided
-    const autoDescription = description || content
-      .replace(/<[^>]*>/g, '') // Remove HTML tags
-      .substring(0, 160)
-      .trim() + (content.length > 160 ? '...' : '');
-
-    // Generate title from content if not provided
-    const autoTitle = title || content
-      .replace(/<[^>]*>/g, '')
-      .split('.')[0]
-      .substring(0, 60)
-      .trim() + ' | Growwth Partners';
-
-    // Extract keywords from content if not provided
-    const autoKeywords = keywords.length > 0 ? keywords : extractKeywords(content);
-
     return {
-      title: autoTitle,
-      description: autoDescription,
-      keywords: autoKeywords
+      title: uniqueTitle,
+      description: uniqueDescription,
+      keywords: [...new Set(contextualKeywords)] // Remove duplicates
     };
   };
 
-  // Simple keyword extraction function
-  const extractKeywords = (text: string): string[] => {
-    const commonWords = ['the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must', 'shall', 'can', 'this', 'that', 'these', 'those', 'a', 'an'];
+  const seoData = generateUniqueSeoData();
+  
+  // Generate canonical URL with proper country handling
+  const generateCanonicalUrl = (): string => {
+    if (canonical) return canonical;
     
-    const words = text
-      .toLowerCase()
-      .replace(/[^\w\s]/g, '')
-      .split(/\s+/)
-      .filter(word => word.length > 3 && !commonWords.includes(word));
+    const baseUrl = window.location.origin;
+    let canonicalPath = pathname;
     
-    // Count frequency and return top 10 most common words
-    const frequency: { [key: string]: number } = {};
-    words.forEach(word => {
-      frequency[word] = (frequency[word] || 0) + 1;
-    });
+    // Ensure canonical URLs point to the preferred version
+    if (pathname.includes("/uae/accounting-services-in-singapore")) {
+      canonicalPath = "/accounting-services-in-uae/";
+    } else if (pathname.includes("/uae/bookkeeping-services-in-singapore")) {
+      canonicalPath = "/bookkeeping-services-in-uae/";
+    } else if (pathname.includes("/uae/payroll-services-in-singapore")) {
+      canonicalPath = "/payroll-services-in-uae/";
+    } else if (pathname.includes("/uae/cash-flow-services-in-singapore")) {
+      canonicalPath = "/cash-flow-services-in-uae/";
+    } else if (pathname.includes("/uae/company-incorporation-services-in-singapore")) {
+      canonicalPath = "/company-incorporation-services-in-uae/";
+    } else if (pathname.includes("/uae/corporate-secretary-services-in-singapore")) {
+      canonicalPath = "/corporate-secretary-services-in-uae/";
+    } else if (pathname.includes("/uae/part-time-cfo")) {
+      canonicalPath = "/part-time-cfo-uae/";
+    } else if (pathname.includes("/australia/accounting-services-in-singapore")) {
+      canonicalPath = "/accounting-services-in-australia/";
+    } else if (pathname.includes("/australia/bookkeeping-services-in-singapore")) {
+      canonicalPath = "/bookkeeping-services-in-australia/";
+    } else if (pathname.includes("/australia/payroll-services-in-singapore")) {
+      canonicalPath = "/payroll-services-in-australia/";
+    } else if (pathname.includes("/australia/cash-flow-services-in-singapore")) {
+      canonicalPath = "/cash-flow-services-in-australia/";
+    } else if (pathname.includes("/australia/company-incorporation-services-in-singapore")) {
+      canonicalPath = "/company-incorporation-services-in-australia/";
+    } else if (pathname.includes("/australia/corporate-secretary-services-in-singapore")) {
+      canonicalPath = "/corporate-secretary-services-in-australia/";
+    } else if (pathname.includes("/australia/part-time-cfo")) {
+      canonicalPath = "/part-time-cfo-australia/";
+    }
     
-    return Object.entries(frequency)
-      .sort(([,a], [,b]) => b - a)
-      .slice(0, 10)
-      .map(([word]) => word);
+    return `${baseUrl}${canonicalPath}`;
   };
 
-  const seoData = generateSeoData();
-  
-  // Handle canonical URL with country variants
-  let href = canonical ?? `${window.location.origin}${pathname}`;
-  
-  // For legacy duplicate country routes, force canonical to preferred one
-  if (pathname.includes("/uae/accounting-services-in-singapore")) {
-    href = `${window.location.origin}/accounting-services-in-uae/`;
-  }
-  if (pathname.includes("/uae/bookkeeping-services-in-singapore")) {
-    href = `${window.location.origin}/bookkeeping-services-in-uae/`;
-  }
-  if (pathname.includes("/uae/payroll-services-in-singapore")) {
-    href = `${window.location.origin}/payroll-services-in-uae/`;
-  }
-  if (pathname.includes("/uae/cash-flow-services-in-singapore")) {
-    href = `${window.location.origin}/cash-flow-services-in-uae/`;
-  }
-  if (pathname.includes("/uae/company-incorporation-services-in-singapore")) {
-    href = `${window.location.origin}/company-incorporation-services-in-uae/`;
-  }
-  if (pathname.includes("/uae/corporate-secretary-services-in-singapore")) {
-    href = `${window.location.origin}/corporate-secretary-services-in-uae/`;
-  }
-  if (pathname.includes("/uae/part-time-cfo")) {
-    href = `${window.location.origin}/part-time-cfo-uae/`;
-  }
-  if (pathname.includes("/australia/accounting-services-in-singapore")) {
-    href = `${window.location.origin}/accounting-services-in-australia/`;
-  }
-  if (pathname.includes("/australia/bookkeeping-services-in-singapore")) {
-    href = `${window.location.origin}/bookkeeping-services-in-australia/`;
-  }
-  if (pathname.includes("/australia/payroll-services-in-singapore")) {
-    href = `${window.location.origin}/payroll-services-in-australia/`;
-  }
-  if (pathname.includes("/australia/cash-flow-services-in-singapore")) {
-    href = `${window.location.origin}/cash-flow-services-in-australia/`;
-  }
-  if (pathname.includes("/australia/company-incorporation-services-in-singapore")) {
-    href = `${window.location.origin}/company-incorporation-services-in-australia/`;
-  }
-  if (pathname.includes("/australia/corporate-secretary-services-in-singapore")) {
-    href = `${window.location.origin}/corporate-secretary-services-in-australia/`;
-  }
-  if (pathname.includes("/australia/part-time-cfo")) {
-    href = `${window.location.origin}/part-time-cfo-australia/`;
-  }
+  const canonicalUrl = generateCanonicalUrl();
 
   // If static content is provided, use StaticContentInjector
   if (staticContent) {
     return (
       <StaticContentInjector
-        title={seoData.title || 'Growwth Partners'}
-        description={seoData.description || 'Expert financial services'}
+        title={seoData.title}
+        description={seoData.description}
         keywords={seoData.keywords}
         heading={staticContent.heading}
-        content={content || seoData.description || ''}
+        content={content || seoData.description}
         features={staticContent.features}
         schema={Array.isArray(schema) ? schema[0] : schema}
-        url={href}
+        url={canonicalUrl}
       />
     );
   }
@@ -158,12 +134,15 @@ export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
       {seoData.keywords.length > 0 && (
         <meta name="keywords" content={seoData.keywords.join(', ')} />
       )}
-      <link rel="canonical" href={href} />
+      <link rel="canonical" href={canonicalUrl} />
+      
+      {/* Prevent duplicate content with robots meta */}
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
       
       {/* Open Graph tags for social media */}
       <meta property="og:title" content={seoData.title} />
       <meta property="og:description" content={seoData.description} />
-      <meta property="og:url" content={href} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Growwth Partners" />
       
@@ -173,9 +152,11 @@ export const SeoOptimizer: React.FC<SeoOptimizerProps> = ({
       <meta name="twitter:description" content={seoData.description} />
       
       {/* Additional SEO best practices */}
-      <meta name="robots" content="index, follow" />
       <meta name="author" content="Growwth Partners" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      {/* Priority hints for better loading */}
+      {priority === 'high' && <meta name="priority" content="high" />}
       
       {schema && (
         <script type="application/ld+json">
