@@ -12,7 +12,8 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { ExpertInsights } from "@/components/about/ExpertInsights";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import { SEOManager } from "@/components/SEOManager";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 const AboutPage = () => {
   const { country } = useCountry();
@@ -26,11 +27,28 @@ const AboutPage = () => {
     return <Navigate to="/australia/" replace />;
   }
 
+  const seoData = usePageSEO({
+    baseTitle: "About Growwth Partners - Award-Winning Financial Experts",
+    baseDescription: "Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond.",
+    keywords: [
+      "about growwth partners", 
+      "financial experts", 
+      "award winning accountants", 
+      "financial consultants", 
+      "cfo services team", 
+      "accounting professionals", 
+      "business growth experts",
+      "singapore financial firm"
+    ],
+    pageType: "about"
+  });
+
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": "About Growwth Partners",
-    "description": "Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond.",
+    "description": seoData.description,
+    "url": seoData.canonical,
     "mainEntity": {
       "@type": "Organization",
       "name": "Growwth Partners",
@@ -42,35 +60,47 @@ const AboutPage = () => {
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "Singapore"
-      }
+      },
+      "expertise": [
+        "Financial Consulting",
+        "Accounting Services", 
+        "CFO Services",
+        "Business Growth Strategy",
+        "Tax Compliance",
+        "Financial Reporting"
+      ]
     }
   };
 
   const staticContentData = {
-    heading: "About Growwth Partners - Award-Winning Financial Experts in Singapore",
+    heading: `About Growwth Partners - Leading Financial Experts in ${seoData.locationName}`,
+    content: `Growwth Partners was founded with the vision of providing world-class financial advisory services to businesses in ${seoData.locationName} and beyond. Our team combines deep technical expertise with innovative approaches to help businesses achieve sustainable growth and financial success. We serve startups, SMEs, and established businesses with comprehensive financial solutions.`,
     features: [
-      "15+ years of combined experience in financial consulting",
-      "Award-winning team of certified accountants and CFOs",
-      "95% client retention rate with proven track record",
-      "Specialized expertise in startup and SME financial management", 
-      "Comprehensive financial solutions from accounting to strategic planning",
-      "Industry recognition for excellence in financial advisory services",
-      "Multi-disciplinary team with diverse industry experience",
-      "Innovative approach to financial management and business growth"
-    ],
-    additionalContent: "Growwth Partners was founded with the vision of providing world-class financial advisory services to businesses in Singapore and beyond. Our team combines deep technical expertise with innovative approaches to help businesses achieve sustainable growth and financial success."
+      `15+ years of combined experience in financial consulting in ${seoData.locationName}`,
+      "Award-winning team of certified accountants and CFOs with proven track record",
+      "95% client retention rate demonstrating exceptional service quality",
+      "Specialized expertise in startup and SME financial management and growth strategies", 
+      "Comprehensive financial solutions from basic accounting to strategic CFO services",
+      "Industry recognition for excellence in financial advisory and business consulting",
+      "Multi-disciplinary team with diverse industry experience across various sectors",
+      "Innovative approach to financial management using cutting-edge technology and methodologies"
+    ]
   };
 
   return (
     <Layout>
-      <SeoOptimizer 
-        title="About Growwth Partners | Award-Winning Financial Experts in Singapore"
-        description="Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond."
-        keywords={["about growwth partners", "financial experts singapore", "award winning accountants", "singapore financial consultants", "cfo services team", "accounting professionals", "business growth experts"]}
+      <SEOManager
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonical={seoData.canonical}
         schema={aboutSchema}
         staticContent={staticContentData}
-        content="Discover the story behind Growwth Partners, Singapore's premier financial advisory firm. Our award-winning team of certified accountants, CFOs, and financial consultants brings over 15 years of combined experience to help businesses achieve sustainable growth and financial success."
-        priority="high"
+        openGraph={{
+          title: seoData.title,
+          description: seoData.description,
+          type: "website"
+        }}
       />
       
       <motion.div

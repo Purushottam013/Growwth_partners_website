@@ -9,70 +9,75 @@ import { CaseStudySection } from "@/components/bookkeeping/CaseStudySection";
 import { ExpertBlogSection } from "@/components/bookkeeping/ExpertBlogSection";
 import { CtaSection } from "@/components/bookkeeping/CtaSection";
 import { motion } from "framer-motion";
-import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
+import { SEOManager } from "@/components/SEOManager";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 const BookkeepingPage = () => {
-  const { country } = useCountry();
-  
-  const getLocationName = () => {
-    switch (country) {
-      case 'uae': return 'UAE';
-      case 'australia': return 'Australia';
-      default: return 'Singapore';
-    }
-  };
-
-  const location = getLocationName();
-  
-  const seoData = useSeoOptimization({
+  const seoData = usePageSEO({
+    baseTitle: "Professional Bookkeeping Services",
+    baseDescription: "Expert bookkeeping services for accurate financial records, transaction management, and real-time reporting for small businesses and startups.",
+    keywords: [
+      "bookkeeping services", 
+      "financial records", 
+      "transaction management", 
+      "small business accounting", 
+      "financial reporting",
+      "accounts payable",
+      "accounts receivable",
+      "bank reconciliation"
+    ],
     service: "bookkeeping",
-    location,
-    title: `Professional Bookkeeping Services in ${location} | Growwth Partners`,
-    description: `Expert bookkeeping services in ${location}. Accurate financial records, transaction management, and real-time reporting for small businesses and startups.`,
-    keywords: ["bookkeeping services", "financial records", "transaction management", location.toLowerCase(), "small business accounting", "growwth partners"]
+    pageType: "service"
   });
 
   const bookkeepingSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": `Bookkeeping Services in ${location}`,
-    "description": `Professional bookkeeping and financial record management services for businesses in ${location}`,
+    "name": `Professional Bookkeeping Services in ${seoData.locationName}`,
+    "description": seoData.description,
     "provider": {
       "@type": "Organization",
       "name": "Growwth Partners",
       "url": "https://growwthpartners.com"
     },
-    "areaServed": location,
-    "serviceType": "Bookkeeping Services"
+    "areaServed": seoData.locationName,
+    "serviceType": "Bookkeeping Services",
+    "offers": {
+      "@type": "Offer",
+      "description": "Comprehensive bookkeeping solutions for businesses"
+    }
   };
 
   const staticContentData = {
-    heading: `Expert Bookkeeping Services in ${location} - Growwth Partners`,
+    heading: `Expert Bookkeeping Services in ${seoData.locationName} - Growwth Partners`,
+    content: `Our professional bookkeeping services in ${seoData.locationName} help businesses maintain accurate financial records, track expenses, and ensure compliance with local regulations. We use modern cloud-based tools to provide real-time access to your financial data and support your business growth.`,
     features: [
-      `Professional bookkeeping services for businesses in ${location}`,
-      "Daily transaction recording and categorization",
-      "Accounts payable and receivable management",
-      "Bank reconciliation and cash flow tracking",
-      "Monthly financial statements preparation",
-      "Tax preparation support and documentation",
-      "Cloud-based accounting software setup",
-      "Real-time financial reporting and dashboards",
-      "Compliance with local accounting standards"
-    ],
-    additionalContent: `Our bookkeeping services in ${location} help businesses maintain accurate financial records, track expenses, and ensure compliance with local regulations. We use modern cloud-based tools to provide real-time access to your financial data.`
+      `Professional bookkeeping services tailored for businesses in ${seoData.locationName}`,
+      "Daily transaction recording and categorization with accuracy guarantee",
+      "Comprehensive accounts payable and receivable management",
+      "Regular bank reconciliation and cash flow tracking",
+      "Monthly financial statements preparation and analysis",
+      "Tax preparation support and proper documentation maintenance",
+      "Cloud-based accounting software setup and training",
+      "Real-time financial reporting and customized dashboards",
+      `Full compliance with ${seoData.locationName} accounting standards and regulations`
+    ]
   };
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOManager
         title={seoData.title}
         description={seoData.description}
         keywords={seoData.keywords}
+        canonical={seoData.canonical}
         schema={bookkeepingSchema}
         staticContent={staticContentData}
-        content={`Professional bookkeeping services in ${location} including transaction recording, financial statements, bank reconciliation, and compliance support for small businesses and startups.`}
+        openGraph={{
+          title: seoData.title,
+          description: seoData.description,
+          type: "website"
+        }}
       />
       
       <motion.div
