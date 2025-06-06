@@ -5,7 +5,7 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const AchievementsPage = () => {
   const { country } = useCountry();
@@ -21,9 +21,10 @@ const AchievementsPage = () => {
 
   return (
     <Layout>
-      <Seo 
+      <SeoOptimizer 
         title="Achievements & Awards | Growwth Partners"
         description="Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation."
+        keywords={["growwth partners awards", "financial services recognition", "best cfo services", "singapore awards", "accounting excellence"]}
       />
       <PlaceholderContent 
         title="Achievements & Awards" 

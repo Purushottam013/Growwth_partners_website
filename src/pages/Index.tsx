@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const Index = () => {
   return (
     <>
-      <Seo 
+      <SeoOptimizer 
         title="Growwth Partners | Financial & Accounting Experts Singapore"
         description="Expert accounting, CFO, and financial services for SMEs and startups in Singapore. Unlock growth with award-winning advisors at Growwth Partners." 
         canonical={`${window.location.origin}/`}

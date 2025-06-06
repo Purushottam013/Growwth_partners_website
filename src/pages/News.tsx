@@ -5,7 +5,7 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const NewsPage = () => {
   const { country } = useCountry();
@@ -21,9 +21,10 @@ const NewsPage = () => {
 
   return (
     <Layout>
-      <Seo
+      <SeoOptimizer
         title="News & Updates | Growwth Partners"
         description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
+        keywords={["growwth partners news", "financial industry updates", "singapore business news", "accounting announcements"]}
       />
       <PlaceholderContent 
         title="In The News" 

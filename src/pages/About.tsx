@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { AboutHero } from "@/components/about/AboutHero";
@@ -11,8 +12,7 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { ExpertInsights } from "@/components/about/ExpertInsights";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { Seo } from "@/components/Seo";
-
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const AboutPage = () => {
   const { country } = useCountry();
@@ -28,9 +28,10 @@ const AboutPage = () => {
 
   return (
     <Layout>
-      <Seo 
+      <SeoOptimizer 
         title="About Growwth Partners | Experienced Financial Experts in Singapore"
         description="Learn about Growwth Partners' team of award-winning financial consultants delivering strategic growth, accounting, and CFO services across Singapore and beyond."
+        keywords={["about growwth partners", "financial experts", "singapore team", "accounting consultants", "cfo services"]}
       />
       
       <motion.div

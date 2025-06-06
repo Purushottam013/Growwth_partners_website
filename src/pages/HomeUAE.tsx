@@ -1,18 +1,20 @@
+
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const HomeUAE = () => {
   const navigate = useNavigate();
 
   return (
     <Layout>
-      <Seo
+      <SeoOptimizer
         title="Growwth Partners UAE | Expert Accounting & Financial Advisors"
         description="Our UAE headquarters provides exclusive support for startup and established businesses entering or growing in the Emirates. Access local VAT, incorporation, and advisory expertise from a trusted UAE-based team."
         canonical={`${window.location.origin}/uae`}
+        keywords={["uae accounting", "dubai financial services", "emirates business solutions", "vat compliance uae", "company incorporation dubai"]}
       />
       <motion.div
         initial={{ opacity: 0 }}

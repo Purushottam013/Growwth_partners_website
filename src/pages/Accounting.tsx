@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/accounting/HeroSection";
@@ -12,8 +13,8 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { Seo } from "@/components/Seo";
-
+import { SeoOptimizer } from "@/components/SeoOptimizer";
+import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const AccountingPage = () => {
   const { country } = useCountry();
@@ -27,38 +28,47 @@ const AccountingPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const seoData = useSeoOptimization({
+    service: "accounting",
+    content: "Discover top-tier accounting solutions with Growwth Partners in Singapore. We provide accurate, efficient, and scalable financial services tailored to your business.",
+    title: "Accounting Services in Singapore | Growwth Partners",
+    description: "Discover top-tier accounting solutions with Growwth Partners in Singapore. We provide accurate, efficient, and scalable financial services tailored to your business.",
+    keywords: ["singapore accounting", "financial reporting", "business accounting", "tax compliance"]
+  });
+
   const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "How can outsourcing accounting benefit my business?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Outsourcing accounting saves you time, ensures accuracy, and provides valuable financial insights to make informed decisions."
-    }
-  },{
-    "@type": "Question",
-    "name": "How can I get started with your accounting services?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Reach out to us via our contact page to discuss your business needs and find the right services for you."
-    }
-  },{
-    "@type": "Question",
-    "name": "What is the benefit of having regular financial reports?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Regular financial reports offer insights into your business's financial health, expenses, trends, and aid in decision-making."
-    }
-  }]
-}
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How can outsourcing accounting benefit my business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Outsourcing accounting saves you time, ensures accuracy, and provides valuable financial insights to make informed decisions."
+      }
+    },{
+      "@type": "Question",
+      "name": "How can I get started with your accounting services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reach out to us via our contact page to discuss your business needs and find the right services for you."
+      }
+    },{
+      "@type": "Question",
+      "name": "What is the benefit of having regular financial reports?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Regular financial reports offer insights into your business's financial health, expenses, trends, and aid in decision-making."
+      }
+    }]
+  };
 
   return (
     <Layout>
-      <Seo
-        title="Accounting Services in Singapore | Growwth Partners"
-        description="Discover top-tier accounting solutions with Growwth Partners in Singapore. We provide accurate, efficient, and scalable financial services tailored to your business."
+      <SeoOptimizer
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
         schema={organizationSchema}
       />
       

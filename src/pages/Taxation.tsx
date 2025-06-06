@@ -12,7 +12,8 @@ import { FaqSection } from "@/components/taxation/FaqSection";
 import { ExpertBlogSection } from "@/components/taxation/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
+import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const TaxationPage = () => {
   const { country } = useCountry();
@@ -26,40 +27,49 @@ const TaxationPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
-    const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "What is tax compliance?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Tax compliance involves ensuring that a company adheres to all tax laws and regulations, including accurate reporting and timely payment of taxes."
-    }
-  },{
-    "@type": "Question",
-    "name": "Why is thorough financial review important for tax compliance?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "A thorough financial review ensures all financial statements are accurate, identifying any discrepancies or errors that could affect tax calculations and compliance."
-    }
-  },{
-    "@type": "Question",
-    "name": "How does Growwth Partners ensure transparency in tax calculations?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "We link financials with tax workings, providing a clear trail from income to expenses to tax payable, ensuring you understand how we arrived at each number."
-    }
-  }]
-}
+  const seoData = useSeoOptimization({
+    service: "taxation",
+    content: "Professional taxation and compliance services in Singapore for startups & SMEs. Ensure thorough financial review and tax compliance with expert support.",
+    title: "Taxation & Compliance Services in Singapore | Growwth Partners",
+    description: "Professional taxation and compliance services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support.",
+    keywords: ["singapore taxation", "tax compliance", "corporate tax", "gst filing"]
+  });
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "What is tax compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tax compliance involves ensuring that a company adheres to all tax laws and regulations, including accurate reporting and timely payment of taxes."
+      }
+    },{
+      "@type": "Question",
+      "name": "Why is thorough financial review important for tax compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A thorough financial review ensures all financial statements are accurate, identifying any discrepancies or errors that could affect tax calculations and compliance."
+      }
+    },{
+      "@type": "Question",
+      "name": "How does Growwth Partners ensure transparency in tax calculations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We link financials with tax workings, providing a clear trail from income to expenses to tax payable, ensuring you understand how we arrived at each number."
+      }
+    }]
+  };
   
   return (
     <Layout>
-         <Seo
-              title="Taxation & Compliance Services in Singapore | Growwth Partners"
-              description="Professional bookkeeping services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
-              schema={organizationSchema}
-     />  
+      <SeoOptimizer
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        schema={organizationSchema}
+      />
 
       <motion.div
         initial={{ opacity: 0 }}

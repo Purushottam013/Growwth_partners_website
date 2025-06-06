@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { Calendar, ArrowRight } from "lucide-react";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -65,10 +65,11 @@ const BlogPage = () => {
   if (loading) {
     return (
       <Layout>
-        <Seo
+        <SeoOptimizer
           title="Blog | Growwth Partners"
           description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
           canonical={`${window.location.origin}/blog`}
+          keywords={["business blog", "financial insights", "singapore business", "accounting articles", "startup advice"]}
         />
 
         <div className="container mx-auto px-4 py-12">
@@ -88,10 +89,11 @@ const BlogPage = () => {
 
   return (
     <Layout>
-      <Seo
+      <SeoOptimizer
         title="Blog | Growwth Partners"
         description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
         canonical={`${window.location.origin}/blog`}
+        keywords={["business blog", "financial insights", "singapore business", "accounting articles", "startup advice"]}
       />
       
       <div className="container mx-auto px-4 py-12">

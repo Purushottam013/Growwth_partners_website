@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/bookkeeping/HeroSection";
@@ -11,7 +12,8 @@ import { CaseStudySection } from "@/components/bookkeeping/CaseStudySection";
 import { ExpertBlogSection } from "@/components/bookkeeping/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
+import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const BookkeepingPage = () => {
   const { country } = useCountry();
@@ -25,11 +27,20 @@ const BookkeepingPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const seoData = useSeoOptimization({
+    service: "bookkeeping",
+    content: "Professional bookkeeping services in Singapore for startups & SMEs. Award-winning team specializes in online bookkeeping services, managing your accounting and finance tasks effortlessly.",
+    title: "Bookkeeping Services in Singapore | Growwth Partners",
+    description: "Professional bookkeeping services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support.",
+    keywords: ["online bookkeeping", "singapore bookkeeping", "financial records", "accounting services"]
+  });
+
   return (
     <Layout>
-      <Seo
-        title="Bookkeeping Services in Singapore | Growwth Partners"
-        description="Professional bookkeeping services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
+      <SeoOptimizer
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
       />
       
       <motion.div

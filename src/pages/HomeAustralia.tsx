@@ -1,18 +1,20 @@
+
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Seo } from "@/components/Seo";
+import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 const HomeAustralia = () => {
   const navigate = useNavigate();
 
   return (
     <Layout>
-      <Seo
+      <SeoOptimizer
         title="Growwth Partners Australia | Accounting & Financial Experts"
         description="We enable Australian SMEs, startups, and local founders to scale nationwide—our on-the-ground Sydney/Melbourne-based team brings the best in bookkeeping, compliance, and strategic advisory for the Australian business ecosystem."
         canonical={`${window.location.origin}/australia`}
+        keywords={["australia accounting", "sydney financial services", "melbourne business solutions", "australian tax compliance", "company incorporation australia"]}
       />
       <motion.div
         initial={{ opacity: 0 }}
