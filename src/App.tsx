@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { CountryProvider } from "./contexts/CountryContext";
 import { HelmetProvider } from "react-helmet-async";
@@ -51,81 +52,81 @@ function App() {
             <Routes>
               {/* --- SINGAPORE (DEFAULT) ROUTES --- */}
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/contact-us" element={<Contact />} />
-              <Route path="/accounting-services-in-singapore" element={<Accounting />} />
-              <Route path="/bookkeeping-services-in-singapore" element={<Bookkeeping />} />
-              <Route path="/payroll-services-in-singapore" element={<Payroll />} />
-              <Route path="/cash-flow-services-in-singapore" element={<CashFlow />} />
-              <Route path="/company-incorporation-services-in-singapore" element={<CompanyIncorporation />} />
-              <Route path="/corporate-secretary-services-in-singapore" element={<CorporateSecretary />} />
-              <Route path="/part-time-cfo" element={<FractionalCFO />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/success-stories" element={<SuccessStories />} />
-              <Route path="/taxation" element={<Taxation />} />
-              <Route path="/achievements" element={<Achievements />} />
-              <Route path="/guide" element={<Guide />} />
-              <Route path="/guide/:slug" element={<GuideSingle />} />
-              <Route path="/guide/financial-reporting-standards-singapore" element={<FinancialReportingGuide />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/resources" element={<Navigate to="/achievements" replace />} />
+              <Route path="/about/" element={<About />} />
+              <Route path="/blog/" element={<Blog />} />
+              <Route path="/blog/:slug/" element={<BlogPost />} />
+              <Route path="/contact-us/" element={<Contact />} />
+              <Route path="/accounting-services-in-singapore/" element={<Accounting />} />
+              <Route path="/bookkeeping-services-in-singapore/" element={<Bookkeeping />} />
+              <Route path="/payroll-services-in-singapore/" element={<Payroll />} />
+              <Route path="/cash-flow-services-in-singapore/" element={<CashFlow />} />
+              <Route path="/company-incorporation-services-in-singapore/" element={<CompanyIncorporation />} />
+              <Route path="/corporate-secretary-services-in-singapore/" element={<CorporateSecretary />} />
+              <Route path="/part-time-cfo/" element={<FractionalCFO />} />
+              <Route path="/privacy-policy/" element={<PrivacyPolicy />} />
+              <Route path="/terms/" element={<Terms />} />
+              <Route path="/success-stories/" element={<SuccessStories />} />
+              <Route path="/taxation/" element={<Taxation />} />
+              <Route path="/achievements/" element={<Achievements />} />
+              <Route path="/guide/" element={<Guide />} />
+              <Route path="/guide/:slug/" element={<GuideSingle />} />
+              <Route path="/guide/financial-reporting-standards-singapore/" element={<FinancialReportingGuide />} />
+              <Route path="/news/" element={<News />} />
+              <Route path="/resources/" element={<Navigate to="/achievements/" replace />} />
               {/* Admin */}
-              <Route path="/admin/blog" element={<BlogAdminPage />} />
-              <Route path="/admin/login" element={<BlogAdminLogin />} />
+              <Route path="/admin/blog/" element={<BlogAdminPage />} />
+              <Route path="/admin/login/" element={<BlogAdminLogin />} />
               {/* Case Studies */}
-              <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
-              <Route path="/case-studies/ecommerce" element={<EcommerceCaseStudy />} />
-              <Route path="/case-studies/food-tech" element={<FoodTechCaseStudy />} />
-              <Route path="/case-studies/online-consumer-goods" element={<OnlineConsumerGoodsCaseStudy />} />
-              <Route path="/case-studies/data-driven-success" element={<DataDrivenSuccessCaseStudy />} />
-              <Route path="/case-studies/gaming-industry" element={<GamingIndustryCaseStudy />} />
+              <Route path="/case-studies/healthcare/" element={<HealthcareCaseStudy />} />
+              <Route path="/case-studies/ecommerce/" element={<EcommerceCaseStudy />} />
+              <Route path="/case-studies/food-tech/" element={<FoodTechCaseStudy />} />
+              <Route path="/case-studies/online-consumer-goods/" element={<OnlineConsumerGoodsCaseStudy />} />
+              <Route path="/case-studies/data-driven-success/" element={<DataDrivenSuccessCaseStudy />} />
+              <Route path="/case-studies/gaming-industry/" element={<GamingIndustryCaseStudy />} />
 
               {/* --- UAE ROUTES (ONLY NEW, CANONICAL STYLE) --- */}
-              <Route path="/uae" element={<HomeUAE />} />
-              <Route path="/uae/about" element={<About />} />
-              <Route path="/uae/blog" element={<Blog />} />
-              <Route path="/uae/blog/:slug" element={<BlogPost />} />
-              <Route path="/uae/contact-us" element={<Contact />} />
-              <Route path="/accounting-services-in-uae" element={<Accounting />} />
-              <Route path="/bookkeeping-services-in-uae" element={<Bookkeeping />} />
-              <Route path="/payroll-services-in-uae" element={<Payroll />} />
-              <Route path="/cash-flow-services-in-uae" element={<CashFlow />} />
-              <Route path="/company-incorporation-services-in-uae" element={<CompanyIncorporation />} />
-              <Route path="/corporate-secretary-services-in-uae" element={<CorporateSecretary />} />
-              <Route path="/part-time-cfo-uae" element={<FractionalCFO />} />
+              <Route path="/uae/" element={<HomeUAE />} />
+              <Route path="/uae/about/" element={<About />} />
+              <Route path="/uae/blog/" element={<Blog />} />
+              <Route path="/uae/blog/:slug/" element={<BlogPost />} />
+              <Route path="/uae/contact-us/" element={<Contact />} />
+              <Route path="/accounting-services-in-uae/" element={<Accounting />} />
+              <Route path="/bookkeeping-services-in-uae/" element={<Bookkeeping />} />
+              <Route path="/payroll-services-in-uae/" element={<Payroll />} />
+              <Route path="/cash-flow-services-in-uae/" element={<CashFlow />} />
+              <Route path="/company-incorporation-services-in-uae/" element={<CompanyIncorporation />} />
+              <Route path="/corporate-secretary-services-in-uae/" element={<CorporateSecretary />} />
+              <Route path="/part-time-cfo-uae/" element={<FractionalCFO />} />
 
               {/* --- AUSTRALIA ROUTES (ONLY NEW, CANONICAL STYLE) --- */}
-              <Route path="/australia" element={<HomeAustralia />} />
-              <Route path="/australia/about" element={<About />} />
-              <Route path="/australia/blog" element={<Blog />} />
-              <Route path="/australia/blog/:slug" element={<BlogPost />} />
-              <Route path="/australia/contact-us" element={<Contact />} />
-              <Route path="/accounting-services-in-australia" element={<Accounting />} />
-              <Route path="/bookkeeping-services-in-australia" element={<Bookkeeping />} />
-              <Route path="/payroll-services-in-australia" element={<Payroll />} />
-              <Route path="/cash-flow-services-in-australia" element={<CashFlow />} />
-              <Route path="/company-incorporation-services-in-australia" element={<CompanyIncorporation />} />
-              <Route path="/corporate-secretary-services-in-australia" element={<CorporateSecretary />} />
-              <Route path="/part-time-cfo-australia" element={<FractionalCFO />} />
+              <Route path="/australia/" element={<HomeAustralia />} />
+              <Route path="/australia/about/" element={<About />} />
+              <Route path="/australia/blog/" element={<Blog />} />
+              <Route path="/australia/blog/:slug/" element={<BlogPost />} />
+              <Route path="/australia/contact-us/" element={<Contact />} />
+              <Route path="/accounting-services-in-australia/" element={<Accounting />} />
+              <Route path="/bookkeeping-services-in-australia/" element={<Bookkeeping />} />
+              <Route path="/payroll-services-in-australia/" element={<Payroll />} />
+              <Route path="/cash-flow-services-in-australia/" element={<CashFlow />} />
+              <Route path="/company-incorporation-services-in-australia/" element={<CompanyIncorporation />} />
+              <Route path="/corporate-secretary-services-in-australia/" element={<CorporateSecretary />} />
+              <Route path="/part-time-cfo-australia/" element={<FractionalCFO />} />
 
               {/* --- PERMANENT REDIRECTS for LEGACY COUNTRY-ROUTES (SEO: redirect old duplicates to canonical) --- */}
-              <Route path="/uae/accounting-services-in-singapore" element={<Navigate to="/accounting-services-in-uae" replace />} />
-              <Route path="/uae/bookkeeping-services-in-singapore" element={<Navigate to="/bookkeeping-services-in-uae" replace />} />
-              <Route path="/uae/payroll-services-in-singapore" element={<Navigate to="/payroll-services-in-uae" replace />} />
-              <Route path="/uae/cash-flow-services-in-singapore" element={<Navigate to="/cash-flow-services-in-uae" replace />} />
-              <Route path="/uae/company-incorporation-services-in-singapore" element={<Navigate to="/company-incorporation-services-in-uae" replace />} />
-              <Route path="/uae/corporate-secretary-services-in-singapore" element={<Navigate to="/corporate-secretary-services-in-uae" replace />} />
-              <Route path="/uae/part-time-cfo" element={<Navigate to="/part-time-cfo-uae" replace />} />
-              <Route path="/australia/accounting-services-in-singapore" element={<Navigate to="/accounting-services-in-australia" replace />} />
-              <Route path="/australia/bookkeeping-services-in-singapore" element={<Navigate to="/bookkeeping-services-in-australia" replace />} />
-              <Route path="/australia/payroll-services-in-singapore" element={<Navigate to="/payroll-services-in-australia" replace />} />
-              <Route path="/australia/cash-flow-services-in-singapore" element={<Navigate to="/cash-flow-services-in-australia" replace />} />
-              <Route path="/australia/company-incorporation-services-in-singapore" element={<Navigate to="/company-incorporation-services-in-australia" replace />} />
-              <Route path="/australia/corporate-secretary-services-in-singapore" element={<Navigate to="/corporate-secretary-services-in-australia" replace />} />
-              <Route path="/australia/part-time-cfo" element={<Navigate to="/part-time-cfo-australia" replace />} />
+              <Route path="/uae/accounting-services-in-singapore/" element={<Navigate to="/accounting-services-in-uae/" replace />} />
+              <Route path="/uae/bookkeeping-services-in-singapore/" element={<Navigate to="/bookkeeping-services-in-uae/" replace />} />
+              <Route path="/uae/payroll-services-in-singapore/" element={<Navigate to="/payroll-services-in-uae/" replace />} />
+              <Route path="/uae/cash-flow-services-in-singapore/" element={<Navigate to="/cash-flow-services-in-uae/" replace />} />
+              <Route path="/uae/company-incorporation-services-in-singapore/" element={<Navigate to="/company-incorporation-services-in-uae/" replace />} />
+              <Route path="/uae/corporate-secretary-services-in-singapore/" element={<Navigate to="/corporate-secretary-services-in-uae/" replace />} />
+              <Route path="/uae/part-time-cfo/" element={<Navigate to="/part-time-cfo-uae/" replace />} />
+              <Route path="/australia/accounting-services-in-singapore/" element={<Navigate to="/accounting-services-in-australia/" replace />} />
+              <Route path="/australia/bookkeeping-services-in-singapore/" element={<Navigate to="/bookkeeping-services-in-australia/" replace />} />
+              <Route path="/australia/payroll-services-in-singapore/" element={<Navigate to="/payroll-services-in-australia/" replace />} />
+              <Route path="/australia/cash-flow-services-in-singapore/" element={<Navigate to="/cash-flow-services-in-australia/" replace />} />
+              <Route path="/australia/company-incorporation-services-in-singapore/" element={<Navigate to="/company-incorporation-services-in-australia/" replace />} />
+              <Route path="/australia/corporate-secretary-services-in-singapore/" element={<Navigate to="/corporate-secretary-services-in-australia/" replace />} />
+              <Route path="/australia/part-time-cfo/" element={<Navigate to="/part-time-cfo-australia/" replace />} />
 
               {/* --- 404 --- */}
               <Route path="*" element={<NotFound />} />

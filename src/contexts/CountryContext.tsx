@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -40,9 +41,9 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
   };
 
   const getCountryServiceSlug = (base: string) => {
-    if (country === "uae") return `${base}-services-in-uae`;
-    if (country === "australia") return `${base}-services-in-australia`;
-    return `${base}-services-in-singapore`;
+    if (country === "uae") return `${base}-services-in-uae/`;
+    if (country === "australia") return `${base}-services-in-australia/`;
+    return `${base}-services-in-singapore/`;
   };
 
   const getCountryUrl = (path: string): string => {
@@ -53,15 +54,15 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     if (path.startsWith("/company-incorporation")) return `/${getCountryServiceSlug("company-incorporation")}`;
     if (path.startsWith("/corporate-secretary")) return `/${getCountryServiceSlug("corporate-secretary")}`;
     if (path.startsWith("/part-time-cfo")) {
-      if (country === "uae") return `/part-time-cfo-uae`;
-      if (country === "australia") return `/part-time-cfo-australia`;
-      return `/part-time-cfo`;
+      if (country === "uae") return `/part-time-cfo-uae/`;
+      if (country === "australia") return `/part-time-cfo-australia/`;
+      return `/part-time-cfo/`;
     }
     if (["/about", "/blog", "/contact-us", "/success-stories", "/taxation", "/achievements", "/guide", "/news", "/privacy-policy", "/terms"].includes(path)) {
-      if (country === "singapore") return path;
-      return `/${country}${path}`;
+      if (country === "singapore") return `${path}/`;
+      return `/${country}${path}/`;
     }
-    return path;
+    return path.endsWith('/') ? path : `${path}/`;
   };
 
   const handleSetCountry = (newCountry: Country) => {
@@ -71,7 +72,7 @@ export const CountryProvider = ({ children }: { children: React.ReactNode }) => 
     if (newCountry === 'singapore') {
       newPath = '/';
     } else {
-      newPath = `/${newCountry}`;
+      newPath = `/${newCountry}/`;
     }
     setCountry(newCountry);
     console.log(`Switching country from ${country} to ${newCountry}, navigating to: ${newPath}`);
