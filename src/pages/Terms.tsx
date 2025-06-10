@@ -8,7 +8,7 @@ const TermsPage = () => {
       <SeoOptimizer
         title="Terms & Conditions | Growwth Partners"
         description="Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities."
-        canonical={`${window.location.origin}/terms`}
+        canonical={`https://growwthpartners.com/terms`}
         keywords={["terms and conditions", "legal terms", "service agreement", "growwth partners"]}
       />
       

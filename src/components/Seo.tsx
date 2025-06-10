@@ -27,49 +27,49 @@ export const Seo: React.FC<SeoProps> = ({
   const { pathname } = useLocation();
   // If this is an old non-canonical route, override with canonical or main
   // But by default use correct path as per the router config
-  let href = canonical ?? `${window.location.origin}${pathname}`;
+  let href = canonical ?? `https://growwthpartners.com${pathname}`;
   // For legacy duplicate country routes, force canonical to preferred one. (simple check)
   if (pathname.includes("/uae/accounting-services-in-singapore")) {
-    href = `${window.location.origin}/accounting-services-in-uae`;
+    href = `https://growwthpartners.com/accounting-services-in-uae`;
   }
   if (pathname.includes("/uae/bookkeeping-services-in-singapore")) {
-    href = `${window.location.origin}/bookkeeping-services-in-uae`;
+    href = `https://growwthpartners.com/bookkeeping-services-in-uae`;
   }
   if (pathname.includes("/uae/payroll-services-in-singapore")) {
-    href = `${window.location.origin}/payroll-services-in-uae`;
+    href = `https://growwthpartners.com/payroll-services-in-uae`;
   }
   if (pathname.includes("/uae/cash-flow-services-in-singapore")) {
-    href = `${window.location.origin}/cash-flow-services-in-uae`;
+    href = `https://growwthpartners.com/cash-flow-services-in-uae`;
   }
   if (pathname.includes("/uae/company-incorporation-services-in-singapore")) {
-    href = `${window.location.origin}/company-incorporation-services-in-uae`;
+    href = `https://growwthpartners.com/company-incorporation-services-in-uae`;
   }
   if (pathname.includes("/uae/corporate-secretary-services-in-singapore")) {
-    href = `${window.location.origin}/corporate-secretary-services-in-uae`;
+    href = `https://growwthpartners.com/corporate-secretary-services-in-uae`;
   }
   if (pathname.includes("/uae/part-time-cfo")) {
-    href = `${window.location.origin}/part-time-cfo-uae`;
+    href = `https://growwthpartners.com/part-time-cfo-uae`;
   }
   if (pathname.includes("/australia/accounting-services-in-singapore")) {
-    href = `${window.location.origin}/accounting-services-in-australia`;
+    href = `https://growwthpartners.com/accounting-services-in-australia`;
   }
   if (pathname.includes("/australia/bookkeeping-services-in-singapore")) {
-    href = `${window.location.origin}/bookkeeping-services-in-australia`;
+    href = `https://growwthpartners.com/bookkeeping-services-in-australia`;
   }
   if (pathname.includes("/australia/payroll-services-in-singapore")) {
-    href = `${window.location.origin}/payroll-services-in-australia`;
+    href = `https://growwthpartners.com/payroll-services-in-australia`;
   }
   if (pathname.includes("/australia/cash-flow-services-in-singapore")) {
-    href = `${window.location.origin}/cash-flow-services-in-australia`;
+    href = `https://growwthpartners.com/cash-flow-services-in-australia`;
   }
   if (pathname.includes("/australia/company-incorporation-services-in-singapore")) {
-    href = `${window.location.origin}/company-incorporation-services-in-australia`;
+    href = `https://growwthpartners.com/company-incorporation-services-in-australia`;
   }
   if (pathname.includes("/australia/corporate-secretary-services-in-singapore")) {
-    href = `${window.location.origin}/corporate-secretary-services-in-australia`;
+    href = `https://growwthpartners.com/corporate-secretary-services-in-australia`;
   }
   if (pathname.includes("/australia/part-time-cfo")) {
-    href = `${window.location.origin}/part-time-cfo-australia`;
+    href = `https://growwthpartners.com/part-time-cfo-australia`;
   }
 
   return (

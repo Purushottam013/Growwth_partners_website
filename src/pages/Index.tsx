@@ -9,7 +9,7 @@ const Index = () => {
       <SeoOptimizer 
         title="Growwth Partners | Financial & Accounting Experts Singapore"
         description="Expert accounting, CFO, and financial services for SMEs and startups in Singapore. Unlock growth with award-winning advisors at Growwth Partners." 
-        canonical={`${window.location.origin}/`}
+        canonical={`https://growwthpartners.com/`}
       />
       {/* Redirect to the Home page which contains the proper content */}
       <Navigate to="/" replace />

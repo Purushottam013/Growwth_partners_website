@@ -28,7 +28,7 @@ const NotFound = () => {
       <SeoOptimizer
         title="404 Not Found | Growwth Partners"
         description={`No content found for ${location.pathname}. Go back to our homepage or explore our country-specific offerings for Singapore, UAE, or Australia.`}
-        canonical={`${window.location.origin}${location.pathname}`}
+        canonical={`https://growwthpartners.com${location.pathname}`}
         keywords={["404", "page not found", "growwth partners"]}
       />
       <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
