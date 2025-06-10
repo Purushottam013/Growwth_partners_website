@@ -20,7 +20,7 @@ const GuideSinglePage = () => {
         <SeoOptimizer
           title="Guide Not Available in UAE | Growwth Partners"
           description="Guides are not available for UAE visitors. Redirecting to UAE homepage."
-          canonical={`https://growwthpartners.com/uae`}
+          canonical={`${window.location.origin}/uae`}
           keywords={["uae", "guides unavailable", "growwth partners"]}
         />
         <Navigate to="/uae" replace />
@@ -34,7 +34,7 @@ const GuideSinglePage = () => {
         <SeoOptimizer
           title="Guide Not Available in Australia | Growwth Partners"
           description="Guides are not available for Australian visitors. Redirecting to Australia homepage."
-          canonical={`https://growwthpartners.com/australia`}
+          canonical={`${window.location.origin}/australia`}
           keywords={["australia", "guides unavailable", "growwth partners"]}
         />
         <Navigate to="/australia" replace />
@@ -87,7 +87,7 @@ const GuideSinglePage = () => {
         <SeoOptimizer
           title="Guide Not Found | Growwth Partners"
           description="Sorry, the requested guide could not be found. Please browse our other expert guides and business resources."
-          canonical={`https://growwthpartners.com/guide`}
+          canonical={`${window.location.origin}/guide`}
           keywords={["guide not found", "404", "growwth partners", "business guides"]}
         />
         <div className="text-center py-20">

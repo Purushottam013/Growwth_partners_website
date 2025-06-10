@@ -68,7 +68,7 @@ const BlogPage = () => {
         <SeoOptimizer
           title="Blog | Growwth Partners"
           description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
-          canonical={`https://growwthpartners.com/blog`}
+          canonical={`${window.location.origin}/blog`}
           keywords={["business blog", "financial insights", "singapore business", "accounting articles", "startup advice"]}
         />
 
@@ -92,7 +92,7 @@ const BlogPage = () => {
       <SeoOptimizer
         title="Blog | Growwth Partners"
         description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
-        canonical={`https://growwthpartners.com/blog`}
+        canonical={`${window.location.origin}/blog`}
         keywords={["business blog", "financial insights", "singapore business", "accounting articles", "startup advice"]}
       />
       
