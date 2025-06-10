@@ -70,7 +70,7 @@ const GuidePage = () => {
       <SeoOptimizer
         title="Guides & Resources | Growwth Partners"
         description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners' expertise."
-        canonical={`${window.location.origin}/guide`}
+        canonical={`https://growwthpartners.com/guide`}
         keywords={["business guides", "accounting resources", "singapore compliance", "financial best practices", "startup guides"]}
       />
 

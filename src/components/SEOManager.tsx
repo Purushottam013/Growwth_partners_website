@@ -32,7 +32,7 @@ export const SEOManager: React.FC<SEOManagerProps> = ({
   staticContent
 }) => {
   const { pathname } = useLocation();
-  const currentUrl = canonical || `${window.location.origin}${pathname}`;
+  const currentUrl = canonical || `https://growwthpartners.com${pathname}`;
 
   // Generate unique page identifier to prevent conflicts
   const pageId = `seo-${pathname.replace(/\//g, '-')}-${Date.now()}`;

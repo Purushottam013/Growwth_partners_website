@@ -73,7 +73,7 @@ export const usePageSEO = (config: PageSEOConfig) => {
       title: finalTitle,
       description: finalDescription,
       keywords: uniqueKeywords,
-      canonical: `${window.location.origin}${pathname}`,
+      canonical: `https://growwthpartners.com${pathname}`,
       locationName
     };
   }, [config, country, locationName, pathname]);

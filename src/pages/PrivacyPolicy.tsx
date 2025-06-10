@@ -11,7 +11,7 @@ const PrivacyPolicyPage = () => {
       <SeoOptimizer
         title="Privacy Policy | Growwth Partners"
         description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
-        canonical={`${window.location.origin}/privacy-policy`}
+        canonical={`https://growwthpartners.com/privacy-policy`}
         keywords={["privacy policy", "data protection", "user privacy", "growwth partners"]}
       />
       <div className="py-16 container-custom">
