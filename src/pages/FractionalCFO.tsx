@@ -30,8 +30,8 @@ const FractionalCFOPage = () => {
   const seoData = useSeoOptimization({
     service: "part-time-cfo",
     content: "Get strategic guidance and real results with part-time CFO, finance strategy, and fractional leadership services for Singapore's high-growth companies.",
-    title: "Part Time CFO Services in Singapore | Growwth Partners",
-    description: "Get strategic guidance and real results with part-time CFO, finance strategy, and fractional leadership services for Singapore's high-growth companies.",
+    title: "Expert Fractional & Virtual CFO in Singapore",
+    description: "Hire top-rated fractional, part-time, or virtual CFO services in Singapore. Boost financial strategy and performance without full-time costs.",
     keywords: ["virtual cfo", "singapore cfo", "financial strategy", "fractional leadership"]
   });
 
