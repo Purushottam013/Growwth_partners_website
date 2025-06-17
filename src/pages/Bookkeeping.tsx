@@ -14,8 +14,8 @@ import { usePageSEO } from "@/hooks/usePageSEO";
 
 const BookkeepingPage = () => {
   const seoData = usePageSEO({
-    baseTitle: "Professional Bookkeeping Services",
-    baseDescription: "Expert bookkeeping services for accurate financial records, transaction management, and real-time reporting for small businesses and startups.",
+    baseTitle: "Expert Bookkeeping Services in Singapore for Startups",
+    baseDescription: "Affordable bookkeeping for startups & SMEs in Singapore. Get expert virtual, online, and local bookkeeper services tailored to your business needs.",
     keywords: [
       "bookkeeping services", 
       "financial records", 
