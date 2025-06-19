@@ -57,7 +57,7 @@ export const ContactDetails = () => {
                 <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
               </div>
               
-              <div className="ml-2 flex-grow">
+              <div className="flex-grow">
                 {item.details.map((detail, idx) => (
                   <p key={idx} className="text-gray-600 text-sm overflow-wrap-anywhere">
                     {detail}
