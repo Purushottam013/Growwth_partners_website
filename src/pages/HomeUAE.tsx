@@ -8,6 +8,11 @@ import { SeoOptimizer } from "@/components/SeoOptimizer";
 const HomeUAE = () => {
   const navigate = useNavigate();
 
+  const handleContactClick = () => {
+    // Navigate to Singapore contact page specifically
+    window.location.href = "/contact-us/";
+  };
+
   return (
     <Layout>
       <SeoOptimizer
@@ -55,7 +60,7 @@ const HomeUAE = () => {
             </div>
             
             <Button 
-              onClick={() => navigate("/contact-us")} 
+              onClick={handleContactClick}
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-medium px-6 py-3"
             >
               Contact UAE Advisors
