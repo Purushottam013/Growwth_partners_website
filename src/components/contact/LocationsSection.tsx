@@ -45,7 +45,7 @@ export const LocationsSection = () => {
 
   const contactInfo = [
     { icon: <Phone className="h-5 w-5" />, text: "+65 8893 0720", href: "tel:+6588930720" },
-    { icon: <Mail className="h-5 w-5" />, text: "jatin@growwthpartners.com", href: "mailto:jatin@growwthpartners.com" },
+    { icon: <Mail className="h-5 w-5" />, text: "Send an Email", href: "mailto:jd@growwthpartners.com" },
     { icon: <Clock className="h-5 w-5" />, text: "Mon-Fri: 9AM - 6PM", href: null },
     { icon: <Globe className="h-5 w-5" />, text: "www.growwthpartners.com", href: "https://www.growwthpartners.com" }
   ];
