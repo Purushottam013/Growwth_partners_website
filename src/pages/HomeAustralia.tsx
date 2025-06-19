@@ -55,7 +55,7 @@ const HomeAustralia = () => {
             </div>
             
             <Button 
-              onClick={() => navigate("/contact")}
+              onClick={() => navigate("/contact-us")}
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-medium px-6 py-3"
             >
               Register Interest

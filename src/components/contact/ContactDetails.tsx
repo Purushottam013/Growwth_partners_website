@@ -38,7 +38,7 @@ export const ContactDetails = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.6 }}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl mx-auto"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl mx-auto"
     >
       {contactDetails.map((item, index) => (
         <motion.div 
@@ -46,7 +46,7 @@ export const ContactDetails = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.7 + (index * 0.1) }}
-          className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1"
+          className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1 min-w-[280px]"
         >
           <div className="flex flex-col space-y-3">
             <div className="flex items-center space-x-3">
@@ -58,7 +58,7 @@ export const ContactDetails = () => {
             
             <div className="ml-2">
               {item.details.map((detail, idx) => (
-                <p key={idx} className="text-gray-600 break-words">
+                <p key={idx} className="text-gray-600 break-words whitespace-nowrap overflow-hidden text-ellipsis">
                   {detail}
                 </p>
               ))}

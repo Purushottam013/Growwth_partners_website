@@ -55,7 +55,7 @@ const HomeUAE = () => {
             </div>
             
             <Button 
-                onClick={() => navigate("/contact-us", { replace: true })} 
+              onClick={() => navigate("/contact-us")} 
               className="bg-brand-orange hover:bg-brand-orange/90 text-white font-medium px-6 py-3"
             >
               Contact UAE Advisors
