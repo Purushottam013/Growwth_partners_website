@@ -232,7 +232,7 @@ const getUserEmailTemplate = (data: FormSubmissionRequest): string => {
         
         <div class="contact-info">
           <p>If you have any urgent queries, you can reach us at:</p>
-          <p><span class="highlight">Email:</span> <strong>jatin@growwthpartners.com</strong></p>
+          <p><span class="highlight">Email:</span> <strong>jd@growwthpartners.com</strong></p>
           <p><span class="highlight">Phone:</span> <strong>+65 8893 0720</strong></p>
         </div>
         
@@ -321,7 +321,7 @@ serve(async (req) => {
           },
         ],
         from: { email: SENDER_EMAIL, name: "Growwth Partners" },
-        reply_to: { email: "jatin@growwthpartners.com" },
+        reply_to: { email: "jd@growwthpartners.com" },
         subject: "Thank you for your submission",
         content: [{ type: "text/html", value: getUserEmailTemplate(formData) }],
       }),

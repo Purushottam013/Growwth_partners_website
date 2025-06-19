@@ -110,7 +110,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-start">
                 <Mail className="h-4 w-4 mr-2 mt-1" style={{color: iconColor}} />
-                <a href="mailto:jatin@growwthpartners.com" className="hover:text-brand-orange transition-colors">jatin@growwthpartners.com</a>
+                <a href="mailto:jd@growwthpartners.com" className="hover:text-brand-orange transition-colors">jd@growwthpartners.com</a>
               </li>
             </ul>
             

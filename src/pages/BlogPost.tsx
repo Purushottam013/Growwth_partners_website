@@ -109,7 +109,7 @@ const BlogPostPage = () => {
   };
 
   const handleWriteToAuthor = () => {
-    window.location.href = "mailto:jatin@growwthpartners.com?subject=Regarding your blog post: " + (post?.title || "");
+    window.location.href = "mailto:jd@growwthpartners.com?subject=Regarding your blog post: " + (post?.title || "");
   };
 
   if (loading || postsLoading) {
