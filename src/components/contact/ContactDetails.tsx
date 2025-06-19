@@ -38,37 +38,39 @@ export const ContactDetails = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.6 }}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto"
+      className="w-full max-w-none mx-auto px-4"
     >
-      {contactDetails.map((item, index) => (
-        <motion.div 
-          key={index}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.7 + (index * 0.1) }}
-          className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1 min-w-[320px]"
-        >
-          <div className="flex flex-col space-y-3">
-            <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-[#9b87f5]/10 to-[#D6BCFA]/20 p-3 rounded-lg flex-shrink-0">
-                {item.icon}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center">
+        {contactDetails.map((item, index) => (
+          <motion.div 
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.7 + (index * 0.1) }}
+            className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1 w-full max-w-[300px] min-h-[180px]"
+          >
+            <div className="flex flex-col space-y-3 h-full">
+              <div className="flex items-center space-x-3">
+                <div className="bg-gradient-to-br from-[#9b87f5]/10 to-[#D6BCFA]/20 p-3 rounded-lg flex-shrink-0">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
-            </div>
-            
-            <div className="ml-2">
-              {item.details.map((detail, idx) => (
-                <p key={idx} className="text-gray-600 text-sm break-all">
-                  {detail}
+              
+              <div className="ml-2 flex-grow">
+                {item.details.map((detail, idx) => (
+                  <p key={idx} className="text-gray-600 text-sm overflow-wrap-anywhere">
+                    {detail}
+                  </p>
+                ))}
+                <p className="text-sm text-gray-500 mt-2 italic">
+                  {item.subheading}
                 </p>
-              ))}
-              <p className="text-sm text-gray-500 mt-2 italic">
-                {item.subheading}
-              </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 };
