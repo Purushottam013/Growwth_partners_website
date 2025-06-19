@@ -27,7 +27,7 @@ const HomeAustralia = () => {
         transition={{ duration: 0.5 }}
         className="overflow-hidden"
       >
-        <div className="min-h-[70vh] flex items-center justify-center flex-col text-center px-4">
+        <div className="min-h-[70vh] flex items-center justify-center flex-col text-center px-4 py-12">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
             <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
             <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
