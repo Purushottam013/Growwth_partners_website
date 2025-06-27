@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCountry } from "@/contexts/CountryContext";
 import { Layout } from "@/components/Layout";
 import { AlertTriangle } from "lucide-react";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const NotFound = () => {
   const location = useLocation();
@@ -25,11 +25,11 @@ const NotFound = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="404 Not Found | Growwth Partners"
         description={`No content found for ${location.pathname}. Go back to our homepage or explore our country-specific offerings for Singapore, UAE, or Australia.`}
-        canonical={`${window.location.origin}${location.pathname}`}
-        keywords={["404", "page not found", "growwth partners"]}
+        canonicalUrl={`${window.location.origin}${location.pathname}`}
+        keywords="404, page not found, growwth partners"
       />
       <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md mx-auto p-8">

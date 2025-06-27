@@ -1,4 +1,3 @@
-
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/accounting/HeroSection";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
@@ -11,7 +10,7 @@ import { FaqSection } from "@/components/accounting/FaqSection";
 import { CtaSection } from "@/components/accounting/CtaSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const AccountingPage = () => {
@@ -49,31 +48,13 @@ const AccountingPage = () => {
     "serviceType": "Accounting Services"
   };
 
-  const staticContentData = {
-    heading: `Professional Accounting Services in ${location} - Growwth Partners`,
-    features: [
-      `Expert accounting services for businesses in ${location}`,
-      "Comprehensive financial reporting and analysis",
-      "Tax compliance and regulatory support",
-      "Monthly financial statements and bookkeeping",
-      "Cash flow management and forecasting",
-      "Budget planning and variance analysis",
-      "Audit preparation and support",
-      "XERO and QuickBooks implementation",
-      "Real-time financial dashboards and reporting"
-    ],
-    additionalContent: `Our accounting services in ${location} are designed to help businesses maintain accurate financial records, ensure compliance with local regulations, and make informed financial decisions. We work with startups, SMEs, and established businesses across various industries.`
-  };
-
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title={seoData.title}
         description={seoData.description}
-        keywords={seoData.keywords}
-        schema={accountingSchema}
-        staticContent={staticContentData}
-        content={`Professional accounting services in ${location} including financial reporting, tax compliance, bookkeeping, and cash flow management for businesses of all sizes.`}
+        keywords={seoData.keywords.join(", ")}
+        structuredData={accountingSchema}
       />
       
       <motion.div

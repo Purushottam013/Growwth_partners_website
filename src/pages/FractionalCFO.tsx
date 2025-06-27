@@ -12,7 +12,7 @@ import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 import CTASection from "@/components/partTimeCFO/CTASection";
 import FAQAccordion from "@/components/partTimeCFO/FAQAccordion";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const FractionalCFOPage = () => {
@@ -64,11 +64,11 @@ const FractionalCFOPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title={seoData.title}
         description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
+        keywords={seoData.keywords.join(", ")}
+        structuredData={organizationSchema}
       />
        <motion.div
         initial={{ opacity: 0 }}

@@ -1,11 +1,9 @@
-
 import React, { lazy, Suspense, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
 import { AnimatedElement } from "@/components/ui/animated-element";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
-import {SeoOptimizer} from "@/components/SeoOptimizer";
-
+import SEOhelper from "@/components/SEOhelper";
 
 // More effective code splitting with smaller chunks
 const ServicesSection = lazy(() => 
@@ -86,13 +84,11 @@ const Index = () => {
 
   return (
     <Layout>
-      <SeoOptimizer 
+      <SEOhelper 
         title="Growwth Partners - Financial & Accounting Services"
         description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
-        schema={organizationSchema}
-        keywords={["financial services", "accounting singapore", "cfo services", "bookkeeping", "business growth"]}
-        staticContent={staticContentData}
-        content="Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia. Our award-winning team provides CFO services, company incorporation, payroll management, and customized financial solutions for startups and SMEs."
+        structuredData={organizationSchema}
+        keywords="financial services, accounting singapore, cfo services, bookkeeping, business growth"
       />
       
       <AnimatedElement

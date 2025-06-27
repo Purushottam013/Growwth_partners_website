@@ -12,7 +12,7 @@ import { FaqSection } from "@/components/taxation/FaqSection";
 import { ExpertBlogSection } from "@/components/taxation/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const TaxationPage = () => {
@@ -64,11 +64,11 @@ const TaxationPage = () => {
   
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title={seoData.title}
         description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
+        keywords={seoData.keywords.join(", ")}
+        structuredData={organizationSchema}
       />
 
       <motion.div

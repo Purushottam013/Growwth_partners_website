@@ -1,18 +1,18 @@
 
 import { Layout } from "@/components/Layout";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const PrivacyPolicyPage = () => {
   const { country } = useCountry();
   
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="Privacy Policy | Growwth Partners"
         description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
-        canonical={`${window.location.origin}/privacy-policy`}
-        keywords={["privacy policy", "data protection", "user privacy", "growwth partners"]}
+        canonicalUrl={`${window.location.origin}/privacy-policy`}
+        keywords="privacy policy, data protection, user privacy, growwth partners"
       />
       <div className="py-16 container-custom">
         <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>

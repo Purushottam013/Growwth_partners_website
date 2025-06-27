@@ -15,7 +15,7 @@ import {
   PaginationNext, 
   PaginationPrevious 
 } from "@/components/ui/pagination";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const GUIDES_PER_PAGE = 3;
 
@@ -67,11 +67,11 @@ const GuidePage = () => {
   
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="Guides & Resources | Growwth Partners"
         description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners' expertise."
-        canonical={`${window.location.origin}/guide`}
-        keywords={["business guides", "accounting resources", "singapore compliance", "financial best practices", "startup guides"]}
+        canonicalUrl={`${window.location.origin}/guide`}
+        keywords="business guides, accounting resources, singapore compliance, financial best practices, startup guides"
       />
 
       <section className="relative w-full flex justify-center">

@@ -13,7 +13,7 @@ import { CaseStudySection } from "@/components/companyincorporation/CaseStudySec
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 import LaunchJourneySection from "@/components/companyincorporation/LaunchJourneySection";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const CompanyIncorporationPage = () => {
@@ -65,11 +65,11 @@ const CompanyIncorporationPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title={seoData.title}
         description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
+        keywords={seoData.keywords.join(", ")}
+        structuredData={organizationSchema}
       />
       
       <motion.div

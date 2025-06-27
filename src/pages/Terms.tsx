@@ -1,15 +1,15 @@
 
 import { Layout } from "@/components/Layout";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const TermsPage = () => {
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="Terms & Conditions | Growwth Partners"
         description="Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities."
-        canonical={`${window.location.origin}/terms`}
-        keywords={["terms and conditions", "legal terms", "service agreement", "growwth partners"]}
+        canonicalUrl={`${window.location.origin}/terms`}
+        keywords="terms and conditions, legal terms, service agreement, growwth partners"
       />
       
       <div className="py-16 container-custom">

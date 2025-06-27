@@ -1,4 +1,3 @@
-
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/payroll/HeroSection";
@@ -8,7 +7,7 @@ import { TrustedSection } from "@/components/accounting/TrustedSection";
 import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const PayrollPage = () => {
@@ -54,12 +53,11 @@ const PayrollPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title={seoData.title}
         description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
-        autoGenerate={false}
+        keywords={seoData.keywords.join(", ")}
+        structuredData={organizationSchema}
       />
       
       <motion.div
