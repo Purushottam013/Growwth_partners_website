@@ -328,9 +328,9 @@ export const routes: RouteRecord[] = [
         entry: 'src/pages/BlogPost.tsx',
         getStaticPaths: async () => {
           const { data: posts, error } = await supabase
-            .from('blog_posts')
-            .select('slug')
-            .eq('status','published')
+            .from('blog_post')
+            .select('slug');
+            
 
           if (error) {
             console.error('SSG slug fetch error', error)
