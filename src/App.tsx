@@ -18,7 +18,7 @@ import NotFound from './pages/NotFound';
 
 async function getBlogSlugs() {
   const { data: posts, error } = await supabase
-    .from('blog_posts')
+    .from('blog_post')
     .select('slug')
     .eq('status','published')
 
