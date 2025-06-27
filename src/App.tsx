@@ -5,7 +5,7 @@ import React from 'react';
 import { ClientOnly } from 'vite-react-ssg'
 import type { RouteRecord } from 'vite-react-ssg';
 import { Navigate } from "react-router-dom";
-import { Layout } from './components/Layout';
+import Layout from './Layout';
 import { supabase } from "@/integrations/supabase/client";
 
 // We need to lazy-load the AdminRyzup component to ensure it's not eagerly imported on the server
