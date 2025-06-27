@@ -1,122 +1,73 @@
-import React, { lazy, Suspense, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
-import { AnimatedElement } from "@/components/ui/animated-element";
-import { TrustedSection } from "@/components/accounting/TrustedSection";
+import { PartnersSection } from "@/components/home/PartnersSection";
+import { ServicesSection } from "@/components/home/ServicesSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { AchievementsSection } from "@/components/home/AchievementsSection";
+import { TrustedPartnerSection } from "@/components/home/TrustedPartnerSection";
+import { CtaSection } from "@/components/home/CtaSection";
+import { motion } from "framer-motion";
 import SEOhelper from "@/components/SEOhelper";
 
-// More effective code splitting with smaller chunks
-const ServicesSection = lazy(() => 
-  import("@/components/home/ServicesSection")
-    .then(mod => ({ default: mod.ServicesSection }))
-);
-
-const AchievementsSection = lazy(() => 
-  import("@/components/home/AchievementsSection")
-    .then(mod => ({ default: mod.AchievementsSection }))
-);
-
-const TestimonialsSection = lazy(() => 
-  import("@/components/home/TestimonialsSection")
-    .then(mod => ({ default: mod.TestimonialsSection }))
-);
-
-const CtaSection = lazy(() => 
-  import("@/components/home/CtaSection")
-    .then(mod => ({ default: mod.CtaSection }))
-);
-
-// Minimal fallback for better mobile experience
-const SectionLoader = () => (
-  <div className="py-4 flex justify-center items-center">
-    <div className="w-6 h-6 border-2 border-brand-orange border-t-transparent rounded-full animate-spin"></div>
-  </div>
-);
-
 const Index = () => {
-  // Aggressive preloading for mobile performance
-  useEffect(() => {
-    // Start preloading immediately on mobile
-    const preloadComponents = () => {
-      import("@/components/home/ServicesSection");
-      import("@/components/home/AchievementsSection");
-    };
-    
-    // Immediate preload for better mobile experience
-    preloadComponents();
-  }, []);
-
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Growwth Partners",
-    url: "https://growwthpartners.com",
-    logo: "https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png",
-    sameAs: [
-      "https://www.linkedin.com/company/growwth-partners/",
-      "https://www.youtube.com/@GrowwthPartners",
-    ],
-    description: "Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia.",
-    address: {
+    "name": "Growwth Partners",
+    "url": "https://growwthpartners.com",
+    "logo": "https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png",
+    "description": "Leading financial services provider offering accounting, payroll, CFO services, and business solutions for startups and SMEs in Singapore.",
+    "address": {
       "@type": "PostalAddress",
-      addressCountry: "Singapore"
+      "addressCountry": "SG",
+      "addressLocality": "Singapore"
     },
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-      availableLanguage: "English"
-    }
-  };
-
-  const staticContentData = {
-    heading: "Growwth Partners - Expert Financial & Accounting Services",
-    features: [
-      "Professional accounting services in Singapore, UAE, and Australia",
-      "Expert CFO and financial consulting for startups and SMEs",
-      "Comprehensive bookkeeping and payroll management",
-      "Company incorporation and corporate secretary services",
-      "Award-winning financial advisory team with 15+ years experience",
-      "95% client retention rate with $50M+ managed annually",
-      "Customized financial solutions for business growth"
+    "sameAs": [
+      "https://www.linkedin.com/company/growwth-partners"
     ],
-    additionalContent: "At Growwth Partners, we provide more than just accounting and bookkeeping services. Our customized financial solutions ensure that each client receives personalized attention and expert advice tailored to their unique business needs."
+    "service": [
+      {
+        "@type": "Service",
+        "name": "Accounting Services",
+        "description": "Professional accounting and bookkeeping services for businesses"
+      },
+      {
+        "@type": "Service", 
+        "name": "Fractional CFO Services",
+        "description": "Part-time CFO expertise for strategic financial guidance"
+      },
+      {
+        "@type": "Service",
+        "name": "Payroll Services", 
+        "description": "Complete payroll management and compliance solutions"
+      }
+    ]
   };
 
   return (
     <Layout>
-      <SEOhelper 
-        title="Growwth Partners - Financial & Accounting Services"
-        description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
+      <SEOhelper
+        title="Professional Financial Services for Startups & SMEs | Growwth Partners"
+        description="Expert accounting, payroll, fractional CFO, and business advisory services in Singapore. Trusted by 500+ businesses for reliable financial solutions and strategic growth support."
+        keywords="singapore financial services, accounting services, payroll outsourcing, fractional cfo, business advisory, startup accounting"
+        canonicalUrl={`${window.location.origin}/`}
         structuredData={organizationSchema}
-        keywords="financial services, accounting singapore, cfo services, bookkeeping, business growth"
       />
       
-      <AnimatedElement
-        animation="fade-in"
-        duration={0.2}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         className="overflow-hidden"
       >
-        {/* Critical content - loads immediately */}
         <HeroSection />
-        <TrustedSection />
-        
-        {/* Lazy loaded sections with minimal loading indicators */}
-        <Suspense fallback={<SectionLoader />}>
-          <ServicesSection />
-        </Suspense>
-        
-        <Suspense fallback={<SectionLoader />}>
-          <AchievementsSection />
-        </Suspense>
-        
-        <Suspense fallback={<SectionLoader />}>
-          <TestimonialsSection />
-        </Suspense>
-        
-        <Suspense fallback={<SectionLoader />}>
-          <CtaSection />
-        </Suspense>
-      </AnimatedElement>
+        <PartnersSection />
+        <ServicesSection />
+        <TestimonialsSection />
+        <AchievementsSection />
+        <TrustedPartnerSection />
+        <CtaSection />
+      </motion.div>
     </Layout>
   );
 };
