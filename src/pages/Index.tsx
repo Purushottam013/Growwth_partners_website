@@ -4,7 +4,7 @@ import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
 import { AnimatedElement } from "@/components/ui/animated-element";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
-import SeoOptimizer from "@/components/SeoOptimizer";
+import {SeoOptimizer} from "@/components/SeoOptimizer";
 
 
 // More effective code splitting with smaller chunks

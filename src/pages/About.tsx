@@ -12,7 +12,7 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { ExpertInsights } from "@/components/about/ExpertInsights";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
-import SeoOptimizer from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const AboutPage = () => {
   const { country } = useCountry();
@@ -42,7 +42,7 @@ const AboutPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="About Growwth Partners - Leading Financial Experts in Singapore"
         description="Award-winning financial consultants specializing in accounting, CFO services, and business growth strategies."
         keywords="about growwth partners,financial experts, award winning accountants, financial consultants, cfo services team, accounting professionals, business growth experts,singapore financial firm"

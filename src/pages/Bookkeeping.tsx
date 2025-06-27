@@ -9,7 +9,7 @@ import { CaseStudySection } from "@/components/bookkeeping/CaseStudySection";
 import { ExpertBlogSection } from "@/components/bookkeeping/ExpertBlogSection";
 import { CtaSection } from "@/components/bookkeeping/CtaSection";
 import { motion } from "framer-motion";
-import SeoOptimizer from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const BookkeepingPage = () => {
 
@@ -30,7 +30,7 @@ const BookkeepingPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="Expert Bookkeeping Services in Singapore for Startups"
         description="Affordable bookkeeping for startups & SMEs in Singapore. Get expert virtual, online, and local bookkeeper services tailored to your business needs."
         keywords="bookkeeping services, financial records, transaction management, small business accounting, financial reporting, accounts payable, accounts receivable, bank reconciliation"
