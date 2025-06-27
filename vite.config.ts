@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base:'/',
   server: {
     host: "::",
     port: 8080,
@@ -26,25 +27,28 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
+ build: {
     rollupOptions: {
       output: {
-        manualChunks: undefined,
         assetFileNames: (assetInfo) => {
-          // Ensure robots.txt keeps its name and location
-          if (assetInfo.name === 'robots.txt') {
-            return 'robots.txt';
+          if (assetInfo.name === "robots.txt") {
+            return "robots.txt";
           }
-          return 'assets/[name]-[hash][extname]';
+          if (assetInfo.name === "sitemap.xml") {
+            return "sitemap.xml";
+          }
+          return assetInfo.name || "asset";
         },
       },
     },
-    assetsDir: 'assets',
-    sourcemap: false,
+    minify: mode === "production" ? "esbuild" : false,
+    sourcemap: mode === "development",
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1000,
     copyPublicDir: true,
   },
   optimizeDeps: {
-    include: ['react', 'react-dom'],
+    include: ['react', 'react-dom',"react-router-dom"],
   },
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' }
