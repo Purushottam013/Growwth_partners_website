@@ -14,7 +14,6 @@ import { ExpertBlogSection } from "@/components/cashflow/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const CashFlowPage = () => {
   const { country } = useCountry();
@@ -27,14 +26,6 @@ const CashFlowPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "cash-flow",
-    content: "Take control of your cash flow and future-proof your business with flexible modelling services tailored for Singaporean SMEs & startups.",
-    title: "Cash Flow Modelling Services in Singapore | Growwth Partners",
-    description: "Take control of your cash flow and future-proof your business with flexible modelling services tailored for Singaporean SMEs & startups.",
-    keywords: ["singapore cash flow modelling", "financial modeling", "business forecasting", "cash flow management"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -66,9 +57,9 @@ const CashFlowPage = () => {
   return (
     <Layout>
       <SEOhelper
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords.join(", ")}
+        title="Cash Flow Modelling Services in Singapore | Growwth Partners"
+        description="Take control of your cash flow and future-proof your business with flexible modelling services tailored for Singaporean SMEs & startups."
+        keywords="singapore cash flow modelling, financial modeling, business forecasting, cash flow management"
         structuredData={organizationSchema}
       />
       

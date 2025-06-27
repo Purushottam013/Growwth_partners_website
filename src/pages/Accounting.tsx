@@ -1,3 +1,4 @@
+
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/accounting/HeroSection";
 import { TrustedSection } from "@/components/accounting/TrustedSection";
@@ -11,7 +12,6 @@ import { CtaSection } from "@/components/accounting/CtaSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const AccountingPage = () => {
   const { country } = useCountry();
@@ -25,14 +25,6 @@ const AccountingPage = () => {
   };
 
   const location = getLocationName();
-  
-  const seoData = useSeoOptimization({
-    service: "accounting",
-    location,
-    title: `Professional Accounting Services in ${location} | Growwth Partners`,
-    description: `Expert accounting services in ${location}. Professional financial reporting, tax compliance, and bookkeeping solutions for startups and SMEs. Get started today.`,
-    keywords: ["accounting services", "financial reporting", "tax compliance", location.toLowerCase(), "bookkeeping", "growwth partners"]
-  });
 
   const accountingSchema = {
     "@context": "https://schema.org",
@@ -51,9 +43,9 @@ const AccountingPage = () => {
   return (
     <Layout>
       <SEOhelper
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords.join(", ")}
+        title={`Professional Accounting Services in ${location} | Growwth Partners`}
+        description={`Expert accounting services in ${location}. Professional financial reporting, tax compliance, and bookkeeping solutions for startups and SMEs. Get started today.`}
+        keywords={`accounting services, financial reporting, tax compliance, ${location.toLowerCase()}, bookkeeping, growwth partners`}
         structuredData={accountingSchema}
       />
       

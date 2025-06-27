@@ -13,7 +13,6 @@ import { CaseStudySection } from "@/components/corporatesecretary/CaseStudySecti
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const CorporateSecretaryPage = () => {
   const { country } = useCountry();
@@ -26,14 +25,6 @@ const CorporateSecretaryPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "corporate-secretary",
-    content: "Outsource your company secretarial functions to Singapore's trusted experts. Effortless compliance, filing, and advisory services for growing businesses.",
-    title: "Corporate Secretary Services in Singapore | Growwth Partners",
-    description: "Outsource your company secretarial functions to Singapore's trusted experts. Growwth Partners offers full compliance, filing, and advisory services.",
-    keywords: ["singapore corporate secretary", "company compliance", "statutory filing", "acra filing"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -65,9 +56,9 @@ const CorporateSecretaryPage = () => {
   return (
     <Layout>
       <SEOhelper
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords.join(", ")}
+        title="Corporate Secretary Services in Singapore | Growwth Partners"
+        description="Outsource your company secretarial functions to Singapore's trusted experts. Growwth Partners offers full compliance, filing, and advisory services."
+        keywords="singapore corporate secretary, company compliance, statutory filing, acra filing"
         structuredData={organizationSchema}
       />
       

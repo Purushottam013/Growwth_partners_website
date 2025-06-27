@@ -14,7 +14,6 @@ import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSec
 import LaunchJourneySection from "@/components/companyincorporation/LaunchJourneySection";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const CompanyIncorporationPage = () => {
   const { country } = useCountry();
@@ -27,14 +26,6 @@ const CompanyIncorporationPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "company-incorporation",
-    content: "Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results.",
-    title: "Company Incorporation in Singapore | Growwth Partners",
-    description: "Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results.",
-    keywords: ["singapore company incorporation", "business registration", "company setup", "acra registration"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -66,9 +57,9 @@ const CompanyIncorporationPage = () => {
   return (
     <Layout>
       <SEOhelper
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords.join(", ")}
+        title="Company Incorporation in Singapore | Growwth Partners"
+        description="Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results."
+        keywords="singapore company incorporation, business registration, company setup, acra registration"
         structuredData={organizationSchema}
       />
       

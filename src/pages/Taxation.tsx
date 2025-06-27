@@ -13,7 +13,6 @@ import { ExpertBlogSection } from "@/components/taxation/ExpertBlogSection";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const TaxationPage = () => {
   const { country } = useCountry();
@@ -26,14 +25,6 @@ const TaxationPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "taxation",
-    content: "Professional taxation and compliance services in Singapore for startups & SMEs. Ensure thorough financial review and tax compliance with expert support.",
-    title: "Taxation & Compliance Services in Singapore | Growwth Partners",
-    description: "Professional taxation and compliance services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support.",
-    keywords: ["singapore taxation", "tax compliance", "corporate tax", "gst filing"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -65,9 +56,9 @@ const TaxationPage = () => {
   return (
     <Layout>
       <SEOhelper
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords.join(", ")}
+        title="Taxation & Compliance Services in Singapore | Growwth Partners"
+        description="Professional taxation and compliance services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
+        keywords="singapore taxation, tax compliance, corporate tax, gst filing"
         structuredData={organizationSchema}
       />
 

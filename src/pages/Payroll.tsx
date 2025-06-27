@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/payroll/HeroSection";
@@ -8,7 +9,6 @@ import { AboutTestimonials } from "@/components/about/AboutTestimonials";
 import { motion } from "framer-motion";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
 
 const PayrollPage = () => {
   const { country } = useCountry();
@@ -21,15 +21,6 @@ const PayrollPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  // Use the SEO optimization hook
-  const seoData = useSeoOptimization({
-    service: "payroll",
-    content: "Payroll Services in Singapore – Streamlined Operations and Satisfied Employees. Let our experts handle your payroll intricacies. Experience seamless, error-free payroll management with us.",
-    title: "Payroll Services in Singapore | Growwth Partners",
-    description: "Professional payroll services in Singapore for startups & SMEs. Streamlined operations, compliance, and satisfied employees with Growwth Partners' expert support.",
-    keywords: ["payroll outsourcing", "singapore payroll", "employee management", "tax compliance"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -54,9 +45,9 @@ const PayrollPage = () => {
   return (
     <Layout>
       <SEOhelper
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords.join(", ")}
+        title="Payroll Services in Singapore | Growwth Partners"
+        description="Professional payroll services in Singapore for startups & SMEs. Streamlined operations, compliance, and satisfied employees with Growwth Partners' expert support."
+        keywords="payroll outsourcing, singapore payroll, employee management, tax compliance"
         structuredData={organizationSchema}
       />
       
