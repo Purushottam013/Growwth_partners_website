@@ -18,31 +18,12 @@ const AchievementsPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
-  const achievementSchema = {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "Achievements & Awards - Growwth Partners",
-    "description": "Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation.",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Growwth Partners",
-      "award": [
-        "Best Fractional CFO Services Award 2024 - Golden Globe Tigers Awards",
-        "Xero Silver Champion Partner Status",
-        "Innovation Leadership in AI-powered Financial Advisory"
-      ],
-      "description": "Award-winning financial services company recognized for excellence in fractional CFO services, technology innovation, and client satisfaction."
-    }
-  };
-
   return (
     <Layout>
       <SEOhelper 
         title="Achievements & Awards | Growwth Partners"
         description="Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation."
         keywords="growwth partners awards, financial services recognition, best cfo services, singapore awards, accounting excellence"
-        canonicalUrl={`${window.location.origin}/achievements`}
-        structuredData={achievementSchema}
       />
       <PlaceholderContent 
         title="Achievements & Awards" 

@@ -18,42 +18,12 @@ const NewsPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
-  const newsSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "News & Updates - Growwth Partners",
-    "description": "Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Growwth Partners",
-      "url": "https://growwthpartners.com"
-    },
-    "mainEntity": {
-      "@type": "ItemList",
-      "name": "Latest News",
-      "itemListElement": [
-        {
-          "@type": "Article",
-          "name": "Digital Innovation",
-          "description": "Featured in Tech Asia for our groundbreaking AI-powered financial advisory platform"
-        },
-        {
-          "@type": "Article", 
-          "name": "Market Leadership",
-          "description": "Recognized by Singapore Business Review for our contributions to empowering SMEs"
-        }
-      ]
-    }
-  };
-
   return (
     <Layout>
       <SEOhelper
         title="News & Updates | Growwth Partners"
         description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
         keywords="growwth partners news, financial industry updates, singapore business news, accounting announcements"
-        canonicalUrl={`${window.location.origin}/news`}
-        structuredData={newsSchema}
       />
       <PlaceholderContent 
         title="In The News" 

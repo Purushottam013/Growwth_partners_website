@@ -1,119 +1,80 @@
-import { Navigate } from "react-router-dom";
+
 import { Layout } from "@/components/Layout";
 import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
 
 const PrivacyPolicyPage = () => {
   const { country } = useCountry();
-
-  // Redirect non-Singapore users to their respective home pages
-  if (country === 'uae') {
-    return <Navigate to="/uae" replace />;
-  }
-
-  if (country === 'australia') {
-    return <Navigate to="/australia" replace />;
-  }
-
-  const privacySchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Privacy Policy - Growwth Partners",
-    "description": "Privacy policy outlining how Growwth Partners collects, uses, and protects your personal and financial information.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Growwth Partners",
-      "url": "https://growwthpartners.com"
-    },
-    "mainEntity": {
-      "@type": "Article",
-      "name": "Privacy Policy",
-      "description": "Information about data collection, usage, and protection practices"
-    }
-  };
-
+  
   return (
     <Layout>
       <SEOhelper
         title="Privacy Policy | Growwth Partners"
-        description="Privacy policy outlining how Growwth Partners collects, uses, and protects your personal and financial information."
-        keywords="privacy policy, data protection, growwth partners privacy, information security"
+        description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
         canonicalUrl={`${window.location.origin}/privacy-policy`}
-        structuredData={privacySchema}
+        keywords="privacy policy, data protection, user privacy, growwth partners"
       />
-      
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
+      <div className="py-16 container-custom">
+        <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
         
-        <div className="prose prose-lg max-w-none">
-          <p className="text-gray-600 mb-8">
-            Last updated: January 1, 2024
-          </p>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">1. Information We Collect</h2>
-            <p>
-              We collect information you provide directly to us, such as when you create an account, 
-              use our services, or contact us. This may include personal information like your name, 
-              email address, phone number, and financial information necessary to provide our services.
-            </p>
+        <div className="prose max-w-none space-y-8">
+          <p className="text-gray-600">Last updated: April 26, 2025</p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
+            <p>Our website address is: https://growwthpartners.com.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">2. How We Use Your Information</h2>
-            <p>
-              We use the information we collect to provide, maintain, and improve our services, 
-              process transactions, send you technical notices and support messages, and communicate 
-              with you about our services.
-            </p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Comments</h2>
+            <p>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor's IP address and browser user agent string to help spam detection.</p>
+            <p>An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available at automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">3. Information Sharing</h2>
-            <p>
-              We do not sell, trade, or otherwise transfer your personal information to third parties 
-              without your consent, except as described in this policy. We may share information with 
-              trusted service providers who assist us in operating our services.
-            </p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Media</h2>
+            <p>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">4. Data Security</h2>
-            <p>
-              We implement appropriate security measures to protect your personal information against 
-              unauthorized access, alteration, disclosure, or destruction. However, no internet 
-              transmission is completely secure, and we cannot guarantee absolute security.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">5. Data Retention</h2>
-            <p>
-              We retain your information for as long as necessary to provide our services and comply 
-              with legal obligations. When information is no longer needed, we securely delete or 
-              anonymize it.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">6. Your Rights</h2>
-            <p>
-              You have the right to access, update, or delete your personal information. You may 
-              also opt out of certain communications from us. To exercise these rights, please 
-              contact us using the information below.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">7. Contact Us</h2>
-            <p>
-              If you have any questions about this Privacy Policy, please contact us at:
-            </p>
-            <div className="bg-gray-50 p-4 rounded-lg mt-4">
-              <p><strong>Growwth Partners</strong></p>
-              <p>Email: hello@growwthpartners.com</p>
-              <p>Phone: +65 8808 8365</p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Cookies</h2>
+            <div className="space-y-4">
+              <p>If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.</p>
+              <p>If you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.</p>
+              <p>When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select "Remember Me", your login will persist for two weeks. If you log out of your account, the login cookies will be removed.</p>
+              <p>If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.</p>
             </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Embedded Content from Other Websites</h2>
+            <div className="space-y-4">
+              <p>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.</p>
+              <p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Who We Share Your Data With</h2>
+            <p>If you request a password reset, your IP address will be included in the reset email.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">How Long We Retain Your Data</h2>
+            <div className="space-y-4">
+              <p>If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.</p>
+              <p>For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.</p>
+            </div>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">What Rights You Have Over Your Data</h2>
+            <p>If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.</p>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">Where Your Data is Sent</h2>
+            <p>Visitor comments may be checked through an automated spam detection service.</p>
           </section>
         </div>
       </div>

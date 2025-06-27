@@ -1,126 +1,58 @@
-import { Navigate } from "react-router-dom";
+
 import { Layout } from "@/components/Layout";
-import { useCountry } from "@/contexts/CountryContext";
 import SEOhelper from "@/components/SEOhelper";
 
 const TermsPage = () => {
-  const { country } = useCountry();
-
-  // Redirect non-Singapore users to their respective home pages
-  if (country === 'uae') {
-    return <Navigate to="/uae" replace />;
-  }
-
-  if (country === 'australia') {
-    return <Navigate to="/australia" replace />;
-  }
-
-  const termsSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Terms of Service - Growwth Partners",
-    "description": "Terms and conditions for using Growwth Partners' financial services, including accounting, payroll, and CFO advisory services.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Growwth Partners",
-      "url": "https://growwthpartners.com"
-    },
-    "mainEntity": {
-      "@type": "Article",
-      "name": "Terms of Service",
-      "description": "Legal terms and conditions governing the use of Growwth Partners services"
-    }
-  };
-
   return (
     <Layout>
       <SEOhelper
-        title="Terms of Service | Growwth Partners"
-        description="Terms and conditions for using Growwth Partners' financial services, including accounting, payroll, and CFO advisory services."
-        keywords="terms of service, legal terms, growwth partners terms, service agreement"
+        title="Terms & Conditions | Growwth Partners"
+        description="Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities."
         canonicalUrl={`${window.location.origin}/terms`}
-        structuredData={termsSchema}
+        keywords="terms and conditions, legal terms, service agreement, growwth partners"
       />
       
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
+      <div className="py-16 container-custom">
+        <h1 className="text-3xl font-bold mb-8">Terms & Conditions</h1>
         
-        <div className="prose prose-lg max-w-none">
-          <p className="text-gray-600 mb-8">
-            Last updated: January 1, 2024
-          </p>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
-            <p>
-              By accessing and using the services provided by Growwth Partners ("we," "our," or "us"), 
-              you accept and agree to be bound by the terms and provision of this agreement.
-            </p>
+        <div className="prose max-w-none space-y-8">
+          <p className="text-gray-600">Last updated: April 26, 2025</p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">1. Agreement to Terms</h2>
+            <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">2. Description of Service</h2>
-            <p>
-              Growwth Partners provides financial services including but not limited to accounting, 
-              bookkeeping, payroll processing, fractional CFO services, and business advisory services 
-              to businesses primarily in Singapore.
-            </p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">2. Use License</h2>
+            <p>Permission is granted to temporarily download one copy of the materials on Growwth Partners' website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+            <ul className="list-disc ml-6 space-y-2">
+              <li>modify or copy the materials</li>
+              <li>use the materials for any commercial purpose or for any public display</li>
+              <li>attempt to reverse engineer any software contained on the website</li>
+              <li>remove any copyright or other proprietary notations from the materials</li>
+            </ul>
+            <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by Growwth Partners at any time.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">3. User Responsibilities</h2>
-            <p>
-              Users are responsible for providing accurate and complete information necessary for 
-              the provision of our services. You agree to maintain the confidentiality of your 
-              account information and accept responsibility for all activities under your account.
-            </p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">3. Disclaimer</h2>
+            <p>The materials on Growwth Partners' website are provided on an 'as is' basis. Growwth Partners makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">4. Privacy and Confidentiality</h2>
-            <p>
-              We are committed to protecting your privacy and maintaining the confidentiality of 
-              your financial information. Our privacy practices are detailed in our Privacy Policy, 
-              which forms part of these terms.
-            </p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">4. Limitations</h2>
+            <p>In no event shall Growwth Partners or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Growwth Partners' website, even if Growwth Partners or a Growwth Partners authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">5. Service Limitations</h2>
-            <p>
-              While we strive to provide accurate and timely services, we do not guarantee 
-              uninterrupted or error-free service. Our liability is limited to the fees paid 
-              for the specific service in question.
-            </p>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">5. Privacy Policy</h2>
+            <p>Your privacy is important to us. Please review our Privacy Policy, which also governs your use of the website, to understand our practices.</p>
           </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">6. Termination</h2>
-            <p>
-              Either party may terminate services with appropriate notice as specified in 
-              individual service agreements. Upon termination, we will provide you with 
-              your financial records and data in a reasonable format.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">7. Governing Law</h2>
-            <p>
-              These terms are governed by the laws of Singapore. Any disputes will be 
-              resolved through the courts of Singapore.
-            </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">8. Contact Information</h2>
-            <p>
-              If you have any questions about these Terms of Service, please contact us at:
-            </p>
-            <div className="bg-gray-50 p-4 rounded-lg mt-4">
-              <p><strong>Growwth Partners</strong></p>
-              <p>Email: hello@growwthpartners.com</p>
-              <p>Phone: +65 8808 8365</p>
-            </div>
+          
+          <section>
+            <h2 className="text-2xl font-bold mb-4">6. Contact Information</h2>
+            <p>If you have any questions about these Terms & Conditions, please contact us through our contact page or email us directly.</p>
           </section>
         </div>
       </div>
