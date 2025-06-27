@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster as CustomToaster } from "@/components/ui/toaster";
 import { CanonicalUpdater } from "@/components/CanonicalUpdater";
-
+import { CountryProvider } from './contexts/CountryContext'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -18,6 +18,7 @@ const queryClient = new QueryClient({
 
 function Layout() {
   return (
+          <CountryProvider>
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
@@ -33,6 +34,7 @@ function Layout() {
         </TooltipProvider>
       </HelmetProvider>
     </QueryClientProvider>
+    </CountryProvider>
   );
 }
 

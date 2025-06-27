@@ -5,22 +5,35 @@ import type { RouteRecord } from 'vite-react-ssg';
 import { Navigate } from "react-router-dom";
 import Layout from './Layout';
 import { supabase } from "@/integrations/supabase/client";
+import { CountryProvider } from "./contexts/CountryContext";
 
 // We need to lazy-load the BlogAdminPage component to ensure it's not eagerly imported on the server
 const BlogAdminPage = React.lazy(() => import('./pages/admin/BlogAdmin'));
 
+async function getBlogSlugs() {
+  // EXAMPLE: Replace with your actual data fetching (from a CMS, API, etc.)
+  const posts = [
+    { slug: 'how-to-do-x' },
+    { slug: 'another-great-article' },
+  ];
+  return posts.map(post => `/blog/${post.slug}`);
+}
+
 // --- Static imports for non-lazy routes ---
-import Index from "./pages/Index";
 import NotFound from './pages/NotFound';
+import BlogPost from './pages/BlogPost';
+import Index from './pages/Index';
+
+console.log()
 
 export const routes: RouteRecord[] = [
   {
     path: '/',
     element: <Layout />,
     children: [
-      { 
-        index: true, 
-        element: <Index /> 
+       {
+        index: true,         // this will match exactly '/'
+        element: <Index/>
       },
       {
         path: 'about',
@@ -301,28 +314,35 @@ export const routes: RouteRecord[] = [
         path: 'australia/part-time-cfo',
         element: <Navigate to="/part-time-cfo-australia/" replace />
       },
-      // Dynamic blog post route
-      {
+
+       {
         path: 'blog/:slug',
-        lazy: async () => {
-          const { default: Component } = await import('./pages/BlogPost')
-          return { Component }
-        },
-        entry: 'src/pages/BlogPost.tsx',
-        getStaticPaths: async () => {
-          const { data: posts, error } = await supabase
-            .from('blog_post')
-            .select('slug')
-            .eq('status','published')
-
-          if (error) {
-            console.error('SSG slug fetch error', error)
-            return []
-          }
-
-          return posts!.map((p) => `blog/${p.slug}`)
-        }
+        element: <BlogPost />,
+        getStaticPaths: getBlogSlugs,
       },
+
+      // Dynamic blog post route
+      // {
+      //   path: 'blog/:slug',
+      //   lazy: async () => {
+      //     const { default: Component } = await import('./pages/BlogPost')
+      //     return { Component }
+      //   },
+      //   entry: 'src/pages/BlogPost.tsx',
+      //   getStaticPaths: async () => {
+      //     const { data: posts, error } = await supabase
+      //       .from('blog_post')
+      //       .select('slug')
+      //       .eq('status','published')
+
+      //     if (error) {
+      //       console.error('SSG slug fetch error', error)
+      //       return []
+      //     }
+
+      //     return posts!.map((p) => `blog/${p.slug}`)
+      //   }
+      // },
       { 
         path: '*', 
         element: <NotFound /> 
