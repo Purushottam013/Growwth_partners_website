@@ -1,6 +1,4 @@
 
-// src/App.tsx
-
 import React from 'react';
 import { ClientOnly } from 'vite-react-ssg'
 import type { RouteRecord } from 'vite-react-ssg';
@@ -8,27 +6,12 @@ import { Navigate } from "react-router-dom";
 import Layout from './Layout';
 import { supabase } from "@/integrations/supabase/client";
 
-// We need to lazy-load the AdminRyzup component to ensure it's not eagerly imported on the server
+// We need to lazy-load the BlogAdminPage component to ensure it's not eagerly imported on the server
 const BlogAdminPage = React.lazy(() => import('./pages/admin/BlogAdmin'));
 
 // --- Static imports for non-lazy routes ---
 import Index from "./pages/Index";
-import BlogPost from "./pages/BlogPost";
 import NotFound from './pages/NotFound';
-
-async function getBlogSlugs() {
-  const { data: posts, error } = await supabase
-    .from('blog_post')
-    .select('slug')
-    .eq('status','published')
-
-  if (error) {
-    console.error('SSG slug fetch error', error)
-    return []
-  }
-
-  return posts!.map((p) => `blog/${p.slug}`)
-}
 
 export const routes: RouteRecord[] = [
   {
@@ -329,8 +312,8 @@ export const routes: RouteRecord[] = [
         getStaticPaths: async () => {
           const { data: posts, error } = await supabase
             .from('blog_post')
-            .select('slug');
-            
+            .select('slug')
+            .eq('status','published')
 
           if (error) {
             console.error('SSG slug fetch error', error)
