@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { PlaceholderContent } from "@/components/PlaceholderContent";
@@ -18,12 +19,31 @@ const NewsPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const newsSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "News & Updates | Growwth Partners",
+    description: "Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners.",
+    url: `${window.location.origin}/news`,
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com"
+    },
+    about: {
+      "@type": "Thing",
+      name: "Financial Services News"
+    }
+  };
+
   return (
     <Layout>
       <SEOhelper
         title="News & Updates | Growwth Partners"
         description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
         keywords="growwth partners news, financial industry updates, singapore business news, accounting announcements"
+        canonicalUrl={`${window.location.origin}/news`}
+        structuredData={newsSchema}
       />
       <PlaceholderContent 
         title="In The News" 

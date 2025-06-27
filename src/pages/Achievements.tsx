@@ -1,3 +1,4 @@
+
 import { Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { PlaceholderContent } from "@/components/PlaceholderContent";
@@ -18,12 +19,37 @@ const AchievementsPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const achievementsSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "Achievements & Awards | Growwth Partners",
+    description: "Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation.",
+    url: `${window.location.origin}/achievements`,
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com",
+      award: [
+        "Best Fractional CFO Services Award 2024",
+        "Xero Silver Champion Partner",
+        "Ryzup.ai Innovation Launch"
+      ]
+    },
+    mainEntity: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      award: "Best Fractional CFO Services Award 2024"
+    }
+  };
+
   return (
     <Layout>
       <SEOhelper 
         title="Achievements & Awards | Growwth Partners"
         description="Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation."
         keywords="growwth partners awards, financial services recognition, best cfo services, singapore awards, accounting excellence"
+        canonicalUrl={`${window.location.origin}/achievements`}
+        structuredData={achievementsSchema}
       />
       <PlaceholderContent 
         title="Achievements & Awards" 

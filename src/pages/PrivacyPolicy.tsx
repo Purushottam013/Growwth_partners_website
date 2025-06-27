@@ -6,6 +6,24 @@ import SEOhelper from "@/components/SEOhelper";
 const PrivacyPolicyPage = () => {
   const { country } = useCountry();
   
+  const privacySchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Privacy Policy | Growwth Partners",
+    description: "Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website.",
+    url: `${window.location.origin}/privacy-policy`,
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com"
+    },
+    about: {
+      "@type": "Thing",
+      name: "Privacy Policy"
+    },
+    dateModified: "2025-04-26"
+  };
+  
   return (
     <Layout>
       <SEOhelper
@@ -13,6 +31,7 @@ const PrivacyPolicyPage = () => {
         description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
         canonicalUrl={`${window.location.origin}/privacy-policy`}
         keywords="privacy policy, data protection, user privacy, growwth partners"
+        structuredData={privacySchema}
       />
       <div className="py-16 container-custom">
         <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>

@@ -1,3 +1,4 @@
+
 import React, { lazy, Suspense, useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -89,6 +90,7 @@ const Index = () => {
         description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
         structuredData={organizationSchema}
         keywords="financial services, accounting singapore, cfo services, bookkeeping, business growth"
+        canonicalUrl={`${window.location.origin}/`}
       />
       
       <AnimatedElement
