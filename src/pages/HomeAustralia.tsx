@@ -13,13 +13,36 @@ const HomeAustralia = () => {
     window.location.href = "/contact-us/";
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Growwth Partners",
+    url: "https://growwthpartners.com",
+    logo: "https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png",
+    sameAs: [
+      "https://www.linkedin.com/company/growwth-partners/",
+      "https://www.youtube.com/@GrowwthPartners",
+    ],
+    description: "Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia.",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "Australia"
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      availableLanguage: "English"
+    }
+  };
+
   return (
     <Layout>
       <SEOhelper
         title="Growwth Partners Australia | Accounting & Financial Experts"
         description="We enable Australian SMEs, startups, and local founders to scale nationwide—our on-the-ground Sydney/Melbourne-based team brings the best in bookkeeping, compliance, and strategic advisory for the Australian business ecosystem."
-        canonicalUrl={`${window.location.origin}/australia`}
         keywords="australia accounting, sydney financial services, melbourne business solutions, australian tax compliance, company incorporation australia"
+        canonicalUrl={`${window.location.origin}/australia`}
+        structuredData={organizationSchema}
       />
       <motion.div
         initial={{ opacity: 0 }}

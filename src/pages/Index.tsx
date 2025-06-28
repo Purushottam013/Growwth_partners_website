@@ -69,28 +69,15 @@ const Index = () => {
     }
   };
 
-  const staticContentData = {
-    heading: "Growwth Partners - Expert Financial & Accounting Services",
-    features: [
-      "Professional accounting services in Singapore, UAE, and Australia",
-      "Expert CFO and financial consulting for startups and SMEs",
-      "Comprehensive bookkeeping and payroll management",
-      "Company incorporation and corporate secretary services",
-      "Award-winning financial advisory team with 15+ years experience",
-      "95% client retention rate with $50M+ managed annually",
-      "Customized financial solutions for business growth"
-    ],
-    additionalContent: "At Growwth Partners, we provide more than just accounting and bookkeeping services. Our customized financial solutions ensure that each client receives personalized attention and expert advice tailored to their unique business needs."
-  };
 
   return (
     <Layout>
       <SEOhelper 
         title="Growwth Partners - Financial & Accounting Services"
         description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
-        structuredData={organizationSchema}
         keywords="financial services, accounting singapore, cfo services, bookkeeping, business growth"
         canonicalUrl={`${window.location.origin}/`}
+        structuredData={organizationSchema}
       />
       
       <AnimatedElement

@@ -48,7 +48,7 @@ const AchievementsPage = () => {
         title="Achievements & Awards | Growwth Partners"
         description="Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation."
         keywords="growwth partners awards, financial services recognition, best cfo services, singapore awards, accounting excellence"
-        canonicalUrl={`${window.location.origin}/achievements`}
+        canonicalUrl="https://growwthpartners.com/achievements"
         structuredData={achievementsSchema}
       />
       <PlaceholderContent 
