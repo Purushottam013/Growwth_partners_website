@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Toaster as CustomToaster } from "@/components/ui/toaster";
 import { CanonicalUpdater } from "@/components/CanonicalUpdater";
 import { CountryProvider } from './contexts/CountryContext'
+import ScrollToTop from "./components/ui/ScrollToTop";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -24,6 +25,7 @@ function Layout() {
         <TooltipProvider>
           <div className="App">
             <CanonicalUpdater />
+            <ScrollToTop/>
             <Toaster />
             <CustomToaster />
             <main>
