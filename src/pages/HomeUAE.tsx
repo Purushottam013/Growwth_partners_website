@@ -41,7 +41,7 @@ const HomeUAE = () => {
         title="Growwth Partners UAE | Expert Accounting & Financial Advisors"
         description="Our UAE headquarters provides exclusive support for startup and established businesses entering or growing in the Emirates. Access local VAT, incorporation, and advisory expertise from a trusted UAE-based team."
         keywords="uae accounting, dubai financial services, emirates business solutions, vat compliance uae, company incorporation dubai"
-        canonicalUrl={`${window.location.origin}/uae`}
+        canonicalUrl={`https://growwthpartners.com/uae`}
         structuredData={organizationSchema}
       />
       <motion.div

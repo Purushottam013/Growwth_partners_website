@@ -76,7 +76,7 @@ const Index = () => {
         title="Growwth Partners - Financial & Accounting Services"
         description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
         keywords="financial services, accounting singapore, cfo services, bookkeeping, business growth"
-        canonicalUrl={`${window.location.origin}/`}
+        canonicalUrl={`https://growwthpartners.com/`}
         structuredData={organizationSchema}
       />
       

@@ -24,7 +24,7 @@ const SuccessStoriesPage = () => {
     "@type": "WebPage",
     name: "Success Stories | Growwth Partners",
     description: "See how startups and SMEs have transformed their payroll and financial operations with Growwth Partners in our client success stories.",
-    url: `${window.location.origin}/success-stories`,
+    url: `https://growwthpartners.com/success-stories`,
     publisher: {
       "@type": "Organization",
       name: "Growwth Partners",
@@ -42,7 +42,7 @@ const SuccessStoriesPage = () => {
         title="Success Stories | Growwth Partners"
         description="See how startups and SMEs have transformed their payroll and financial operations with Growwth Partners in our client success stories."
         keywords="success stories, client testimonials, case studies, business growth, singapore"
-        canonicalUrl={`${window.location.origin}/success-stories`}
+        canonicalUrl={`https://growwthpartners.com/success-stories`}
         structuredData={successStoriesSchema}
       />
       <PlaceholderContent 

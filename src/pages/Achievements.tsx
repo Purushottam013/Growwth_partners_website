@@ -24,7 +24,7 @@ const AchievementsPage = () => {
     "@type": "AboutPage",
     name: "Achievements & Awards | Growwth Partners",
     description: "Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation.",
-    url: `${window.location.origin}/achievements`,
+    url: `https://growwthpartners.com/achievements`,
     publisher: {
       "@type": "Organization",
       name: "Growwth Partners",

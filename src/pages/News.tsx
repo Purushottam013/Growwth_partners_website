@@ -24,7 +24,7 @@ const NewsPage = () => {
     "@type": "WebPage",
     name: "News & Updates | Growwth Partners",
     description: "Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners.",
-    url: `${window.location.origin}/news`,
+    url: `https://growwthpartners.com/news`,
     publisher: {
       "@type": "Organization",
       name: "Growwth Partners",
@@ -42,7 +42,7 @@ const NewsPage = () => {
         title="News & Updates | Growwth Partners"
         description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
         keywords="growwth partners news, financial industry updates, singapore business news, accounting announcements"
-        canonicalUrl={`${window.location.origin}/news`}
+        canonicalUrl={`https://growwthpartners.com/news`}
         structuredData={newsSchema}
       />
       <PlaceholderContent 
