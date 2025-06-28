@@ -8,7 +8,7 @@ const TermsPage = () => {
     "@type": "WebPage",
     name: "Terms & Conditions | Growwth Partners",
     description: "Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities.",
-    url: `${window.location.origin}/terms`,
+    url: "https://growwthpartners.com//terms",
     publisher: {
       "@type": "Organization",
       name: "Growwth Partners",
@@ -27,7 +27,7 @@ const TermsPage = () => {
         title="Terms & Conditions | Growwth Partners"
         description="Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities."
         keywords="terms and conditions, legal terms, service agreement, growwth partners"
-        canonicalUrl={`${window.location.origin}/terms`}
+        canonicalUrl="https://growwthpartners.com/terms"
         structuredData={termsSchema}
       />
       

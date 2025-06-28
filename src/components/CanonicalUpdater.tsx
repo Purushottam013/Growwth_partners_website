@@ -14,7 +14,7 @@ export function CanonicalUpdater() {
     // Get canonical link element by id (set in index.html)
     let canonicalEl = document.getElementById("canonical-link");
     // Construct canonical href: includes pathname and search (ignore hash)
-    const url = window.location.origin + location.pathname + location.search;
+    const url = "https://growwthpartners.com/" + location.pathname + location.search;
     if (canonicalEl) {
       canonicalEl.setAttribute("href", url);
     } else {
