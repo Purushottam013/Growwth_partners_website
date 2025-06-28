@@ -29,23 +29,23 @@ const AccountingPage = () => {
   const accountingSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": `Accounting Services in ${location}`,
-    "description": `Professional accounting and financial reporting services for businesses in ${location}`,
+    "name": "Accounting Services in Singapore",
+    "description": "Professional accounting and financial reporting services for businesses in Singapore",
     "provider": {
       "@type": "Organization",
       "name": "Growwth Partners",
       "url": "https://growwthpartners.com"
     },
-    "areaServed": location,
+    "areaServed": "Singapore, UAE, Australia",
     "serviceType": "Accounting Services"
   };
 
   return (
     <Layout>
       <SEOhelper
-        title={`Professional Accounting Services in ${location} | Growwth Partners`}
-        description={`Expert accounting services in ${location}. Professional financial reporting, tax compliance, and bookkeeping solutions for startups and SMEs. Get started today.`}
-        keywords={`accounting services, financial reporting, tax compliance, ${location.toLowerCase()}, bookkeeping, growwth partners`}
+        title="Professional Accounting Services in Singapore | Growwth Partners"
+        description="Expert accounting services in Singapore. Professional financial reporting, tax compliance, and bookkeeping solutions for startups and SMEs. Get started today."
+        keywords="accounting services, financial reporting, tax compliance, bookkeeping, growwth partners"
         canonicalUrl="https://growwthpartners.com/accounting-services-in-singapore/"
         structuredData={accountingSchema}
       />
