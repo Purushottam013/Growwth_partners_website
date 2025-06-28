@@ -383,10 +383,7 @@ Remember that consistency is key. Even the best accounting system will fail if y
 
 // Helper function to read posts from local storage on init
 const getInitialPosts = (): BlogPost[] => {
-  const storedPosts = localStorage.getItem("blog-posts");
-  if (storedPosts) {
-    return JSON.parse(storedPosts);
-  }
+ 
   return defaultPosts;
 };
 
@@ -424,7 +421,6 @@ export const blogOperations = {
     };
     
     blogData.posts.push(newPost);
-    localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
     return newPost;
   },
   
@@ -438,7 +434,6 @@ export const blogOperations = {
     const index = blogData.posts.findIndex(post => post.id === id);
     if (index !== -1) {
       blogData.posts[index] = { ...blogData.posts[index], ...updatedPost };
-      localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
       return blogData.posts[index];
     }
     return null;
@@ -449,7 +444,6 @@ export const blogOperations = {
     const index = blogData.posts.findIndex(post => post.id === id);
     if (index !== -1) {
       blogData.posts.splice(index, 1);
-      localStorage.setItem("blog-posts", JSON.stringify(blogData.posts));
       return true;
     }
     return false;
