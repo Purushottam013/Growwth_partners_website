@@ -62,14 +62,29 @@ const BlogPage = () => {
     window.open(getCountryUrl(`/blog/${slug}`), "_blank");
   };
 
+  const blogSchema = {
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Growwth Partners Blog",
+          "description": "Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners",
+          "url": "https://growwthpartners.com/blog",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Growwth Partners",
+            "url": "https://growwthpartners.com"
+          }
+        }
+
   if (loading) {
     return (
       <Layout>
         <SEOhelper
           title="Blog | Growwth Partners"
           description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
-          canonicalUrl={`${window.location.origin}/blog`}
           keywords="business blog, financial insights, singapore business, accounting articles, startup advice"
+          canonicalUrl="https://growwthpartners.com/blog"
+          structuredData={blogSchema}
+
         />
 
         <div className="container mx-auto px-4 py-12">

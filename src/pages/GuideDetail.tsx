@@ -4,7 +4,6 @@ import { Guide } from "@/data/guides";
 import { DefaultGuideContent } from "@/components/guides/DefaultGuideContent";
 import { BookkeepingGuideContent } from "@/components/guides/BookkeepingGuideContent";
 import { MRAGuideContent } from "@/components/guides/MRAGuideContent";
-import SEOhelper from "@/components/SEOhelper";
 
 interface GuideDetailProps {
   guide: Guide;
@@ -32,11 +31,6 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
 
   return (
     <Layout>
-      <SEOhelper
-        title={`${guide.Title} | Growwth Partners`}
-        description={guide.Excerpt || "Expert advice and resources from Growwth Partners."}
-        keywords={`${guide.Category}, singapore, business guide, growwth partners`}
-      />
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">

@@ -23,6 +23,19 @@ const GuidePage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState(1);
   const { country } = useCountry();
+
+  const GuideSchema = {
+          "@context": "https://schema.org",
+          "@type": "Guide",
+          "name": "Growwth Partners Guide",
+          "description": "Stay updated with expert insights and Guide on payroll, finance, and SME growth in Singapore from Growwth Partners",
+          "url": "https://growwthpartners.com/guide/",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Growwth Partners",
+            "url": "https://growwthpartners.com"
+          }
+        }
   
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
@@ -70,8 +83,10 @@ const GuidePage = () => {
       <SEOhelper
         title="Guides & Resources | Growwth Partners"
         description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners' expertise."
-        canonicalUrl={`${window.location.origin}/guide`}
         keywords="business guides, accounting resources, singapore compliance, financial best practices, startup guides"
+        canonicalUrl={`${window.location.origin}/guide`}
+        structuredData={GuideSchema}
+
       />
 
       <section className="relative w-full flex justify-center">

@@ -130,63 +130,10 @@
       </div>
     </div>
  
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+
     <script type="module" src="/src/main.tsx"></script>
     <!-- Add noscript fallback -->
-    <noscript>
-      <div style="padding: 20px; text-align: center;">
-        <h2>JavaScript is required</h2>
-        <p>Please enable JavaScript to view this website.</p>
-      </div>
-    </noscript>
     
-    <!-- More efficient prefetching strategy using Intersection Observer -->
-    <script type="module">
-      document.addEventListener('DOMContentLoaded', () => {
-        // Only prefetch routes when user is likely to navigate
-        const prefetchImportantRoutes = () => {
-          if (!('IntersectionObserver' in window)) return;
-
-          const prefetchObserver = new IntersectionObserver((entries) => {
-            const visibleEntries = entries.filter(entry => entry.isIntersecting);
-            if (visibleEntries.length > 0) {
-              ['about', 'contact', 'services', 'bookkeeping', 'accounting'].forEach(route => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = `/${route}`;
-                document.head.appendChild(link);
-              });
-              prefetchObserver.disconnect();
-            }
-          }, { 
-            rootMargin: '200px',
-            threshold: 0.1
-          });
-
-          // Observe the footer as a trigger for prefetching
-          const footer = document.querySelector('footer');
-          if (footer) {
-            prefetchObserver.observe(footer);
-          } else {
-            // If footer not available yet, observe when it becomes available
-            const bodyObserver = new MutationObserver(() => {
-              const footer = document.querySelector('footer');
-              if (footer) {
-                prefetchObserver.observe(footer);
-                bodyObserver.disconnect();
-              }
-            });
-            bodyObserver.observe(document.body, { childList: true, subtree: true });
-          }
-        };
-        
-        // Use requestIdleCallback for non-critical operations
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(prefetchImportantRoutes, { timeout: 2000 });
-        } else {
-          setTimeout(prefetchImportantRoutes, 2000);
-        }
-      });
     </script>
   </body>
 </html>

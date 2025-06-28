@@ -6,9 +6,22 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ChevronRight } from "lucide-react";
 import { Seo } from "@/components/Seo";
+import SEOhelper from "@/components/SEOhelper";
 
 const FinancialReportingGuide = () => {
   const navigate = useNavigate();
+   const Schema = {
+          "@context": "https://schema.org",
+          "@type": "Guide",
+          "name": "Growwth Partners Guide",
+          "description": "Stay updated with expert insights and Guide on payroll, finance, and SME growth in Singapore from Growwth Partners",
+          "url": "https://growwthpartners.com/guide/financial-reporting-standards-singapore",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Growwth Partners",
+            "url": "https://growwthpartners.com"
+          }
+        }
   
   const handleContactClick = () => {
     // Navigate to contact page and scroll to consultation form
@@ -34,9 +47,12 @@ const FinancialReportingGuide = () => {
 
   return (
     <Layout>
-      <Seo
-        title="Singapore Small Entities Financial Reporting Guide | Growwth Partners"
-        description="A practical handbook for SFRS for Small Entities in Singapore. Learn about compliance, eligibility, and best practices for simplified financial reporting."
+      <SEOhelper
+        title="Singapore Small Entities Financial Reporting Guide | Growwth Partners"  
+      description="A practical handbook for SFRS for Small Entities in Singapore. Learn about compliance, eligibility, and best practices for simplified financial reporting."
+      keywords="singapore corporate Guide, company compliance, statutory filing, acra filing"
+        canonicalUrl="https://growwthpartners.com/guide/financial-reporting-standards-singapore"
+        structuredData={Schema}
       />
       {/* Hero Section with Title - Now with background gradient */}
       <section className="relative py-16 bg-gradient-to-b from-blue-100 to-white">

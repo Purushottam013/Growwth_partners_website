@@ -46,6 +46,7 @@ const AccountingPage = () => {
         title={`Professional Accounting Services in ${location} | Growwth Partners`}
         description={`Expert accounting services in ${location}. Professional financial reporting, tax compliance, and bookkeeping solutions for startups and SMEs. Get started today.`}
         keywords={`accounting services, financial reporting, tax compliance, ${location.toLowerCase()}, bookkeeping, growwth partners`}
+        canonicalUrl="https://growwthpartners.com/accounting-services-in-singapore/"
         structuredData={accountingSchema}
       />
       

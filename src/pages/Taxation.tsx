@@ -59,6 +59,7 @@ const TaxationPage = () => {
         title="Taxation & Compliance Services in Singapore | Growwth Partners"
         description="Professional taxation and compliance services in Singapore for startups & SMEs. Stay compliant and scale confidently with Growwth Partners' expert support."
         keywords="singapore taxation, tax compliance, corporate tax, gst filing"
+        canonicalUrl="https://growwthpartners.com/taxation/"
         structuredData={organizationSchema}
       />
 

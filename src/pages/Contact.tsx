@@ -12,6 +12,19 @@ import SEOhelper from "@/components/SEOhelper";
 const ContactPage = () => {
   const { country } = useCountry();
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Growwth Partners",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service"
+      }
+    }
+  };
+
   // Redirect non-Singapore users to their respective home pages
   if (country === 'uae') {
     return (
@@ -46,8 +59,10 @@ const ContactPage = () => {
       <SEOhelper
         title="Contact Growwth Partners Singapore | Speak to a Financial Expert"
         description="Request custom advice or support from our award-winning Singapore accounting and finance team. We're ready to help your SME or startup grow!"
-        canonicalUrl={`${window.location.origin}/contact-us`}
         keywords="contact singapore, financial expert consultation, accounting advice, business support"
+        canonicalUrl={`${window.location.origin}/contact-us`}
+        structuredData={structuredData}
+
       />
       <motion.div
         initial={{ opacity: 0 }}

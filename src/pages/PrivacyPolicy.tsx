@@ -29,8 +29,8 @@ const PrivacyPolicyPage = () => {
       <SEOhelper
         title="Privacy Policy | Growwth Partners"
         description="Read the privacy policy for Growwth Partners to see how we collect, use, and protect your data when you visit our website."
-        canonicalUrl={`${window.location.origin}/privacy-policy`}
         keywords="privacy policy, data protection, user privacy, growwth partners"
+        canonicalUrl={`${window.location.origin}/privacy-policy`}
         structuredData={privacySchema}
       />
       <div className="py-16 container-custom">
