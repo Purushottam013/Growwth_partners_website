@@ -1,11 +1,9 @@
-
 import { useEffect } from "react";
 import { Layout } from "@/components/Layout";
 import { Guide } from "@/data/guides";
 import { DefaultGuideContent } from "@/components/guides/DefaultGuideContent";
 import { BookkeepingGuideContent } from "@/components/guides/BookkeepingGuideContent";
 import { MRAGuideContent } from "@/components/guides/MRAGuideContent";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
 
 interface GuideDetailProps {
   guide: Guide;
@@ -33,13 +31,6 @@ const GuideDetail = ({ guide, onContactClick }: GuideDetailProps) => {
 
   return (
     <Layout>
-      <SeoOptimizer
-        title={`${guide.Title} | Growwth Partners`}
-        description={guide.Excerpt || "Expert advice and resources from Growwth Partners."}
-        content={guide.Content}
-        keywords={[guide.Category, "singapore", "business guide", "growwth partners"]}
-        autoGenerate={true}
-      />
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-4">

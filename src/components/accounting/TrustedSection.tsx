@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 
@@ -24,7 +23,7 @@ const logos = ["/lovable-uploads/282e3516-793c-4c30-bc6c-e7eb739c38c8.png",
 // TreeDots
 "/lovable-uploads/2e976aa7-241a-43d1-bb45-3f5127a76984.png",
 // Appboxo
-"/lovable-uploads/6265f201-5afe-4593-84ec-73a6e80c2f91.png",
+"/lovable-uploads/16ee7b65-f455-49be-936a-d460497f89de.png",
 // Cenoa
 "/lovable-uploads/311b604a-3636-4d94-b540-e59129f600b1.png",
 // Eblity

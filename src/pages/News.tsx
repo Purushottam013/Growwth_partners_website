@@ -5,7 +5,7 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const NewsPage = () => {
   const { country } = useCountry();
@@ -19,12 +19,31 @@ const NewsPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const newsSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "News & Updates | Growwth Partners",
+    description: "Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners.",
+    url: `https://growwthpartners.com/news`,
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com"
+    },
+    about: {
+      "@type": "Thing",
+      name: "Financial Services News"
+    }
+  };
+
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="News & Updates | Growwth Partners"
         description="Get the latest announcements, product updates, and industry news on payroll services and financial solutions from Growwth Partners."
-        keywords={["growwth partners news", "financial industry updates", "singapore business news", "accounting announcements"]}
+        keywords="growwth partners news, financial industry updates, singapore business news, accounting announcements"
+        canonicalUrl={`https://growwthpartners.com/news`}
+        structuredData={newsSchema}
       />
       <PlaceholderContent 
         title="In The News" 

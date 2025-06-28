@@ -12,8 +12,7 @@ import { ContactTestimonials } from "@/components/contact/ContactTestimonials";
 import CTASection from "@/components/partTimeCFO/CTASection";
 import FAQAccordion from "@/components/partTimeCFO/FAQAccordion";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
+import SEOhelper from "@/components/SEOhelper";
 
 const FractionalCFOPage = () => {
   const { country } = useCountry();
@@ -26,14 +25,6 @@ const FractionalCFOPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "part-time-cfo",
-    content: "Get strategic guidance and real results with part-time CFO, finance strategy, and fractional leadership services for Singapore's high-growth companies.",
-    title: "Expert Fractional & Virtual CFO in Singapore",
-    description: "Hire top-rated fractional, part-time, or virtual CFO services in Singapore. Boost financial strategy and performance without full-time costs.",
-    keywords: ["virtual cfo", "singapore cfo", "financial strategy", "fractional leadership"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -64,11 +55,12 @@ const FractionalCFOPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
+      <SEOhelper
+        title="Expert Fractional & Virtual CFO in Singapore"
+        description="Hire top-rated fractional, part-time, or virtual CFO services in Singapore. Boost financial strategy and performance without full-time costs."
+        keywords="virtual cfo, singapore cfo, financial strategy, fractional leadership"
+        canonicalUrl="https://growwthpartners.com/part-time-cfo/"
+        structuredData={organizationSchema}
       />
        <motion.div
         initial={{ opacity: 0 }}

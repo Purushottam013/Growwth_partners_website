@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
   Globe, 
@@ -22,7 +23,6 @@ import companyLogo from "/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.p
 
 export const Footer = () => {
   const { country, setCountry, getCountryUrl } = useCountry();
-  const navigate = useNavigate();
 
   const formatCountryName = (countryCode: string) => {
     if (countryCode === 'uae') {
@@ -46,21 +46,6 @@ export const Footer = () => {
 
   const handleCountryChange = (newCountry: 'singapore' | 'uae' | 'australia') => {
     setCountry(newCountry);
-  };
-
-  const handleNavigation = (path: string) => {
-    // Always use absolute paths with country prefix for navigation
-    const url = getCountryUrl(path);
-    console.log("Footer navigating to absolute URL:", url);
-    
-    // Navigate to the URL
-    navigate(url);
-    
-    // Scroll to top after navigation
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
   };
 
   return (
@@ -161,53 +146,52 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Quick Links</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
-                <button 
-                  onClick={() => handleNavigation("/")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Home
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/about")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/about")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   About Us
-                </button>
+                </Link>
               </li>
               <li>
-                {/* CHANGE: Contact Us url */}
-                <button 
-                  onClick={() => handleNavigation("/contact-us")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/contact-us")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Contact Us
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/blog")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/blog")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Blog
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/privacy-policy")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/privacy-policy")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Privacy Policy
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/terms")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/terms")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Terms and Conditions
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
@@ -216,60 +200,60 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4 pb-2 border-b border-gray-700">Services</h3>
             <ul className="space-y-2 text-gray-300 mt-5">
               <li>
-                <button 
-                  onClick={() => handleNavigation("/part-time-cfo")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/part-time-cfo")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Part Time CFO
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/accounting")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/accounting")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Accounting
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/bookkeeping")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/bookkeeping")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Bookkeeping
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/payroll")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/payroll")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Payroll
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/corporate-secretary")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/corporate-secretary")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Corporate Secretary
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/company-incorporation")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/company-incorporation")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Company Incorporation
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => handleNavigation("/cash-flow")} 
-                  className="hover:text-brand-orange transition-colors cursor-pointer text-left"
+                <Link 
+                  to={getCountryUrl("/cash-flow")} 
+                  className="hover:text-brand-orange transition-colors"
                 >
                   Cash Flow Modelling
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

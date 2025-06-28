@@ -57,7 +57,7 @@ const BlogPostPage = () => {
     }
   }, [slug, postsLoading, getPostBySlug, posts]);
 
-  // Handler for internal links
+  // Handler for internal links - Fixed to use React Router navigation
   useEffect(() => {
     if (post && !loading) {
       // Add event listeners for internal links after content is loaded
@@ -68,13 +68,18 @@ const BlogPostPage = () => {
         const internalLinks = contentDiv.querySelectorAll('a[data-internal-link]');
         
         internalLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
+          const handleClick = (e: Event) => {
             e.preventDefault();
             const path = (link as HTMLAnchorElement).getAttribute('data-internal-link');
             if (path) {
               navigate(getCountryUrl(path));
             }
-          });
+          };
+          
+          link.addEventListener('click', handleClick);
+          
+          // Store the handler for cleanup
+          (link as any)._clickHandler = handleClick;
         });
       };
 
@@ -88,7 +93,11 @@ const BlogPostPage = () => {
 
         const internalLinks = contentDiv.querySelectorAll('a[data-internal-link]');
         internalLinks.forEach(link => {
-          link.removeEventListener('click', () => {});
+          const handler = (link as any)._clickHandler;
+          if (handler) {
+            link.removeEventListener('click', handler);
+            delete (link as any)._clickHandler;
+          }
         });
       };
     }
@@ -109,7 +118,8 @@ const BlogPostPage = () => {
   };
 
   const handleWriteToAuthor = () => {
-    window.location.href = "mailto:jd@growwthpartners.com?subject=Regarding your blog post: " + (post?.title || "");
+    const mailtoLink = `mailto:jd@growwthpartners.com?subject=${encodeURIComponent('Regarding your blog post: ' + (post?.title || ''))}`;
+    window.open(mailtoLink, '_blank');
   };
 
   if (loading || postsLoading) {
@@ -318,7 +328,7 @@ const BlogPostPage = () => {
               </Link>
               
               {/* Card 2: Part Time CFO Services */}
-              <Link to={getCountryUrl("/fractional-cfo")} className="block h-full">
+              <Link to={getCountryUrl("/part-time-cfo")} className="block h-full">
                 <Card className="h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] mb-3">Part Time CFO Services in Singapore</h3>

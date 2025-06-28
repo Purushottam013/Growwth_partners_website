@@ -1,5 +1,6 @@
+
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -61,7 +62,6 @@ const navItems = [
 
 export const Navbar = () => {
   const { getCountryUrl } = useCountry();
-  const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -76,44 +76,9 @@ export const Navbar = () => {
     }
   };
 
-  // Handle navigation with consistent absolute paths
-  const handleNavigation = (path: string) => {
-    console.log("Navigation requested to:", path);
-    
-    // Always navigate using absolute paths with country prefix
-    const url = getCountryUrl(path);
-    console.log("Navigating to absolute URL:", url);
-    
-    // Navigate to the URL
-    navigate(url, { replace: false });
-    
-    // Close the mobile menu after navigation
+  // Close mobile menu
+  const closeMobileMenu = () => {
     setMobileMenuOpen(false);
-    
-    // Scroll to top after navigation
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
-
-  // Handle logo click to go home
-  const handleLogoClick = () => {
-    console.log("Logo clicked, navigating to home");
-    // const homeUrl = getCountryUrl("");
-    // console.log("Navigating to home URL:", homeUrl);
-    
-    // Navigate to home
-    navigate("/");
-    
-    // Close the mobile menu
-    setMobileMenuOpen(false);
-    
-    // Scroll to top
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
   };
 
   return (
@@ -122,14 +87,13 @@ export const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo - with navigation */}
           <div className="flex items-center">
-            <div 
-              onClick={handleLogoClick} 
-              className="flex items-center ml-8 cursor-pointer"
-              role="button"
-              aria-label="Go to home page"
+            <Link 
+              to={getCountryUrl("/")} 
+              className="flex items-center ml-8"
+              onClick={closeMobileMenu}
             >
               <img src={companyLogo} alt="Growwth Partners" className="h-11" />
-            </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -138,34 +102,34 @@ export const Navbar = () => {
               <div key={item.title} className="relative group">
                 {item.dropdown ? (
                   <div className="flex flex-col">
-                    <div
-                      onClick={() => handleNavigation(item.path)}
-                      className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium flex items-center cursor-pointer"
+                    <Link
+                      to={getCountryUrl(item.path)}
+                      className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium flex items-center"
                     >
                       {item.title}
                       <ChevronDown className="ml-1 w-4 h-4" />
-                    </div>
+                    </Link>
                     <div className="absolute left-0 mt-10 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                       <div className="bg-white rounded-md shadow-lg py-2">
                         {item.items?.map((subItem) => (
-                          <div
+                          <Link
                             key={subItem.title}
-                            onClick={() => handleNavigation(subItem.path)}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-brand-orange cursor-pointer"
+                            to={getCountryUrl(subItem.path)}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-brand-orange"
                           >
                             {subItem.title}
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div
-                    onClick={() => handleNavigation(item.path)}
-                    className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium cursor-pointer"
+                  <Link
+                    to={getCountryUrl(item.path)}
+                    className="px-3 py-2 text-gray-700 hover:text-brand-orange font-medium"
                   >
                     {item.title}
-                  </div>
+                  </Link>
                 )}
               </div>
             ))}
@@ -209,24 +173,26 @@ export const Navbar = () => {
                     {openDropdown === item.title && (
                       <div className="pl-4 mt-1 border-l-2 border-gray-200">
                         {item.items?.map((subItem) => (
-                          <div
+                          <Link
                             key={subItem.title}
-                            onClick={() => handleNavigation(subItem.path)}
-                            className="block py-2 text-gray-600 hover:text-brand-orange cursor-pointer"
+                            to={getCountryUrl(subItem.path)}
+                            onClick={closeMobileMenu}
+                            className="block py-2 text-gray-600 hover:text-brand-orange"
                           >
                             {subItem.title}
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div
-                    onClick={() => handleNavigation(item.path)}
-                    className="block py-2 text-gray-700 hover:text-brand-orange cursor-pointer"
+                  <Link
+                    to={getCountryUrl(item.path)}
+                    onClick={closeMobileMenu}
+                    className="block py-2 text-gray-700 hover:text-brand-orange"
                   >
                     {item.title}
-                  </div>
+                  </Link>
                 )}
               </div>
             ))}

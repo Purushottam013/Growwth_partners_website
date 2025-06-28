@@ -90,10 +90,10 @@
     <link rel="growwth-partners-icon" sizes="180x180" href="https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png" />
     
     <!-- Canonical tag for SEO -->
-  <!-- <link id="canonical-link" rel="canonical" href="https://growwthpartners.com/" /> -->
+  <link id="canonical-link" rel="canonical" href="https://growwthpartners.com/" />
     
     <!-- Preload main script for faster execution -->
-    <link rel="modulepreload" href="/src/main.tsx" />
+    <!-- <link rel="modulepreload" href="/src/main.tsx" /> -->
 
            <!-- Faitracker script  -->
     <script>
@@ -116,46 +116,9 @@
     <div id="root">
 
 <!-- Hidden sitemap menu for crawlers -->
-    <nav aria-hidden="true" style="position:absolute; left:-9999px; top:-9999px;">
-      <a href="/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/blog/">Blog</a>
-      <a href="/contact/">Contact</a>
-      <a href="/accounting-services-in-singapore/">Accounting</a>
-      <a href="/bookkeeping-services-in-singapore/">Bookkeeping</a>
-      <a href="/payroll-services-in-singapore/">Payroll</a>
-      <a href="/cash-flow-services-in-singapore/">Cash Flow</a>
-      <a href="/company-incorporation-services-in-singapore/">Incorporation</a>
-      <a href="/corporate-secretary-services-in-singapore/">Corporate Secretary</a>
-      <a href="/part-time-cfo/">Part-Time CFO</a>
-      <a href="/success-stories/">Success Stories</a>
-      <a href="/taxation/">Taxation</a>
-      <a href="/achievements/">Achievements</a>
-      <a href="/guide/">Guides</a>
-      <a href="/news/">News</a>
-      <a href="/privacy-policy/">Privacy Policy</a>
-      <a href="/terms/">Terms & Conditions</a>
-      <!-- UAE -->
-      <a href="/uae">UAE Home</a>
-      <a href="/uae/about/">UAE About</a>
-      <!-- …all your other UAE routes… -->
-      <!-- Australia -->
-      <a href="/australia/">Australia Home</a>
-      <a href="/australia/about/">Australia About</a>
+  
 
-        <!-- case study page -->
-      <a href="/case-studies/healthcare/">Healthcare Case Study</a>
-      <a href="/case-studies/ecommerce/">E-commerce Case Study</a>
-      <a href="/case-studies/food-tech/">Food-Tech Case Study</a>
-      <a href="/case-studies/online-consumer-goods/">Online Consumer Goods Case Study</a>
-      <a href="/case-studies/data-driven-success/">Data-Driven Success Case Study</a>
-      <a href="/case-studies/gaming-industry/">Gaming Industry Case Study</a>
-        
-    </nav>
 
-    <h1 style="position:absolute;top:-9999px;left:-9999px;visibility:hidden;">
-    Growwth Partners - Financial & Accounting Services
-  </h1>
 
 
       <!-- Initial loading state with minimal CLS -->
@@ -167,63 +130,10 @@
       </div>
     </div>
  
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+
     <script type="module" src="/src/main.tsx"></script>
     <!-- Add noscript fallback -->
-    <noscript>
-      <div style="padding: 20px; text-align: center;">
-        <h2>JavaScript is required</h2>
-        <p>Please enable JavaScript to view this website.</p>
-      </div>
-    </noscript>
     
-    <!-- More efficient prefetching strategy using Intersection Observer -->
-    <script type="module">
-      document.addEventListener('DOMContentLoaded', () => {
-        // Only prefetch routes when user is likely to navigate
-        const prefetchImportantRoutes = () => {
-          if (!('IntersectionObserver' in window)) return;
-
-          const prefetchObserver = new IntersectionObserver((entries) => {
-            const visibleEntries = entries.filter(entry => entry.isIntersecting);
-            if (visibleEntries.length > 0) {
-              ['about', 'contact', 'services', 'bookkeeping', 'accounting'].forEach(route => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = `/${route}`;
-                document.head.appendChild(link);
-              });
-              prefetchObserver.disconnect();
-            }
-          }, { 
-            rootMargin: '200px',
-            threshold: 0.1
-          });
-
-          // Observe the footer as a trigger for prefetching
-          const footer = document.querySelector('footer');
-          if (footer) {
-            prefetchObserver.observe(footer);
-          } else {
-            // If footer not available yet, observe when it becomes available
-            const bodyObserver = new MutationObserver(() => {
-              const footer = document.querySelector('footer');
-              if (footer) {
-                prefetchObserver.observe(footer);
-                bodyObserver.disconnect();
-              }
-            });
-            bodyObserver.observe(document.body, { childList: true, subtree: true });
-          }
-        };
-        
-        // Use requestIdleCallback for non-critical operations
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(prefetchImportantRoutes, { timeout: 2000 });
-        } else {
-          setTimeout(prefetchImportantRoutes, 2000);
-        }
-      });
     </script>
   </body>
 </html>

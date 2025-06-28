@@ -5,7 +5,7 @@ import { PlaceholderContent } from "@/components/PlaceholderContent";
 import { useCountry } from "@/contexts/CountryContext";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Construction } from "lucide-react";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const AchievementsPage = () => {
   const { country } = useCountry();
@@ -19,12 +19,37 @@ const AchievementsPage = () => {
     return <Navigate to="/australia" replace />;
   }
 
+  const achievementsSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "Achievements & Awards | Growwth Partners",
+    description: "Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation.",
+    url: `https://growwthpartners.com/achievements`,
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com",
+      award: [
+        "Best Fractional CFO Services Award 2024",
+        "Xero Silver Champion Partner",
+        "Ryzup.ai Innovation Launch"
+      ]
+    },
+    mainEntity: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      award: "Best Fractional CFO Services Award 2024"
+    }
+  };
+
   return (
     <Layout>
-      <SeoOptimizer 
+      <SEOhelper 
         title="Achievements & Awards | Growwth Partners"
         description="Explore Growwth Partners' industry awards, recognitions, and our ongoing commitment to excellence in CFO, accounting, and financial innovation."
-        keywords={["growwth partners awards", "financial services recognition", "best cfo services", "singapore awards", "accounting excellence"]}
+        keywords="growwth partners awards, financial services recognition, best cfo services, singapore awards, accounting excellence"
+        canonicalUrl="https://growwthpartners.com/achievements"
+        structuredData={achievementsSchema}
       />
       <PlaceholderContent 
         title="Achievements & Awards" 

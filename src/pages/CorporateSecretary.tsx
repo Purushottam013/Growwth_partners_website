@@ -12,8 +12,7 @@ import { FaqSection } from "@/components/corporatesecretary/FaqSection";
 import { CaseStudySection } from "@/components/corporatesecretary/CaseStudySection";
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
+import SEOhelper from "@/components/SEOhelper";
 
 const CorporateSecretaryPage = () => {
   const { country } = useCountry();
@@ -26,14 +25,6 @@ const CorporateSecretaryPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "corporate-secretary",
-    content: "Outsource your company secretarial functions to Singapore's trusted experts. Effortless compliance, filing, and advisory services for growing businesses.",
-    title: "Corporate Secretary Services in Singapore | Growwth Partners",
-    description: "Outsource your company secretarial functions to Singapore's trusted experts. Growwth Partners offers full compliance, filing, and advisory services.",
-    keywords: ["singapore corporate secretary", "company compliance", "statutory filing", "acra filing"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -64,11 +55,12 @@ const CorporateSecretaryPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
+      <SEOhelper
+        title="Corporate Secretary Services in Singapore | Growwth Partners"
+        description="Outsource your company secretarial functions to Singapore's trusted experts. Growwth Partners offers full compliance, filing, and advisory services."
+        keywords="singapore corporate secretary, company compliance, statutory filing, acra filing"
+        canonicalUrl="https://growwthpartners.com/corporate-secretary-services-in-singapore/"
+        structuredData={organizationSchema}
       />
       
       <motion.div

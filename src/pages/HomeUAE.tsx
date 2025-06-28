@@ -3,7 +3,7 @@ import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const HomeUAE = () => {
   const navigate = useNavigate();
@@ -13,13 +13,36 @@ const HomeUAE = () => {
     window.location.href = "/contact-us/";
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Growwth Partners",
+    url: "https://growwthpartners.com",
+    logo: "https://growwthpartners.com/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png",
+    sameAs: [
+      "https://www.linkedin.com/company/growwth-partners/",
+      "https://www.youtube.com/@GrowwthPartners",
+    ],
+    description: "Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia.",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "UAE"
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      availableLanguage: "English"
+    }
+  };
+
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="Growwth Partners UAE | Expert Accounting & Financial Advisors"
         description="Our UAE headquarters provides exclusive support for startup and established businesses entering or growing in the Emirates. Access local VAT, incorporation, and advisory expertise from a trusted UAE-based team."
-        canonical={`${window.location.origin}/uae`}
-        keywords={["uae accounting", "dubai financial services", "emirates business solutions", "vat compliance uae", "company incorporation dubai"]}
+        keywords="uae accounting, dubai financial services, emirates business solutions, vat compliance uae, company incorporation dubai"
+        canonicalUrl={`https://growwthpartners.com/uae`}
+        structuredData={organizationSchema}
       />
       <motion.div
         initial={{ opacity: 0 }}

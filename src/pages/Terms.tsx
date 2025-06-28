@@ -1,15 +1,34 @@
 
 import { Layout } from "@/components/Layout";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
+import SEOhelper from "@/components/SEOhelper";
 
 const TermsPage = () => {
+  const termsSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Terms & Conditions | Growwth Partners",
+    description: "Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities.",
+    url: "https://growwthpartners.com//terms",
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com"
+    },
+    about: {
+      "@type": "Thing",
+      name: "Terms and Conditions"
+    },
+    dateModified: "2025-04-26"
+  };
+
   return (
     <Layout>
-      <SeoOptimizer
+      <SEOhelper
         title="Terms & Conditions | Growwth Partners"
         description="Read the terms and conditions for using Growwth Partners' services and website. Understanding your rights and responsibilities."
-        canonical={`${window.location.origin}/terms`}
-        keywords={["terms and conditions", "legal terms", "service agreement", "growwth partners"]}
+        keywords="terms and conditions, legal terms, service agreement, growwth partners"
+        canonicalUrl="https://growwthpartners.com/terms"
+        structuredData={termsSchema}
       />
       
       <div className="py-16 container-custom">
@@ -42,7 +61,7 @@ const TermsPage = () => {
           
           <section>
             <h2 className="text-2xl font-bold mb-4">4. Limitations</h2>
-            <p>In no event shall Growwth Partners or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Growwth Partners' website, even if Growwth Partners or a Growwth Partners authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
+            <p>In no event shall Growwth Partners or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Growwth Partners' website, even if Growwth Partners or a Growwth Partners authorized representative has been notified orally or in written of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.</p>
           </section>
           
           <section>

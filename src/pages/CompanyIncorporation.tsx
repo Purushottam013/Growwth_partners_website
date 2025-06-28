@@ -13,8 +13,7 @@ import { CaseStudySection } from "@/components/companyincorporation/CaseStudySec
 import { ExpertBlogSection } from "@/components/corporatesecretary/ExpertBlogSection";
 import LaunchJourneySection from "@/components/companyincorporation/LaunchJourneySection";
 import { useCountry } from "@/contexts/CountryContext";
-import { SeoOptimizer } from "@/components/SeoOptimizer";
-import { useSeoOptimization } from "@/hooks/useSeoOptimization";
+import SEOhelper from "@/components/SEOhelper";
 
 const CompanyIncorporationPage = () => {
   const { country } = useCountry();
@@ -27,14 +26,6 @@ const CompanyIncorporationPage = () => {
   if (country === 'australia') {
     return <Navigate to="/australia" replace />;
   }
-
-  const seoData = useSeoOptimization({
-    service: "company-incorporation",
-    content: "Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results.",
-    title: "Company Incorporation in Singapore | Growwth Partners",
-    description: "Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results.",
-    keywords: ["singapore company incorporation", "business registration", "company setup", "acra registration"]
-  });
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -65,11 +56,12 @@ const CompanyIncorporationPage = () => {
 
   return (
     <Layout>
-      <SeoOptimizer
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords}
-        schema={organizationSchema}
+      <SEOhelper
+        title="Company Incorporation in Singapore | Growwth Partners"
+        description="Launch your Singapore company with hassle-free incorporation services from industry leaders. Full compliance, smooth process, effective results."
+        keywords="singapore company incorporation, business registration, company setup, acra registration"
+        canonicalUrl="https://growwthpartners.com/company-incorporation-services-in-singapore/"
+        structuredData={organizationSchema}
       />
       
       <motion.div
