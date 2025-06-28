@@ -84,7 +84,7 @@ const GuidePage = () => {
         title="Guides & Resources | Growwth Partners"
         description="Explore in-depth guides on payroll compliance, accounting best practices, and scaling your business with Growwth Partners' expertise."
         keywords="business guides, accounting resources, singapore compliance, financial best practices, startup guides"
-        canonicalUrl={`${window.location.origin}/guide`}
+        canonicalUrl="https://growwthpartners.com/guide"
         structuredData={GuideSchema}
 
       />

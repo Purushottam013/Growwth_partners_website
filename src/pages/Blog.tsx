@@ -107,7 +107,7 @@ const BlogPage = () => {
       <SEOhelper
         title="Blog | Growwth Partners"
         description="Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners."
-        canonicalUrl={`${window.location.origin}/blog`}
+        canonicalUrl="https://growwthpartners.com/blog"
         keywords="business blog, financial insights, singapore business, accounting articles, startup advice"
       />
       
