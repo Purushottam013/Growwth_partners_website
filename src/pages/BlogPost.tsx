@@ -236,13 +236,21 @@ const BlogPostPage: React.FC = () => {
             <h2 className="text-2xl font-bold mb-6 text-center">Related Articles</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {relatedPosts.map(rp => (
-                <Card key={rp.id} className="hover:shadow-lg">
-                  <Link to={getCountryUrl(`/blog/${rp.slug}`)}>
-                    {rp.heroImage && <OptimizedImage src={rp.heroImage} alt={rp.title} className="w-full h-48 object-cover" />}
-                    <CardContent className="p-4">
-                      <h3 className="font-bold text-lg mb-2">{rp.title}</h3>
-                      <p className="text-gray-600 line-clamp-2">{rp.excerpt}</p>
-                      <div className="mt-4 flex items-center text-indigo-600 font-medium">
+                <Card key={rp.id} className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                  <Link to={getCountryUrl(`/blog/${rp.slug}`)} className="flex flex-col h-full">
+                    <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100">
+                      <OptimizedImage 
+                        src={rp.heroImage || 'https://as2.ftcdn.net/v2/jpg/10/28/35/13/1000_F_1028351361_FZ2vwpQEZZjEDQxp70ICUoC7Qmb9nuZi.jpg'} 
+                        alt={rp.title} 
+                        className="w-full h-full object-cover" 
+                        width={400}
+                        height={192}
+                      />
+                    </div>
+                    <CardContent className="p-4 flex flex-col flex-grow">
+                      <h3 className="font-bold text-lg mb-2 line-clamp-2">{rp.title}</h3>
+                      <p className="text-gray-600 line-clamp-3 flex-grow mb-4">{rp.excerpt}</p>
+                      <div className="mt-auto flex items-center text-indigo-600 font-medium">
                         Read more <ArrowRight className="ml-1 w-4 h-4" />
                       </div>
                     </CardContent>
