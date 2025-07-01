@@ -11,12 +11,22 @@ import { CountryProvider } from "./contexts/CountryContext";
 const BlogAdminPage = React.lazy(() => import('./pages/admin/BlogAdmin'));
 
 async function getBlogSlugs() {
-  // EXAMPLE: Replace with your actual data fetching (from a CMS, API, etc.)
-  const posts = [
-    { slug: 'how-to-do-x' },
-    { slug: 'another-great-article' },
-  ];
-  return posts.map(post => `/blog/${post.slug}`);
+  try {
+    const { data: posts, error } = await supabase
+      .from('blog_post')
+      .select('slug')
+      .not('slug', 'is', null);
+      
+    if (error) {
+      console.error('SSG slug fetch error', error);
+      return [];
+    }
+
+    return posts.map(post => `/blog/${post.slug}`);
+  } catch (error) {
+    console.error('Error fetching blog slugs:', error);
+    return [];
+  }
 }
 
 // --- Static imports for non-lazy routes ---

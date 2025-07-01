@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
@@ -10,9 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, Share, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import SEOhelper from "@/components/SEOhelper";
-
-// Import statically generated posts
-import postsData from "@/generated/posts.json";
+import { supabase } from "@/integrations/supabase/client";
 
 interface BlogPost {
   id: string;
@@ -27,16 +26,119 @@ interface BlogPost {
   categories?: string[];
 }
 
-const posts: BlogPost[] = postsData as BlogPost[];
-
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { getCountryUrl } = useCountry();
+  
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Find the post synchronously at build time
-  const post = useMemo(() => posts.find(p => p.slug === slug), [slug]);
-  if (!post) {
+  // Fetch current post and related posts
+  useEffect(() => {
+    const fetchPost = async () => {
+      if (!slug) return;
+
+      try {
+        setLoading(true);
+        
+        // Fetch the current post
+        const { data: currentPost, error: postError } = await supabase
+          .from('blog_post')
+          .select('*')
+          .eq('slug', slug)
+          .single();
+
+        if (postError) {
+          console.error('Error fetching post:', postError);
+          setError('Post not found');
+          return;
+        }
+
+        // Transform the data to match our interface
+        const transformedPost: BlogPost = {
+          id: currentPost.id.toString(),
+          slug: currentPost.slug || '',
+          title: currentPost.title || '',
+          excerpt: currentPost.Excerpt || '',
+          content: currentPost.Content || '',
+          heroImage: currentPost.Hero_image || '',
+          publishDate: currentPost.publishdate || '',
+          author: currentPost.Author || 'Jatin Detwani',
+          authorBio: '', // Add this to your database if needed
+          categories: currentPost.Categories ? currentPost.Categories.split(',').map((c: string) => c.trim()) : []
+        };
+
+        setPost(transformedPost);
+
+        // Fetch related posts
+        const { data: allPosts, error: relatedError } = await supabase
+          .from('blog_post')
+          .select('*')
+          .neq('id', currentPost.id)
+          .limit(6);
+
+        if (!relatedError && allPosts) {
+          const transformedRelatedPosts: BlogPost[] = allPosts.map(p => ({
+            id: p.id.toString(),
+            slug: p.slug || '',
+            title: p.title || '',
+            excerpt: p.Excerpt || '',
+            content: p.Content || '',
+            heroImage: p.Hero_image || '',
+            publishDate: p.publishdate || '',
+            author: p.Author || 'Jatin Detwani',
+            authorBio: '',
+            categories: p.Categories ? p.Categories.split(',').map((c: string) => c.trim()) : []
+          }));
+
+          // Filter related posts by category if available
+          const currentCategories = transformedPost.categories || [];
+          const byCategory = transformedRelatedPosts.filter(p => 
+            p.categories?.some(c => currentCategories.includes(c))
+          ).slice(0, 3);
+          
+          if (byCategory.length >= 3) {
+            setRelatedPosts(byCategory);
+          } else {
+            const recent = transformedRelatedPosts.filter(p => 
+              !byCategory.includes(p)
+            ).slice(0, 3 - byCategory.length);
+            setRelatedPosts([...byCategory, ...recent]);
+          }
+        }
+
+      } catch (err) {
+        console.error('Error fetching blog post:', err);
+        setError('Failed to load blog post');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto">
+            <Skeleton className="h-8 w-3/4 mb-4" />
+            <Skeleton className="h-4 w-1/2 mb-8" />
+            <Skeleton className="h-64 w-full mb-8" />
+            <Skeleton className="h-4 w-full mb-2" />
+            <Skeleton className="h-4 w-full mb-2" />
+            <Skeleton className="h-4 w-3/4" />
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error || !post) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-12 text-center">
@@ -47,15 +149,6 @@ const BlogPostPage: React.FC = () => {
       </Layout>
     );
   }
-
-  // Compute related posts
-  const relatedPosts = useMemo(() => {
-    const cats = post.categories || [];
-    const byCategory = posts.filter(p => p.id !== post.id && p.categories?.some(c => cats.includes(c))).slice(0, 3);
-    if (byCategory.length >= 3) return byCategory;
-    const recent = posts.filter(p => p.id !== post.id && !byCategory.includes(p)).slice(0, 3 - byCategory.length);
-    return [...byCategory, ...recent];
-  }, [post]);
 
   const canonicalUrl = getCountryUrl(`/blog/${post.slug}`);
 
@@ -87,7 +180,6 @@ const BlogPostPage: React.FC = () => {
           }
         }
       />
-
 
       <article className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -127,7 +219,7 @@ const BlogPostPage: React.FC = () => {
 
           <div className="p-6 md:p-10">
             <Separator className="w-full bg-indigo-200 h-0.5 mb-8" />
-            <div className="prose prose-lg" dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
             <Separator className="w-full bg-indigo-200 h-0.5 my-8" />
             {post.authorBio && (
               <div className="bg-gray-50 rounded-lg p-6">
@@ -147,7 +239,7 @@ const BlogPostPage: React.FC = () => {
                 <Card key={rp.id} className="hover:shadow-lg">
                   <Link to={getCountryUrl(`/blog/${rp.slug}`)}>
                     {rp.heroImage && <OptimizedImage src={rp.heroImage} alt={rp.title} className="w-full h-48 object-cover" />}
-                    <CardContent>
+                    <CardContent className="p-4">
                       <h3 className="font-bold text-lg mb-2">{rp.title}</h3>
                       <p className="text-gray-600 line-clamp-2">{rp.excerpt}</p>
                       <div className="mt-4 flex items-center text-indigo-600 font-medium">
