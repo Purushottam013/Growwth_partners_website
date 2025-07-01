@@ -253,7 +253,7 @@ const BlogPostPage: React.FC = () => {
               </Link>
               
               {/* Card 2: Part Time CFO Services */}
-              <Link to={getCountryUrl("/fractional-cfo")} className="block h-full">
+              <Link to={getCountryUrl("/part-time-cfo")} className="block h-full">
                 <Card className="h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] mb-3">Part Time CFO Services in Singapore</h3>
