@@ -49,7 +49,7 @@ const BlogPostPage: React.FC = () => {
     () => staticPosts.find((p) => p.slug === slug),
     [slug]
   );
-  const canonicalUrl = getCountryUrl(`/blog/${slug}`);
+  const canonicalUrl = `https://growwthpartners.com/blog/${slug}`;
 
   // 2) Runtime fetch for actual content and related posts
   const [post, setPost] = useState<BlogPost | null>(null);
