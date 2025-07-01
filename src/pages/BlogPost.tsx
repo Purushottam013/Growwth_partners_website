@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -183,12 +184,17 @@ const BlogPostPage: React.FC = () => {
       <article className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           {post.heroImage && (
-            <div className="relative w-full h-[320px] bg-gray-100">
-              <OptimizedImage src={post.heroImage} alt={post.title} className="w-full h-full object-cover" />
+            <div className="relative w-full h-[400px] bg-gray-100">
+              <OptimizedImage 
+                src={post.heroImage} 
+                alt={post.title} 
+                className="w-full h-full object-cover" 
+                priority={true}
+              />
             </div>
           )}
 
-          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-8">
+          <div className={`bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-8 ${post.heroImage ? 'mt-6' : ''}`}>
             {(post.categories || []).length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.categories!.map(cat => (
@@ -253,7 +259,7 @@ const BlogPostPage: React.FC = () => {
               </Link>
               
               {/* Card 2: Part Time CFO Services */}
-              <Link to={getCountryUrl("/part-time-cfo")} className="block h-full">
+              <Link to={getCountryUrl("/fractional-cfo")} className="block h-full">
                 <Card className="h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 p-6 cursor-pointer">
                   <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-[#6A7280] mb-3">Part Time CFO Services in Singapore</h3>
@@ -296,7 +302,7 @@ const BlogPostPage: React.FC = () => {
               {relatedPosts.map(rp => (
                 <Card key={rp.id} className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                   <Link to={getCountryUrl(`/blog/${rp.slug}`)} className="flex flex-col h-full">
-                    <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100">
+                    <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100 flex-shrink-0">
                       <OptimizedImage 
                         src={rp.heroImage || 'https://as2.ftcdn.net/v2/jpg/10/28/35/13/1000_F_1028351361_FZ2vwpQEZZjEDQxp70ICUoC7Qmb9nuZi.jpg'} 
                         alt={rp.title} 
