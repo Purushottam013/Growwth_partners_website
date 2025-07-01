@@ -1,3 +1,4 @@
+
 import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { motion } from "framer-motion";
@@ -5,7 +6,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ChevronRight } from "lucide-react";
-import { Seo } from "@/components/Seo";
 import SEOhelper from "@/components/SEOhelper";
 
 const FinancialReportingGuide = () => {
