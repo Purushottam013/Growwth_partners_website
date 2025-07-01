@@ -17,8 +17,8 @@ interface SEOProps {
 
 const SEOhelper: React.FC<SEOProps> = ({
   title,
-  description,
-  keywords,
+  description='',
+  keywords='',
   canonicalUrl,
   ogImage = '/lovable-uploads/5f2bc1cf-2bab-424d-8245-eb52af504603.png',
   ogType = 'website',
