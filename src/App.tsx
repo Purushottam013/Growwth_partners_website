@@ -315,34 +315,34 @@ export const routes: RouteRecord[] = [
         element: <Navigate to="/part-time-cfo-australia/" replace />
       },
 
-       {
-        path: 'blog/:slug',
-        element: <BlogPost />,
-        getStaticPaths: getBlogSlugs,
-      },
+      //  {
+      //   path: 'blog/:slug',
+      //   element: <BlogPost />,
+      //   getStaticPaths: getBlogSlugs,
+      // },
 
       // Dynamic blog post route
-      // {
-      //   path: 'blog/:slug',
-      //   lazy: async () => {
-      //     const { default: Component } = await import('./pages/BlogPost')
-      //     return { Component }
-      //   },
-      //   entry: 'src/pages/BlogPost.tsx',
-      //   getStaticPaths: async () => {
-      //     const { data: posts, error } = await supabase
-      //       .from('blog_post')
-      //       .select('slug')
-      //       .eq('status','published')
+      {
+        path: 'blog/:slug',
+        lazy: async () => {
+          const { default: Component } = await import('./pages/BlogPost')
+          return { Component }
+        },
+        entry: 'src/pages/BlogPost.tsx',
+        getStaticPaths: async () => {
+          const { data: posts, error } = await supabase
+            .from('blog_post')
+            .select('slug');
+            
 
-      //     if (error) {
-      //       console.error('SSG slug fetch error', error)
-      //       return []
-      //     }
+          if (error) {
+            console.error('SSG slug fetch error', error)
+            return []
+          }
 
-      //     return posts!.map((p) => `blog/${p.slug}`)
-      //   }
-      // },
+          return posts!.map((p) => `blog/${p.slug}`)
+        }
+      },
       { 
         path: '*', 
         element: <NotFound /> 
