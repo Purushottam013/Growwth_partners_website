@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
@@ -184,17 +183,20 @@ const BlogPostPage: React.FC = () => {
       <article className="container mx-auto px-4 py-6 md:py-12">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           {post.heroImage && (
-            <div className="relative w-full h-[400px] bg-gray-100">
-              <OptimizedImage 
-                src={post.heroImage} 
-                alt={post.title} 
-                className="w-full h-full object-cover" 
-                priority={true}
-              />
-            </div>
+            <>
+              <div className="relative w-full h-[400px] bg-gray-100">
+                <OptimizedImage 
+                  src={post.heroImage} 
+                  alt={post.title} 
+                  className="w-full h-full object-cover" 
+                  priority={true}
+                />
+              </div>
+              <div className="h-6"></div>
+            </>
           )}
 
-          <div className={`bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-8 ${post.heroImage ? 'mt-6' : ''}`}>
+          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 px-6 py-8 mx-6 rounded-lg">
             {(post.categories || []).length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
                 {post.categories!.map(cat => (
