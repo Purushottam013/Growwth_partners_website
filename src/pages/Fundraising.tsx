@@ -239,46 +239,46 @@ const Fundraising = () => {
 
               {/* Enhanced Hero Visual - Reduced Size */}
               <div className="relative">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
-                        <Globe className="w-6 h-6 text-white" />
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+                        <Globe className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-1">Ready to Scale?</h3>
-                        <p className="text-blue-200 text-base">Join 100+ successful companies</p>
+                        <h3 className="text-lg font-bold text-white mb-1">Ready to Scale?</h3>
+                        <p className="text-blue-200 text-sm">Join 100+ successful companies</p>
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <div className="bg-white/10 rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-colors">
-                        <div className="flex justify-between items-center mb-3">
-                          <span className="text-white font-semibold text-base">Pre-seed to Series A</span>
-                          <CheckCircle className="w-5 h-5 text-green-400" />
+                    <div className="space-y-3">
+                      <div className="bg-white/10 rounded-2xl p-3 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-white font-semibold text-sm">Pre-seed to Series A</span>
+                          <CheckCircle className="w-4 h-4 text-green-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full w-3/4 shadow-lg"></div>
+                        <div className="w-full bg-white/20 rounded-full h-1.5">
+                          <div className="bg-gradient-to-r from-green-400 to-blue-500 h-1.5 rounded-full w-3/4 shadow-lg"></div>
                         </div>
                       </div>
                       
-                      <div className="bg-white/10 rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-colors">
-                        <div className="flex justify-between items-center mb-3">
-                          <span className="text-white font-semibold text-base">Growth Capital</span>
-                          <CheckCircle className="w-5 h-5 text-green-400" />
+                      <div className="bg-white/10 rounded-2xl p-3 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-white font-semibold text-sm">Growth Capital</span>
+                          <CheckCircle className="w-4 h-4 text-green-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-2 rounded-full w-4/5 shadow-lg"></div>
+                        <div className="w-full bg-white/20 rounded-full h-1.5">
+                          <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-1.5 rounded-full w-4/5 shadow-lg"></div>
                         </div>
                       </div>
 
-                      <div className="bg-white/10 rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-colors">
-                        <div className="flex justify-between items-center mb-3">
-                          <span className="text-white font-semibold text-base">Strategic Partnerships</span>
-                          <Zap className="w-5 h-5 text-yellow-400" />
+                      <div className="bg-white/10 rounded-2xl p-3 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-white font-semibold text-sm">Strategic Partnerships</span>
+                          <Zap className="w-4 h-4 text-yellow-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full w-5/6 shadow-lg"></div>
+                        <div className="w-full bg-white/20 rounded-full h-1.5">
+                          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-1.5 rounded-full w-5/6 shadow-lg"></div>
                         </div>
                       </div>
                     </div>
