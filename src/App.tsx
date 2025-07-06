@@ -58,6 +58,10 @@ export const routes: RouteRecord[] = [
         async lazy() { const { default: Component } = await import('./pages/Blog'); return { Component }; },
       },
       {
+        path: 'fundraising',
+        async lazy() { const { default: Component } = await import('./pages/Fundraising'); return { Component }; },
+      },
+      {
         path: 'accounting-services-in-singapore',
         async lazy() { const { default: Component } = await import('./pages/Accounting'); return { Component }; },
       },

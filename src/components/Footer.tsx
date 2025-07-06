@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
 import { 
@@ -229,6 +228,14 @@ export const Footer = () => {
                   className="hover:text-brand-orange transition-colors"
                 >
                   Payroll
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to={getCountryUrl("/fundraising")} 
+                  className="hover:text-brand-orange transition-colors"
+                >
+                  Fundraising Services
                 </Link>
               </li>
               <li>
