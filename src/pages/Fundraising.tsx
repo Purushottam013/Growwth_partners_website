@@ -174,7 +174,7 @@ const Fundraising = () => {
                   </Badge>
                   
                   <div className="space-y-6">
-                    <h1 className="text-6xl lg:text-8xl font-extrabold leading-tight tracking-tight">
+                    <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
                       Transform Your
                       <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-pulse">
                         Vision Into
@@ -184,7 +184,7 @@ const Fundraising = () => {
                       </span>
                     </h1>
                     
-                    <p className="text-2xl lg:text-3xl text-blue-100 leading-relaxed max-w-2xl font-light">
+                    <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-2xl font-light">
                       From seed funding to Series A and beyond. Expert guidance to secure the capital your startup needs to thrive in today's competitive market.
                     </p>
                   </div>
@@ -237,48 +237,48 @@ const Fundraising = () => {
                 </div>
               </div>
 
-              {/* Enhanced Hero Visual */}
+              {/* Enhanced Hero Visual - Reduced Size */}
               <div className="relative">
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                  <div className="space-y-8">
-                    <div className="flex items-center gap-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
-                        <Globe className="w-8 h-8 text-white" />
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+                        <Globe className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-white mb-1">Ready to Scale?</h3>
-                        <p className="text-blue-200 text-lg">Join 100+ successful companies</p>
+                        <h3 className="text-xl font-bold text-white mb-1">Ready to Scale?</h3>
+                        <p className="text-blue-200 text-base">Join 100+ successful companies</p>
                       </div>
                     </div>
                     
-                    <div className="space-y-6">
-                      <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
-                        <div className="flex justify-between items-center mb-4">
-                          <span className="text-white font-semibold text-lg">Pre-seed to Series A</span>
-                          <CheckCircle className="w-6 h-6 text-green-400" />
+                    <div className="space-y-4">
+                      <div className="bg-white/10 rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-white font-semibold text-base">Pre-seed to Series A</span>
+                          <CheckCircle className="w-5 h-5 text-green-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-3">
-                          <div className="bg-gradient-to-r from-green-400 to-blue-500 h-3 rounded-full w-3/4 shadow-lg"></div>
+                        <div className="w-full bg-white/20 rounded-full h-2">
+                          <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full w-3/4 shadow-lg"></div>
                         </div>
                       </div>
                       
-                      <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
-                        <div className="flex justify-between items-center mb-4">
-                          <span className="text-white font-semibold text-lg">Growth Capital</span>
-                          <CheckCircle className="w-6 h-6 text-green-400" />
+                      <div className="bg-white/10 rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-white font-semibold text-base">Growth Capital</span>
+                          <CheckCircle className="w-5 h-5 text-green-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-3">
-                          <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-3 rounded-full w-4/5 shadow-lg"></div>
+                        <div className="w-full bg-white/20 rounded-full h-2">
+                          <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-2 rounded-full w-4/5 shadow-lg"></div>
                         </div>
                       </div>
 
-                      <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
-                        <div className="flex justify-between items-center mb-4">
-                          <span className="text-white font-semibold text-lg">Strategic Partnerships</span>
-                          <Zap className="w-6 h-6 text-yellow-400" />
+                      <div className="bg-white/10 rounded-2xl p-4 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-white font-semibold text-base">Strategic Partnerships</span>
+                          <Zap className="w-5 h-5 text-yellow-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-3">
-                          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full w-5/6 shadow-lg"></div>
+                        <div className="w-full bg-white/20 rounded-full h-2">
+                          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full w-5/6 shadow-lg"></div>
                         </div>
                       </div>
                     </div>
@@ -290,26 +290,48 @@ const Fundraising = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-20 bg-gray-50">
+      {/* About Section - Enhanced with Gradient Cards */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
               About Our Fundraising Service
             </h2>
-            <div className="text-lg text-gray-700 space-y-6 leading-relaxed">
-              <p>
-                At Growwth Partners, we understand that securing funding is one of the most critical steps in your startup journey. Our experienced team provides end-to-end fundraising support, combining deep market knowledge with proven strategies to help you connect with the right investors at the right time.
-              </p>
-              <p>
-                Whether you're preparing for your first funding round or looking to scale through Series A, B, or later stages, we provide the expertise and network you need to succeed.
-              </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Card className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-blue-200/50 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                      <Target className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Expert Guidance</h3>
+                  </div>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    At Growwth Partners, we understand that securing funding is one of the most critical steps in your startup journey. Our experienced team provides end-to-end fundraising support, combining deep market knowledge with proven strategies.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-200/50 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                      <Rocket className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Scaling Success</h3>
+                  </div>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    Whether you're preparing for your first funding round or looking to scale through Series A, B, or later stages, we provide the expertise and network you need to connect with the right investors at the right time.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section - Improved Layout */}
       <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="text-center mb-16">
@@ -321,8 +343,9 @@ const Fundraising = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+          {/* First Row - 2 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 max-w-5xl mx-auto">
+            {services.slice(0, 2).map((service, index) => (
               <Card key={index} className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
                 <CardContent className="p-8">
                   <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
@@ -337,6 +360,44 @@ const Fundraising = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Second Row - 2 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 max-w-5xl mx-auto">
+            {services.slice(2, 4).map((service, index) => (
+              <Card key={index + 2} className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                    <service.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {service.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Third Row - 1 Card Centered */}
+          <div className="flex justify-center">
+            <div className="max-w-md">
+              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                    <services[4].icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    {services[4].title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {services[4].description}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -438,38 +499,46 @@ const Fundraising = () => {
         </div>
       </section>
 
-      {/* Enhanced Get Started Section - Removed Visit Us */}
+      {/* Enhanced Get Started Section - Improved Design */}
       <section className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-2xl animate-pulse delay-500"></div>
         </div>
 
         <div className="container-custom relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-                Ready to Get Started?
+              <Badge className="inline-flex items-center gap-2 bg-white/20 text-white border-white/30 px-6 py-3 text-base backdrop-blur-md rounded-full mb-8">
+                <Star className="w-5 h-5" />
+                Ready to Transform Your Business?
+              </Badge>
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+                Ready to Get
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
+                  Started?
+                </span>
               </h2>
               <p className="text-2xl mb-12 text-blue-100 max-w-4xl mx-auto leading-relaxed">
-                Take the first step towards securing your next funding round. Our team is ready to help you achieve your fundraising goals.
+                Take the first step towards securing your next funding round. Our team is ready to help you achieve your fundraising goals and unlock your startup's potential.
               </p>
             </div>
             
             {/* Contact Options - Only Email and Phone */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 max-w-5xl mx-auto">
               {/* Email Card */}
-              <Card className="bg-white/15 backdrop-blur-lg border-white/20 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105">
+              <Card className="bg-white/15 backdrop-blur-lg border-white/20 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl">
                 <CardContent className="p-10 text-center">
                   <div className="bg-gradient-to-br from-blue-400 to-cyan-500 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-xl">
                     <Mail className="h-10 w-10 text-white" />
                   </div>
                   <h3 className="font-bold text-2xl mb-4 text-white">Email Us</h3>
-                  <p className="text-blue-100 mb-6 text-lg leading-relaxed">Get in touch via email for detailed discussions about your fundraising needs</p>
+                  <p className="text-blue-100 mb-6 text-lg leading-relaxed">Get in touch via email for detailed discussions about your fundraising needs and strategic planning</p>
                   <a 
                     href="mailto:jd@growwthpartners.com" 
-                    className="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-lg bg-white/10 px-6 py-3 rounded-full hover:bg-white/20"
+                    className="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-lg bg-white/10 px-8 py-4 rounded-full hover:bg-white/20 border border-white/20 hover:border-white/40"
                   >
                     jd@growwthpartners.com
                     <ArrowRight className="w-5 h-5" />
@@ -478,16 +547,16 @@ const Fundraising = () => {
               </Card>
               
               {/* Phone Card */}
-              <Card className="bg-white/15 backdrop-blur-lg border-white/20 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105">
+              <Card className="bg-white/15 backdrop-blur-lg border-white/20 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl">
                 <CardContent className="p-10 text-center">
                   <div className="bg-gradient-to-br from-purple-400 to-pink-500 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-xl">
                     <Phone className="h-10 w-10 text-white" />
                   </div>
                   <h3 className="font-bold text-2xl mb-4 text-white">Call Us</h3>
-                  <p className="text-blue-100 mb-6 text-lg leading-relaxed">Speak directly with our fundraising experts for immediate assistance</p>
+                  <p className="text-blue-100 mb-6 text-lg leading-relaxed">Speak directly with our fundraising experts for immediate assistance and personalized guidance</p>
                   <a 
                     href="tel:+6598615600" 
-                    className="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-lg bg-white/10 px-6 py-3 rounded-full hover:bg-white/20"
+                    className="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-lg bg-white/10 px-8 py-4 rounded-full hover:bg-white/20 border border-white/20 hover:border-white/40"
                   >
                     +65 9861 5600
                     <ArrowRight className="w-5 h-5" />
@@ -500,13 +569,16 @@ const Fundraising = () => {
             <div className="text-center">
               <Button 
                 size="lg" 
-                className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full border-2 border-transparent hover:border-blue-200"
                 onClick={() => setContactModalOpen(true)}
               >
                 <Rocket className="mr-3 h-6 w-6" />
                 Schedule a Consultation
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
+              <p className="text-blue-200 text-sm mt-4 max-w-md mx-auto">
+                Free 30-minute consultation to discuss your fundraising strategy
+              </p>
             </div>
           </div>
         </div>
