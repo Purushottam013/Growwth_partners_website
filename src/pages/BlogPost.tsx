@@ -1,166 +1,385 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import SEOhelper from "@/components/SEOhelper";
+// src/pages/BlogPostPage.tsx
+import React, { useState, useEffect, useMemo } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { Layout } from "@/components/Layout";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, User, Clock } from "lucide-react";
-import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { OptimizedImage } from "@/components/ui/optimized-image";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ArrowRight, Share, Mail } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import SEOhelper from "@/components/SEOhelper";
+import { useCountry } from "@/contexts/CountryContext";
+import { supabase } from "@/integrations/supabase/client";
+import postsData from "@/generated/posts.json";
 
 interface BlogPost {
-  id: number;
-  title: string;
-  content: string;
-  excerpt: string;
+  id: string;
   slug: string;
-  publishdate: string;
-  Author: string;
-  Categories: string;
-  Hero_image: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  heroImage?: string;
+  publishDate?: string;
+  author?: string;
+  authorBio?: string;
+  categories?: string[];
 }
 
-const BlogPost = () => {
-  const { slug } = useParams();
+// static JSON is only used here for build-time SEO metadata
+const staticPosts: Omit<BlogPost, "id">[] = (postsData as any[]).map(p => ({
+  slug: p.slug,
+  title: p.title,
+  excerpt: p.excerpt,
+  heroImage: p.heroImage,
+  publishDate: p.publishDate,
+  author: p.author,
+  authorBio: p.authorBio,
+  categories: p.categories,
+}));
 
-  const { data: post, isLoading, error } = useQuery({
-    queryKey: ['blog-post', slug],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('blog_post')
-        .select('*')
-        .eq('slug', slug)
-        .single();
+const BlogPostPage: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
+  const { getCountryUrl } = useCountry();
 
-      if (error) throw error;
-      return data as BlogPost;
-    },
-    enabled: !!slug,
-  });
+  // 1) Build-time SEO lookup
+  const seoPost = useMemo(
+    () => staticPosts.find((p) => p.slug === slug),
+    [slug]
+  );
+  const canonicalUrl = `https://growwthpartners.com/blog/${slug}`;
 
-  const { data: similarPosts, isLoading: isSimilarPostsLoading, error: similarPostsError } = useQuery({
-    queryKey: ['similar-posts', slug],
-    queryFn: async () => {
-      if (!post) return [];
+  // 2) Runtime fetch for actual content and related posts
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-      const { data, error } = await supabase
-        .from('blog_post')
-        .select('*')
-        .neq('slug', slug)
-        .limit(6);
-
-      if (error) throw error;
-      return data as BlogPost[];
-    },
-    enabled: !!post,
-  });
-
-  if (isLoading) return <div className="container-custom py-20 text-center">Loading...</div>;
-  if (error) return <div className="container-custom py-20 text-center">Error loading post</div>;
-  if (!post) return <div className="container-custom py-20 text-center">Post not found</div>;
-
-  const categories = post.Categories ? post.Categories.split(',').map(cat => cat.trim()) : [];
-  const publishDate = post.publishdate ? new Date(post.publishdate) : new Date();
+  useEffect(() => {
+      const fetchPost = async () => {
+        if (!slug) return;
+  
+        try {
+          setLoading(true);
+          
+          // Fetch the current post
+          const { data: currentPost, error: postError } = await supabase
+            .from('blog_post')
+            .select('*')
+            .eq('slug', slug)
+            .single();
+  
+          if (postError) {
+            console.error('Error fetching post:', postError);
+            setError('Post not found');
+            return;
+          }
+  
+          // Transform the data to match our interface
+          const transformedPost: BlogPost = {
+            id: currentPost.id.toString(),
+            slug: currentPost.slug || '',
+            title: currentPost.title || '',
+            excerpt: currentPost.Excerpt || '',
+            content: currentPost.Content || '',
+            heroImage: currentPost.Hero_image || '',
+            publishDate: currentPost.publishdate || '',
+            author: currentPost.Author || 'Jatin Detwani',
+            authorBio: '', // Add this to your database if needed
+            categories: currentPost.Categories ? currentPost.Categories.split(',').map((c: string) => c.trim()) : []
+          };
+  
+          setPost(transformedPost);
+  
+          // Fetch related posts
+          const { data: allPosts, error: relatedError } = await supabase
+            .from('blog_post')
+            .select('*')
+            .neq('id', currentPost.id)
+            .limit(6);
+  
+          if (!relatedError && allPosts) {
+            const transformedRelatedPosts: BlogPost[] = allPosts.map(p => ({
+              id: p.id.toString(),
+              slug: p.slug || '',
+              title: p.title || '',
+              excerpt: p.Excerpt || '',
+              content: p.Content || '',
+              heroImage: p.Hero_image || '',
+              publishDate: p.publishdate || '',
+              author: p.Author || 'Jatin Detwani',
+              authorBio: '',
+              categories: p.Categories ? p.Categories.split(',').map((c: string) => c.trim()) : []
+            }));
+  
+            // Filter related posts by category if available
+            const currentCategories = transformedPost.categories || [];
+            const byCategory = transformedRelatedPosts.filter(p => 
+              p.categories?.some(c => currentCategories.includes(c))
+            ).slice(0, 3);
+            
+            if (byCategory.length >= 3) {
+              setRelatedPosts(byCategory);
+            } else {
+              const recent = transformedRelatedPosts.filter(p => 
+                !byCategory.includes(p)
+              ).slice(0, 3 - byCategory.length);
+              setRelatedPosts([...byCategory, ...recent]);
+            }
+          }
+  
+        } catch (err) {
+          console.error('Error fetching blog post:', err);
+          setError('Failed to load blog post');
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchPost();
+    }, [slug]);
 
   return (
-    <div className="min-h-screen bg-white">
-      <SEOhelper
-        title={post.title}
-        description={post.excerpt || post.title}
-        keywords={categories.join(', ')}
-      />
-
-      {/* Hero Image */}
-      {post.Hero_image && (
-        <div className="w-full h-[400px] overflow-hidden bg-gray-100">
-          <img 
-            src={post.Hero_image} 
-            alt={post.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
+    <Layout>
+      {/* 🚀 Always bake SEO tags at build time */}
+      {seoPost && (
+        <SEOhelper
+          title={seoPost.title}
+          description={seoPost.excerpt}
+          keywords={(seoPost.categories || []).join(", ")}
+          canonicalUrl={canonicalUrl}
+          ogType="article"
+          ogImage={seoPost.heroImage || "/default-og-image.png"}
+          twitterCard="summary_large_image"
+          structuredData={{
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: seoPost.title,
+            description: seoPost.excerpt,
+            image: seoPost.heroImage || "",
+            datePublished: seoPost.publishDate,
+            author: { "@type": "Person", name: seoPost.author || "" },
+            publisher: {
+              "@type": "Organization",
+              name: "Growwth Partners",
+              url: getCountryUrl("/"),
+            },
+            url: canonicalUrl,
+          }}
+        />
       )}
 
-      {/* Spacer to prevent overlap */}
-      <div className="h-6"></div>
-
-      {/* Title and Meta Information Card */}
-      <div className="container-custom">
-        <div className="max-w-4xl mx-6 bg-white rounded-lg shadow-lg p-8 -mt-20 relative z-10 border">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {categories.map((category, index) => (
-              <Badge key={index} variant="secondary" className="bg-brand-orange/10 text-brand-orange">
-                {category}
-              </Badge>
-            ))}
-          </div>
-
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-            {post.title}
-          </h1>
-
-          <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
-            <div className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              <span>{post.Author || 'Growwth Partners'}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              <span>{format(publishDate, 'MMMM d, yyyy')}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span>5 min read</span>
-            </div>
+      {/* 3) Then render loading / error / content UIs */}
+      {loading ? (
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto space-y-4">
+            <Skeleton className="h-8 w-3/4" />
+            <Skeleton className="h-4 w-1/2" />
+            <Skeleton className="h-64 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-1/2" />
           </div>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="container-custom py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-brand-orange prose-strong:text-gray-900">
-            <div dangerouslySetInnerHTML={{ __html: post.content || '' }} />
-          </div>
+      ) : error || !post ? (
+        <div className="container mx-auto px-4 py-12 text-center">
+          <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
+          <p className="mb-6">The blog post you're looking for doesn't exist.</p>
+          <Button onClick={() => navigate(getCountryUrl("/blog"))}>
+            Back to Blog
+          </Button>
         </div>
-      </div>
-
-      {/* Similar Posts */}
-      {similarPosts && similarPosts.length > 0 && (
-        <div className="bg-gray-50 py-16">
-          <div className="container-custom">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {similarPosts.slice(0, 3).map((relatedPost) => (
-                <div key={relatedPost.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  {relatedPost.Hero_image && (
-                    <div className="h-48 overflow-hidden">
-                      <img 
-                        src={relatedPost.Hero_image} 
-                        alt={relatedPost.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold mb-2 text-gray-900 line-clamp-2">
-                      <a href={`/blog/${relatedPost.slug}`} className="hover:text-brand-orange transition-colors">
-                        {relatedPost.title}
-                      </a>
-                    </h3>
-                    <p className="text-gray-600 text-sm line-clamp-3 mb-4">
-                      {relatedPost.excerpt}
+      ) : (
+        <article className="container mx-auto px-4 py-6 md:py-12">
+          <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+            {post.heroImage && (
+              <div className="h-80 bg-gray-100 overflow-hidden">
+                <OptimizedImage
+                  src={post.heroImage}
+                  alt={post.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            )}
+            <div className="p-6">
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.categories?.map((cat) => (
+                  <Badge key={cat} className="bg-indigo-100 text-indigo-800">
+                    {cat}
+                  </Badge>
+                ))}
+              </div>
+              <h1 className="text-3xl font-extrabold mb-4">{post.title}</h1>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-indigo-200 rounded-full flex items-center justify-center text-indigo-700 font-bold">
+                    J
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800">
+                      {post.author}
                     </p>
-                    <div className="text-xs text-gray-500">
-                      {relatedPost.publishdate && format(new Date(relatedPost.publishdate), 'MMM d, yyyy')}
-                    </div>
+                    <p className="text-sm text-gray-500">
+                      {post.publishDate}
+                    </p>
                   </div>
                 </div>
+                <div className="flex space-x-4">
+                  <button
+                    onClick={() =>
+                      navigator.share
+                        ? navigator.share({
+                            title: post.title,
+                            url: canonicalUrl,
+                          })
+                        : navigator.clipboard.writeText(canonicalUrl)
+                    }
+                    className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                  >
+                    <Share className="w-5 h-5" />
+                    <span>Share</span>
+                  </button>
+                  <button
+                    onClick={() =>
+                      window.open(
+                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent(
+                          "Regarding: " + post.title
+                        )}`,
+                        "_blank"
+                      )
+                    }
+                    className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                  >
+                    <Mail className="w-5 h-5" />
+                    <span>Contact</span>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="prose prose-lg mx-auto mb-8"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+
+              {post.authorBio && (
+                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8">
+                  <h3 className="text-xl font-semibold mb-2">
+                    About the Author
+                  </h3>
+                  <p className="text-gray-700 mb-4">{post.authorBio}</p>
+                  <Button
+                    className="bg-indigo-600 text-white hover:bg-indigo-700"
+                    onClick={() =>
+                      window.open(
+                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent(
+                          "Regarding: " + post.title
+                        )}`,
+                        "_blank"
+                      )
+                    }
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
+                    Write to Author
+                  </Button>
+                </div>
+              )}
+                </div>
+          </div>
+
+              {/* Related Services/Solutions */}
+              <section className="mt-12 mb-12">
+                <h2 className="text-2xl font-bold mb-6 text-center">
+                  Related Services &amp; Solutions
+                </h2>
+                <div className="grid gap-6 md:grid-cols-3">
+                  <Card className="p-6 hover:shadow-xl transition">
+                    <CardContent>
+                      <h3 className="text-lg font-bold mb-2">
+                        Accounting Services in Singapore
+                      </h3>
+                      <p className="text-gray-600 mb-4">
+                        Leverage our generative AI development services to streamline workflows, boost productivity and drive innovation, while ensuring seamless integration with your existing systems.
+                      </p>
+                      <Link
+                        to={getCountryUrl("/accounting")}
+                        className="font-medium inline-flex items-center text-orange-500"
+                      >
+                        Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                  <Card className="p-6 hover:shadow-xl transition">
+                    <CardContent>
+                      <h3 className="text-lg font-bold mb-2">
+                        Part-Time CFO Services
+                      </h3>
+                      <p className="text-gray-600 mb-4">
+                        Optimize your business potential with our comprehensive generative AI consulting services, designed to guide you in leveraging GenAI for operational excellence and product innovation, while also upholding ethical AI principles.
+                      </p>
+                      <Link
+                        to={getCountryUrl("/part-time-cfo")}
+                        className=" font-medium inline-flex items-center text-orange-500"
+                      >
+                        Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                  <Card className="p-6 hover:shadow-xl transition">
+                    <CardContent>
+                      <h3 className="text-lg font-bold mb-2">
+                        Bookkeeping Services in Singapore
+                      </h3>
+                      <p className="text-gray-600 mb-4">
+                        Unlock AI's full potential for your business through our comprehensive AI development services, designed to tackle intricate tech challenges, streamline business workflows, and achieve operational excellence.
+                      </p>
+                      <Link
+                        to={getCountryUrl("/bookkeeping")}
+                        className=" font-medium inline-flex items-center text-orange-500"
+                      >
+                        Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </div>
+              </section>
+
+              {/* Related Articles */}
+              {relatedPosts.length > 0 && (
+                <section className="mt-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">Related Articles</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {relatedPosts.map(rp => (
+                <Card key={rp.id} className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                  <Link to={getCountryUrl(`/blog/${rp.slug}`)} className="flex flex-col h-full">
+                    <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100">
+                      <OptimizedImage 
+                        src={rp.heroImage || 'https://as2.ftcdn.net/v2/jpg/10/28/35/13/1000_F_1028351361_FZ2vwpQEZZjEDQxp70ICUoC7Qmb9nuZi.jpg'} 
+                        alt={rp.title} 
+                        className="w-full h-full object-cover" 
+                        width={400}
+                        height={192}
+                      />
+                    </div>
+                    <CardContent className="p-4 flex flex-col flex-grow">
+                      <h3 className="font-bold text-lg mb-2 line-clamp-2">{rp.title}</h3>
+                      <p className="text-gray-600 line-clamp-3 flex-grow mb-4">{rp.excerpt}</p>
+                      <div className="mt-auto flex items-center text-indigo-600 font-medium">
+                        Read more <ArrowRight className="ml-1 w-4 h-4" />
+                      </div>
+                    </CardContent>
+                  </Link>
+                </Card>
               ))}
             </div>
-          </div>
-        </div>
+          </section>
+              )}
+          
+        </article>
       )}
-    </div>
+    </Layout>
   );
 };
 
-export default BlogPost;
+export default BlogPostPage;
