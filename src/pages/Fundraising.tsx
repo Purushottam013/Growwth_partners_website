@@ -23,8 +23,10 @@ import {
   Network,
   Award,
   User,
-  MapPin,
-  Building
+  Building,
+  Star,
+  Globe,
+  Zap
 } from 'lucide-react';
 import { ContactModal } from '@/components/ui/contact-modal';
 import { useState } from 'react';
@@ -144,110 +146,139 @@ const Fundraising = () => {
         keywords="fundraising services, startup funding, venture capital, angel investors, pitch deck, Series A funding, investment strategy"
       />
 
-      {/* Hero Section - Completely Redesigned */}
-      <section className="relative min-h-[90vh] bg-gradient-to-r from-indigo-900 via-purple-900 to-blue-900 text-white overflow-hidden flex items-center">
-        {/* Background Effects */}
+      {/* Enhanced Hero Section */}
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden flex items-center">
+        {/* Enhanced Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-400/10 rounded-full blur-2xl"></div>
+          <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-indigo-400/20 rounded-full blur-2xl animate-pulse delay-500"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-48 h-48 bg-cyan-400/25 rounded-full blur-2xl animate-pulse delay-700"></div>
         </div>
         
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/grid-pattern.svg')] opacity-10"></div>
+        {/* Geometric Pattern Overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-32 h-32 border border-white/20 rotate-45"></div>
+          <div className="absolute bottom-40 right-40 w-24 h-24 border border-white/15 rotate-12"></div>
+          <div className="absolute top-1/3 right-1/4 w-16 h-16 border border-white/25 rotate-45"></div>
+        </div>
         
-        <div className="container-custom relative z-10 py-20">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <Badge className="inline-flex items-center gap-2 bg-white/10 text-white border-white/20 px-4 py-2 text-sm backdrop-blur-sm">
-                    <Rocket className="w-4 h-4" />
+        <div className="container-custom relative z-10 py-24">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-10">
+                <div className="space-y-8">
+                  <Badge className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border-white/30 px-6 py-3 text-base backdrop-blur-md rounded-full">
+                    <Rocket className="w-5 h-5" />
                     Expert-Led Fundraising Solutions
                   </Badge>
                   
-                  <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                    Fuel Your
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                      Growth Story
-                    </span>
-                  </h1>
-                  
-                  <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-xl">
-                    From seed to Series A and beyond. Expert guidance to secure the capital your business needs to scale.
-                  </p>
+                  <div className="space-y-6">
+                    <h1 className="text-6xl lg:text-8xl font-extrabold leading-tight tracking-tight">
+                      Transform Your
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-pulse">
+                        Vision Into
+                      </span>
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400">
+                        Reality
+                      </span>
+                    </h1>
+                    
+                    <p className="text-2xl lg:text-3xl text-blue-100 leading-relaxed max-w-2xl font-light">
+                      From seed funding to Series A and beyond. Expert guidance to secure the capital your startup needs to thrive in today's competitive market.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-6">
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-6 text-xl font-bold shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 rounded-full"
                     onClick={() => setContactModalOpen(true)}
                   >
-                    <Rocket className="mr-2 h-5 w-5" />
+                    <Rocket className="mr-3 h-6 w-6" />
                     Start Your Journey
                   </Button>
                   
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg backdrop-blur-sm"
+                    className="border-2 border-white/40 text-white hover:bg-white/15 px-10 py-6 text-xl backdrop-blur-md rounded-full font-semibold"
                     onClick={() => setContactModalOpen(true)}
                   >
-                    <DollarSign className="mr-2 h-5 w-5" />
+                    <DollarSign className="mr-3 h-6 w-6" />
                     For Investors
                   </Button>
                 </div>
 
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-white">100+</div>
-                    <div className="text-blue-200 text-sm">Companies Served</div>
+                {/* Enhanced Stats with Icons */}
+                <div className="grid grid-cols-3 gap-8 pt-12 border-t border-white/20">
+                  <div className="text-center group">
+                    <div className="flex items-center justify-center mb-3">
+                      <Building className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="text-4xl font-bold text-white mb-1">100+</div>
+                    <div className="text-blue-200 text-base">Companies Served</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-white">$500M+</div>
-                    <div className="text-blue-200 text-sm">Capital Raised</div>
+                  <div className="text-center group">
+                    <div className="flex items-center justify-center mb-3">
+                      <DollarSign className="w-8 h-8 text-green-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="text-4xl font-bold text-white mb-1">$500M+</div>
+                    <div className="text-blue-200 text-base">Capital Raised</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-white">85%</div>
-                    <div className="text-blue-200 text-sm">Success Rate</div>
+                  <div className="text-center group">
+                    <div className="flex items-center justify-center mb-3">
+                      <Star className="w-8 h-8 text-yellow-400 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div className="text-4xl font-bold text-white mb-1">85%</div>
+                    <div className="text-blue-200 text-base">Success Rate</div>
                   </div>
                 </div>
               </div>
 
-              {/* Hero Visual */}
+              {/* Enhanced Hero Visual */}
               <div className="relative">
-                <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-                        <Building className="w-6 h-6 text-white" />
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-10 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                  <div className="space-y-8">
+                    <div className="flex items-center gap-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+                        <Globe className="w-8 h-8 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-white">Ready to Scale?</h3>
-                        <p className="text-blue-200">Join 100+ successful companies</p>
+                        <h3 className="text-2xl font-bold text-white mb-1">Ready to Scale?</h3>
+                        <p className="text-blue-200 text-lg">Join 100+ successful companies</p>
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-white font-medium">Pre-seed to Series A</span>
-                          <CheckCircle className="w-5 h-5 text-green-400" />
+                    <div className="space-y-6">
+                      <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-white font-semibold text-lg">Pre-seed to Series A</span>
+                          <CheckCircle className="w-6 h-6 text-green-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full w-3/4"></div>
+                        <div className="w-full bg-white/20 rounded-full h-3">
+                          <div className="bg-gradient-to-r from-green-400 to-blue-500 h-3 rounded-full w-3/4 shadow-lg"></div>
                         </div>
                       </div>
                       
-                      <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-white font-medium">Growth Capital</span>
-                          <CheckCircle className="w-5 h-5 text-green-400" />
+                      <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-white font-semibold text-lg">Growth Capital</span>
+                          <CheckCircle className="w-6 h-6 text-green-400" />
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
-                          <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-2 rounded-full w-4/5"></div>
+                        <div className="w-full bg-white/20 rounded-full h-3">
+                          <div className="bg-gradient-to-r from-purple-400 to-pink-500 h-3 rounded-full w-4/5 shadow-lg"></div>
+                        </div>
+                      </div>
+
+                      <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-colors">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-white font-semibold text-lg">Strategic Partnerships</span>
+                          <Zap className="w-6 h-6 text-yellow-400" />
+                        </div>
+                        <div className="w-full bg-white/20 rounded-full h-3">
+                          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full w-5/6 shadow-lg"></div>
                         </div>
                       </div>
                     </div>
@@ -310,7 +341,7 @@ const Fundraising = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section - Redesigned with Point Format */}
+      {/* Why Choose Us Section - Centered Layout for Better Visual Balance */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
         <div className="container-custom">
           <div className="text-center mb-16">
@@ -322,8 +353,9 @@ const Fundraising = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyChooseUs.map((item, index) => (
+          {/* First Row - 3 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            {whyChooseUs.slice(0, 3).map((item, index) => (
               <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300 group">
                 <CardContent className="p-8">
                   <div className="bg-gradient-to-br from-blue-400 to-purple-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -343,6 +375,32 @@ const Fundraising = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Second Row - 2 Cards Centered */}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+              {whyChooseUs.slice(3).map((item, index) => (
+                <Card key={index + 3} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300 group">
+                  <CardContent className="p-8">
+                    <div className="bg-gradient-to-br from-blue-400 to-purple-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <item.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-6 text-white">
+                      {item.title}
+                    </h3>
+                    <ul className="space-y-3">
+                      {item.points.map((point, pointIndex) => (
+                        <li key={pointIndex} className="flex items-start gap-3 text-gray-300">
+                          <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm leading-relaxed">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -380,77 +438,74 @@ const Fundraising = () => {
         </div>
       </section>
 
-      {/* Get Started Section - Improved Design */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="container-custom">
+      {/* Enhanced Get Started Section - Removed Visit Us */}
+      <section className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-2xl"></div>
+        </div>
+
+        <div className="container-custom relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
                 Ready to Get Started?
               </h2>
-              <p className="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
+              <p className="text-2xl mb-12 text-blue-100 max-w-4xl mx-auto leading-relaxed">
                 Take the first step towards securing your next funding round. Our team is ready to help you achieve your fundraising goals.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-              {/* Contact Cards */}
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Mail className="h-8 w-8 text-white" />
+            {/* Contact Options - Only Email and Phone */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
+              {/* Email Card */}
+              <Card className="bg-white/15 backdrop-blur-lg border-white/20 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105">
+                <CardContent className="p-10 text-center">
+                  <div className="bg-gradient-to-br from-blue-400 to-cyan-500 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <Mail className="h-10 w-10 text-white" />
                   </div>
-                  <h3 className="font-bold text-xl mb-4">Email Us</h3>
-                  <p className="text-blue-100 mb-4">Get in touch via email for detailed discussions</p>
+                  <h3 className="font-bold text-2xl mb-4 text-white">Email Us</h3>
+                  <p className="text-blue-100 mb-6 text-lg leading-relaxed">Get in touch via email for detailed discussions about your fundraising needs</p>
                   <a 
                     href="mailto:jd@growwthpartners.com" 
-                    className="inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors font-medium"
+                    className="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-lg bg-white/10 px-6 py-3 rounded-full hover:bg-white/20"
                   >
                     jd@growwthpartners.com
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </a>
                 </CardContent>
               </Card>
               
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Phone className="h-8 w-8 text-white" />
+              {/* Phone Card */}
+              <Card className="bg-white/15 backdrop-blur-lg border-white/20 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105">
+                <CardContent className="p-10 text-center">
+                  <div className="bg-gradient-to-br from-purple-400 to-pink-500 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <Phone className="h-10 w-10 text-white" />
                   </div>
-                  <h3 className="font-bold text-xl mb-4">Call Us</h3>
-                  <p className="text-blue-100 mb-4">Speak directly with our fundraising experts</p>
+                  <h3 className="font-bold text-2xl mb-4 text-white">Call Us</h3>
+                  <p className="text-blue-100 mb-6 text-lg leading-relaxed">Speak directly with our fundraising experts for immediate assistance</p>
                   <a 
                     href="tel:+6598615600" 
-                    className="inline-flex items-center gap-2 text-white hover:text-blue-200 transition-colors font-medium"
+                    className="inline-flex items-center gap-3 text-white hover:text-blue-200 transition-colors font-semibold text-lg bg-white/10 px-6 py-3 rounded-full hover:bg-white/20"
                   >
                     +65 9861 5600
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-5 h-5" />
                   </a>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="font-bold text-xl mb-4">Visit Us</h3>
-                  <p className="text-blue-100 mb-4">Meet us at our Singapore office</p>
-                  <p className="text-white font-medium">
-                    Singapore Office
-                  </p>
                 </CardContent>
               </Card>
             </div>
 
+            {/* CTA Button */}
             <div className="text-center">
               <Button 
                 size="lg" 
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-full"
                 onClick={() => setContactModalOpen(true)}
               >
+                <Rocket className="mr-3 h-6 w-6" />
                 Schedule a Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             </div>
           </div>
