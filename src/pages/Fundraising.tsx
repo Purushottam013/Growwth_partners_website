@@ -350,7 +350,7 @@ const Fundraising = () => {
       {/* FAQ Section - Using Cash Flow Page Style */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
-          <div name="faq" className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Frequently Asked Questions
