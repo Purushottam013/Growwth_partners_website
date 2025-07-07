@@ -232,7 +232,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link 
-                  to={getCountryUrl("/fundraising")} 
+                  to={getCountryUrl("/fundraising-services")} 
                   className="hover:text-brand-orange transition-colors"
                 >
                   Fundraising Services
