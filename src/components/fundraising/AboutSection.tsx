@@ -9,7 +9,7 @@ export const AboutSection = () => {
       <div className="container-custom">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
-            About Our Fundraising Service
+            About Our Fundraising Services
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
