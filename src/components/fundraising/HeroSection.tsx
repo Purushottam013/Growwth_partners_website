@@ -35,10 +35,10 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
       </div>
       
       <div className="container-custom relative z-10 py-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Main Content */}
-            <div className="space-y-8">
+            <div className="space-y-8 lg:pl-8">
               <div className="space-y-6">
                 <Badge className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border-white/30 px-4 py-2 text-sm backdrop-blur-md rounded-full">
                   <Rocket className="w-4 h-4" />
@@ -46,7 +46,7 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
                 </Badge>
                 
                 <div className="space-y-4">
-                  <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight">
+                  <h1 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight tracking-tight">
                     Transform Your
                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-pulse">
                       Vision Into
@@ -56,7 +56,7 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
                     </span>
                   </h1>
                   
-                  <p className="text-lg lg:text-xl text-blue-100 leading-relaxed max-w-2xl font-light">
+                  <p className="text-lg text-blue-100 leading-relaxed max-w-xl font-light">
                     From seed funding to Series A and beyond. Expert guidance to secure the capital your startup needs to thrive in today's competitive market.
                   </p>
                 </div>
@@ -89,29 +89,29 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
                   <div className="flex items-center justify-center mb-2">
                     <Building className="w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
                   </div>
-                  <div className="text-2xl lg:text-3xl font-bold text-white mb-1">100+</div>
+                  <div className="text-2xl font-bold text-white mb-1">100+</div>
                   <div className="text-blue-200 text-sm">Companies Served</div>
                 </div>
                 <div className="text-center group">
                   <div className="flex items-center justify-center mb-2">
                     <DollarSign className="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform" />
                   </div>
-                  <div className="text-2xl lg:text-3xl font-bold text-white mb-1">$500M+</div>
+                  <div className="text-2xl font-bold text-white mb-1">$500M+</div>
                   <div className="text-blue-200 text-sm">Capital Raised</div>
                 </div>
                 <div className="text-center group">
                   <div className="flex items-center justify-center mb-2">
                     <Star className="w-6 h-6 text-yellow-400 group-hover:scale-110 transition-transform" />
                   </div>
-                  <div className="text-2xl lg:text-3xl font-bold text-white mb-1">85%</div>
+                  <div className="text-2xl font-bold text-white mb-1">85%</div>
                   <div className="text-blue-200 text-sm">Success Rate</div>
                 </div>
               </div>
             </div>
 
             {/* Right Side - Ready to Scale Card */}
-            <div className="relative flex justify-center lg:justify-end">
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500 w-full max-w-md">
+            <div className="relative flex justify-center lg:justify-center lg:pr-8">
+              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500 w-full max-w-sm">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">

@@ -1,6 +1,8 @@
 
-import React from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import React from "react";
+import { motion } from "framer-motion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Plus, Minus } from "lucide-react";
 
 export const FAQSection = () => {
   const faqs = [
@@ -31,29 +33,93 @@ export const FAQSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-14 bg-white">
       <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <span className="inline-block px-4 py-1 bg-[#D3E4FD] text-[#F87315] rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h3 className="heading-md mb-4">Frequently Asked Questions</h3>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Find answers to common questions about our fundraising services.
+          </p>
+        </motion.div>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600">
-              Get answers to common questions about our fundraising services
-            </p>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`} 
-                className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200"
+                className="mb-5 border-none"
               >
-                <AccordionTrigger className="text-left font-semibold text-gray-900 hover:no-underline px-8 py-6 hover:bg-gray-50 rounded-t-xl">
-                  <span className="pr-4">{faq.question}</span>
+                {/* Custom AccordionTrigger with icon */}
+                <AccordionTrigger 
+                  className={`
+                    group flex items-center justify-between w-full
+                    bg-[#ededed] px-6 py-6
+                    font-bold text-xl md:text-2xl text-black
+                    rounded-none border border-[#e2e2e2] transition-all duration-200 
+                    shadow-none
+                    outline-none
+                    focus-visible:outline-none
+                    data-[state=open]:border-[2.5px] data-[state=open]:border-[#1775ff]
+                    data-[state=open]:rounded-[6px]
+                  `}
+                  style={{
+                    boxShadow: "none",
+                    borderRadius: "4px",
+                    borderWidth: "1.5px"
+                  }}
+                >
+                  <span className="text-left w-full select-none font-medium">
+                    {faq.question}
+                  </span>
+                  <span className={`
+                    flex items-center justify-center
+                    transition-all duration-300
+                  `}>
+                    <span className={`
+                      flex items-center justify-center
+                      w-8 h-8 md:w-9 md:h-9
+                      bg-black rounded-full
+                      text-white
+                      transition-all duration-200
+                    `}>
+                      <Plus 
+                        className={`
+                          w-6 h-6 transition-all duration-200
+                          group-data-[state=open]:hidden
+                        `}
+                        strokeWidth={3}
+                      />
+                      <Minus 
+                        className={`
+                          w-6 h-6 transition-all duration-200
+                          group-data-[state=closed]:hidden
+                        `}
+                        strokeWidth={3}
+                      />
+                    </span>
+                  </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 px-8 pb-6 pt-2 leading-relaxed">
+                {/* Styled AccordionContent */}
+                <AccordionContent 
+                  className={`
+                    bg-white px-6 pb-6 pt-2 border border-[#e2e2e2] border-t-0
+                    text-lg text-gray-800 font-normal leading-relaxed
+                    rounded-b-[6px]
+                    animate-slide-down
+                  `}
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
+                >
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

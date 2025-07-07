@@ -52,7 +52,7 @@ export const CTASection = ({ onContactClick }: CTASectionProps) => {
           {/* Enhanced Contact Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
             {/* Email Card */}
-            <Card className="bg-gradient-to-br from-white/20 via-white/15 to-white/10 backdrop-blur-xl border border-white/30 hover:bg-gradient-to-br hover:from-white/25 hover:via-white/20 hover:to-white/15 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl shadow-xl">
+            <Card className="bg-white/15 backdrop-blur-xl border border-white/30 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl shadow-xl">
               <CardContent className="p-8 text-center relative overflow-hidden">
                 {/* Card decoration */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-xl"></div>
@@ -76,7 +76,7 @@ export const CTASection = ({ onContactClick }: CTASectionProps) => {
             </Card>
             
             {/* Phone Card */}
-            <Card className="bg-gradient-to-br from-white/20 via-white/15 to-white/10 backdrop-blur-xl border border-white/30 hover:bg-gradient-to-br hover:from-white/25 hover:via-white/20 hover:to-white/15 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl shadow-xl">
+            <Card className="bg-white/15 backdrop-blur-xl border border-white/30 hover:bg-white/20 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl shadow-xl">
               <CardContent className="p-8 text-center relative overflow-hidden">
                 {/* Card decoration */}
                 <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-purple-400/20 to-transparent rounded-full blur-xl"></div>
