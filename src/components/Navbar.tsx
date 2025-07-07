@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
@@ -22,23 +21,17 @@ const navItems = [
     dropdown: false
   },
   {
-    title: "Accounting",
-    path: "/accounting", // will become '/accounting-services-in-uae' etc. via getCountryUrl
+    title: "Services",
+    path: "/accounting",
     dropdown: true,
     items: [
       { title: "Accounting Services", path: "/accounting" },
       { title: "Bookkeeping", path: "/bookkeeping" },
       { title: "Payroll", path: "/payroll" },
-      { title: "Taxation & Compliance", path: "/taxation" }
-    ]
-  },
-  {
-    title: "Part Time CFO",
-    path: "/part-time-cfo", // will become '/part-time-cfo-uae' etc.
-    dropdown: true,
-    items: [
+      { title: "Taxation & Compliance", path: "/taxation" },
       { title: "Part Time CFO", path: "/part-time-cfo" },
-      { title: "Cash Flow Modelling", path: "/cash-flow" }
+      { title: "Cash Flow Modelling", path: "/cash-flow" },
+      { title: "Fundraising Services", path: "/fundraising" }
     ]
   },
   {
