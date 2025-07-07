@@ -35,12 +35,12 @@ export const CTASection = ({ onContactClick }: CTASectionProps) => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="inline-flex items-center gap-2 bg-white/15 text-white border-white/30 px-6 py-3 text-base backdrop-blur-md rounded-full mb-8 shadow-lg">
-              <Star className="w-5 h-5" />
+              <Star className="w-5 h-5 text-[#F97C60]" />
               Ready to Transform Your Business?
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-              Ready to Get
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
+              Ready to Get {" "}
+              <span className=" text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
                 Started?
               </span>
             </h2>

@@ -35,7 +35,7 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
       </div>
       
       <div className="container-custom relative z-10 py-24">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Main Content */}
             <div className="space-y-8 lg:pl-8">
@@ -46,13 +46,13 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
                 </Badge>
                 
                 <div className="space-y-4">
-                  <h1 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight tracking-tight">
-                    Transform Your
+                  <h1 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold pb-3">
+                    Expert led fundraising solutions for 
                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 animate-pulse">
-                      Vision Into
+                    startups and
                     </span>
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400">
-                      Reality
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 py-2">
+                      emerging companies
                     </span>
                   </h1>
                   
@@ -65,22 +65,26 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 rounded-full"
+                  className="bg-orange-500 hover:bg-orange-500 text-white px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 rounded-full"
                   onClick={onContactClick}
                 >
                   <Rocket className="mr-2 h-5 w-5" />
                   Start Your Journey
                 </Button>
                 
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="border-2 border-white/40 text-white hover:bg-white/15 px-8 py-4 text-lg backdrop-blur-md rounded-full font-semibold"
-                  onClick={onContactClick}
-                >
-                  <DollarSign className="mr-2 h-5 w-5" />
-                  For Investors
-                </Button>
+               <Button
+  variant="outline"
+  size="lg"
+  className="border-2 text-[#f87315] hover:border-black px-8 py-4 text-lg backdrop-blur-md rounded-full font-semibold"
+  onClick={() => window.open(
+    'https://calendly.com/jd-growwthpartners/15min?month=2025-07',
+    '_blank',
+    'noopener,noreferrer'
+  )}
+>
+  <DollarSign className="mr-2 h-5 w-5" />
+  For Investors
+</Button>
               </div>
 
               {/* Stats */}
@@ -96,7 +100,7 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
                   <div className="flex items-center justify-center mb-2">
                     <DollarSign className="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform" />
                   </div>
-                  <div className="text-2xl font-bold text-white mb-1">$500M+</div>
+                  <div className="text-2xl font-bold text-white mb-1">$50M+</div>
                   <div className="text-blue-200 text-sm">Capital Raised</div>
                 </div>
                 <div className="text-center group">
@@ -110,8 +114,8 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
             </div>
 
             {/* Right Side - Ready to Scale Card */}
-            <div className="relative flex justify-center lg:justify-center lg:pr-8">
-              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500 w-full max-w-sm">
+            <div className="relative flex  lg:justify-center">
+              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl transform hover:scale-105 transition-transform duration-500 w-full">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
