@@ -65,7 +65,7 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-orange-500 hover:bg-orange-500 text-white px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 rounded-full"
+                  className="bg-orange-500 hover:bg-orange-500 text-white px-8 py-6 text-lg font-bold shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 rounded-full"
                   onClick={onContactClick}
                 >
                   <Rocket className="mr-2 h-5 w-5" />
@@ -75,7 +75,7 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
                <Button
   variant="outline"
   size="lg"
-  className="border-2 text-[#f87315] hover:border-black px-8 py-4 text-lg backdrop-blur-md rounded-full font-semibold"
+  className="border-2 text-[#f87315] hover:border-black px-8 py-6 text-lg backdrop-blur-md rounded-full font-semibold"
   onClick={() => window.open(
     'https://calendly.com/jd-growwthpartners/15min?month=2025-07',
     '_blank',
@@ -87,30 +87,6 @@ export const HeroSection = ({ onContactClick }: HeroSectionProps) => {
 </Button>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
-                <div className="text-center group">
-                  <div className="flex items-center justify-center mb-2">
-                    <Building className="w-6 h-6 text-blue-400 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-1">100+</div>
-                  <div className="text-blue-200 text-sm">Companies Served</div>
-                </div>
-                <div className="text-center group">
-                  <div className="flex items-center justify-center mb-2">
-                    <DollarSign className="w-6 h-6 text-green-400 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-1">$50M+</div>
-                  <div className="text-blue-200 text-sm">Capital Raised</div>
-                </div>
-                <div className="text-center group">
-                  <div className="flex items-center justify-center mb-2">
-                    <Star className="w-6 h-6 text-yellow-400 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-1">85%</div>
-                  <div className="text-blue-200 text-sm">Success Rate</div>
-                </div>
-              </div>
             </div>
 
             {/* Right Side - Ready to Scale Card */}
