@@ -32,6 +32,7 @@ const staticPosts: Omit<BlogPost, "id">[] = (postsData as any[]).map(p => ({
   slug: p.slug,
   title: p.title,
   excerpt: p.excerpt,
+  content: p.content || '', // Add content property with default empty string
   heroImage: p.heroImage,
   publishDate: p.publishDate,
   author: p.author,
