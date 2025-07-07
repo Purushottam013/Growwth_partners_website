@@ -31,7 +31,7 @@ const navItems = [
       { title: "Taxation & Compliance", path: "/taxation" },
       { title: "Part Time CFO", path: "/part-time-cfo" },
       { title: "Cash Flow Modelling", path: "/cash-flow" },
-      { title: "Fundraising Services", path: "/fundraising" }
+      { title: "Fundraising Services", path: "/fundraising-services" }
     ]
   },
   {
