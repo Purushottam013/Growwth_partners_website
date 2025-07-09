@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
@@ -30,8 +31,7 @@ const navItems = [
       { title: "Payroll", path: "/payroll" },
       { title: "Taxation & Compliance", path: "/taxation" },
       { title: "Part Time CFO", path: "/part-time-cfo" },
-      { title: "Cash Flow Modelling", path: "/cash-flow" },
-      { title: "Fundraising Services", path: "/fundraising-services" }
+      { title: "Cash Flow Modelling", path: "/cash-flow" }
     ]
   },
   {
