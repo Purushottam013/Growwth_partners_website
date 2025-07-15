@@ -42,8 +42,12 @@ export const routes: RouteRecord[] = [
     element: <Layout />,
     children: [
        {
-        index: true,         // this will match exactly '/'
+        index: true,         
         element: <Index/>
+      },
+       { 
+        path: 'index', 
+        element: <Index /> 
       },
       {
         path: 'about',
