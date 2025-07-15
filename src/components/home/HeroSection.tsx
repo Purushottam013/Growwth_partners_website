@@ -128,7 +128,7 @@ export const HeroSection = () => {
               
               <div className="relative rounded-lg overflow-hidden shadow-2xl w-full h-full">
                 <OptimizedImage
-                  src="/lovable-uploads/2e981926-f1aa-4635-a064-f9520c758a7f.png"
+                  src="/lovable-uploads/Business_Growwth.webp"
                   alt="Financial Growth"
                   className="rounded-lg object-cover w-full h-full"
                   priority={true}
