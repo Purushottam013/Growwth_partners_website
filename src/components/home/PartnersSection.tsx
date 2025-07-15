@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import appboxoLogo from "/lovable-uploads/16ee7b65-f455-49be-936a-d460497f89de.png";
 import cenoaLogo from "/lovable-uploads/17aac22b-d2eb-4833-9e10-64fc56be4ace.png";
 import channelFactoryLogo from "/lovable-uploads/c1b780f8-d39e-41c9-ae1f-7a21887507d1.png";
 import dataleapLogo from "/lovable-uploads/59b87ecc-31d9-4461-8797-0c7ea4767efa.png";
@@ -21,9 +20,6 @@ export const PartnersSection = () => {
 
   // Array of company logos with their names
   const logos = [{
-    src: appboxoLogo,
-    name: 'Appboxo'
-  }, {
     src: cenoaLogo,
     name: 'Cenoa'
   }, {
