@@ -139,7 +139,7 @@ export const HeroSection = () => {
                 />
                 
                 {/* Floating badges - show after image loads */}
-                {imageLoaded && factBadges.map((badge, index) => (
+                { factBadges.map((badge, index) => (
                   <motion.div key={index} className={`absolute ${badge.position} hidden sm:block`} initial={{
                     opacity: 0,
                     scale: 0.8

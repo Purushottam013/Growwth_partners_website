@@ -34,8 +34,6 @@ import NotFound from './pages/NotFound';
 import BlogPost from './pages/BlogPost';
 import Index from './pages/Index';
 
-console.log()
-
 export const routes: RouteRecord[] = [
   {
     path: '/',
