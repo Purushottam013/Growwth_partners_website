@@ -34,16 +34,18 @@ import NotFound from './pages/NotFound';
 import BlogPost from './pages/BlogPost';
 import Index from './pages/Index';
 
-console.log()
-
 export const routes: RouteRecord[] = [
   {
     path: '/',
     element: <Layout />,
     children: [
        {
-        index: true,         // this will match exactly '/'
+        index: true,         
         element: <Index/>
+      },
+       { 
+        path: 'index', 
+        element: <Index /> 
       },
       {
         path: 'about',
