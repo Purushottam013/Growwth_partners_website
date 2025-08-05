@@ -8,6 +8,8 @@ import { Toaster as CustomToaster } from "@/components/ui/toaster";
 import { CanonicalUpdater } from "@/components/CanonicalUpdater";
 import { CountryProvider } from './contexts/CountryContext'
 import ScrollToTop from "./components/ui/ScrollToTop";
+import FloatingDemoPopup from "@/components/ui/FloatingDemoPopup";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -28,6 +30,7 @@ function Layout() {
             <ScrollToTop/>
             <Toaster />
             <CustomToaster />
+            <FloatingDemoPopup />
             <main>
               {/* Outlet is the placeholder for your page components */}
               <Outlet />
