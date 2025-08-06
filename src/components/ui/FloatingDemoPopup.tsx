@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 
 const FloatingDemoPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const location = useLocation();
 
   // Check if we're on the homepage
-  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    if (!isHomePage) {
-      setIsVisible(false);
-      return;
-    }
     setIsVisible(true);
-  }, [isHomePage]);
+  }, []);
 
   const handleClose = () => {
     setIsVisible(false);
@@ -29,7 +22,7 @@ const FloatingDemoPopup = () => {
     );
   };
 
-  if (!isVisible || !isHomePage) {
+  if (!isVisible) {
     return null;
   }
 
