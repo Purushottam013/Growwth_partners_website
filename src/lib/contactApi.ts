@@ -69,27 +69,26 @@ export const mapExpertFormPayload = (formData: {
   }
 });
 
-// Main API call function
-export const sendToContactApi = async (payload: ContactApiPayload): Promise<void> => {
-  try {
-    console.log('Sending to contact API:', payload);
-    
-    const response = await fetch(CONTACT_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload)
-    });
+// Main API call function - let errors bubble up
+export const sendToContactApi = async (payload: ContactApiPayload): Promise<unknown> => {
+  console.log('Sending to contact API:', payload);
 
-    if (!response.ok) {
-      throw new Error(`API call failed: ${response.status}`);
-    }
+  const response = await fetch(CONTACT_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
+  });
 
-    const result = await response.json();
-    console.log('Contact API response:', result);
-  } catch (error) {
-    console.error('Error calling contact API:', error);
-    // Don't throw - we don't want to break the main flow
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => '');
+    console.error('Contact API failed:', response.status, errorText);
+    throw new Error(`API call failed: ${response.status} ${errorText}`);
   }
+
+  const result = await response.json().catch(() => null);
+  console.log('Contact API response:', result);
+  return result;
 };
+
