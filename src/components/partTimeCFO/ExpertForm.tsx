@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { supabase } from "@/integrations/supabase/client";
+import { sendToContactApi, mapExpertFormPayload } from "@/lib/contactApi";
 
 interface ExpertFormProps {
   onSuccess?: () => void;
@@ -44,6 +44,10 @@ export const ExpertForm: React.FC<ExpertFormProps> = ({ onSuccess }) => {
       if (error) {
         throw new Error(error.message);
       }
+
+      // Send to external contact API (non-blocking)
+      const apiPayload = mapExpertFormPayload(formData);
+      sendToContactApi(apiPayload); // Don't await - let it run in background
       
       toast.success('Your message has been sent successfully!');
       setFormData({ name: '', email: '', company: '', message: '' });

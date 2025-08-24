@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { PhoneIcon, User, Building, Mail, ChevronDown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { sendToContactApi, mapGeneralContactPayload } from "@/lib/contactApi";
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -105,6 +105,10 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
       if (error) {
         throw new Error(error.message);
       }
+
+      // Send to external contact API (non-blocking)
+      const apiPayload = mapGeneralContactPayload(formData);
+      sendToContactApi(apiPayload); // Don't await - let it run in background
 
       toast({
         title: "Request Submitted",

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +20,7 @@ import {
   MessageSquare 
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { sendToContactApi, mapContactPagePayload } from "@/lib/contactApi";
 
 const services = [
   "Accounting Services",
@@ -110,6 +110,10 @@ export const ContactForm = () => {
       if (error) {
         throw new Error(error.message);
       }
+
+      // Send to external contact API (non-blocking)
+      const apiPayload = mapContactPagePayload(formData);
+      sendToContactApi(apiPayload); // Don't await - let it run in background
 
       toast({
         title: "Request Submitted",
