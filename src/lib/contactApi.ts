@@ -1,6 +1,8 @@
 
 // Contact API integration for external endpoint
-const CONTACT_API_URL = 'http://localhost:8081/api/contact-growwth';
+const API_BASE = import.meta.env.VITE_CONTACTAPI_DEVURL || import.meta.env.VITE_CONTACTAPI_PRODURL
+
+const CONTACT_API_URL = `${API_BASE}/contact-growwth`;
 
 interface ContactApiPayload {
   data: {
@@ -71,7 +73,7 @@ export const mapExpertFormPayload = (formData: {
 
 // Main API call function - let errors bubble up
 export const sendToContactApi = async (payload: ContactApiPayload): Promise<unknown> => {
-  console.log('Sending to contact API:', payload);
+  console.log('Sending to contact API:', CONTACT_API_URL,  payload);
 
   const response = await fetch(CONTACT_API_URL, {
     method: 'POST',
