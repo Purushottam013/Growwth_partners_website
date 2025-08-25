@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +13,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { PhoneIcon, User, Building, Mail, ChevronDown } from "lucide-react";
-import { sendToContactApi, mapGeneralContactPayload } from "@/lib/contactApi";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -88,9 +89,22 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Submit directly to external contact API
-      const apiPayload = mapGeneralContactPayload(formData);
-      await sendToContactApi(apiPayload);
+      // Call the Supabase Edge Function to send emails
+      const { data, error } = await supabase.functions.invoke("send-form-email", {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          countryCode: formData.countryCode,
+          service: formData.service,
+          formType: "contact"
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
 
       toast({
         title: "Request Submitted",
@@ -107,6 +121,7 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
       });
       
       if (onSuccess) onSuccess();
+      
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
