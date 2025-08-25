@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +19,7 @@ import {
   Mail, 
   MessageSquare 
 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { sendToContactApi, mapContactPagePayload } from "@/lib/contactApi";
 
 const services = [
   "Accounting Services",
@@ -93,23 +92,9 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Call the Supabase Edge Function to send emails
-      const { data, error } = await supabase.functions.invoke("send-form-email", {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          countryCode: formData.countryCode,
-          service: formData.service,
-          message: formData.message,
-          formType: "consultation"
-        },
-      });
-
-      if (error) {
-        throw new Error(error.message);
-      }
+      // Submit directly to external contact API
+      const apiPayload = mapContactPagePayload(formData);
+      await sendToContactApi(apiPayload);
 
       toast({
         title: "Request Submitted",
@@ -125,7 +110,6 @@ export const ContactForm = () => {
         service: "",
         message: ""
       });
-      
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
