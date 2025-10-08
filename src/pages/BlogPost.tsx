@@ -190,14 +190,14 @@ const BlogPostPage: React.FC = () => {
         <article className="container mx-auto px-4 py-6 md:py-12">
           <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
             {post.heroImage && (
-              <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden" style={{ height: '384px' }}>
+              <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
                 <OptimizedImage
                   src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg"
                   width={992}
                   height={384}
-                  style={{ maxWidth: '992px' }}
+                  style={{ maxWidth: "992px" }}
                 />
               </div>
             )}
