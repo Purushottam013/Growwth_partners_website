@@ -49,6 +49,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const [error, setError] = useState<string | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
+  const savedSelectionRef = useRef<Range | null>(null);
 
   // Only reset innerHTML when switching back into edit
   useEffect(() => {
@@ -345,19 +346,23 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           ? `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`
           : imgTag;
         
-        // Focus the editor first
+        // Restore the saved selection and insert
         if (editorRef.current) {
           editorRef.current.focus();
           
-          // Insert at the end if no selection exists
           const selection = window.getSelection();
-          if (!selection || !selection.rangeCount || !editorRef.current.contains(selection.anchorNode)) {
-            // Append to the end of the editor
-            editorRef.current.innerHTML += finalHtml;
+          if (selection && savedSelectionRef.current) {
+            // Restore the saved range
+            selection.removeAllRanges();
+            selection.addRange(savedSelectionRef.current);
+            
+            // Insert at the restored cursor position
+            document.execCommand("insertHTML", false, finalHtml);
             onChange(editorRef.current.innerHTML);
           } else {
-            // Insert at cursor position
-            insertHTMLAtCursor(finalHtml);
+            // Fallback: append to the end
+            editorRef.current.innerHTML += finalHtml;
+            onChange(editorRef.current.innerHTML);
           }
         }
         
@@ -378,6 +383,15 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     };
     
     reader.readAsDataURL(imageData.file);
+  };
+
+  const handleOpenImageDialog = () => {
+    // Save the current selection before opening the modal
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      savedSelectionRef.current = selection.getRangeAt(0).cloneRange();
+    }
+    setImageDialogOpen(true);
   };
 
   const togglePreview = () => setIsPreviewMode((p) => !p);
@@ -599,7 +613,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         />
         <Button
           type="button"
-          onClick={() => setImageDialogOpen(true)}
+          onClick={handleOpenImageDialog}
           size="sm"
           variant="ghost"
           disabled={uploading}
