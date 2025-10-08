@@ -13,6 +13,7 @@ import SEOhelper from "@/components/SEOhelper";
 import { useCountry } from "@/contexts/CountryContext";
 import { supabase } from "@/integrations/supabase/client";
 import postsData from "@/generated/posts.json";
+import { FAQSection } from "@/components/blog/FAQSection";
 
 interface BlogPost {
   id: string;
@@ -25,6 +26,7 @@ interface BlogPost {
   author?: string;
   authorBio?: string;
   categories?: string[];
+  faqs?: Array<{ question: string; answer: string }>;
 }
 
 // static JSON is only used here for build-time SEO metadata
@@ -87,6 +89,7 @@ const BlogPostPage: React.FC = () => {
           author: currentPost.Author || "Jatin Detwani",
           authorBio: "", // Add this to your database if needed
           categories: currentPost.Categories ? currentPost.Categories.split(",").map((c: string) => c.trim()) : [],
+          faqs: Array.isArray(currentPost.faqs) ? currentPost.faqs as Array<{ question: string; answer: string }> : [],
         };
 
         setPost(transformedPost);
@@ -270,6 +273,8 @@ const BlogPostPage: React.FC = () => {
                   </Button>
                 </div>
               )}
+
+              <FAQSection faqs={post.faqs || []} postTitle={post.title} />
             </div>
           </div>
 
