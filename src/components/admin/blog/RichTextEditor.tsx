@@ -345,7 +345,22 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           ? `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`
           : imgTag;
         
-        insertHTMLAtCursor(finalHtml);
+        // Focus the editor first
+        if (editorRef.current) {
+          editorRef.current.focus();
+          
+          // Insert at the end if no selection exists
+          const selection = window.getSelection();
+          if (!selection || !selection.rangeCount || !editorRef.current.contains(selection.anchorNode)) {
+            // Append to the end of the editor
+            editorRef.current.innerHTML += finalHtml;
+            onChange(editorRef.current.innerHTML);
+          } else {
+            // Insert at cursor position
+            insertHTMLAtCursor(finalHtml);
+          }
+        }
+        
         setUploading(false);
       };
       
