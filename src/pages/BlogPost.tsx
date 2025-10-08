@@ -28,11 +28,11 @@ interface BlogPost {
 }
 
 // static JSON is only used here for build-time SEO metadata
-const staticPosts: Omit<BlogPost, "id">[] = (postsData as any[]).map(p => ({
+const staticPosts: Omit<BlogPost, "id">[] = (postsData as any[]).map((p) => ({
   slug: p.slug,
   title: p.title,
   excerpt: p.excerpt,
-  content: p.content || '', // Add content property with default empty string
+  content: p.content || "", // Add content property with default empty string
   heroImage: p.heroImage,
   publishDate: p.publishDate,
   author: p.author,
@@ -46,10 +46,7 @@ const BlogPostPage: React.FC = () => {
   const { getCountryUrl } = useCountry();
 
   // 1) Build-time SEO lookup
-  const seoPost = useMemo(
-    () => staticPosts.find((p) => p.slug === slug),
-    [slug]
-  );
+  const seoPost = useMemo(() => staticPosts.find((p) => p.slug === slug), [slug]);
   const canonicalUrl = `https://growwthpartners.com/blog/${slug}`;
 
   // 2) Runtime fetch for actual content and related posts
@@ -59,88 +56,87 @@ const BlogPostPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-      const fetchPost = async () => {
-        if (!slug) return;
-  
-        try {
-          setLoading(true);
-          
-          // Fetch the current post
-          const { data: currentPost, error: postError } = await supabase
-            .from('blog_post')
-            .select('*')
-            .eq('slug', slug)
-            .single();
-  
-          if (postError) {
-            console.error('Error fetching post:', postError);
-            setError('Post not found');
-            return;
-          }
-  
-          // Transform the data to match our interface
-          const transformedPost: BlogPost = {
-            id: currentPost.id.toString(),
-            slug: currentPost.slug || '',
-            title: currentPost.title || '',
-            excerpt: currentPost.Excerpt || '',
-            content: currentPost.Content || '',
-            heroImage: currentPost.Hero_image || '',
-            publishDate: currentPost.publishdate || '',
-            author: currentPost.Author || 'Jatin Detwani',
-            authorBio: '', // Add this to your database if needed
-            categories: currentPost.Categories ? currentPost.Categories.split(',').map((c: string) => c.trim()) : []
-          };
-  
-          setPost(transformedPost);
-  
-          // Fetch related posts
-          const { data: allPosts, error: relatedError } = await supabase
-            .from('blog_post')
-            .select('*')
-            .neq('id', currentPost.id)
-            .limit(6);
-  
-          if (!relatedError && allPosts) {
-            const transformedRelatedPosts: BlogPost[] = allPosts.map(p => ({
-              id: p.id.toString(),
-              slug: p.slug || '',
-              title: p.title || '',
-              excerpt: p.Excerpt || '',
-              content: p.Content || '',
-              heroImage: p.Hero_image || '',
-              publishDate: p.publishdate || '',
-              author: p.Author || 'Jatin Detwani',
-              authorBio: '',
-              categories: p.Categories ? p.Categories.split(',').map((c: string) => c.trim()) : []
-            }));
-  
-            // Filter related posts by category if available
-            const currentCategories = transformedPost.categories || [];
-            const byCategory = transformedRelatedPosts.filter(p => 
-              p.categories?.some(c => currentCategories.includes(c))
-            ).slice(0, 3);
-            
-            if (byCategory.length >= 3) {
-              setRelatedPosts(byCategory);
-            } else {
-              const recent = transformedRelatedPosts.filter(p => 
-                !byCategory.includes(p)
-              ).slice(0, 3 - byCategory.length);
-              setRelatedPosts([...byCategory, ...recent]);
-            }
-          }
-  
-        } catch (err) {
-          console.error('Error fetching blog post:', err);
-          setError('Failed to load blog post');
-        } finally {
-          setLoading(false);
+    const fetchPost = async () => {
+      if (!slug) return;
+
+      try {
+        setLoading(true);
+
+        // Fetch the current post
+        const { data: currentPost, error: postError } = await supabase
+          .from("blog_post")
+          .select("*")
+          .eq("slug", slug)
+          .single();
+
+        if (postError) {
+          console.error("Error fetching post:", postError);
+          setError("Post not found");
+          return;
         }
-      };
-  
-      fetchPost();
-    }, [slug]);
+
+        // Transform the data to match our interface
+        const transformedPost: BlogPost = {
+          id: currentPost.id.toString(),
+          slug: currentPost.slug || "",
+          title: currentPost.title || "",
+          excerpt: currentPost.Excerpt || "",
+          content: currentPost.Content || "",
+          heroImage: currentPost.Hero_image || "",
+          publishDate: currentPost.publishdate || "",
+          author: currentPost.Author || "Jatin Detwani",
+          authorBio: "", // Add this to your database if needed
+          categories: currentPost.Categories ? currentPost.Categories.split(",").map((c: string) => c.trim()) : [],
+        };
+
+        setPost(transformedPost);
+
+        // Fetch related posts
+        const { data: allPosts, error: relatedError } = await supabase
+          .from("blog_post")
+          .select("*")
+          .neq("id", currentPost.id)
+          .limit(6);
+
+        if (!relatedError && allPosts) {
+          const transformedRelatedPosts: BlogPost[] = allPosts.map((p) => ({
+            id: p.id.toString(),
+            slug: p.slug || "",
+            title: p.title || "",
+            excerpt: p.Excerpt || "",
+            content: p.Content || "",
+            heroImage: p.Hero_image || "",
+            publishDate: p.publishdate || "",
+            author: p.Author || "Jatin Detwani",
+            authorBio: "",
+            categories: p.Categories ? p.Categories.split(",").map((c: string) => c.trim()) : [],
+          }));
+
+          // Filter related posts by category if available
+          const currentCategories = transformedPost.categories || [];
+          const byCategory = transformedRelatedPosts
+            .filter((p) => p.categories?.some((c) => currentCategories.includes(c)))
+            .slice(0, 3);
+
+          if (byCategory.length >= 3) {
+            setRelatedPosts(byCategory);
+          } else {
+            const recent = transformedRelatedPosts
+              .filter((p) => !byCategory.includes(p))
+              .slice(0, 3 - byCategory.length);
+            setRelatedPosts([...byCategory, ...recent]);
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching blog post:", err);
+        setError("Failed to load blog post");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [slug]);
 
   return (
     <Layout>
@@ -188,9 +184,7 @@ const BlogPostPage: React.FC = () => {
         <div className="container mx-auto px-4 py-12 text-center">
           <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
           <p className="mb-6">The blog post you're looking for doesn't exist.</p>
-          <Button onClick={() => navigate(getCountryUrl("/blog"))}>
-            Back to Blog
-          </Button>
+          <Button onClick={() => navigate(getCountryUrl("/blog"))}>Back to Blog</Button>
         </div>
       ) : (
         <article className="container mx-auto px-4 py-6 md:py-12">
@@ -200,7 +194,7 @@ const BlogPostPage: React.FC = () => {
                 <OptimizedImage
                   src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-auto max-w-[992px]"
+                  className="w-full h-auto max-w-[992px] object-cover"
                   width={992}
                   height={334}
                 />
@@ -221,12 +215,8 @@ const BlogPostPage: React.FC = () => {
                     J
                   </div>
                   <div>
-                    <p className="font-medium text-gray-800">
-                      {post.author}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {post.publishDate}
-                    </p>
+                    <p className="font-medium text-gray-800">{post.author}</p>
+                    <p className="text-sm text-gray-500">{post.publishDate}</p>
                   </div>
                 </div>
                 <div className="flex space-x-4">
@@ -247,10 +237,8 @@ const BlogPostPage: React.FC = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent(
-                          "Regarding: " + post.title
-                        )}`,
-                        "_blank"
+                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent("Regarding: " + post.title)}`,
+                        "_blank",
                       )
                     }
                     className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
@@ -261,25 +249,18 @@ const BlogPostPage: React.FC = () => {
                 </div>
               </div>
 
-              <div
-                className="prose prose-lg mx-auto mb-8"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              <div className="prose prose-lg mx-auto mb-8" dangerouslySetInnerHTML={{ __html: post.content }} />
 
               {post.authorBio && (
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8">
-                  <h3 className="text-xl font-semibold mb-2">
-                    About the Author
-                  </h3>
+                  <h3 className="text-xl font-semibold mb-2">About the Author</h3>
                   <p className="text-gray-700 mb-4">{post.authorBio}</p>
                   <Button
                     className="bg-indigo-600 text-white hover:bg-indigo-700"
                     onClick={() =>
                       window.open(
-                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent(
-                          "Regarding: " + post.title
-                        )}`,
-                        "_blank"
+                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent("Regarding: " + post.title)}`,
+                        "_blank",
                       )
                     }
                   >
@@ -288,97 +269,96 @@ const BlogPostPage: React.FC = () => {
                   </Button>
                 </div>
               )}
-                </div>
+            </div>
           </div>
 
-              {/* Related Services/Solutions */}
-              <section className="mt-12 mb-12">
-                <h2 className="text-2xl font-bold mb-6 text-center">
-                  Related Services &amp; Solutions
-                </h2>
-                <div className="grid gap-6 md:grid-cols-3">
-                  <Card className="p-6 hover:shadow-xl transition">
-                    <CardContent>
-                      <h3 className="text-lg font-bold mb-2">
-                        Accounting Services in Singapore
-                      </h3>
-                      <p className="text-gray-600 mb-4">
-                        Leverage our generative AI development services to streamline workflows, boost productivity and drive innovation, while ensuring seamless integration with your existing systems.
-                      </p>
-                      <Link
-                        to={getCountryUrl("/accounting")}
-                        className="font-medium inline-flex items-center text-orange-500"
-                      >
-                        Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
-                      </Link>
-                    </CardContent>
-                  </Card>
-                  <Card className="p-6 hover:shadow-xl transition">
-                    <CardContent>
-                      <h3 className="text-lg font-bold mb-2">
-                        Part-Time CFO Services
-                      </h3>
-                      <p className="text-gray-600 mb-4">
-                        Optimize your business potential with our comprehensive generative AI consulting services, designed to guide you in leveraging GenAI for operational excellence and product innovation, while also upholding ethical AI principles.
-                      </p>
-                      <Link
-                        to={getCountryUrl("/part-time-cfo")}
-                        className=" font-medium inline-flex items-center text-orange-500"
-                      >
-                        Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
-                      </Link>
-                    </CardContent>
-                  </Card>
-                  <Card className="p-6 hover:shadow-xl transition">
-                    <CardContent>
-                      <h3 className="text-lg font-bold mb-2">
-                        Bookkeeping Services in Singapore
-                      </h3>
-                      <p className="text-gray-600 mb-4">
-                        Unlock AI's full potential for your business through our comprehensive AI development services, designed to tackle intricate tech challenges, streamline business workflows, and achieve operational excellence.
-                      </p>
-                      <Link
-                        to={getCountryUrl("/bookkeeping")}
-                        className=" font-medium inline-flex items-center text-orange-500"
-                      >
-                        Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
-                      </Link>
-                    </CardContent>
-                  </Card>
-                </div>
-              </section>
-
-              {/* Related Articles */}
-              {relatedPosts.length > 0 && (
-                <section className="mt-16">
-            <h2 className="text-2xl font-bold mb-6 text-center">Related Articles</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {relatedPosts.map(rp => (
-                <Card key={rp.id} className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-                  <Link to={getCountryUrl(`/blog/${rp.slug}`)} className="flex flex-col h-full">
-                    <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100">
-                      <OptimizedImage 
-                        src={rp.heroImage || 'https://as2.ftcdn.net/v2/jpg/10/28/35/13/1000_F_1028351361_FZ2vwpQEZZjEDQxp70ICUoC7Qmb9nuZi.jpg'} 
-                        alt={rp.title} 
-                        className="w-full h-full object-cover" 
-                        width={400}
-                        height={192}
-                      />
-                    </div>
-                    <CardContent className="p-4 flex flex-col flex-grow">
-                      <h3 className="font-bold text-lg mb-2 line-clamp-2">{rp.title}</h3>
-                      <p className="text-gray-600 line-clamp-3 flex-grow mb-4">{rp.excerpt}</p>
-                      <div className="mt-auto flex items-center text-indigo-600 font-medium">
-                        Read more <ArrowRight className="ml-1 w-4 h-4" />
-                      </div>
-                    </CardContent>
+          {/* Related Services/Solutions */}
+          <section className="mt-12 mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-center">Related Services &amp; Solutions</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              <Card className="p-6 hover:shadow-xl transition">
+                <CardContent>
+                  <h3 className="text-lg font-bold mb-2">Accounting Services in Singapore</h3>
+                  <p className="text-gray-600 mb-4">
+                    Leverage our generative AI development services to streamline workflows, boost productivity and
+                    drive innovation, while ensuring seamless integration with your existing systems.
+                  </p>
+                  <Link
+                    to={getCountryUrl("/accounting")}
+                    className="font-medium inline-flex items-center text-orange-500"
+                  >
+                    Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
                   </Link>
-                </Card>
-              ))}
+                </CardContent>
+              </Card>
+              <Card className="p-6 hover:shadow-xl transition">
+                <CardContent>
+                  <h3 className="text-lg font-bold mb-2">Part-Time CFO Services</h3>
+                  <p className="text-gray-600 mb-4">
+                    Optimize your business potential with our comprehensive generative AI consulting services, designed
+                    to guide you in leveraging GenAI for operational excellence and product innovation, while also
+                    upholding ethical AI principles.
+                  </p>
+                  <Link
+                    to={getCountryUrl("/part-time-cfo")}
+                    className=" font-medium inline-flex items-center text-orange-500"
+                  >
+                    Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                  </Link>
+                </CardContent>
+              </Card>
+              <Card className="p-6 hover:shadow-xl transition">
+                <CardContent>
+                  <h3 className="text-lg font-bold mb-2">Bookkeeping Services in Singapore</h3>
+                  <p className="text-gray-600 mb-4">
+                    Unlock AI's full potential for your business through our comprehensive AI development services,
+                    designed to tackle intricate tech challenges, streamline business workflows, and achieve operational
+                    excellence.
+                  </p>
+                  <Link
+                    to={getCountryUrl("/bookkeeping")}
+                    className=" font-medium inline-flex items-center text-orange-500"
+                  >
+                    Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                  </Link>
+                </CardContent>
+              </Card>
             </div>
           </section>
-              )}
-          
+
+          {/* Related Articles */}
+          {relatedPosts.length > 0 && (
+            <section className="mt-16">
+              <h2 className="text-2xl font-bold mb-6 text-center">Related Articles</h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {relatedPosts.map((rp) => (
+                  <Card key={rp.id} className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                    <Link to={getCountryUrl(`/blog/${rp.slug}`)} className="flex flex-col h-full">
+                      <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100">
+                        <OptimizedImage
+                          src={
+                            rp.heroImage ||
+                            "https://as2.ftcdn.net/v2/jpg/10/28/35/13/1000_F_1028351361_FZ2vwpQEZZjEDQxp70ICUoC7Qmb9nuZi.jpg"
+                          }
+                          alt={rp.title}
+                          className="w-full h-full object-cover"
+                          width={400}
+                          height={192}
+                        />
+                      </div>
+                      <CardContent className="p-4 flex flex-col flex-grow">
+                        <h3 className="font-bold text-lg mb-2 line-clamp-2">{rp.title}</h3>
+                        <p className="text-gray-600 line-clamp-3 flex-grow mb-4">{rp.excerpt}</p>
+                        <div className="mt-auto flex items-center text-indigo-600 font-medium">
+                          Read more <ArrowRight className="ml-1 w-4 h-4" />
+                        </div>
+                      </CardContent>
+                    </Link>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          )}
         </article>
       )}
     </Layout>
