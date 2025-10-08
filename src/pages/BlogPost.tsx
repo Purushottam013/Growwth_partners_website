@@ -196,11 +196,13 @@ const BlogPostPage: React.FC = () => {
         <article className="container mx-auto px-4 py-6 md:py-12">
           <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
             {post.heroImage && (
-              <div className="w-full bg-gray-100">
+              <div className="w-full bg-gray-100 flex items-center justify-center">
                 <OptimizedImage
                   src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-auto"
+                  className="w-full h-auto max-w-[992px]"
+                  width={992}
+                  height={334}
                 />
               </div>
             )}
