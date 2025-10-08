@@ -194,9 +194,8 @@ const BlogPostPage: React.FC = () => {
                 <OptimizedImage
                   src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-auto max-w-[992px] object-cover"
-                  width={992}
-                  height={334}
+                  className="w-full h-auto object-contain"
+                  style={{ maxHeight: '500px' }}
                 />
               </div>
             )}
