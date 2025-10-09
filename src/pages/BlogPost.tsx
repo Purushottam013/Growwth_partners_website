@@ -193,7 +193,7 @@ const BlogPostPage: React.FC = () => {
         <article className="container mx-auto px-4 py-6 md:py-12">
           <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
             {post.heroImage && (
-              <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden mb-8">
+              <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
                 <OptimizedImage
                   src={post.heroImage}
                   alt={post.title}
@@ -204,7 +204,7 @@ const BlogPostPage: React.FC = () => {
                 />
               </div>
             )}
-            <div className="p-6">
+            <div className="px-6 pb-6 pt-0 mt-8">
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.categories?.map((cat) => (
                   <Badge key={cat} className="bg-indigo-100 text-indigo-800">
