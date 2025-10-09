@@ -204,7 +204,7 @@ const BlogPostPage: React.FC = () => {
                 />
               </div>
             )}
-            <div className="p-6 mt-8">
+            <div className="px-6 pb-6 pt-0 mt-8">
               <div className="flex flex-wrap gap-2 mb-4">
                 {post.categories?.map((cat) => (
                   <Badge key={cat} className="bg-indigo-100 text-indigo-800">
