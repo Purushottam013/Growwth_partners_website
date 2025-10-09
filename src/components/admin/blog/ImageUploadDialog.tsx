@@ -147,6 +147,7 @@ export const ImageUploadDialog = ({
               accept="image/*"
               ref={fileInputRef}
               onChange={handleFileChange}
+              className="bg-secondary/20 file:bg-primary file:text-primary-foreground file:px-4 file:py-2 file:rounded-md file:border-0 file:mr-4 file:cursor-pointer hover:file:bg-primary/90"
             />
             {errors.file && (
               <p className="text-sm text-destructive">{errors.file}</p>
