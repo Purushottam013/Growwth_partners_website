@@ -341,10 +341,14 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         // Build image tag with alt text and dimensions
         const imgTag = `<img src="${src}" width="${finalWidth}" height="${finalHeight}" alt="${imageData.alt}" />`;
         
-        // Wrap in link if clickable
-        const finalHtml = imageData.isClickable && imageData.linkUrl
-          ? `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`
-          : imgTag;
+        // Wrap in link if clickable and center it
+        let finalHtml: string;
+        if (imageData.isClickable && imageData.linkUrl) {
+          const linkedImage = `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`;
+          finalHtml = `<div style="display: flex; justify-content: center; margin: 1rem 0;">${linkedImage}</div>`;
+        } else {
+          finalHtml = imgTag;
+        }
         
         // Restore the saved selection and insert
         if (editorRef.current) {
