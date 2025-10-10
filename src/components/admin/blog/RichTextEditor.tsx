@@ -345,7 +345,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         let finalHtml: string;
         if (imageData.isClickable && imageData.linkUrl) {
           const linkedImage = `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`;
-          finalHtml = `<div style="display: flex; justify-content: center; margin: 1rem 0;">${linkedImage}</div>`;
+          // Add a paragraph after the image for cursor positioning
+          finalHtml = `<div style="display: flex; justify-content: center; margin: 1rem 0;">${linkedImage}</div><p><br></p>`;
         } else {
           finalHtml = imgTag;
         }
@@ -362,6 +363,21 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
             
             // Insert at the restored cursor position
             document.execCommand("insertHTML", false, finalHtml);
+            
+            // Move cursor to the paragraph after the image
+            if (imageData.isClickable) {
+              setTimeout(() => {
+                const range = document.createRange();
+                const lastChild = editorRef.current!.lastChild;
+                if (lastChild) {
+                  range.setStart(lastChild, 0);
+                  range.collapse(true);
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+                }
+              }, 0);
+            }
+            
             onChange(editorRef.current.innerHTML);
           } else {
             // Fallback: append to the end
