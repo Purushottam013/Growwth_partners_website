@@ -345,8 +345,9 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         let finalHtml: string;
         if (imageData.isClickable && imageData.linkUrl) {
           const linkedImage = `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`;
-          // Add a paragraph after the image for cursor positioning
-          finalHtml = `<div style="display: flex; justify-content: center; margin: 1rem 0;">${linkedImage}</div><p><br></p>`;
+          // Add a paragraph with unique ID after the image for cursor positioning
+          const markerId = `cursor-marker-${Date.now()}`;
+          finalHtml = `<div style="display: flex; justify-content: center; margin: 1rem 0;">${linkedImage}</div><p id="${markerId}"><br></p>`;
         } else {
           finalHtml = imgTag;
         }
@@ -367,18 +368,25 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
             // Move cursor to the paragraph after the image
             if (imageData.isClickable) {
               setTimeout(() => {
-                const range = document.createRange();
-                const lastChild = editorRef.current!.lastChild;
-                if (lastChild) {
-                  range.setStart(lastChild, 0);
+                const markerId = `cursor-marker-${Date.now()}`;
+                // Find the marker paragraph we just inserted
+                const markerP = editorRef.current!.querySelector(`[id^="cursor-marker-"]`) as HTMLElement;
+                if (markerP && selection) {
+                  // Position cursor inside the paragraph
+                  const range = document.createRange();
+                  range.selectNodeContents(markerP);
                   range.collapse(true);
                   selection.removeAllRanges();
                   selection.addRange(range);
+                  
+                  // Remove the ID to clean up
+                  markerP.removeAttribute('id');
                 }
-              }, 0);
+                onChange(editorRef.current!.innerHTML);
+              }, 10);
+            } else {
+              onChange(editorRef.current.innerHTML);
             }
-            
-            onChange(editorRef.current.innerHTML);
           } else {
             // Fallback: append to the end
             editorRef.current.innerHTML += finalHtml;
