@@ -24,7 +24,8 @@ export const FAQManager = ({ faqs, onChange }: FAQManagerProps) => {
   };
 
   const handleUpdateFAQ = (index: number, field: "question" | "answer", value: string) => {
-    const updated = [...faqs];
+    // Initialize with one empty FAQ if the array is empty
+    const updated = faqs.length === 0 ? [{ question: "", answer: "" }] : [...faqs];
     if (updated[index]) {
       updated[index][field] = value;
     }
