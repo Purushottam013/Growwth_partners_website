@@ -18,6 +18,7 @@ import { blogData } from "@/data/blog";
 import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
 import { RichTextEditor } from "./RichTextEditor";
 import { ImageUpload } from "./ImageUpload";
+import { FAQManager } from "./FAQManager";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -27,6 +28,10 @@ const formSchema = z.object({
   content: z.string().min(1, "Content is required"),
   author: z.string().min(1, "Author is required"),
   categories: z.array(z.string()).min(1, "Select at least one category"),
+  faqs: z.array(z.object({
+    question: z.string().optional(),
+    answer: z.string().optional(),
+  })).default([]),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -55,6 +60,7 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
         : initialData.categories 
           ? initialData.categories.split(",").map(c => c.trim())
           : [],
+      faqs: initialData.faqs || [],
     } : {
       title: "",
       slug: "",
@@ -63,6 +69,7 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
       content: "",
       author: "",
       categories: [],
+      faqs: [],
     },
   });
 
@@ -77,6 +84,7 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
           content: data.content,
           author: data.author,
           categories: data.categories,
+          faqs: data.faqs,
         });
         toast({
           title: "Success",
@@ -91,6 +99,7 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
           content: data.content,
           author: data.author,
           categories: data.categories,
+          faqs: data.faqs,
         });
         form.reset();
         toast({
@@ -238,6 +247,23 @@ export const BlogPostForm = ({ initialData, mode = "create", onSuccess }: BlogPo
               <FormControl>
                 <RichTextEditor 
                   value={field.value} 
+                  onChange={field.onChange} 
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="faqs"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>FAQs (Optional)</FormLabel>
+              <FormControl>
+                <FAQManager 
+                  faqs={field.value} 
                   onChange={field.onChange} 
                 />
               </FormControl>

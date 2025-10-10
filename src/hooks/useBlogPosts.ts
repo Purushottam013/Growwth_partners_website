@@ -13,6 +13,7 @@ export interface BlogPost {
   author?: string;
   categories?: string[] | string;  // Modified to handle both string array and string
   publishDate?: string;
+  faqs?: Array<{ question?: string; answer?: string }>;
 }
 
 // Helper to serialize/deserialize categories
@@ -43,7 +44,8 @@ export const useBlogPosts = () => {
           content: post.Content || "",
           author: post.Author || "",
           categories: deserializeCategories(post.Categories || ""),
-          publishDate: post.publishdate || "" // Fixed: using lowercase publishdate from database
+          publishDate: post.publishdate || "", // Fixed: using lowercase publishdate from database
+          faqs: Array.isArray(post.faqs) ? post.faqs as Array<{ question: string; answer: string }> : [],
         }))
       );
     } else {
@@ -79,6 +81,7 @@ export const useBlogPosts = () => {
             Categories: Array.isArray(post.categories) 
               ? serializeCategories(post.categories) 
               : post.categories ?? "",
+            faqs: post.faqs || [],
             // publishdate is set by database default
           },
         ])
@@ -141,6 +144,9 @@ export const useBlogPosts = () => {
     if (updatedPost.publishDate) {
       toUpdate.publishdate = updatedPost.publishDate;
       delete toUpdate.publishDate;
+    }
+    if (updatedPost.faqs !== undefined) {
+      toUpdate.faqs = updatedPost.faqs;
     }
     const { data, error } = await supabase
       .from("blog_post")

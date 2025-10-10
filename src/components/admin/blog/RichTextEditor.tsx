@@ -35,6 +35,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ImageUploadDialog } from "./ImageUploadDialog";
 
 interface RichTextEditorProps {
   value: string;
@@ -47,6 +48,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
+  const savedSelectionRef = useRef<Range | null>(null);
 
   // Only reset innerHTML when switching back into edit
   useEffect(() => {
@@ -198,6 +201,13 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
       "right text"
     );
 
+  const handleCenterContent = () =>
+    insertMarkdown(
+      `<div style="display: flex; justify-content: center;">`,
+      "</div>",
+      "centered content"
+    );
+
   // New functions for text coloring
   const handleTextColor = (color: string) => {
     insertMarkdown(`<span style="color:${color}">`, "</span>", "colored text");
@@ -308,6 +318,110 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     if (f) handleImageFile(f);
   };
 
+  const handleInsertImage = (imageData: {
+    file: File;
+    width?: number;
+    height?: number;
+    alt: string;
+    isClickable: boolean;
+    linkUrl?: string;
+  }) => {
+    const reader = new FileReader();
+    setUploading(true);
+    
+    reader.onload = () => {
+      const src = reader.result as string;
+      const img = new Image();
+      
+      img.onload = () => {
+        // Use provided dimensions or fall back to natural dimensions
+        const finalWidth = imageData.width || img.width;
+        const finalHeight = imageData.height || img.height;
+        
+        // Build image tag with alt text and dimensions - add inline styles to prevent spacing
+        const imgTag = `<img src="${src}" width="${finalWidth}" height="${finalHeight}" alt="${imageData.alt}" style="display: block; margin: 0;" />`;
+        
+        // Wrap in link if clickable and center it
+        let finalHtml: string;
+        if (imageData.isClickable && imageData.linkUrl) {
+          const linkedImage = `<a href="${imageData.linkUrl}" target="_blank" rel="noopener noreferrer">${imgTag}</a>`;
+          // Add a paragraph with unique ID after the image for cursor positioning
+          const markerId = `cursor-marker-${Date.now()}`;
+          finalHtml = `<div style="display: flex; justify-content: center; margin: 1rem 0;">${linkedImage}</div><p id="${markerId}"><br></p>`;
+        } else {
+          finalHtml = imgTag;
+        }
+        
+        // Restore the saved selection and insert
+        if (editorRef.current) {
+          editorRef.current.focus();
+          
+          const selection = window.getSelection();
+          if (selection && savedSelectionRef.current) {
+            // Restore the saved range
+            selection.removeAllRanges();
+            selection.addRange(savedSelectionRef.current);
+            
+            // Insert at the restored cursor position
+            document.execCommand("insertHTML", false, finalHtml);
+            
+            // Move cursor to the paragraph after the image
+            if (imageData.isClickable) {
+              setTimeout(() => {
+                const markerId = `cursor-marker-${Date.now()}`;
+                // Find the marker paragraph we just inserted
+                const markerP = editorRef.current!.querySelector(`[id^="cursor-marker-"]`) as HTMLElement;
+                if (markerP && selection) {
+                  // Position cursor inside the paragraph
+                  const range = document.createRange();
+                  range.selectNodeContents(markerP);
+                  range.collapse(true);
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+                  
+                  // Remove the ID to clean up
+                  markerP.removeAttribute('id');
+                }
+                onChange(editorRef.current!.innerHTML);
+              }, 10);
+            } else {
+              onChange(editorRef.current.innerHTML);
+            }
+          } else {
+            // Fallback: append to the end
+            editorRef.current.innerHTML += finalHtml;
+            onChange(editorRef.current.innerHTML);
+          }
+        }
+        
+        setUploading(false);
+      };
+      
+      img.onerror = () => {
+        setError("Failed to load image");
+        setUploading(false);
+      };
+      
+      img.src = src;
+    };
+    
+    reader.onerror = () => {
+      setError("Failed to read image file");
+      setUploading(false);
+    };
+    
+    reader.readAsDataURL(imageData.file);
+  };
+
+  const handleOpenImageDialog = () => {
+    // Save the current selection before opening the modal
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      savedSelectionRef.current = selection.getRangeAt(0).cloneRange();
+    }
+    setImageDialogOpen(true);
+  };
+
   const togglePreview = () => setIsPreviewMode((p) => !p);
 
   // Color options array
@@ -409,6 +523,18 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
           title="Align Right"
         >
           <AlignRight />
+        </Button>
+
+        <Button
+          type="button"
+          onClick={handleCenterContent}
+          size="sm"
+          variant="ghost"
+          title="Center Content"
+          className="border border-primary/20"
+        >
+          <AlignCenter className="h-4 w-4" />
+          <span className="ml-1 text-xs">C</span>
         </Button>
 
         <Button
@@ -515,7 +641,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         />
         <Button
           type="button"
-          onClick={() => fileInputRef.current?.click()}
+          onClick={handleOpenImageDialog}
           size="sm"
           variant="ghost"
           disabled={uploading}
@@ -523,6 +649,12 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         >
           {uploading ? <Upload className="animate-spin" /> : <ImageIcon />}
         </Button>
+
+        <ImageUploadDialog
+          open={imageDialogOpen}
+          onOpenChange={setImageDialogOpen}
+          onInsert={handleInsertImage}
+        />
 
         <div className="ml-auto">
           <Button
