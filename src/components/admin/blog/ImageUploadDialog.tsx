@@ -25,11 +25,7 @@ interface ImageUploadDialogProps {
   }) => void;
 }
 
-export const ImageUploadDialog = ({
-  open,
-  onOpenChange,
-  onInsert,
-}: ImageUploadDialogProps) => {
+export const ImageUploadDialog = ({ open, onOpenChange, onInsert }: ImageUploadDialogProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
   const [width, setWidth] = useState<string>("");
@@ -132,9 +128,7 @@ export const ImageUploadDialog = ({
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Insert Image</DialogTitle>
-          <DialogDescription>
-            Upload an image and configure its properties
-          </DialogDescription>
+          <DialogDescription>Upload an image and configure its properties</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 py-4">
@@ -147,11 +141,9 @@ export const ImageUploadDialog = ({
               accept="image/*"
               ref={fileInputRef}
               onChange={handleFileChange}
-              className="bg-secondary/20 file:bg-primary file:text-primary-foreground file:px-4 file:py-2 file:rounded-md file:border-0 file:mr-4 file:cursor-pointer hover:file:bg-primary/90"
+              className="bg-secondary/20 file:bg-primary file:text-primary-foreground file:px-4 file:py-1 file:rounded-md file:border-0 file:mr-4 file:cursor-pointer hover:file:bg-primary/90 mb-2"
             />
-            {errors.file && (
-              <p className="text-sm text-destructive">{errors.file}</p>
-            )}
+            {errors.file && <p className="text-sm text-destructive">{errors.file}</p>}
           </div>
 
           {/* Image Preview */}
@@ -159,11 +151,7 @@ export const ImageUploadDialog = ({
             <div className="space-y-2">
               <Label>Preview</Label>
               <div className="border rounded p-2 bg-muted">
-                <img
-                  src={preview}
-                  alt="Preview"
-                  className="max-w-full h-auto max-h-[200px] mx-auto"
-                />
+                <img src={preview} alt="Preview" className="max-w-full h-auto max-h-[200px] mx-auto" />
               </div>
             </div>
           )}
@@ -178,9 +166,7 @@ export const ImageUploadDialog = ({
               value={width}
               onChange={(e) => setWidth(e.target.value)}
             />
-            {errors.width && (
-              <p className="text-sm text-destructive">{errors.width}</p>
-            )}
+            {errors.width && <p className="text-sm text-destructive">{errors.width}</p>}
           </div>
 
           {/* Height */}
@@ -193,9 +179,7 @@ export const ImageUploadDialog = ({
               value={height}
               onChange={(e) => setHeight(e.target.value)}
             />
-            {errors.height && (
-              <p className="text-sm text-destructive">{errors.height}</p>
-            )}
+            {errors.height && <p className="text-sm text-destructive">{errors.height}</p>}
           </div>
 
           {/* Alt Text */}
@@ -208,9 +192,7 @@ export const ImageUploadDialog = ({
               value={alt}
               onChange={(e) => setAlt(e.target.value)}
             />
-            {errors.alt && (
-              <p className="text-sm text-destructive">{errors.alt}</p>
-            )}
+            {errors.alt && <p className="text-sm text-destructive">{errors.alt}</p>}
           </div>
 
           {/* Make Image Clickable */}
@@ -239,9 +221,7 @@ export const ImageUploadDialog = ({
                 value={linkUrl}
                 onChange={(e) => setLinkUrl(e.target.value)}
               />
-              {errors.linkUrl && (
-                <p className="text-sm text-destructive">{errors.linkUrl}</p>
-              )}
+              {errors.linkUrl && <p className="text-sm text-destructive">{errors.linkUrl}</p>}
             </div>
           )}
         </div>
