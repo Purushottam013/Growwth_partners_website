@@ -338,8 +338,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         const finalWidth = imageData.width || img.width;
         const finalHeight = imageData.height || img.height;
         
-        // Build image tag with alt text and dimensions
-        const imgTag = `<img src="${src}" width="${finalWidth}" height="${finalHeight}" alt="${imageData.alt}" />`;
+        // Build image tag with alt text and dimensions - add inline styles to prevent spacing
+        const imgTag = `<img src="${src}" width="${finalWidth}" height="${finalHeight}" alt="${imageData.alt}" style="display: block; margin: 0;" />`;
         
         // Wrap in link if clickable and center it
         let finalHtml: string;
