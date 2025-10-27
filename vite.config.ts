@@ -102,11 +102,8 @@ export default defineConfig(({ mode }) => ({
           return assetInfo.name || "asset";
         },
         manualChunks: (id) => {
-          // Vendor chunks
+          // Vendor chunks - keep React with main vendor to avoid duplication
           if (id.includes("node_modules")) {
-            if (id.includes("react") || id.includes("react-dom")) {
-              return "react-vendor";
-            }
             if (id.includes("framer-motion")) {
               return "framer-vendor";
             }
