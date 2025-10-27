@@ -1,14 +1,18 @@
-
 import { motion } from "framer-motion";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 export const DataDrivenHero = () => {
   return (
     <section className="relative bg-gradient-to-br from-brand-dark to-brand-dark/90 text-white py-24 overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
+        <OptimizedImage
           src="/lovable-uploads/7d860845-9712-4572-8fd0-54a5aaa42712.png"
           alt="Data-Driven Business Growth"
           className="w-full h-full object-cover opacity-20"
+          width={1920}
+          height={1080}
+          priority
+          sizes="100vw"
         />
       </div>
       <div className="container-custom relative z-10">

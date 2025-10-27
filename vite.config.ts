@@ -101,6 +101,28 @@ export default defineConfig(({ mode }) => ({
           if (assetInfo.name === "sitemap.xml") return "sitemap.xml";
           return assetInfo.name || "asset";
         },
+        manualChunks: (id) => {
+          // Vendor chunks
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "react-vendor";
+            }
+            if (id.includes("framer-motion")) {
+              return "framer-vendor";
+            }
+            if (id.includes("@radix-ui")) {
+              return "radix-vendor";
+            }
+            if (id.includes("lucide-react")) {
+              return "icons-vendor";
+            }
+            return "vendor";
+          }
+          // UI components chunk
+          if (id.includes("/src/components/ui/")) {
+            return "ui-components";
+          }
+        },
       },
     },
     minify: mode === "production" ? "esbuild" : false,
@@ -108,9 +130,11 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     chunkSizeWarningLimit: 1000,
     copyPublicDir: true,
+    reportCompressedSize: false,
   },
 
   optimizeDeps: {
-    include: ["react", "react-dom", "react-router-dom"],
+    include: ["react", "react-dom", "react-router-dom", "framer-motion"],
+    exclude: ["@radix-ui/react-navigation-menu"],
   },
 }));
