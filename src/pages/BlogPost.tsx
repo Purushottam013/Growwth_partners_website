@@ -40,6 +40,7 @@ const staticPosts: Omit<BlogPost, "id">[] = (postsData as any[]).map((p) => ({
   author: p.author,
   authorBio: p.authorBio,
   categories: p.categories,
+  faqs: p.faqs || [],
 }));
 
 const BlogPostPage: React.FC = () => {
@@ -153,21 +154,56 @@ const BlogPostPage: React.FC = () => {
           ogType="article"
           ogImage={seoPost.heroImage || "/default-og-image.png"}
           twitterCard="summary_large_image"
-          structuredData={{
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: seoPost.title,
-            description: seoPost.excerpt,
-            image: seoPost.heroImage || "",
-            datePublished: seoPost.publishDate,
-            author: { "@type": "Person", name: seoPost.author || "" },
-            publisher: {
-              "@type": "Organization",
-              name: "Growwth Partners",
-              url: getCountryUrl("/"),
-            },
-            url: canonicalUrl,
-          }}
+          structuredData={
+            seoPost.faqs && seoPost.faqs.length > 0
+              ? {
+                  "@context": "https://schema.org",
+                  "@graph": [
+                    {
+                      "@type": "Article",
+                      headline: seoPost.title,
+                      description: seoPost.excerpt,
+                      image: seoPost.heroImage || "",
+                      datePublished: seoPost.publishDate,
+                      author: { "@type": "Person", name: seoPost.author || "" },
+                      publisher: {
+                        "@type": "Organization",
+                        name: "Growwth Partners",
+                        url: getCountryUrl("/"),
+                      },
+                      url: canonicalUrl,
+                    },
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: seoPost.faqs
+                        .filter((faq) => faq.question && faq.answer)
+                        .map((faq) => ({
+                          "@type": "Question",
+                          name: faq.question,
+                          acceptedAnswer: {
+                            "@type": "Answer",
+                            text: faq.answer,
+                          },
+                        })),
+                    },
+                  ],
+                }
+              : {
+                  "@context": "https://schema.org",
+                  "@type": "Article",
+                  headline: seoPost.title,
+                  description: seoPost.excerpt,
+                  image: seoPost.heroImage || "",
+                  datePublished: seoPost.publishDate,
+                  author: { "@type": "Person", name: seoPost.author || "" },
+                  publisher: {
+                    "@type": "Organization",
+                    name: "Growwth Partners",
+                    url: getCountryUrl("/"),
+                  },
+                  url: canonicalUrl,
+                }
+          }
         />
       )}
 
