@@ -189,16 +189,21 @@ const BlogPostPage: React.FC = () => {
                     {
                       "@type": "LocalBusiness",
                       name: "Growwth Partners",
-                      description: "Professional accounting, bookkeeping, and CFO services in Singapore",
+                      description: "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
                       url: "https://growwthpartners.com",
                       address: {
                         "@type": "PostalAddress",
-                        addressCountry: "SG",
+                         "streetAddress": "65 Chulia Street",
+                          "addressLocality": "Singapore",
+                          "addressRegion": "#46-00 OCBC Centre, Singapore 049513",
+                          "postalCode": "049513",
+                          "addressCountry": "SG"
                       },
                       contactPoint: {
                         "@type": "ContactPoint",
                         email: "jd@growwthpartners.com",
-                        contactType: "Customer Service",
+                        telephone: "+65 8893 0720",
+                        contactType: "Business Service",
                       },
                     },
                     ...(seoPost.categories && seoPost.categories.length > 0
@@ -235,16 +240,21 @@ const BlogPostPage: React.FC = () => {
                     {
                       "@type": "LocalBusiness",
                       name: "Growwth Partners",
-                      description: "Professional accounting, bookkeeping, and CFO services in Singapore",
+                      description: "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
                       url: "https://growwthpartners.com",
                       address: {
                         "@type": "PostalAddress",
-                        addressCountry: "SG",
+                         "streetAddress": "65 Chulia Street",
+                          "addressLocality": "Singapore",
+                          "addressRegion": "#46-00 OCBC Centre, Singapore 049513",
+                          "postalCode": "049513",
+                          "addressCountry": "SG"
                       },
                       contactPoint: {
                         "@type": "ContactPoint",
                         email: "jd@growwthpartners.com",
-                        contactType: "Customer Service",
+                        telephone: "+65 8893 0720",
+                        contactType: "Business Service",
                       },
                     },
                     ...(seoPost.categories && seoPost.categories.length > 0
