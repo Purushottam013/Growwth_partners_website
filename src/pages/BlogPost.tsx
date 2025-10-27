@@ -40,6 +40,7 @@ const staticPosts: Omit<BlogPost, "id">[] = (postsData as any[]).map((p) => ({
   author: p.author,
   authorBio: p.authorBio,
   categories: p.categories,
+  faqs: p.faqs || [],
 }));
 
 const BlogPostPage: React.FC = () => {
@@ -153,21 +154,124 @@ const BlogPostPage: React.FC = () => {
           ogType="article"
           ogImage={seoPost.heroImage || "/default-og-image.png"}
           twitterCard="summary_large_image"
-          structuredData={{
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: seoPost.title,
-            description: seoPost.excerpt,
-            image: seoPost.heroImage || "",
-            datePublished: seoPost.publishDate,
-            author: { "@type": "Person", name: seoPost.author || "" },
-            publisher: {
-              "@type": "Organization",
-              name: "Growwth Partners",
-              url: getCountryUrl("/"),
-            },
-            url: canonicalUrl,
-          }}
+          structuredData={
+            seoPost.faqs && seoPost.faqs.length > 0
+              ? {
+                  "@context": "https://schema.org",
+                  "@graph": [
+                    {
+                      "@type": "Article",
+                      headline: seoPost.title,
+                      description: seoPost.excerpt,
+                      image: seoPost.heroImage || "",
+                      datePublished: seoPost.publishDate,
+                      author: { "@type": "Person", name: seoPost.author || "" },
+                      publisher: {
+                        "@type": "Organization",
+                        name: "Growwth Partners",
+                        url: getCountryUrl("/"),
+                      },
+                      url: canonicalUrl,
+                    },
+                    {
+                      "@type": "FAQPage",
+                      mainEntity: seoPost.faqs
+                        .filter((faq) => faq.question && faq.answer)
+                        .map((faq) => ({
+                          "@type": "Question",
+                          name: faq.question,
+                          acceptedAnswer: {
+                            "@type": "Answer",
+                            text: faq.answer,
+                          },
+                        })),
+                    },
+                    {
+                      "@type": "LocalBusiness",
+                      name: "Growwth Partners",
+                      description: "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+                      url: "https://growwthpartners.com",
+                      address: {
+                        "@type": "PostalAddress",
+                         "streetAddress": "65 Chulia Street",
+                          "addressLocality": "Singapore",
+                          "addressRegion": "#46-00 OCBC Centre, Singapore 049513",
+                          "postalCode": "049513",
+                          "addressCountry": "SG"
+                      },
+                      contactPoint: {
+                        "@type": "ContactPoint",
+                        email: "jd@growwthpartners.com",
+                        telephone: "+65 8893 0720",
+                        contactType: "Business Service",
+                      },
+                    },
+                    ...(seoPost.categories && seoPost.categories.length > 0
+                      ? seoPost.categories.map((category) => ({
+                          "@type": "Service",
+                          name: category,
+                          provider: {
+                            "@type": "Organization",
+                            name: "Growwth Partners",
+                            url: "https://growwthpartners.com",
+                          },
+                          description: `${category} services provided by Growwth Partners`,
+                        }))
+                      : []),
+                  ],
+                }
+              : {
+                  "@context": "https://schema.org",
+                  "@graph": [
+                    {
+                      "@type": "Article",
+                      headline: seoPost.title,
+                      description: seoPost.excerpt,
+                      image: seoPost.heroImage || "",
+                      datePublished: seoPost.publishDate,
+                      author: { "@type": "Person", name: seoPost.author || "" },
+                      publisher: {
+                        "@type": "Organization",
+                        name: "Growwth Partners",
+                        url: getCountryUrl("/"),
+                      },
+                      url: canonicalUrl,
+                    },
+                    {
+                      "@type": "LocalBusiness",
+                      name: "Growwth Partners",
+                      description: "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+                      url: "https://growwthpartners.com",
+                      address: {
+                        "@type": "PostalAddress",
+                         "streetAddress": "65 Chulia Street",
+                          "addressLocality": "Singapore",
+                          "addressRegion": "#46-00 OCBC Centre, Singapore 049513",
+                          "postalCode": "049513",
+                          "addressCountry": "SG"
+                      },
+                      contactPoint: {
+                        "@type": "ContactPoint",
+                        email: "jd@growwthpartners.com",
+                        telephone: "+65 8893 0720",
+                        contactType: "Business Service",
+                      },
+                    },
+                    ...(seoPost.categories && seoPost.categories.length > 0
+                      ? seoPost.categories.map((category) => ({
+                          "@type": "Service",
+                          name: category,
+                          provider: {
+                            "@type": "Organization",
+                            name: "Growwth Partners",
+                            url: "https://growwthpartners.com",
+                          },
+                          description: `${category} services provided by Growwth Partners`,
+                        }))
+                      : []),
+                  ],
+                }
+          }
         />
       )}
 
