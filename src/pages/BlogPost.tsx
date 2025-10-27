@@ -186,22 +186,80 @@ const BlogPostPage: React.FC = () => {
                           },
                         })),
                     },
+                    {
+                      "@type": "LocalBusiness",
+                      name: "Growwth Partners",
+                      description: "Professional accounting, bookkeeping, and CFO services in Singapore",
+                      url: "https://growwthpartners.com",
+                      address: {
+                        "@type": "PostalAddress",
+                        addressCountry: "SG",
+                      },
+                      contactPoint: {
+                        "@type": "ContactPoint",
+                        email: "jd@growwthpartners.com",
+                        contactType: "Customer Service",
+                      },
+                    },
+                    ...(seoPost.categories && seoPost.categories.length > 0
+                      ? seoPost.categories.map((category) => ({
+                          "@type": "Service",
+                          name: category,
+                          provider: {
+                            "@type": "Organization",
+                            name: "Growwth Partners",
+                            url: "https://growwthpartners.com",
+                          },
+                          description: `${category} services provided by Growwth Partners`,
+                        }))
+                      : []),
                   ],
                 }
               : {
                   "@context": "https://schema.org",
-                  "@type": "Article",
-                  headline: seoPost.title,
-                  description: seoPost.excerpt,
-                  image: seoPost.heroImage || "",
-                  datePublished: seoPost.publishDate,
-                  author: { "@type": "Person", name: seoPost.author || "" },
-                  publisher: {
-                    "@type": "Organization",
-                    name: "Growwth Partners",
-                    url: getCountryUrl("/"),
-                  },
-                  url: canonicalUrl,
+                  "@graph": [
+                    {
+                      "@type": "Article",
+                      headline: seoPost.title,
+                      description: seoPost.excerpt,
+                      image: seoPost.heroImage || "",
+                      datePublished: seoPost.publishDate,
+                      author: { "@type": "Person", name: seoPost.author || "" },
+                      publisher: {
+                        "@type": "Organization",
+                        name: "Growwth Partners",
+                        url: getCountryUrl("/"),
+                      },
+                      url: canonicalUrl,
+                    },
+                    {
+                      "@type": "LocalBusiness",
+                      name: "Growwth Partners",
+                      description: "Professional accounting, bookkeeping, and CFO services in Singapore",
+                      url: "https://growwthpartners.com",
+                      address: {
+                        "@type": "PostalAddress",
+                        addressCountry: "SG",
+                      },
+                      contactPoint: {
+                        "@type": "ContactPoint",
+                        email: "jd@growwthpartners.com",
+                        contactType: "Customer Service",
+                      },
+                    },
+                    ...(seoPost.categories && seoPost.categories.length > 0
+                      ? seoPost.categories.map((category) => ({
+                          "@type": "Service",
+                          name: category,
+                          provider: {
+                            "@type": "Organization",
+                            name: "Growwth Partners",
+                            url: "https://growwthpartners.com",
+                          },
+                          description: `${category} services provided by Growwth Partners`,
+                        }))
+                      : []),
+                  ],
                 }
           }
         />
