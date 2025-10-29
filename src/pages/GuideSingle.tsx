@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { useGuides } from "@/hooks/useGuides";
 import { useCountry } from "@/contexts/CountryContext";
 import GuideDetail from "./GuideDetail";
+import { Head } from "vite-react-ssg";
 
 const GuideSinglePage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -60,6 +61,11 @@ const GuideSinglePage = () => {
   if (!guide) {
     return (
       <Layout>
+        <Head>
+          <title>404 - Guide Not Found | Growwth Partners</title>
+          <meta name="robots" content="noindex, nofollow" />
+          <meta name="description" content="The guide you're looking for doesn't exist." />
+        </Head>
         <div className="text-center py-20">
           <h2 className="text-2xl font-bold">Guide Not Found</h2>
           <p className="mt-4">The guide you're looking for doesn't exist.</p>

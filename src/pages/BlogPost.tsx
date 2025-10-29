@@ -14,6 +14,7 @@ import { useCountry } from "@/contexts/CountryContext";
 import { supabase } from "@/integrations/supabase/client";
 import postsData from "@/generated/posts.json";
 import { FAQSection } from "@/components/blog/FAQSection";
+import { Head } from "vite-react-ssg";
 
 interface BlogPost {
   id: string;
@@ -288,11 +289,18 @@ const BlogPostPage: React.FC = () => {
           </div>
         </div>
       ) : error || !post ? (
-        <div className="container mx-auto px-4 py-12 text-center">
-          <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-          <p className="mb-6">The blog post you're looking for doesn't exist.</p>
-          <Button onClick={() => navigate(getCountryUrl("/blog"))}>Back to Blog</Button>
-        </div>
+        <>
+          <Head>
+            <title>404 - Blog Post Not Found | Growwth Partners</title>
+            <meta name="robots" content="noindex, nofollow" />
+            <meta name="description" content="The blog post you're looking for doesn't exist." />
+          </Head>
+          <div className="container mx-auto px-4 py-12 text-center">
+            <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
+            <p className="mb-6">The blog post you're looking for doesn't exist.</p>
+            <Button onClick={() => navigate(getCountryUrl("/blog"))}>Back to Blog</Button>
+          </div>
+        </>
       ) : (
         <article className="container mx-auto px-4 py-6 md:py-12">
           <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
