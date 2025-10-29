@@ -1,10 +1,10 @@
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCountry } from "@/contexts/CountryContext";
 import { Layout } from "@/components/Layout";
 import { AlertTriangle } from "lucide-react";
+import { Head } from "vite-react-ssg";
 
 const NotFound = () => {
   const location = useLocation();
@@ -25,6 +25,11 @@ const NotFound = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>404 - Page Not Found | Growwth Partners</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="description" content="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable." />
+      </Head>
 
       <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md mx-auto p-8">

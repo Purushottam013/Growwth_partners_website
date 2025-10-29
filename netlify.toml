@@ -2,8 +2,15 @@
   publish = "dist"
   command = "npm run build"
 
+# SPA routing - preserve 404s for missing files
 [[redirects]]
-  from     = "/*"
-  to       = "/index.html"
-  status   = 200
-  force    = true
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Serve custom 404 page for missing static files
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
