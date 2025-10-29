@@ -24,15 +24,17 @@ const HomeAustralia = () => {
       "https://www.youtube.com/@GrowwthPartners",
     ],
     description: "Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia.",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "Australia"
-    },
+    "areaServed": "Singapore, UAE, Australia",
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "customer service",
-      availableLanguage: "English"
-    }
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+     address: {
+      "@type": "PostalAddress",
+      addressCountry: "UAE"
+    },
   };
 
   return (

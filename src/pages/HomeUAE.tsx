@@ -28,11 +28,14 @@ const HomeUAE = () => {
       "@type": "PostalAddress",
       addressCountry: "UAE"
     },
+  "areaServed": "Singapore, UAE, Australia",
+      "serviceType": "Corporate Secretary Services",
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "customer service",
-      availableLanguage: "English"
-    }
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
   };
 
   return (

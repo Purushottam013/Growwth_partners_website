@@ -50,7 +50,23 @@ const CorporateSecretaryPage = () => {
         "@type": "Answer",
         "text": "If you want to change your company secretary in Singapore and opt for other company secretarial services in Singapore, the new secretary needs to sign the Form 45B."
       }
-    }]
+    }],
+      "areaServed": "Singapore, UAE, Australia",
+      "serviceType": "Corporate Secretary Services",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
   };
 
   return (
