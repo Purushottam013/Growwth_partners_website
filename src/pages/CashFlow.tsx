@@ -51,7 +51,23 @@ const CashFlowPage = () => {
         "@type": "Answer",
         "text": "Absolutely. We specialize in creating industry-specific financial models that reflect the unique dynamics, metrics, and KPIs relevant to your sector. Our team has experience across multiple industries including tech, healthcare, retail, manufacturing, and more."
       }
-    }]
+    }],
+     "areaServed": "Singapore, UAE, Australia",
+    "serviceType": "Cash Flow Services",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
   };
 
   return (

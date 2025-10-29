@@ -18,10 +18,27 @@ const ContactPage = () => {
     "mainEntity": {
       "@type": "Organization",
       "name": "Growwth Partners",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service"
-      }
+     contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    service: {
+      "@type": "LocalBusiness",
+      name: "Growwth Partners",
+      description:
+        "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+      url: "https://growwthpartners.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
+    },
     }
   };
 

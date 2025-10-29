@@ -57,16 +57,33 @@ const Index = () => {
       "https://www.linkedin.com/company/growwth-partners/",
       "https://www.youtube.com/@GrowwthPartners",
     ],
-    description: "Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia.",
+    description:
+      "Expert financial, accounting, and bookkeeping services for businesses in Singapore, UAE, and Australia.",
     address: {
       "@type": "PostalAddress",
-      addressCountry: "Singapore"
+      addressCountry: "Singapore",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "customer service",
-      availableLanguage: "English"
-    }
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    service: {
+      "@type": "LocalBusiness",
+      name: "Growwth Partners",
+      description:
+        "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+      url: "https://growwthpartners.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
+    },
   };
 
 
@@ -76,7 +93,7 @@ const Index = () => {
         title="Growwth Partners - Financial & Accounting Services"
         description="Expert financial, accounting, and bookkeeping services. Get started with our CFO, finance and accounting solutions to manage and grow your business efficiently."
         keywords="financial services, accounting singapore, cfo services, bookkeeping, business growth"
-        canonicalUrl={`https://growwthpartners.com/`}
+        canonicalUrl="https://growwthpartners.com/"
         structuredData={organizationSchema}
       />
       

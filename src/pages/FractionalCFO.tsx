@@ -50,7 +50,23 @@ const FractionalCFOPage = () => {
         "@type": "Answer",
         "text": "Yes, our CFOs have deep local expertise and work with companies across Singapore and Southeast Asia."
       }
-    }]
+    }],
+    "areaServed": "Singapore, UAE, Australia",
+    "serviceType": "Part Time CFO Services",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
   };
 
   return (

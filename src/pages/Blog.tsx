@@ -63,17 +63,39 @@ const BlogPage = () => {
   };
 
   const blogSchema = {
-          "@context": "https://schema.org",
-          "@type": "Blog",
-          "name": "Growwth Partners Blog",
-          "description": "Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners",
-          "url": "https://growwthpartners.com/blog",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Growwth Partners",
-            "url": "https://growwthpartners.com"
-          }
-        }
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Growwth Partners Blog",
+    description:
+      "Stay updated with expert insights and articles on payroll, finance, and SME growth in Singapore from Growwth Partners",
+    url: "https://growwthpartners.com/blog",
+    publisher: {
+      "@type": "Organization",
+      name: "Growwth Partners",
+      url: "https://growwthpartners.com",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    service: {
+      "@type": "LocalBusiness",
+      name: "Growwth Partners",
+      description:
+        "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+      url: "https://growwthpartners.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
+    },
+  };
 
   if (loading) {
     return (
