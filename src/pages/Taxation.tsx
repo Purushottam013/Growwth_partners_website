@@ -50,7 +50,23 @@ const TaxationPage = () => {
         "@type": "Answer",
         "text": "We link financials with tax workings, providing a clear trail from income to expenses to tax payable, ensuring you understand how we arrived at each number."
       }
-    }]
+    }],
+    "areaServed": "Singapore, UAE, Australia",
+    "serviceType": "taxation compliance Services",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
   };
   
   return (

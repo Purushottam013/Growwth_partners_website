@@ -51,7 +51,23 @@ const CompanyIncorporationPage = () => {
         "@type": "Answer",
         "text": "Yes, at least one director who resides in Singapore must be present in a Singaporean business. This is evident according to Singapore's Companies Act."
       }
-    }]
+    }],
+     "areaServed": "Singapore, UAE, Australia",
+    "serviceType": "Company Incorporation Services",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "jd@growwthpartners.com",
+      telephone: "+65 8893 0720",
+      contactType: "Business Service",
+    },
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "65 Chulia Street",
+        addressLocality: "Singapore",
+        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+        postalCode: "049513",
+        addressCountry: "SG",
+      },
   };
 
   return (
