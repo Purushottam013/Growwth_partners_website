@@ -18,6 +18,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Heart, Crown, DollarSign, Star } from "lucide-react";
 import { ContactModal } from "@/components/ui/contact-modal";
+import { LazyIframe } from "@/components/ui/lazy-iframe";
 
 export const TestimonialsSection = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -184,15 +185,9 @@ export const TestimonialsSection = () => {
                         <p className="text-gray-600 mb-4">{video.role}</p>
                       </div>
                       <div className="aspect-video w-[85%] mx-auto overflow-hidden rounded-lg">
-                        <iframe
-                          allowTransparency={true}
-                          title={video.title}
-                          allowFullScreen
-                          frameBorder="0"
-                          scrolling="no"
-                          className="wistia_embed w-full h-full"
-                          name="wistia_embed"
+                        <LazyIframe
                           src={`https://fast.wistia.net/embed/iframe/${video.id}`}
+                          title={video.title}
                         />
                       </div>
                     </div>
