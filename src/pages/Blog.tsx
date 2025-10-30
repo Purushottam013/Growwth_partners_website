@@ -157,8 +157,9 @@ const BlogPage = () => {
               </span>
 
             </h1>
-            <p className="text-base md:text-lg max-w-2xl mx-auto font-normal mt-2 text-gray-800">
-              Our article provides comprehensive support for businesses operating in Singapore, offering clear guidance on regulatory processes and a wealth of articles covering financial management, accounting principles, and strategies for business expansion
+            <p className="text-base md:text-lg max-w-4xl mx-auto font-normal mt-2 text-gray-800">
+              Explore expert articles on financial management, accounting best practices, and business strategy
+                designed to help you make smarter decisions and scale with confidence
             </p>
           </div>
         </div>

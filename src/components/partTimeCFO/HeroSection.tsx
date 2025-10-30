@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { ContactModal } from "@/components/ui/contact-modal";
 import {
   Dialog,
   DialogContent,
@@ -11,12 +12,12 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog';
 import ExpertForm from './ExpertForm';
-import { ChevronRight, Award, ShieldCheck, TrendingUp, BarChart3 } from 'lucide-react';
+import { ChevronRight, Award, ShieldCheck, TrendingUp, BarChart3,ArrowRight } from 'lucide-react';
 import heroImage from '/lovable-uploads/54b8e38f-0d15-438c-b9ac-a121ec19b560.png';
 import { OptimizedImage } from '../ui/optimized-image';
 
 export const HeroSection: React.FC = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   const scrollToServices = () => {
     const el = document.getElementById('virtual-cfo-services');
@@ -75,23 +76,12 @@ export const HeroSection: React.FC = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button className="bg-brand-orange text-white px-6 py-4 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transform transition hover:scale-105 inline-flex items-center">
-                    <span>Speak to an Expert</span>
-                    <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>Speak to a CFO Expert</DialogTitle>
-                    <DialogDescription>Fill in the form and we'll be in touch shortly.</DialogDescription>
-                  </DialogHeader>
-                  <ExpertForm onSuccess={() => setIsDialogOpen(false)} />
-                </DialogContent>
-              </Dialog>
+             <Button onClick={() => setContactModalOpen(true)} className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-full px-8 py-6 text-lg font-medium group">
+                Speak To An Expert
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
 
-              <Button onClick={scrollToServices} variant="outline" className="px-6 py-4">
+              <Button onClick={scrollToServices} variant="outline" className="px-8 py-6 font-bold text-gray-700 rounded-full">
                 Our Services
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
@@ -160,6 +150,10 @@ export const HeroSection: React.FC = () => {
             </div>
           </motion.div>
         </div>
+        <ContactModal 
+                open={contactModalOpen} 
+                onOpenChange={setContactModalOpen} 
+              />
       </div>
     </section>
   );
