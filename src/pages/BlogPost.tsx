@@ -66,10 +66,10 @@ const BlogPostPage: React.FC = () => {
       try {
         setLoading(true);
 
-        // Fetch the current post
+        // Fetch the current post (without Content and faqs initially for faster load)
         const { data: currentPost, error: postError } = await supabase
           .from("blog_post")
-          .select("*")
+          .select("id, title, slug, Hero_image, Categories, Author, Excerpt, publishdate")
           .eq("slug", slug)
           .single();
 
@@ -79,27 +79,42 @@ const BlogPostPage: React.FC = () => {
           return;
         }
 
-        // Transform the data to match our interface
+        // Transform the data to match our interface (without content initially)
         const transformedPost: BlogPost = {
           id: currentPost.id.toString(),
           slug: currentPost.slug || "",
           title: currentPost.title || "",
           excerpt: currentPost.Excerpt || "",
-          content: currentPost.Content || "",
+          content: "", // Will be loaded separately
           heroImage: currentPost.Hero_image || "",
           publishDate: currentPost.publishdate || "",
           author: currentPost.Author || "Jatin Detwani",
-          authorBio: "", // Add this to your database if needed
+          authorBio: "",
           categories: currentPost.Categories ? currentPost.Categories.split(",").map((c: string) => c.trim()) : [],
-          faqs: Array.isArray(currentPost.faqs) ? currentPost.faqs as Array<{ question: string; answer: string }> : [],
+          faqs: [], // Will be loaded separately
         };
 
         setPost(transformedPost);
 
-        // Fetch related posts
+        // Lazy load full content and FAQs
+        const { data: fullContent } = await supabase
+          .from("blog_post")
+          .select("Content, faqs")
+          .eq("id", currentPost.id)
+          .single();
+
+        if (fullContent) {
+          setPost(prev => prev ? {
+            ...prev,
+            content: fullContent.Content || "",
+            faqs: Array.isArray(fullContent.faqs) ? fullContent.faqs as Array<{ question: string; answer: string }> : [],
+          } : prev);
+        }
+
+        // Fetch related posts (optimized - no Content or faqs)
         const { data: allPosts, error: relatedError } = await supabase
           .from("blog_post")
-          .select("*")
+          .select("id, title, slug, Hero_image, Categories, Author, Excerpt, publishdate")
           .neq("id", currentPost.id)
           .limit(6);
 
@@ -109,7 +124,7 @@ const BlogPostPage: React.FC = () => {
             slug: p.slug || "",
             title: p.title || "",
             excerpt: p.Excerpt || "",
-            content: p.Content || "",
+            content: "",
             heroImage: p.Hero_image || "",
             publishDate: p.publishdate || "",
             author: p.Author || "Jatin Detwani",

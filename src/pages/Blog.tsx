@@ -7,7 +7,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { blogData } from "@/data/blog";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCountry } from "@/contexts/CountryContext";
-import { useBlogPosts } from "@/hooks/useBlogPosts";
+import { useBlogPostsListing } from "@/hooks/useBlogPostsListing";
 import { Calendar, ArrowRight } from "lucide-react";
 import SEOhelper from "@/components/SEOhelper";
 
@@ -15,7 +15,7 @@ const BlogPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { getCountryUrl } = useCountry();
-  const { posts, loading } = useBlogPosts();
+  const { posts, loading, error, refetch } = useBlogPostsListing();
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("");
   const postsPerPage = 6;
@@ -133,6 +133,24 @@ const BlogPage = () => {
         keywords="business blog, financial insights, singapore business, accounting articles, startup advice"
       />
       
+      {error && (
+        <div className="container mx-auto px-4 pt-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-yellow-600">⚠️</span>
+              <p className="text-sm text-yellow-800">{error}</p>
+            </div>
+            <Button 
+              onClick={() => refetch()} 
+              variant="outline" 
+              size="sm"
+            >
+              Retry
+            </Button>
+          </div>
+        </div>
+      )}
+
       <div className="container mx-auto px-4 py-12">
         <div
           className="relative mb-10 rounded-xl overflow-hidden shadow-lg"
