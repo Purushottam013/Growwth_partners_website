@@ -46,8 +46,20 @@ export const useBlogPostsListing = () => {
         publishDate: post.publishdate || "",
       }));
       
-      localStorage.setItem('blog_posts_listing_cache', JSON.stringify(transformed));
-      localStorage.setItem('blog_posts_listing_timestamp', Date.now().toString());
+      // Try to cache, but don't fail if quota exceeded
+      try {
+        localStorage.setItem('blog_posts_listing_cache', JSON.stringify(transformed));
+        localStorage.setItem('blog_posts_listing_timestamp', Date.now().toString());
+      } catch (cacheError) {
+        console.warn('Failed to cache blog posts:', cacheError);
+        // Clear old cache to free space
+        try {
+          localStorage.removeItem('blog_posts_listing_cache');
+          localStorage.removeItem('blog_posts_listing_timestamp');
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+      }
       
       setPosts(transformed);
       setLoading(false);
