@@ -27,7 +27,7 @@ export const useBlogPostsListing = () => {
     try {
       const { data, error: fetchError } = await supabase
         .from("blog_post")
-        .select("id, title, slug, Categories, Author, Excerpt, publishdate")
+        .select("id, title, slug, Hero_image, Categories, Author, Excerpt, publishdate")
         .order("id", { ascending: false })
         .abortSignal(controller.signal);
       
@@ -39,7 +39,7 @@ export const useBlogPostsListing = () => {
         id: post.id,
         title: post.title,
         slug: post.slug || "",
-        heroImage: "", // Excluded Hero_image to prevent timeout/storage issues
+        heroImage: post.Hero_image || "",
         excerpt: post.Excerpt || "",
         author: post.Author || "Jatin Detwani",
         categories: post.Categories ? post.Categories.split(",").map((c) => c.trim()) : [],
