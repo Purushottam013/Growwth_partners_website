@@ -3,6 +3,7 @@ import { useCountry } from "@/contexts/CountryContext";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Feature {
   title: string;
@@ -22,8 +23,12 @@ export const PlaceholderContent = ({
   imageBg = "bg-gradient-to-r from-brand-blue to-brand-green",
   features
 }: PlaceholderContentProps) => {
-  const { getCountryUrl } = useCountry();
-  
+  const navigate = useNavigate();
+
+  const handleJoinUs = () => {
+    navigate('/contact-us');
+    window.scrollTo(0, 0);
+  };
   return (
     <div className="py-20">
       <div className="container-custom">
@@ -39,16 +44,10 @@ export const PlaceholderContent = ({
             <p className="text-lg text-gray-600 mb-8">{description}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
-                asChild
-                className="bg-brand-orange hover:bg-brand-orange/90"
+                onClick={handleJoinUs} 
+                className="bg-brand-orange hover:bg-brand-orange/90 font-bold"
               >
-                <a href={getCountryUrl("contact")}>Contact Us</a>
-              </Button>
-              <Button 
-                asChild
-                variant="outline"
-              >
-                <a href={getCountryUrl("")}>Back to Home</a>
+                Contact Us
               </Button>
             </div>
           </div>

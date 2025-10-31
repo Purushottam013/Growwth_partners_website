@@ -188,6 +188,8 @@ export const TestimonialsSection = () => {
                         <LazyIframe
                           src={`https://fast.wistia.net/embed/iframe/${video.id}`}
                           title={video.title}
+                          autoplay={true}
+                          muted={true}
                         />
                       </div>
                     </div>

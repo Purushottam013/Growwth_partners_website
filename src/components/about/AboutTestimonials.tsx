@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ui/contact-modal";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Star } from "lucide-react";
+import { LazyIframe } from "@/components/ui/lazy-iframe";
 
 export const AboutTestimonials = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -27,33 +28,51 @@ export const AboutTestimonials = () => {
           Finance made simple with our services. Not trusting our words? Hear what our clients are saying about us and our services.
         </p>
         <div className="max-w-4xl mx-auto">
-          <Carousel opts={{
-            align: "start",
-            loop: true
-          }} className="relative">
-            <CarouselContent>
-              {testimonialVideos.map(video => (
-                <CarouselItem key={video.id} className="md:basis-full">
-                  <div className="bg-white rounded-lg p-8 shadow-lg">
-                    <div className="flex flex-col items-center mb-4">
-                      <div className="flex gap-1 mb-2">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-brand-orange text-brand-orange" />)}
-                      </div>
-                      <h4 className="text-xl font-semibold mb-1">{video.name}</h4>
-                      <p className="text-gray-600 mb-4">{video.role}</p>
-                    </div>
-                    <div className="aspect-video w-[85%] mx-auto overflow-hidden rounded-lg">
-                      <iframe allowTransparency={true} title={video.title} allowFullScreen frameBorder="0" scrolling="no" className="wistia_embed w-full h-full" name="wistia_embed" src={`https://fast.wistia.net/embed/iframe/${video.id}`} />
-                    </div>
+                    <Carousel
+                      opts={{
+                        align: "start",
+                        loop: true,
+                      }}
+                      className="relative"
+                    >
+                      <CarouselContent>
+                        {testimonialVideos.map((video) => (
+                          <CarouselItem key={video.id} className="md:basis-full">
+                            <div className="bg-white rounded-lg p-8 shadow-lg">
+                              <div className="flex flex-col items-center mb-4">
+                                <div className="flex gap-1 mb-2">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star
+                                      key={i}
+                                      className="w-5 h-5 fill-brand-orange text-brand-orange"
+                                    />
+                                  ))}
+                                </div>
+                                <h4 className="text-xl font-semibold mb-1">
+                                  {video.name}
+                                </h4>
+                                <p className="text-gray-600 mb-4">{video.role}</p>
+                              </div>
+                              <div className="aspect-video w-[85%] mx-auto overflow-hidden rounded-lg">
+                                <LazyIframe
+                                  src={`https://fast.wistia.net/embed/iframe/${video.id}`}
+                                  title={video.title}
+                                  autoplay={true}
+                                  muted={true}
+                                />
+                              </div>
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
+                      <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
+                    </Carousel>
+                    <p className="text-lg text-gray-600 text-center mt-8">
+                      Hear directly from our satisfied customers about their experience
+                      working with Growwth Partners.
+                    </p>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12" />
-            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12" />
-          </Carousel>
-          <p className="text-lg text-gray-600 text-center mt-8">Hear directly from our satisfied customers about their experience working with Growwth Partners.</p>
-        </div>
       </div>
 
       <ContactModal 
