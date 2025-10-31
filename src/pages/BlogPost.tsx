@@ -50,7 +50,10 @@ const BlogPostPage: React.FC = () => {
   const { getCountryUrl } = useCountry();
 
   // 1) Build-time SEO lookup
-  const seoPost = useMemo(() => staticPosts.find((p) => p.slug === slug), [slug]);
+  const seoPost = useMemo(
+    () => staticPosts.find((p) => p.slug === slug),
+    [slug]
+  );
   const canonicalUrl = `https://growwthpartners.com/blog/${slug}`;
 
   // 2) Runtime fetch for actual content and related posts
@@ -90,8 +93,12 @@ const BlogPostPage: React.FC = () => {
           publishDate: currentPost.publishdate || "",
           author: currentPost.Author || "Jatin Detwani",
           authorBio: "", // Add this to your database if needed
-          categories: currentPost.Categories ? currentPost.Categories.split(",").map((c: string) => c.trim()) : [],
-          faqs: Array.isArray(currentPost.faqs) ? currentPost.faqs as Array<{ question: string; answer: string }> : [],
+          categories: currentPost.Categories
+            ? currentPost.Categories.split(",").map((c: string) => c.trim())
+            : [],
+          faqs: Array.isArray(currentPost.faqs)
+            ? (currentPost.faqs as Array<{ question: string; answer: string }>)
+            : [],
         };
 
         setPost(transformedPost);
@@ -114,13 +121,17 @@ const BlogPostPage: React.FC = () => {
             publishDate: p.publishdate || "",
             author: p.Author || "Jatin Detwani",
             authorBio: "",
-            categories: p.Categories ? p.Categories.split(",").map((c: string) => c.trim()) : [],
+            categories: p.Categories
+              ? p.Categories.split(",").map((c: string) => c.trim())
+              : [],
           }));
 
           // Filter related posts by category if available
           const currentCategories = transformedPost.categories || [];
           const byCategory = transformedRelatedPosts
-            .filter((p) => p.categories?.some((c) => currentCategories.includes(c)))
+            .filter((p) =>
+              p.categories?.some((c) => currentCategories.includes(c))
+            )
             .slice(0, 3);
 
           if (byCategory.length >= 3) {
@@ -190,15 +201,16 @@ const BlogPostPage: React.FC = () => {
                     {
                       "@type": "LocalBusiness",
                       name: "Growwth Partners",
-                      description: "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+                      description:
+                        "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
                       url: "https://growwthpartners.com",
                       address: {
                         "@type": "PostalAddress",
-                         "streetAddress": "65 Chulia Street",
-                          "addressLocality": "Singapore",
-                          "addressRegion": "#46-00 OCBC Centre, Singapore 049513",
-                          "postalCode": "049513",
-                          "addressCountry": "SG"
+                        streetAddress: "65 Chulia Street",
+                        addressLocality: "Singapore",
+                        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+                        postalCode: "049513",
+                        addressCountry: "SG",
                       },
                       contactPoint: {
                         "@type": "ContactPoint",
@@ -241,15 +253,16 @@ const BlogPostPage: React.FC = () => {
                     {
                       "@type": "LocalBusiness",
                       name: "Growwth Partners",
-                      description: "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
+                      description:
+                        "Professional accounting, bookkeeping, Payroll, taxation and compliance,cash flow modeling and CFO services in Singapore",
                       url: "https://growwthpartners.com",
                       address: {
                         "@type": "PostalAddress",
-                         "streetAddress": "65 Chulia Street",
-                          "addressLocality": "Singapore",
-                          "addressRegion": "#46-00 OCBC Centre, Singapore 049513",
-                          "postalCode": "049513",
-                          "addressCountry": "SG"
+                        streetAddress: "65 Chulia Street",
+                        addressLocality: "Singapore",
+                        addressRegion: "#46-00 OCBC Centre, Singapore 049513",
+                        postalCode: "049513",
+                        addressCountry: "SG",
                       },
                       contactPoint: {
                         "@type": "ContactPoint",
@@ -293,25 +306,30 @@ const BlogPostPage: React.FC = () => {
           <Head>
             <title>404 - Blog Post Not Found | Growwth Partners</title>
             <meta name="robots" content="noindex, nofollow" />
-            <meta name="description" content="The blog post you're looking for doesn't exist." />
+            <meta
+              name="description"
+              content="The blog post you're looking for doesn't exist."
+            />
           </Head>
           <div className="container mx-auto px-4 py-12 text-center">
             <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-            <p className="mb-6">The blog post you're looking for doesn't exist.</p>
-            <Button onClick={() => navigate(getCountryUrl("/blog"))}>Back to Blog</Button>
+            <p className="mb-6">
+              The blog post you're looking for doesn't exist.
+            </p>
+            <Button onClick={() => navigate(getCountryUrl("/blog"))}>
+              Back to Blog
+            </Button>
           </div>
         </>
       ) : (
         <article className="container mx-auto px-4 py-6 md:py-12">
           <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
             {post.heroImage && (
-              <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div className="w-full h-64 md:h-96 bg-gray-100 flex items-center justify-center overflow-hidden rounded-2xl">
                 <OptimizedImage
                   src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg"
-                  width={992}
-                  height={384}
+                  className="w-full h-full object-contain"
                   style={{ maxWidth: "992px" }}
                 />
               </div>
@@ -353,8 +371,10 @@ const BlogPostPage: React.FC = () => {
                   <button
                     onClick={() =>
                       window.open(
-                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent("Regarding: " + post.title)}`,
-                        "_blank",
+                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent(
+                          "Regarding: " + post.title
+                        )}`,
+                        "_blank"
                       )
                     }
                     className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
@@ -365,18 +385,25 @@ const BlogPostPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="prose prose-lg mx-auto mb-8" dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div
+                className="prose prose-lg mx-auto mb-8"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
 
               {post.authorBio && (
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8">
-                  <h3 className="text-xl font-semibold mb-2">About the Author</h3>
+                  <h3 className="text-xl font-semibold mb-2">
+                    About the Author
+                  </h3>
                   <p className="text-gray-700 mb-4">{post.authorBio}</p>
                   <Button
                     className="bg-indigo-600 text-white hover:bg-indigo-700"
                     onClick={() =>
                       window.open(
-                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent("Regarding: " + post.title)}`,
-                        "_blank",
+                        `mailto:jd@growwthpartners.com?subject=${encodeURIComponent(
+                          "Regarding: " + post.title
+                        )}`,
+                        "_blank"
                       )
                     }
                   >
@@ -392,52 +419,67 @@ const BlogPostPage: React.FC = () => {
 
           {/* Related Services/Solutions */}
           <section className="mt-12 mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-center">Related Services &amp; Solutions</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              Related Services &amp; Solutions
+            </h2>
             <div className="grid gap-6 md:grid-cols-3">
               <Card className="p-6 hover:shadow-xl transition">
                 <CardContent>
-                  <h3 className="text-lg font-bold mb-2">Accounting Services in Singapore</h3>
+                  <h3 className="text-lg font-bold mb-2">
+                    Accounting Services in Singapore
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    Leverage our generative AI development services to streamline workflows, boost productivity and
-                    drive innovation, while ensuring seamless integration with your existing systems.
+                    Leverage our generative AI development services to
+                    streamline workflows, boost productivity and drive
+                    innovation, while ensuring seamless integration with your
+                    existing systems.
                   </p>
                   <Link
                     to={getCountryUrl("/accounting")}
                     className="font-medium inline-flex items-center text-orange-500"
                   >
-                    Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                    Learn more{" "}
+                    <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
                   </Link>
                 </CardContent>
               </Card>
               <Card className="p-6 hover:shadow-xl transition">
                 <CardContent>
-                  <h3 className="text-lg font-bold mb-2">Part-Time CFO Services</h3>
+                  <h3 className="text-lg font-bold mb-2">
+                    Part-Time CFO Services
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    Optimize your business potential with our comprehensive generative AI consulting services, designed
-                    to guide you in leveraging GenAI for operational excellence and product innovation, while also
-                    upholding ethical AI principles.
+                    Optimize your business potential with our comprehensive
+                    generative AI consulting services, designed to guide you in
+                    leveraging GenAI for operational excellence and product
+                    innovation, while also upholding ethical AI principles.
                   </p>
                   <Link
                     to={getCountryUrl("/part-time-cfo")}
                     className=" font-medium inline-flex items-center text-orange-500"
                   >
-                    Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                    Learn more{" "}
+                    <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
                   </Link>
                 </CardContent>
               </Card>
               <Card className="p-6 hover:shadow-xl transition">
                 <CardContent>
-                  <h3 className="text-lg font-bold mb-2">Bookkeeping Services in Singapore</h3>
+                  <h3 className="text-lg font-bold mb-2">
+                    Bookkeeping Services in Singapore
+                  </h3>
                   <p className="text-gray-600 mb-4">
-                    Unlock AI's full potential for your business through our comprehensive AI development services,
-                    designed to tackle intricate tech challenges, streamline business workflows, and achieve operational
-                    excellence.
+                    Unlock AI's full potential for your business through our
+                    comprehensive AI development services, designed to tackle
+                    intricate tech challenges, streamline business workflows,
+                    and achieve operational excellence.
                   </p>
                   <Link
                     to={getCountryUrl("/bookkeeping")}
                     className=" font-medium inline-flex items-center text-orange-500"
                   >
-                    Learn more <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
+                    Learn more{" "}
+                    <ArrowRight className="ml-1 w-4 h-4 text-orange-500" />
                   </Link>
                 </CardContent>
               </Card>
@@ -447,11 +489,19 @@ const BlogPostPage: React.FC = () => {
           {/* Related Articles */}
           {relatedPosts.length > 0 && (
             <section className="mt-16">
-              <h2 className="text-2xl font-bold mb-6 text-center">Related Articles</h2>
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                Related Articles
+              </h2>
               <div className="grid md:grid-cols-3 gap-8">
                 {relatedPosts.map((rp) => (
-                  <Card key={rp.id} className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-                    <Link to={getCountryUrl(`/blog/${rp.slug}`)} className="flex flex-col h-full">
+                  <Card
+                    key={rp.id}
+                    className="hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
+                  >
+                    <Link
+                      to={getCountryUrl(`/blog/${rp.slug}`)}
+                      className="flex flex-col h-full"
+                    >
                       <div className="relative h-48 overflow-hidden rounded-t-lg bg-gray-100">
                         <OptimizedImage
                           src={
@@ -465,8 +515,12 @@ const BlogPostPage: React.FC = () => {
                         />
                       </div>
                       <CardContent className="p-4 flex flex-col flex-grow">
-                        <h3 className="font-bold text-lg mb-2 line-clamp-2">{rp.title}</h3>
-                        <p className="text-gray-600 line-clamp-3 flex-grow mb-4">{rp.excerpt}</p>
+                        <h3 className="font-bold text-lg mb-2 line-clamp-2">
+                          {rp.title}
+                        </h3>
+                        <p className="text-gray-600 line-clamp-3 flex-grow mb-4">
+                          {rp.excerpt}
+                        </p>
                         <div className="mt-auto flex items-center text-indigo-600 font-medium">
                           Read more <ArrowRight className="ml-1 w-4 h-4" />
                         </div>
