@@ -41,10 +41,8 @@ const BlogPage = () => {
 
   const handleCategoryClick = (category: string) => {
     if (activeCategory === category) {
-      setActiveCategory("");
       navigate(getCountryUrl("/blog"));
     } else {
-      setActiveCategory(category);
       navigate(getCountryUrl(`/blog?category=${category}`));
     }
     setCurrentPage(1);
