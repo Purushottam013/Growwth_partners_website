@@ -153,32 +153,34 @@ const BlogPage = () => {
 
       <div className="container mx-auto px-4 py-12">
         <div
-          className="relative mb-10 rounded-xl overflow-hidden shadow-lg"
+          className="relative mb-16 rounded-xl overflow-visible shadow-lg"
           style={{
             background: "#EBF1FE",
           }}
         >
           <div className="relative py-16 px-8 text-gray-900 text-center">
             <h1
-              className="text-2xl sm:text-4xl md:text-5xl font-semibold md:font-bold leading-tight mb-4 tracking-tight"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 tracking-tight"
               style={{
                 fontFamily: `"Suisse Int'l", "Helvetica Neue", Arial, sans-serif`,
-                fontWeight: 500
               }}
             >
-              <span className="block">
-                Business insights from
-              </span>
-              <span className="block mt-1 font-extrabold text-3xl sm:text-5xl tracking-tight" style={{ fontFamily: `"Suisse Int'l", "Helvetica Neue", Arial, sans-serif`, color:'#FB8136' }}>
-              <span style={{ color: "#FB8136" }}>Growwth</span>{" "}
-              <span style={{ color: "#000000" }}>Blog</span>
-              </span>
-
+              Grow Smarter with Insights from <span style={{ color: "#FB8136" }}>Growwth Partners</span>
             </h1>
             <p className="text-base md:text-lg max-w-4xl mx-auto font-normal mt-2 text-gray-800">
               Explore expert articles on financial management, accounting best practices, and business strategy
                 designed to help you make smarter decisions and scale with confidence
             </p>
+          </div>
+          
+          {/* Overlapping Subscribe Button */}
+          <div className="absolute left-1/2 -translate-x-1/2 -bottom-6 z-10">
+            <Button
+              className="px-8 py-6 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
+              style={{ background: "#FB8136" }}
+            >
+              Subscribe for Weekly Insights
+            </Button>
           </div>
         </div>
 
@@ -206,7 +208,8 @@ const BlogPage = () => {
           {currentPosts.map((post) => (
             <Card
               key={post.slug}
-              className="flex flex-col h-[352px] md:h-[385px] lg:h-[440px] overflow-hidden shadow-lg border border-gray-200 rounded-xl bg-[#EBF1FE]"
+              className="flex flex-col h-[352px] md:h-[385px] lg:h-[440px] overflow-hidden shadow-lg border border-gray-200 rounded-xl bg-[#EBF1FE] cursor-pointer hover:shadow-xl transition-shadow"
+              onClick={() => handleReadMore(post.slug)}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -232,7 +235,10 @@ const BlogPage = () => {
                 <Button
                   variant="outline"
                   className="w-fit px-5 flex items-center gap-2 border-black border-2 hover:bg-black hover:text-white hover:border-black transition font-semibold capitalize rounded-2xl"
-                  onClick={() => handleReadMore(post.slug)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleReadMore(post.slug);
+                  }}
                 >
                   Read More
                   <ArrowRight size={18} className="ml-1" />
