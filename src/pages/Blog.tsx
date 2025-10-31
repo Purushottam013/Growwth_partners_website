@@ -24,7 +24,7 @@ const BlogPage = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const category = params.get("category") || "";
+    const category = (params.get("category") || "").replace(/\/+$/, "");
     setActiveCategory(category);
   }, [location.search]);
 
