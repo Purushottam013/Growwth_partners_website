@@ -10,6 +10,7 @@ import { useCountry } from "@/contexts/CountryContext";
 import { useBlogPostsListing } from "@/hooks/useBlogPostsListing";
 import { Calendar, ArrowRight } from "lucide-react";
 import SEOhelper from "@/components/SEOhelper";
+import { ContactModal } from "@/components/ui/contact-modal";
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -18,14 +19,13 @@ const BlogPage = () => {
   const { posts, loading, error, refetch } = useBlogPostsListing();
   const [currentPage, setCurrentPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("");
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const postsPerPage = 6;
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const category = params.get("category");
-    if (category) {
-      setActiveCategory(category);
-    }
+    const category = params.get("category") || "";
+    setActiveCategory(category);
   }, [location.search]);
 
   const allCategories = blogData.categories;
@@ -176,6 +176,7 @@ const BlogPage = () => {
           {/* Overlapping Subscribe Button */}
           <div className="absolute left-1/2 -translate-x-1/2 -bottom-6 z-10">
             <Button
+              onClick={() => setContactModalOpen(true)}
               className="px-8 py-6 text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all"
               style={{ background: "#FB8136" }}
             >
@@ -301,6 +302,11 @@ const BlogPage = () => {
           </Pagination>
         )}
       </div>
+
+      <ContactModal 
+        open={contactModalOpen} 
+        onOpenChange={setContactModalOpen} 
+      />
     </Layout>
   );
 };
