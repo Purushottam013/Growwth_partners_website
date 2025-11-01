@@ -39,7 +39,7 @@ export const useBlogPostsListing = () => {
         id: post.id,
         title: post.title,
         slug: post.slug || "",
-        heroImage: post.Hero_image || "",
+        heroImage: post.Hero_image ? post.Hero_image.trim() : "",
         excerpt: post.Excerpt || "",
         author: post.Author || "Jatin Detwani",
         categories: post.Categories ? post.Categories.split(",").map((c) => c.trim()) : [],

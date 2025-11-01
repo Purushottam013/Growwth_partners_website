@@ -227,7 +227,7 @@ async function migratePost(post: BlogPost): Promise<MigrationResult> {
       const { error } = await supabase
         .from('blog_post')
         .update({
-          Hero_image: updatedHeroImage,
+          Hero_image: updatedHeroImage?.trim(),
           Content: updatedContent,
         })
         .eq('id', post.id);
