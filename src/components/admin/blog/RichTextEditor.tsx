@@ -36,6 +36,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ImageUploadDialog } from "./ImageUploadDialog";
+import { uploadToSupabaseStorage } from "@/utils/imageUpload";
+import { useToast } from "@/hooks/use-toast";
 
 interface RichTextEditorProps {
   value: string;
@@ -50,6 +52,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
   const savedSelectionRef = useRef<Range | null>(null);
+  const { toast } = useToast();
 
   // Only reset innerHTML when switching back into edit
   useEffect(() => {
@@ -286,29 +289,46 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   }, []);
 
   // read image and preserve natural size
-  const handleImageFile = (file: File) => {
+  const handleImageFile = async (file: File) => {
     if (!file.type.startsWith("image/")) {
       setError("Please select an image");
       return;
     }
     setUploading(true);
-    const reader = new FileReader();
-    reader.onload = () => {
-      const src = reader.result as string;
+    
+    try {
+      // Upload to Supabase Storage
+      const publicUrl = await uploadToSupabaseStorage(file, "content-images");
+      
+      // Create image element to get dimensions
       const img = new Image();
       img.onload = () => {
-        // explicit width/height
-        const tag = `<img src="${src}" width="${img.width}" height="${img.height}" alt="img">`;
+        // Insert image with storage URL
+        const tag = `<img src="${publicUrl}" width="${img.width}" height="${img.height}" alt="Content image" style="max-width: 100%; height: auto;" />`;
         insertHTMLAtCursor(tag);
         setUploading(false);
+        
+        toast({
+          title: "Success",
+          description: "Image inserted successfully",
+        });
       };
-      img.src = src;
-    };
-    reader.onerror = () => {
-      setError("Image load failed");
+      img.onerror = () => {
+        setError("Failed to load image");
+        setUploading(false);
+      };
+      img.src = publicUrl;
+    } catch (error) {
+      console.error("Upload error:", error);
+      setError("Failed to upload image");
       setUploading(false);
-    };
-    reader.readAsDataURL(file);
+      
+      toast({
+        variant: "destructive",
+        title: "Upload Failed",
+        description: "Failed to upload image. Please try again.",
+      });
+    }
   };
 
   const handleUploadImage = (
@@ -318,7 +338,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     if (f) handleImageFile(f);
   };
 
-  const handleInsertImage = (imageData: {
+  const handleInsertImage = async (imageData: {
     file: File;
     width?: number;
     height?: number;
@@ -326,11 +346,13 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     isClickable: boolean;
     linkUrl?: string;
   }) => {
-    const reader = new FileReader();
     setUploading(true);
     
-    reader.onload = () => {
-      const src = reader.result as string;
+    try {
+      // Upload to Supabase Storage
+      const publicUrl = await uploadToSupabaseStorage(imageData.file, "content-images");
+      
+      // Create image element to get dimensions
       const img = new Image();
       
       img.onload = () => {
@@ -338,8 +360,8 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         const finalWidth = imageData.width || img.width;
         const finalHeight = imageData.height || img.height;
         
-        // Build image tag with alt text and dimensions - add inline styles to prevent spacing
-        const imgTag = `<img src="${src}" width="${finalWidth}" height="${finalHeight}" alt="${imageData.alt}" style="display: block; margin: 0;" />`;
+        // Build image tag with storage URL
+        const imgTag = `<img src="${publicUrl}" width="${finalWidth}" height="${finalHeight}" alt="${imageData.alt}" style="display: block; margin: 0;" />`;
         
         // Wrap in link if clickable and center it
         let finalHtml: string;
@@ -395,6 +417,11 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         }
         
         setUploading(false);
+        
+        toast({
+          title: "Success",
+          description: "Image inserted successfully",
+        });
       };
       
       img.onerror = () => {
@@ -402,15 +429,18 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         setUploading(false);
       };
       
-      img.src = src;
-    };
-    
-    reader.onerror = () => {
-      setError("Failed to read image file");
+      img.src = publicUrl;
+    } catch (error) {
+      console.error("Upload error:", error);
+      setError("Failed to upload image");
       setUploading(false);
-    };
-    
-    reader.readAsDataURL(imageData.file);
+      
+      toast({
+        variant: "destructive",
+        title: "Upload Failed",
+        description: "Failed to upload image. Please try again.",
+      });
+    }
   };
 
   const handleOpenImageDialog = () => {

@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Upload, Image as ImageIcon } from "lucide-react";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { uploadToSupabaseStorage } from "@/utils/imageUpload";
+import { useToast } from "@/hooks/use-toast";
 
 interface ImageUploadProps {
   imageUrl: string;
@@ -13,32 +15,41 @@ interface ImageUploadProps {
 export const ImageUpload = ({ imageUrl, onImageChange }: ImageUploadProps) => {
   const [isUploading, setIsUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(imageUrl || null);
+  const { toast } = useToast();
   
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onImageChange(e.target.value);
     setPreview(e.target.value);
   };
   
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     
     setIsUploading(true);
     
-    // In a real application, you would upload this to a server
-    // For now, we'll just convert it to a data URL for preview
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const result = reader.result as string;
-      onImageChange(result);
-      setPreview(result);
+    try {
+      // Upload to Supabase Storage
+      const publicUrl = await uploadToSupabaseStorage(file, "hero-images");
+      
+      // Update state with URL
+      onImageChange(publicUrl);
+      setPreview(publicUrl);
+      
+      toast({
+        title: "Success",
+        description: "Image uploaded successfully",
+      });
+    } catch (error) {
+      console.error("Upload error:", error);
+      toast({
+        variant: "destructive",
+        title: "Upload Failed",
+        description: "Failed to upload image. Please try again.",
+      });
+    } finally {
       setIsUploading(false);
-    };
-    reader.onerror = () => {
-      setIsUploading(false);
-      alert("Error uploading image");
-    };
-    reader.readAsDataURL(file);
+    }
   };
   
   return (
