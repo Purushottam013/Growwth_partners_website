@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build-old": "vite build",
-    "prebuild": "node scripts/fetch-posts.cjs",
+    "prebuild": "node scripts/fetch-posts.cjs && node scripts/generate-sitemap.cjs",
     "build": "vite-react-ssg build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
