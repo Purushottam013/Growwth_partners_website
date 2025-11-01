@@ -8,13 +8,15 @@ const contactDetails = [
     icon: <Mail className="h-6 w-6 text-brand-orange" />,
     title: "Mail Us",
     details: ["jd@growwthpartners.com"],
-    subheading: "Let Us Assist You"
+    subheading: "Let Us Assist You",
+    href: "mailto:jd@growwthpartners.com"
   },
   {
     icon: <MessageCircle className="h-6 w-6 text-brand-orange" />,
     title: "Whatsapp",
     details: ["Live Support"],
-    subheading: "Our Friendly team is here to help."
+    subheading: "Our Friendly team is here to help.",
+    href: "https://wa.me/6598615600"
   },
   {
     icon: <MapPin className="h-6 w-6 text-brand-orange" />,
@@ -22,13 +24,15 @@ const contactDetails = [
     details: [
       "65 Chulia Street, #46-00 OCBC Centre, Singapore 049513"
     ],
-    subheading: "Come say hello at our office HQ."
+    subheading: "Come say hello at our office HQ.",
+    href: "https://www.google.com/maps/search/?api=1&query=65+Chulia+Street+OCBC+Centre+Singapore+049513"
   },
   {
     icon: <PhoneIcon className="h-6 w-6 text-brand-orange" />,
     title: "Call Us",
     details: ["+65 9861 5600"],
-    subheading: "Mon-fri from 8am to 5pm."
+    subheading: "Mon-fri from 8am to 5pm.",
+    href: "tel:+6598615600"
   }
 ];
 
@@ -42,12 +46,15 @@ export const ContactDetails = () => {
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 justify-items-center">
         {contactDetails.map((item, index) => (
-          <motion.div 
+          <motion.a
             key={index}
+            href={item.href}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.7 + (index * 0.1) }}
-            className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1 w-full max-w-[300px] min-h-[180px]"
+            className="bg-white/80 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-[#9b87f5]/20 hover:-translate-y-1 w-full max-w-[300px] min-h-[180px] cursor-pointer block"
           >
             <div className="flex flex-col space-y-3 h-full">
               <div className="flex items-center space-x-3">
@@ -68,7 +75,7 @@ export const ContactDetails = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </motion.div>
