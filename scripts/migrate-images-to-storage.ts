@@ -1,8 +1,12 @@
 import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 import { writeFileSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { nanoid } from 'nanoid';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL!;
