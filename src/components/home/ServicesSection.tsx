@@ -41,7 +41,7 @@ export const ServicesSection = () => {
     icon: <TrendingUp className="h-12 w-12 text-brand-orange" />,
     title: "Startup Growth Service",
     description: "Tailored support and strategies to accelerate the growth and success of your startup.",
-    link: "/fractional-cfo",
+    link: "/part-time-cfo",
     image: "/lovable-uploads/febac4ca-b732-41a5-a979-e95223a26a56.png"
   }, {
     icon: <FileCheck className="h-12 w-12 text-brand-orange" />,
@@ -53,7 +53,7 @@ export const ServicesSection = () => {
     icon: <BriefcaseBusiness className="h-12 w-12 text-brand-orange" />,
     title: "Fractional CFO",
     description: "Experienced, part-time financial leader providing strategic CFO-level expertise cost-effectively.",
-    link: "/fractional-cfo",
+    link: "/part-time-cfo",
     image: "/lovable-uploads/ed0aceb6-fbf6-4386-96fd-dd7675e87616.png"
   }, {
     icon: <DollarSign className="h-12 w-12 text-brand-orange" />,

@@ -37,29 +37,41 @@ export const FAQAccordion: React.FC = () => {
           <div className="w-24 h-1 bg-brand-orange mx-auto mt-4"></div>
         </motion.div>
 
-        <Accordion type="single" collapsible className="max-w-5xl mx-auto space-y-6">
+        <Accordion type="single" collapsible className="max-w-3xl mx-auto">
           {faqs.map((item, idx) => (
             <AccordionItem
               key={idx}
               value={`item-${idx + 1}`}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden"
+              className="mb-5 border-none"
             >
-              <AccordionTrigger className="group px-6 py-4 flex justify-between items-center">
-                <span className="text-lg font-medium text-gray-800">{item.question}</span>
-                <div className="flex-shrink-0">
-                  <Plus className="h-6 w-6 text-brand-orange group-data-[state=open]:hidden transition-transform" />
-                  <Minus className="h-6 w-6 text-brand-orange hidden group-data-[state=open]:block transition-transform" />
-                </div>
+              <AccordionTrigger 
+                className={`
+                  group flex items-center justify-between w-full
+                  bg-[#ededed] px-6 py-6
+                  font-bold text-xl md:text-2xl text-black
+                  rounded-none border border-[#e2e2e2] transition-all duration-200 
+                  shadow-none
+                  outline-none
+                  focus-visible:outline-none
+                  data-[state=open]:border-[2.5px] data-[state=open]:border-[#1775ff]
+                  data-[state=open]:rounded-[6px]
+                `}
+                style={{
+                  boxShadow: "none",
+                  borderRadius: "4px",
+                  borderWidth: "1.5px"
+                }}
+              >
+                <span className="text-left w-full select-none font-medium">{item.question}</span>
+                <span className="flex items-center justify-center transition-all duration-300">
+                  <span className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 bg-black rounded-full text-white transition-all duration-200">
+                    <Plus className="w-6 h-6 transition-all duration-200 group-data-[state=open]:hidden" strokeWidth={3} />
+                    <Minus className="w-6 h-6 transition-all duration-200 group-data-[state=closed]:hidden" strokeWidth={3} />
+                  </span>
+                </span>
               </AccordionTrigger>
-              <AccordionContent className="px-6 pb-6 bg-gray-50">
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-gray-600 leading-relaxed"
-                >
-                  {item.answer}
-                </motion.p>
+              <AccordionContent className="bg-white px-6 pb-6 pt-2 border border-[#e2e2e2] border-t-0 text-lg text-gray-800 font-normal leading-relaxed rounded-b-[6px] animate-slide-down">
+                {item.answer}
               </AccordionContent>
             </AccordionItem>
           ))}
