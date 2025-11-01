@@ -1,7 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
-import { writeFileSync } from 'fs';
-import { join } from 'path';
+// import { writeFileSync } from 'fs';
+import 'dotenv/config';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { nanoid } from 'nanoid';
+import { writeFileSync, mkdirSync } from 'fs';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL!;
@@ -261,6 +266,7 @@ async function main() {
   try {
     // Create backup directory
     const backupDir = join(__dirname, 'backups');
+    mkdirSync(backupDir, { recursive: true });
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const backupFile = join(backupDir, `posts-backup-${timestamp}.json`);
 
