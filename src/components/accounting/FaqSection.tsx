@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Plus, Minus } from "lucide-react";
 interface FaqItem {
   value?: string;
   question?: string;
@@ -56,31 +57,45 @@ export const FaqSection = ({
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <Accordion type="single" collapsible className="bg-white rounded-xl shadow-md px-8 py-4">
-            {faqItems.map((faq, index) => <motion.div key={index} initial={{
-            opacity: 0,
-            y: 10
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.4,
-            delay: index * 0.1
-          }} viewport={{
-            once: true
-          }}>
-                <AccordionItem value={faq.value || `item-${index}`} className="border-b border-gray-200 py-3">
-                  <AccordionTrigger className="text-left font-semibold text-lg">
-                    {faq.trigger || faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-700 pt-2 pb-4 font-medium text-base leading-relaxed">
-                    <p className="font-medium text-base leading-relaxed">
-                      {faq.content || faq.answer}
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>)}
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="w-full">
+            {faqItems.map((faq, index) => (
+              <AccordionItem 
+                key={index} 
+                value={faq.value || `item-${index}`} 
+                className="mb-5 border-none"
+              >
+                <AccordionTrigger 
+                  className={`
+                    group flex items-center justify-between w-full
+                    bg-[#ededed] px-6 py-6
+                    font-bold text-xl md:text-2xl text-black
+                    rounded-none border border-[#e2e2e2] transition-all duration-200 
+                    shadow-none
+                    outline-none
+                    focus-visible:outline-none
+                    data-[state=open]:border-[2.5px] data-[state=open]:border-[#1775ff]
+                    data-[state=open]:rounded-[6px]
+                  `}
+                  style={{
+                    boxShadow: "none",
+                    borderRadius: "4px",
+                    borderWidth: "1.5px"
+                  }}
+                >
+                  <span className="text-left w-full select-none font-medium">{faq.trigger || faq.question}</span>
+                  <span className="flex items-center justify-center transition-all duration-300">
+                    <span className="flex items-center justify-center w-8 h-8 md:w-9 md:h-9 bg-black rounded-full text-white transition-all duration-200">
+                      <Plus className="w-6 h-6 transition-all duration-200 group-data-[state=open]:hidden" strokeWidth={3} />
+                      <Minus className="w-6 h-6 transition-all duration-200 group-data-[state=closed]:hidden" strokeWidth={3} />
+                    </span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="bg-white px-6 pb-6 pt-2 border border-[#e2e2e2] border-t-0 text-lg text-gray-800 font-normal leading-relaxed rounded-b-[6px] animate-slide-down">
+                  {faq.content || faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
       </div>
